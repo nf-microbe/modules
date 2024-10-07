@@ -18,6 +18,9 @@
                         "test_plasmid_summary.tsv:md5,8c4ddaa8a90da779c11537be0fddb799"
                     ]
                 ],
+                "10": [
+                    "versions.yml:md5,17692db4ae585b447fe2897babeec56b"
+                ],
                 "2": [
                     [
                         {
@@ -75,7 +78,20 @@
                     ]
                 ],
                 "9": [
-                    "versions.yml:md5,17692db4ae585b447fe2897babeec56b"
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_proteins.faa.gz:md5,6850bd46dcb921e5cfb23bfbb8fcc12b"
+                    ]
+                ],
+                "faa": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_proteins.faa.gz:md5,6850bd46dcb921e5cfb23bfbb8fcc12b"
+                    ]
                 ],
                 "features": [
                     [
@@ -158,7 +174,7 @@
             "nf-test": "0.9.0",
             "nextflow": "24.04.4"
         },
-        "timestamp": "2024-09-12T12:19:33.889125206"
+        "timestamp": "2024-10-07T13:38:55.6753801"
     },
     "sarscov2 - genome - fasta - stub": {
         "content": [
@@ -178,6 +194,9 @@
                         },
                         "test_plasmid_summary.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
+                ],
+                "10": [
+                    "versions.yml:md5,17692db4ae585b447fe2897babeec56b"
                 ],
                 "2": [
                     [
@@ -236,7 +255,20 @@
                     ]
                 ],
                 "9": [
-                    "versions.yml:md5,17692db4ae585b447fe2897babeec56b"
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_proteins.faa.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                    ]
+                ],
+                "faa": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_proteins.faa.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                    ]
                 ],
                 "features": [
                     [
@@ -319,6 +351,6 @@
             "nf-test": "0.9.0",
             "nextflow": "24.04.4"
         },
-        "timestamp": "2024-09-12T12:20:16.735478688"
+        "timestamp": "2024-10-07T13:39:24.907451965"
     }
 }

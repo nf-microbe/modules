@@ -135,13 +135,12 @@ We have written a helper command in the `nf-core/tools` package that uses the Gi
 ## Adding nf-core modules to nf-microbe
 
 1. Run the `nf-microbe/add_nfcore_modules.py` script
-  ```
-  python nf-microbe/add_nfcore_modules.py --module <module_name>
-  ```
 
+```
+python nf-microbe/add_nfcore_modules.py --module <module_name>
+```
 
 ## Adding new modules to nf-microbe
-
 
 ## Help
 
