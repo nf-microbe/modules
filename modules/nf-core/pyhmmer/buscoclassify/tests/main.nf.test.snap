@@ -1,0 +1,108 @@
+{
+    "bacteroides_fragilis - faa - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.busco_hmms.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.busco_markers.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "2": [
+                    "versions.yml:md5,c221730f75d0b62da616d2951b2d3082"
+                ],
+                "hits": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.busco_hmms.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "markers": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.busco_markers.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,c221730f75d0b62da616d2951b2d3082"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-09-12T15:13:35.684961508"
+    },
+    "bacteroides_fragilis - faa": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.busco_hmms.tsv:md5,fd9af19eb717574f3638232394bd6d3b"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.busco_markers.tsv:md5,9eaebf4012abdb6233e98d471f9b9578"
+                    ]
+                ],
+                "2": [
+                    "versions.yml:md5,c221730f75d0b62da616d2951b2d3082"
+                ],
+                "hits": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.busco_hmms.tsv:md5,fd9af19eb717574f3638232394bd6d3b"
+                    ]
+                ],
+                "markers": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.busco_markers.tsv:md5,9eaebf4012abdb6233e98d471f9b9578"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,c221730f75d0b62da616d2951b2d3082"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-09-12T15:15:59.550326459"
+    }
+}

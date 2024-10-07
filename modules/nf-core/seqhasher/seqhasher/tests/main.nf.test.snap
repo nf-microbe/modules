@@ -1,0 +1,142 @@
+{
+    "stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.seq-hasher.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,0348e8d671b450b79ee6cc8c59d14b8e"
+                ],
+                "tsv": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.seq-hasher.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,0348e8d671b450b79ee6cc8c59d14b8e"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-10-02T07:01:50.486165649"
+    },
+    "fasta.gz + --multi-kmer-hashing --circular-kmers": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.seq-hasher.tsv:md5,6a8dfec6abe597983519eceae768a769"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,0348e8d671b450b79ee6cc8c59d14b8e"
+                ],
+                "tsv": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.seq-hasher.tsv:md5,6a8dfec6abe597983519eceae768a769"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,0348e8d671b450b79ee6cc8c59d14b8e"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-10-02T07:01:35.065690223"
+    },
+    "fasta.gz + --circular-rotation": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.seq-hasher.tsv:md5,64ab779399f9c06667cd72290f7a0575"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,0348e8d671b450b79ee6cc8c59d14b8e"
+                ],
+                "tsv": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.seq-hasher.tsv:md5,64ab779399f9c06667cd72290f7a0575"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,0348e8d671b450b79ee6cc8c59d14b8e"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-10-02T07:01:20.286878426"
+    },
+    "fasta.gz": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.seq-hasher.tsv:md5,9f174f39f8942e7027d62abf2d374dd2"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,0348e8d671b450b79ee6cc8c59d14b8e"
+                ],
+                "tsv": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.seq-hasher.tsv:md5,9f174f39f8942e7027d62abf2d374dd2"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,0348e8d671b450b79ee6cc8c59d14b8e"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-10-02T07:01:05.345097518"
+    }
+}
