@@ -183,7 +183,7 @@
                             "id": "test",
                             "single_end": true
                         },
-                        "test.tsv:md5,97eb700f7e607dba8371e82d5de8a1a2"
+                        "test.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "1": [
@@ -195,7 +195,7 @@
                             "id": "test",
                             "single_end": true
                         },
-                        "test.tsv:md5,97eb700f7e607dba8371e82d5de8a1a2"
+                        "test.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "versions": [
@@ -204,9 +204,9 @@
             }
         ],
         "meta": {
-            "nf-test": "0.8.4",
-            "nextflow": "23.10.1"
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
         },
-        "timestamp": "2024-05-08T08:35:49.267660809"
+        "timestamp": "2024-10-07T22:42:23.955525218"
     }
 }

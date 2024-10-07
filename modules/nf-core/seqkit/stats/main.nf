@@ -31,4 +31,16 @@ process SEQKIT_STATS {
         seqkit: \$( seqkit version | sed 's/seqkit v//' )
     END_VERSIONS
     """
+
+    stub:
+    def args = task.ext.args ?: '--all'
+    def prefix = task.ext.prefix ?: "${meta.id}"
+    """
+    touch ${prefix}.tsv
+
+    cat <<-END_VERSIONS > versions.yml
+    "${task.process}":
+        seqkit: \$( seqkit version | sed 's/seqkit v//' )
+    END_VERSIONS
+    """
 }
