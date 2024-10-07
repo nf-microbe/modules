@@ -4,8 +4,8 @@ process SEQHASHER_SEQUNIQ {
 
     conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'https://depot.galaxyproject.org/singularity/seqkit:2.8.1--h9ee0642_0':
-        'biocontainers/seqkit:2.8.1--h9ee0642_0' }"
+        'https://depot.galaxyproject.org/singularity/gawk:5.3.0':
+        'biocontainers/gawk:5.3.0' }"
 
     input:
     tuple val(meta), path(seq_hasher_tsv)
@@ -31,7 +31,7 @@ process SEQHASHER_SEQUNIQ {
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        awk: \$( busybox | head -n 1 | sed 's/BusyBox v//; s/ .*//' )
+        awk: \$( awk --version| head -n 1 | sed 's/GNU Awk //; s/, .*//' )
     END_VERSIONS
     """
 
@@ -44,7 +44,7 @@ process SEQHASHER_SEQUNIQ {
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        awk: \$( busybox | head -n 1 | sed 's/BusyBox v//; s/ .*//' )
+        awk: \$( awk --version| head -n 1 | sed 's/GNU Awk //; s/, .*//' )
     END_VERSIONS
     """
 }
