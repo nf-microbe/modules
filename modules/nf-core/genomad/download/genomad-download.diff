@@ -1,0 +1,74 @@
+Changes in module 'nf-core/genomad/download'
+Changes in 'genomad/download/environment.yml':
+--- modules/nf-core/genomad/download/environment.yml
++++ modules/nf-core/genomad/download/environment.yml
+@@ -2,4 +2,4 @@
+   - conda-forge
+   - bioconda
+ dependencies:
+-  - bioconda::genomad=1.7.4
++  - bioconda::genomad=1.8.0
+
+'modules/nf-core/genomad/download/meta.yml' is unchanged
+Changes in 'genomad/download/main.nf':
+--- modules/nf-core/genomad/download/main.nf
++++ modules/nf-core/genomad/download/main.nf
+@@ -3,8 +3,8 @@
+ 
+     conda "${moduleDir}/environment.yml"
+     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
+-        'https://depot.galaxyproject.org/singularity/genomad:1.7.4--pyhdfd78af_0':
+-        'biocontainers/genomad:1.7.4--pyhdfd78af_0' }"
++        'https://depot.galaxyproject.org/singularity/genomad:1.8.0--pyhdfd78af_1':
++        'biocontainers/genomad:1.8.0--pyhdfd78af_1' }"
+ 
+     output:
+     path "genomad_db/"  , emit: genomad_db
+
+'modules/nf-core/genomad/download/tests/nextflow.config' is unchanged
+'modules/nf-core/genomad/download/tests/tags.yml' is unchanged
+'modules/nf-core/genomad/download/tests/main.nf.test' is unchanged
+Changes in 'genomad/download/tests/main.nf.test.snap':
+--- modules/nf-core/genomad/download/tests/main.nf.test.snap
++++ modules/nf-core/genomad/download/tests/main.nf.test.snap
+@@ -42,7 +42,7 @@
+                     ]
+                 ],
+                 "1": [
+-                    "versions.yml:md5,e98d6885d0b88a7a71f288fcff0b7b14"
++                    "versions.yml:md5,263039e603bdbf56f83780bfd87bff26"
+                 ],
+                 "genomad_db": [
+                     [
+@@ -84,7 +84,7 @@
+                     ]
+                 ],
+                 "versions": [
+-                    "versions.yml:md5,e98d6885d0b88a7a71f288fcff0b7b14"
++                    "versions.yml:md5,263039e603bdbf56f83780bfd87bff26"
+                 ]
+             }
+         ],
+@@ -136,7 +136,7 @@
+                     ]
+                 ],
+                 "1": [
+-                    "versions.yml:md5,e98d6885d0b88a7a71f288fcff0b7b14"
++                    "versions.yml:md5,263039e603bdbf56f83780bfd87bff26"
+                 ],
+                 "genomad_db": [
+                     [
+@@ -181,10 +181,10 @@
+                     ]
+                 ],
+                 "versions": [
+-                    "versions.yml:md5,e98d6885d0b88a7a71f288fcff0b7b14"
++                    "versions.yml:md5,263039e603bdbf56f83780bfd87bff26"
+                 ]
+             }
+         ],
+         "timestamp": "2024-01-03T17:38:10.13471002"
+     }
+-}+}
+
+************************************************************
