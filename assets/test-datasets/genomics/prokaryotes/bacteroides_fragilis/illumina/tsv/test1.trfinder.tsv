@@ -1,0 +1,2 @@
+contig_id	contig_name	contig_len	tr_type	tr_seq	tr_len	tr_nt_acgt_count	tr_nt_n_count	tr_nt_max_freq
+test1_88	k141_177	1922	DTR	CTCCTCATCATACTGCTGCCCCGGCAGGCGGATAAGCTGCTGCAGCTGATG	51	51	0	33.33
