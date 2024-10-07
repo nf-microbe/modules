@@ -1,0 +1,70 @@
+nextflow_process {
+
+    name "Test Process LOGAN_CONTIGAWSCLIMULTIPLIER"
+    script "../main.nf"
+    process "LOGAN_CONTIGAWSCLIMULTIPLIER"
+
+    tag "modules"
+    tag "modules_nfcore"
+    tag "logan"
+    tag "logan/contigawsclimultiplier"
+
+    test("SRR24085752") {
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'SRR24085752', single_end:false, md5_1: 'e67296355980997dde170c602d9cb4c1', md5_2: '86b4ee5d4860aed0a3a2538a7757cbc8' ], // meta map
+                    'SRR24085752'
+                ]
+                """
+            }
+        }
+        then {
+            assertAll (
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("SRR24085752 - min_abund") {
+        config "./nextflow.config"
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'SRR24085752', single_end:false, md5_1: 'e67296355980997dde170c602d9cb4c1', md5_2: '86b4ee5d4860aed0a3a2538a7757cbc8' ], // meta map
+                    'SRR24085752'
+                ]
+                """
+            }
+        }
+        then {
+            assertAll (
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("stub") {
+        options "-stub"
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'SRR24085752', single_end:false, md5_1: 'e67296355980997dde170c602d9cb4c1', md5_2: '86b4ee5d4860aed0a3a2538a7757cbc8' ], // meta map
+                    'SRR24085752'
+                ]
+                """
+            }
+        }
+        then {
+            assertAll (
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+}

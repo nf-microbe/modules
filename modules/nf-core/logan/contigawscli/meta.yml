@@ -1,0 +1,58 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
+name: "logan_contigawscli"
+description: |
+  Download logan contigs
+keywords:
+  - download
+  - logan
+  - contigs
+tools:
+  - awscli:
+      description: |
+        Universal Command Line Interface for Amazon Web Services
+      homepage: https://github.com/aws/aws-cli
+      documentation: https://docs.aws.amazon.com/cli/
+      tool_dev_url: https://github.com/aws/aws-cli
+      licence: ["Apache-2.0"]
+  - seqkit:
+      description: |
+        Cross-platform and ultrafast toolkit for FASTA/Q file manipulation, written by Wei Shen.
+      homepage: https://github.com/shenwei356/seqkit
+      documentation: https://bioinf.shenwei.me/seqkit/
+      tool_dev_url: https://github.com/shenwei356/seqkit
+      doi: 10.1371/journal.pone.0163962
+      licence: ["MIT"]
+
+input:
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. `[ id:'sample1', single_end:false ]`
+    - accession:
+        type: file
+        description: A file containing a one NCBI SRA Run accession per row.
+
+output:
+  - versions:
+      - "versions.yml":
+          type: file
+          description: File containing software versions
+          pattern: "versions.yml"
+  - fasta:
+      - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1', single_end:false ]`
+      - "${accession}.contigs.fa.gz":
+          type: file
+          description: |
+            FastA file containing Logan contigs
+          ontologies:
+            - edam: "http://edamontology.org/format_1929"
+
+authors:
+  - "@CarsonJM"
+maintainers:
+  - "@CarsonJM"

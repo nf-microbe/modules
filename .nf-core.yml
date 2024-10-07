@@ -4,6 +4,11 @@ org_path: nf-core
 update:
   https://github.com/nf-core/modules.git:
     nf-core:
+      phables/run: False
+      phables/install: False
+      logan/unitigawsclimultiplier: False
+      logan/contigawsclimultiplier: False
+      logan/contigawscli: False
       checkv/genbankhits: False
       ena/aria2seqkittrfinder: False
       coverm/contig: False
