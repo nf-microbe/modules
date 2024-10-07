@@ -14,8 +14,7 @@ def parse_args(args=None):
     Example usage:
     python pyhmmer_plasmidclassify.py \
         -i proteins.faa.gz \
-        -c ConjScan.hmm \
-        -n Pfam_NCBI_family.hmm \
+        -l plasmid_hallmarks.hmm \
         -p prefix
     """
 
@@ -26,14 +25,9 @@ def parse_args(args=None):
         help="Path to input translated FASTA (gzipped or not) file containing protein sequences.",
     )
     parser.add_argument(
-        "-c",
-        "--conjscan",
-        help="Path to ConjScan hmm file.",
-    )
-    parser.add_argument(
-        "-n",
-        "--pfam_ncbifam",
-        help="Path to Pfam NCBI family hmm file.",
+        "-l",
+        "--plasmid_hallmarks",
+        help="Path to plasmid hallmarks hmm file.",
     )
     parser.add_argument(
         "-p",
@@ -50,28 +44,12 @@ def get_hmm_coverage(domain):
 
 
 # Function to run pyhmmer on plasmid HMMs
-def plasmid_pyhmmer(faa_path, conjscan_hmm, pfam_ncbi_hmm, plasmid_hmms_out):
+def plasmid_pyhmmer(faa_path, plasmid_hallmarks_hmm, plasmid_hmms_out):
     with open(plasmid_hmms_out, "w") as fout:
         fout.write("query\thit\tstart\tend\tevalue\tscore\thmm_coverage\n")
         with pyhmmer.easel.SequenceFile(faa_path, digital=True, alphabet=pyhmmer.easel.Alphabet.amino()) as seq_file:
             seqs = seq_file.read_block()
-        with pyhmmer.plan7.HMMFile(conjscan_hmm) as hmm_file:
-            for hits in pyhmmer.hmmsearch(hmm_file, seqs, Z=10_000, E=1e-10):
-                for hit in hits:
-                    for domain in hit.domains.included:
-                        hmm_coverage = get_hmm_coverage(domain)
-                        # Check the hmm coverage
-                        if hmm_coverage >= 0.5:
-                            fout.write(
-                                f"{hits.query_name.decode()}\t"
-                                f"{hit.name.decode()}\t"
-                                f"{domain.env_from}\t"
-                                f"{domain.env_to}\t"
-                                f"{hit.evalue:.2E}\t"
-                                f"{hit.score:.2f}\t"
-                                f"{hmm_coverage:.2f}\n"
-                            )
-        with pyhmmer.plan7.HMMFile(pfam_ncbi_hmm) as hmm_file:
+        with pyhmmer.plan7.HMMFile(plasmid_hallmarks_hmm) as hmm_file:
             for hits in pyhmmer.hmmsearch(hmm_file, seqs, bit_cutoffs="gathering"):
                 for hit in hits:
                     for domain in hit.domains.included:
@@ -118,8 +96,7 @@ def main(args=None):
 
     plasmid_pyhmmer(
         faa_path=args.input,
-        conjscan_hmm=args.conjscan,
-        pfam_ncbi_hmm=args.pfam_ncbifam,
+        plasmid_hallmarks_hmm=args.plasmid_hallmarks,
         plasmid_hmms_out=args.prefix + ".plasmid_hmms.tsv",
     )
 

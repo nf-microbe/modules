@@ -17,8 +17,7 @@ nextflow_process {
                     [ id:'test', single_end:false ], // meta map
                     file("${projectDir}/assets/test-datasets/genomics/prokaryotes/bacteroides_fragilis/illumina/faa/test1.pyrodigalgv.faa.gz", checkIfExists: true),
                 ]
-                input[1] = file("${projectDir}/assets/hmms/plasmid_hmms/CONJscan_plasmid_hallmarks.hmm", checkIfExists: true)
-                input[2] = file("${projectDir}/assets/hmms/plasmid_hmms/Pfam_NCBIfam_plasmid_hallmarks.hmm", checkIfExists: true)
+                input[1] = file("${projectDir}/assets/hmms/plasmid_hmms/plasmid_hallmarks.hmm", checkIfExists: true)
                 """
             }
         }
@@ -39,8 +38,7 @@ nextflow_process {
                     [ id:'test', single_end:false ], // meta map
                     file("${projectDir}/assets/test-datasets/genomics/prokaryotes/bacteroides_fragilis/illumina/faa/test1.pyrodigalgv.faa.gz", checkIfExists: true),
                 ]
-                input[1] = file("${projectDir}/assets/hmms/plasmid_hmms/CONJscan_plasmid_hallmarks.hmm", checkIfExists: true)
-                input[2] = file("${projectDir}/assets/hmms/plasmid_hmms/Pfam_NCBIfam_plasmid_hallmarks.hmm", checkIfExists: true)
+                input[1] = file("${projectDir}/assets/hmms/plasmid_hmms/plasmid_hallmarks.hmm", checkIfExists: true)
                 """
             }
         }
