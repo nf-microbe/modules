@@ -9,7 +9,6 @@ nextflow_process {
     tag "spades"
 
     test("sarscov2 - se ") {
-
         when {
             process {
                 """
@@ -39,7 +38,6 @@ nextflow_process {
     }
 
     test("sarscov2 - pe ") {
-
         when {
             process {
                 """
@@ -54,7 +52,6 @@ nextflow_process {
                 """
             }
         }
-
         then {
             assertAll(
                 { assert process.success },
@@ -69,8 +66,8 @@ nextflow_process {
                 { assert file(process.out.warnings[0][1]).find{ file(it).name == "warnings.log"} }
             )
         }
-
     }
+
      // isnt perfect, because CCS reads should rather be used with -s instead of --pacbio
     test("sarscov2 - pe - pacbio ") {
         when {
@@ -87,7 +84,6 @@ nextflow_process {
                 """
             }
         }
-
         then {
             assertAll(
                 { assert process.success },
@@ -105,7 +101,6 @@ nextflow_process {
     }
 
     test("sarscov2 - pe - nanopore ") {
-
         when {
             process {
                 """
@@ -120,7 +115,6 @@ nextflow_process {
                 """
             }
         }
-
         then {
             assertAll(
                 { assert process.success },
@@ -152,7 +146,6 @@ nextflow_process {
                 """
             }
         }
-
         then {
             assertAll(
                 { assert process.success },
@@ -184,7 +177,6 @@ nextflow_process {
                 """
             }
         }
-
         then {
             assertAll(
                 { assert process.success },
@@ -216,7 +208,6 @@ nextflow_process {
                 """
             }
         }
-
         then {
             assertAll(
                 { assert process.success },
@@ -224,5 +215,4 @@ nextflow_process {
             )
         }
     }
-
 }
