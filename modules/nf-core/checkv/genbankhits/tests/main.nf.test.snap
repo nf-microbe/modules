@@ -1,0 +1,101 @@
+{
+    "checkv - empty aai.tsv": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_checkv_genbank_hits.tsv:md5,68b329da9893e34099c7d8ad5cb9c940"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,c490ce4ec802d615af992dae067ffddf"
+                ],
+                "genbank_hits": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_checkv_genbank_hits.tsv:md5,68b329da9893e34099c7d8ad5cb9c940"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,c490ce4ec802d615af992dae067ffddf"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-09-25T12:04:46.306386231"
+    },
+    "bacteroides_fragilis - checkv - aai.tsv": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_checkv_genbank_hits.tsv:md5,269c2a0fb27c12bfe0de255af33b6cb1"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,c490ce4ec802d615af992dae067ffddf"
+                ],
+                "genbank_hits": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_checkv_genbank_hits.tsv:md5,269c2a0fb27c12bfe0de255af33b6cb1"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,c490ce4ec802d615af992dae067ffddf"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-09-13T16:52:57.180285654"
+    },
+    "stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_checkv_genbank_hits.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,c490ce4ec802d615af992dae067ffddf"
+                ],
+                "genbank_hits": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_checkv_genbank_hits.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,c490ce4ec802d615af992dae067ffddf"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-09-13T16:53:17.899766681"
+    }
+}

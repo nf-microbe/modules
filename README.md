@@ -17,12 +17,13 @@ A repository for hosting [Nextflow DSL2](https://www.nextflow.io/docs/latest/dsl
 
 ## Table of contents
 
-- [Using existing modules](#using-existing-modules)
-- [Adding new modules](#adding-new-modules)
+- [Using nf-microbe modules](#using-nf-microbe-modules)
+- [Adding nf-core modules to nf-microbe](#adding-nf-core-modules-to-nf-microbe)
+- [Adding new modules to nf-microbe](#adding-new-modules-to-nf-microbe)
 - [Help](#help)
 - [Citation](#citation)
 
-## Using existing modules
+## Using nf-microbe modules
 
 The module files hosted in this repository define a set of processes for software tools such as `fastqc`, `bwa`, `samtools` etc. This allows you to share and add common functionality across multiple pipelines in a modular fashion.
 
@@ -32,7 +33,7 @@ We have written a helper command in the `nf-core/tools` package that uses the Gi
 2. List the available modules:
 
    ```console
-   $ nf-core modules list remote
+   $ nf-core modules -g https://github.com/nf-microbe/modules.git list remote
 
                                          ,--./,-.
          ___     __   __   __   ___     /,-._.--~\
@@ -57,7 +58,7 @@ We have written a helper command in the `nf-core/tools` package that uses the Gi
 3. Install the module in your pipeline directory:
 
    ```console
-   $ nf-core modules install fastqc
+   $ nf-core modules -g https://github.com/nf-microbe/modules.git install fastqc
 
                                          ,--./,-.
          ___     __   __   __   ___     /,-._.--~\
@@ -84,7 +85,7 @@ We have written a helper command in the `nf-core/tools` package that uses the Gi
 5. Remove the module from the pipeline repository if required:
 
    ```console
-   $ nf-core modules remove fastqc
+   $ nf-core modules -g https://github.com/nf-microbe/modules.git remove fastqc
 
                                          ,--./,-.
          ___     __   __   __   ___     /,-._.--~\
@@ -101,7 +102,7 @@ We have written a helper command in the `nf-core/tools` package that uses the Gi
 6. Check that a locally installed nf-core module is up-to-date compared to the one hosted in this repo:
 
    ```console
-   $ nf-core modules lint fastqc
+   $ nf-core modules -g https://github.com/nf-microbe/modules.git lint fastqc
 
                                          ,--./,-.
          ___     __   __   __   ___     /,-._.--~\
@@ -131,11 +132,15 @@ We have written a helper command in the `nf-core/tools` package that uses the Gi
    ╰──────────────────────╯
    ```
 
-## Adding new modules
+## Adding nf-core modules to nf-microbe
 
-If you wish to contribute a new module, please see the documentation on the [nf-core website](https://nf-co.re/developers/modules#writing-a-new-module-reference).
+1. Run the `nf-microbe/add_nfcore_modules.py` script
 
-> Please be kind to our code reviewers and submit one pull request per module :)
+```
+python nf-microbe/add_nfcore_modules.py --module <module_name>
+```
+
+## Adding new modules to nf-microbe
 
 ## Help
 

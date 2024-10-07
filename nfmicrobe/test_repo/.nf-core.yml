@@ -1,10 +1,8 @@
-repository_type: modules
+repository_type: pipeline
 org_path: nf-core
 
 update:
   https://github.com/nf-core/modules.git:
     nf-core:
-      checkv/genbankhits: False
-      ena/aria2seqkittrfinder: False
       coverm/contig: False
       allthebacteria/aria2seqkittrfinder: False

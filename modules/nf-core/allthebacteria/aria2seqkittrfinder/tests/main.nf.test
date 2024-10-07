@@ -1,0 +1,54 @@
+nextflow_process {
+
+    name "Test Process ALLTHEBACTERIA_ARIA2SEQKITTRFINDER"
+    script "../main.nf"
+    process "ALLTHEBACTERIA_ARIA2SEQKITTRFINDER"
+
+    tag "modules"
+    tag "modules_nfcore"
+    tag "allthebacteria"
+    tag "allthebacteria/aria2seqkittrfinder"
+
+    test("achromobacter_xylosoxidans__01") {
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'achromobacter_xylosoxidans__01' ], // meta map
+                    [
+                        "https://ftp.ebi.ac.uk/pub/databases/AllTheBacteria/Releases/0.2/assembly/achromobacter_xylosoxidans__01.asm.tar.xz"
+                    ]
+                ]
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("achromobacter_xylosoxidans__01 - stub") {
+        options "-stub"
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'achromobacter_xylosoxidans__01' ], // meta map
+                    [
+                        "https://ftp.ebi.ac.uk/pub/databases/AllTheBacteria/Releases/0.2/assembly/achromobacter_xylosoxidans__01.asm.tar.xz"
+                    ]
+                ]
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+}
