@@ -15,6 +15,7 @@ def parse_args(args=None):
     parser.add_argument(
         "-d",
         "--directory",
+        default=".",
         help="Path to the directory containing nf-microbe/modules repository.",
     )
     parser.add_argument(

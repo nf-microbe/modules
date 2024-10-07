@@ -1,0 +1,55 @@
+name: "checkv_genbankhits"
+description: Determine which genomes have hits to GenBank viruses.
+keywords:
+  - checkv
+  - virus
+  - genbank
+tools:
+  - "checkv":
+      description: Assess the quality of metagenome-assembled viral genomes.
+      homepage: https://bitbucket.org/berkeleylab/checkv/src/master/
+      documentation: https://bitbucket.org/berkeleylab/checkv/src/master/
+      tool_dev_url: https://bitbucket.org/berkeleylab/checkv/src/master/
+      doi: "10.1038/s41587-020-00774-7"
+      licence: ["BSD License"]
+
+input:
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. [ id:'test', single_end:false ]
+    - aai:
+        type: file
+        description: AAI hits TSV file output by CheckV
+        pattern: "*_aai.tsv"
+  - - ncbi:
+        type: file
+        description: NCBI taxonomy TSV file used for identifying GenBank hits.
+        pattern: "ncbi.tsv"
+  - - db:
+        type: directory
+        description: Directory pointing to checkV database
+
+output:
+  - genbank_hits:
+      - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. [ id:'sample', bin:'1' ]
+      - "${prefix}_checkv_genbank_hits.tsv":
+          type: file
+          description: A list of GenBank hits and their alignment data.
+          pattern: "*_checkv_genbank_hits.tsv"
+  - versions:
+      - versions.yml:
+          type: file
+          description: File containing software versions
+          pattern: "versions.yml"
+
+authors:
+  - "@Joon-Klaps"
+maintainers:
+  - "@Joon-Klaps"
+  - "@CarsonJM"

@@ -1,0 +1,643 @@
+Changes in module 'nf-core/cobrameta'
+'modules/nf-core/cobrameta/environment.yml' is unchanged
+'modules/nf-core/cobrameta/meta.yml' is unchanged
+Changes in 'cobrameta/main.nf':
+--- modules/nf-core/cobrameta/main.nf
++++ modules/nf-core/cobrameta/main.nf
+@@ -1,5 +1,5 @@
+ process COBRAMETA {
+-    tag "$meta.id"
++    tag "${meta.id}"
+     label 'process_high'
+ 
+     conda "${moduleDir}/environment.yml"
+@@ -12,62 +12,122 @@
+     tuple val(meta2), path(coverage)
+     tuple val(meta3), path(query)
+     tuple val(meta4), path(bam)
++    tuple val(meta5), val(assembly_log)
+     val assembler
+-    val mink
+-    val maxk
+ 
+     output:
+-    tuple val(meta), path("${prefix}/COBRA_category_i_self_circular.fasta.gz")                  , emit: self_circular       , optional: true
+-    tuple val(meta), path("${prefix}/COBRA_category_ii-a_extended_circular_unique.fasta.gz")    , emit: extended_circular   , optional: true
+-    tuple val(meta), path("${prefix}/COBRA_category_ii-b_extended_partial_unique.fasta.gz")     , emit: extended_partial    , optional: true
+-    tuple val(meta), path("${prefix}/COBRA_category_ii-c_extended_failed.fasta.gz")             , emit: extended_failed     , optional: true
+-    tuple val(meta), path("${prefix}/COBRA_category_iii_orphan_end.fasta.gz")                   , emit: orphan_end          , optional: true
+-    tuple val(meta), path("${prefix}/COBRA_all_assemblies.fasta.gz")                            , emit: all_cobra_assemblies, optional: true
+-    tuple val(meta), path("${prefix}/COBRA_joining_summary.txt")                                , emit: joining_summary
+-    tuple val(meta), path("${prefix}/log")                                                      , emit: log
+-    path "versions.yml"                                                                         , emit: versions
++    tuple val(meta), path("${prefix}_COBRA_extended.fasta.gz")      , optional: true    , emit: fasta
++    tuple val(meta), path("${prefix}_COBRA_joining_summary.txt")    , optional: true    , emit: joining_summary
++    tuple val(meta), path("${prefix}.cobra.log")                                        , emit: log
++    path "versions.yml"                                                                 , emit: versions
+ 
+     when:
+     task.ext.when == null || task.ext.when
+ 
+     script:
+     def args = task.ext.args ?: ''
++    def is_compressed = fasta.getExtension() == "gz" ? true : false
++    def fasta_name = is_compressed ? fasta.getBaseName() : fasta
+     prefix = task.ext.prefix ?: "${meta.id}"
+-    """
+-    cobra-meta \\
+-        --fasta ${fasta} \\
+-        --coverage ${coverage} \\
+-        --query ${query} \\
+-        --mapping ${bam} \\
+-        --assembler ${assembler} \\
+-        --mink ${mink} \\
+-        --maxk ${maxk} \\
+-        --threads ${task.cpus} \\
+-        --output ${prefix} \\
+-        $args
++    if (assembler == "megahit") {
++        """
++        if [ "${is_compressed}" == "true" ]; then
++            gzip -c -d ${fasta} > ${fasta_name}
++        fi
+ 
+-    gzip ${prefix}/*.fasta
+-    cat ${prefix}/*fasta.gz > ${prefix}/COBRA_all_assemblies.fasta.gz
++        # identify megahit min/max kmer size
++        kmer_string=\$(grep "k list: " ${assembly_log} | sed 's/.*k list: //; s/ .*//')
++        kmer_array=(\${kmer_string//,/ })
++        min_kmer=\$(IFS=\$'\\n'; echo "\${kmer_array[*]}" | sort -nr | tail -n 1)
++        max_kmer=\$(IFS=\$'\\n'; echo "\${kmer_array[*]}" | sort -nr | head -n 1)
+ 
+-    cat <<-END_VERSIONS > versions.yml
+-    "${task.process}":
+-        cobra: \$(echo \$(cobra-meta --version 2>&1) | sed 's/^.*cobra v//' ))
+-    END_VERSIONS
+-    """
++        # reformat coverage/virus files to remove header
++        tail ${query} -n +2 | awk '{print \$1}' > ${prefix}_queries.txt
++        tail ${coverage} -n +2 > ${prefix}_cobra_coverage.txt
++
++        cobra-meta \\
++            --fasta ${fasta_name} \\
++            --coverage ${prefix}_cobra_coverage.txt \\
++            --query ${prefix}_queries.txt \\
++            --mapping ${bam} \\
++            --assembler ${assembler} \\
++            --mink \$min_kmer \\
++            --maxk \$max_kmer \\
++            --threads ${task.cpus} \\
++            --output ${prefix} \\
++            ${args}
++
++        mv ${prefix}/log ${prefix}.cobra.log
++
++        if [ -f ${prefix}/COBRA_category_ii-a_extended_circular_unique.fasta ]; then
++            cat ${prefix}/COBRA_category_ii-a_extended_circular_unique.fasta ${prefix}/COBRA_category_ii-b_extended_partial_unique.fasta > ${prefix}_COBRA_extended.fasta
++            gzip ${prefix}_COBRA_extended.fasta
++            mv ${prefix}/COBRA_joining_summary.txt ${prefix}_COBRA_joining_summary.txt
++        else
++            echo "" | gzip > ${prefix}_COBRA_extended.fasta.gz
++            touch ${prefix}_COBRA_joining_summary.txt
++        fi
++
++        cat <<-END_VERSIONS > versions.yml
++        "${task.process}":
++            cobra: \$(echo \$(cobra-meta --version 2>&1) | sed 's/^.*cobra v//' ))
++        END_VERSIONS
++        """
++    } else if (assembler == "spades") {
++        """
++        if [ "${is_compressed}" == "true" ]; then
++            gzip -c -d ${fasta} > ${fasta_name}
++        fi
++
++        # identify min/max kmer size
++        kmer_string=\$(grep "k: \\[" ${assembly_log} | sed 's/.*k: \\[//; s/\\].*//')
++        kmer_array=(\${kmer_string//,/ })
++        min_kmer=\$(IFS=\$'\\n'; echo "\${kmer_array[*]}" | sort -nr | tail -n 1)
++        max_kmer=\$(IFS=\$'\\n'; echo "\${kmer_array[*]}" | sort -nr | head -n 1)
++
++        # reformat coverage/virus files to remove header
++        tail ${query} -n +2 | awk '{print \$1}' > ${prefix}_queries.txt
++        tail ${coverage} -n +2 > ${prefix}_cobra_coverage.txt
++
++        cobra-meta \\
++            --fasta ${fasta_name} \\
++            --coverage ${prefix}_cobra_coverage.txt \\
++            --query ${prefix}_queries.txt \\
++            --mapping ${bam} \\
++            --assembler metaspades \\
++            --mink \$min_kmer \\
++            --maxk \$max_kmer \\
++            --threads ${task.cpus} \\
++            --output ${prefix} \\
++            ${args}
++
++        mv ${prefix}/log ${prefix}.cobra.log
++
++        if [ -f ${prefix}/COBRA_category_ii-a_extended_circular_unique.fasta ]; then
++            cat ${prefix}/COBRA_category_ii-a_extended_circular_unique.fasta ${prefix}/COBRA_category_ii-b_extended_partial_unique.fasta > ${prefix}_COBRA_extended.fasta
++            gzip ${prefix}_COBRA_extended.fasta
++            mv ${prefix}/COBRA_joining_summary.txt ${prefix}_COBRA_joining_summary.txt
++        else
++            echo "" | gzip > ${prefix}_COBRA_extended.fasta.gz
++            touch ${prefix}_COBRA_joining_summary.txt
++        fi
++
++        cat <<-END_VERSIONS > versions.yml
++        "${task.process}":
++            cobra: \$(echo \$(cobra-meta --version 2>&1) | sed 's/^.*cobra v//' ))
++        END_VERSIONS
++        """
++    }
+ 
+     stub:
+     def args = task.ext.args ?: ''
++    def is_compressed = fasta.getExtension() == "gz" ? true : false
++    def fasta_name = is_compressed ? fasta.getBaseName() : fasta
+     prefix = task.ext.prefix ?: "${meta.id}"
+     """
+-    mkdir ${prefix}
+-    echo "" | gzip > ${prefix}/COBRA_all_assemblies.fasta.gz
+-    echo "" | gzip > ${prefix}/COBRA_category_i_self_circular.fasta.gz
+-    echo "" | gzip > ${prefix}/COBRA_category_ii-a_extended_circular_unique.fasta.gz
+-    echo "" | gzip > ${prefix}/COBRA_category_ii-b_extended_partial_unique.fasta.gz
+-    echo "" | gzip > ${prefix}/COBRA_category_ii-c_extended_failed.fasta.gz
+-    echo "" | gzip > ${prefix}/COBRA_category_iii_orphan_end.fasta.gz
+-    touch ${prefix}/COBRA_joining_summary.txt
+-    touch ${prefix}/log
++    echo "" | gzip > ${prefix}_COBRA_extended.fasta.gz
++    touch ${prefix}_COBRA_joining_summary.txt
++    touch ${prefix}.cobra.log
+ 
+     cat <<-END_VERSIONS > versions.yml
+     "${task.process}":
+
+'modules/nf-core/cobrameta/tests/nextflow.config' is unchanged
+Changes in 'cobrameta/tests/main.nf.test':
+--- modules/nf-core/cobrameta/tests/main.nf.test
++++ modules/nf-core/cobrameta/tests/main.nf.test
+@@ -7,132 +7,121 @@
+     tag "modules"
+     tag "modules_nfcore"
+     tag "cobrameta"
+-    tag "gunzip"
+ 
+-    setup {
+-        run("GUNZIP") {
+-            script "../../gunzip/main.nf"
++
++    test("b_fragilis - spades") {
++        when {
+             process {
+                 """
+-                input[0] = Channel.of (
+-                    [
+-                        [ id:'test' ],
+-                        file(params.modules_testdata_base_path + 'genomics/prokaryotes/bacteroides_fragilis/illumina/fasta/test1.contigs.fa.gz', checkIfExists: true)
+-                    ]
+-                )
++                input[0] = [
++                    [ id:'test'],
++                    file(params.modules_testdata_base_path + 'genomics/prokaryotes/bacteroides_fragilis/illumina/fasta/test1.contigs.fa.gz', checkIfExists: true)
++                ]
++                input[1] = [
++                    [ id:'test'],
++                    file("${projectDir}/assets/test-datasets/genomics/prokaryotes/bacteroides_fragilis/text/test1_contig_coverage.tsv", checkIfExists: true)
++                ]
++                input[2] = [
++                    [ id:'test'],
++                    file("${projectDir}/assets/test-datasets/genomics/prokaryotes/bacteroides_fragilis/text/test1_contig_names.tsv", checkIfExists: true)
++                ]
++                input[3] = [
++                    [ id:'test'],
++                    file(params.modules_testdata_base_path + 'genomics/prokaryotes/bacteroides_fragilis/illumina/bam/test1_contigs.sorted.bam', checkIfExists: true)
++                ]
++                input[4] = [
++                    [ id:'test'],
++                    file("${projectDir}/assets/test-datasets/genomics/prokaryotes/bacteroides_fragilis/illumina/log/test1.spades.log", checkIfExists: true)
++                ]
++                input[5] = 'spades'
+                 """
+             }
+         }
+-    }
+-
+-    test("contigs.fasta.gz & coverage.tsv & viral_contigs & bam") {
+-
+-        config "./nextflow.config"
+-
+-        when {
+-            params {
+-                assembler   = 'metaspades'
+-                mink        = 27
+-                maxk        = 127
+-            }
+-            process {
+-                """
+-                input[0] = GUNZIP.out.gunzip
+-                input[1] = Channel.of (
+-                    [
+-                        [ id:'test'],
+-                        [
+-                            file(params.modules_testdata_base_path + 'genomics/prokaryotes/bacteroides_fragilis/illumina/coverage/test1_contigs.coverage.stats.txt', checkIfExists: true)
+-                        ]
+-                    ]
+-                )
+-                input[2] = Channel.of (
+-                    [
+-                        [ id:'test'],
+-                        [
+-                            file(params.modules_testdata_base_path + 'genomics/prokaryotes/bacteroides_fragilis/illumina/tsv/test1_contigs_ids.tsv', checkIfExists: true)
+-                        ]
+-                    ]
+-                )
+-                input[3] = Channel.of (
+-                    [
+-                        [ id:'test'],
+-                        [
+-                            file(params.modules_testdata_base_path + 'genomics/prokaryotes/bacteroides_fragilis/illumina/bam/test1_contigs.sorted.bam', checkIfExists: true)
+-                        ]
+-                    ]
+-                )
+-                input[4] = params.assembler
+-                input[5] = params.mink
+-                input[6] = params.maxk
+-                """
+-            }
+-        }
+-
+         then {
+             assertAll (
+                 { assert process.success },
+                 { assert snapshot(
+-                    process.out.self_circular,
++                    process.out.fasta,
++                    file(process.out.log[0][1]).name,
+                     process.out.joining_summary,
+-                    process.out.versions,
+-                    process.out.self_circular,
++                    process.out.versions
+                     ).match()
+-                },
+-                { assert file(process.out.log.get(0).get(1)).exists() },
+-                { assert file(process.out.orphan_end.get(0).get(1)).exists() },
+-                { assert file(process.out.extended_circular.get(0).get(1)).exists() },
+-                { assert file(process.out.extended_failed.get(0).get(1)).exists() },
+-                { assert file(process.out.extended_partial.get(0).get(1)).exists() },
+-                { assert file(process.out.all_cobra_assemblies.get(0).get(1)).exists() }
++                }
+             )
+         }
+     }
+ 
+-    test("contigs.fasta.gz & coverage.tsv & viral_contigs & bam - stub") {
+-
+-        options "-stub"
+-
++    test("sarscov2 - megahit") {
+         when {
+-            params {
+-                assembler   = 'metaspades'
+-                mink        = 27
+-                maxk        = 127
+-            }
+             process {
+                 """
+-                input[0] = GUNZIP.out.gunzip
+-                input[1] = Channel.of (
+-                    [
+-                        [ id:'test'],
+-                        [
+-                            file(params.modules_testdata_base_path + 'genomics/prokaryotes/bacteroides_fragilis/illumina/coverage/test1_contigs.coverage.stats.txt', checkIfExists: true)
+-                        ]
+-                    ]
+-                )
+-                input[2] = Channel.of (
+-                    [
+-                        [ id:'test'],
+-                        [
+-                            file(params.modules_testdata_base_path + 'genomics/prokaryotes/bacteroides_fragilis/illumina/tsv/test1_contigs_ids.tsv', checkIfExists: true)
+-                        ]
+-                    ]
+-                )
+-                input[3] = Channel.of (
+-                    [
+-                        [ id:'test'],
+-                        [
+-                            file(params.modules_testdata_base_path + 'genomics/prokaryotes/bacteroides_fragilis/illumina/bam/test1_contigs.sorted.bam', checkIfExists: true)
+-                        ]
+-                    ]
+-                )
+-                input[4] = params.assembler
+-                input[5] = params.mink
+-                input[6] = params.maxk
++                input[0] = [
++                    [ id:'test'],
++                    file(params.modules_testdata_base_path + 'genomics/prokaryotes/bacteroides_fragilis/illumina/fasta/test1.contigs.fa.gz', checkIfExists: true)
++                ]
++                input[1] = [
++                    [ id:'test'],
++                    file("${projectDir}/assets/test-datasets/genomics/prokaryotes/bacteroides_fragilis/text/test1_contig_coverage.tsv", checkIfExists: true)
++                ]
++                input[2] = [
++                    [ id:'test'],
++                    file("${projectDir}/assets/test-datasets/genomics/prokaryotes/bacteroides_fragilis/text/test1_contig_names.tsv", checkIfExists: true)
++                ]
++                input[3] = [
++                    [ id:'test'],
++                    file(params.modules_testdata_base_path + 'genomics/prokaryotes/bacteroides_fragilis/illumina/bam/test1_contigs.sorted.bam', checkIfExists: true)
++                ]
++                input[4] = [
++                    [ id:'test'],
++                    file("${projectDir}/assets/test-datasets/genomics/sarscov2/illumina/log/test.megahit.log", checkIfExists: true)
++                ]
++                input[5] = 'megahit'
+                 """
+             }
+         }
++        then {
++            assertAll (
++                { assert process.success },
++                { assert snapshot(
++                    process.out.fasta,
++                    file(process.out.log[0][1]).name,
++                    process.out.joining_summary,
++                    process.out.versions
++                    ).match()
++                }
++            )
++        }
++    }
+ 
++    test("stub") {
++        options "-stub"
++        when {
++            process {
++                """
++                input[0] = [
++                    [ id:'test'],
++                    file(params.modules_testdata_base_path + 'genomics/prokaryotes/bacteroides_fragilis/illumina/fasta/test1.contigs.fa.gz', checkIfExists: true)
++                ]
++                input[1] = [
++                    [ id:'test'],
++                    file("${projectDir}/assets/test-datasets/genomics/prokaryotes/bacteroides_fragilis/text/test1_contig_coverage.tsv", checkIfExists: true)
++                ]
++                input[2] = [
++                    [ id:'test'],
++                    file("${projectDir}/assets/test-datasets/genomics/prokaryotes/bacteroides_fragilis/text/test1_contig_names.tsv", checkIfExists: true)
++                ]
++                input[3] = [
++                    [ id:'test'],
++                    file(params.modules_testdata_base_path + 'genomics/prokaryotes/bacteroides_fragilis/illumina/bam/test1_contigs.sorted.bam', checkIfExists: true)
++                ]
++                input[4] = [
++                    [ id:'test'],
++                    file("${projectDir}/assets/test-datasets/genomics/sarscov2/illumina/log/test.megahit.log", checkIfExists: true)
++                ]
++                input[5] = 'megahit'
++                """
++            }
++        }
+         then {
+             assertAll(
+                 { assert process.success },
+
+Changes in 'cobrameta/tests/main.nf.test.snap':
+--- modules/nf-core/cobrameta/tests/main.nf.test.snap
++++ modules/nf-core/cobrameta/tests/main.nf.test.snap
+@@ -1,41 +1,34 @@
+ {
+-    "contigs.fasta.gz & coverage.tsv & viral_contigs & bam": {
++    "sarscov2 - megahit": {
+         "content": [
+             [
+                 [
+                     {
+                         "id": "test"
+                     },
+-                    "COBRA_category_i_self_circular.fasta.gz:md5,dc0260e8e9e95022109e4c812b9ce636"
++                    "test_COBRA_extended.fasta.gz:md5,3ee264adad01d595157f023506a68248"
+                 ]
+             ],
++            "test.cobra.log",
+             [
+                 [
+                     {
+                         "id": "test"
+                     },
+-                    "COBRA_joining_summary.txt:md5,d5290bf8832431556801bd83cddb2aa9"
++                    "test_COBRA_joining_summary.txt:md5,fc51a413c8765bc59954f9a359e7a0f2"
+                 ]
+             ],
+             [
+                 "versions.yml:md5,6830d6d3da149b4eebd6e66f2346ec92"
+-            ],
+-            [
+-                [
+-                    {
+-                        "id": "test"
+-                    },
+-                    "COBRA_category_i_self_circular.fasta.gz:md5,dc0260e8e9e95022109e4c812b9ce636"
+-                ]
+             ]
+         ],
+         "meta": {
+-            "nf-test": "0.8.4",
+-            "nextflow": "23.10.1"
++            "nf-test": "0.9.0",
++            "nextflow": "24.04.4"
+         },
+-        "timestamp": "2024-03-22T17:27:48.873319956"
++        "timestamp": "2024-09-13T12:45:23.54931085"
+     },
+-    "contigs.fasta.gz & coverage.tsv & viral_contigs & bam - stub": {
++    "stub": {
+         "content": [
+             {
+                 "0": [
+@@ -43,7 +36,7 @@
+                         {
+                             "id": "test"
+                         },
+-                        "COBRA_category_i_self_circular.fasta.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
++                        "test_COBRA_extended.fasta.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                     ]
+                 ],
+                 "1": [
+@@ -51,7 +44,7 @@
+                         {
+                             "id": "test"
+                         },
+-                        "COBRA_category_ii-a_extended_circular_unique.fasta.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
++                        "test_COBRA_joining_summary.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                     ]
+                 ],
+                 "2": [
+@@ -59,82 +52,18 @@
+                         {
+                             "id": "test"
+                         },
+-                        "COBRA_category_ii-b_extended_partial_unique.fasta.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
++                        "test.cobra.log:md5,d41d8cd98f00b204e9800998ecf8427e"
+                     ]
+                 ],
+                 "3": [
++                    "versions.yml:md5,6830d6d3da149b4eebd6e66f2346ec92"
++                ],
++                "fasta": [
+                     [
+                         {
+                             "id": "test"
+                         },
+-                        "COBRA_category_ii-c_extended_failed.fasta.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+-                    ]
+-                ],
+-                "4": [
+-                    [
+-                        {
+-                            "id": "test"
+-                        },
+-                        "COBRA_category_iii_orphan_end.fasta.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+-                    ]
+-                ],
+-                "5": [
+-                    [
+-                        {
+-                            "id": "test"
+-                        },
+-                        "COBRA_all_assemblies.fasta.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+-                    ]
+-                ],
+-                "6": [
+-                    [
+-                        {
+-                            "id": "test"
+-                        },
+-                        "COBRA_joining_summary.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+-                    ]
+-                ],
+-                "7": [
+-                    [
+-                        {
+-                            "id": "test"
+-                        },
+-                        "log:md5,d41d8cd98f00b204e9800998ecf8427e"
+-                    ]
+-                ],
+-                "8": [
+-                    "versions.yml:md5,6830d6d3da149b4eebd6e66f2346ec92"
+-                ],
+-                "all_cobra_assemblies": [
+-                    [
+-                        {
+-                            "id": "test"
+-                        },
+-                        "COBRA_all_assemblies.fasta.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+-                    ]
+-                ],
+-                "extended_circular": [
+-                    [
+-                        {
+-                            "id": "test"
+-                        },
+-                        "COBRA_category_ii-a_extended_circular_unique.fasta.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+-                    ]
+-                ],
+-                "extended_failed": [
+-                    [
+-                        {
+-                            "id": "test"
+-                        },
+-                        "COBRA_category_ii-c_extended_failed.fasta.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+-                    ]
+-                ],
+-                "extended_partial": [
+-                    [
+-                        {
+-                            "id": "test"
+-                        },
+-                        "COBRA_category_ii-b_extended_partial_unique.fasta.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
++                        "test_COBRA_extended.fasta.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                     ]
+                 ],
+                 "joining_summary": [
+@@ -142,7 +71,7 @@
+                         {
+                             "id": "test"
+                         },
+-                        "COBRA_joining_summary.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
++                        "test_COBRA_joining_summary.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                     ]
+                 ],
+                 "log": [
+@@ -150,23 +79,7 @@
+                         {
+                             "id": "test"
+                         },
+-                        "log:md5,d41d8cd98f00b204e9800998ecf8427e"
+-                    ]
+-                ],
+-                "orphan_end": [
+-                    [
+-                        {
+-                            "id": "test"
+-                        },
+-                        "COBRA_category_iii_orphan_end.fasta.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+-                    ]
+-                ],
+-                "self_circular": [
+-                    [
+-                        {
+-                            "id": "test"
+-                        },
+-                        "COBRA_category_i_self_circular.fasta.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
++                        "test.cobra.log:md5,d41d8cd98f00b204e9800998ecf8427e"
+                     ]
+                 ],
+                 "versions": [
+@@ -175,9 +88,38 @@
+             }
+         ],
+         "meta": {
+-            "nf-test": "0.8.4",
+-            "nextflow": "23.10.1"
++            "nf-test": "0.9.0",
++            "nextflow": "24.04.4"
+         },
+-        "timestamp": "2024-03-22T16:12:57.980365305"
++        "timestamp": "2024-09-04T08:12:21.739882401"
++    },
++    "b_fragilis - spades": {
++        "content": [
++            [
++                [
++                    {
++                        "id": "test"
++                    },
++                    "test_COBRA_extended.fasta.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
++                ]
++            ],
++            "test.cobra.log",
++            [
++                [
++                    {
++                        "id": "test"
++                    },
++                    "test_COBRA_joining_summary.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
++                ]
++            ],
++            [
++                "versions.yml:md5,6830d6d3da149b4eebd6e66f2346ec92"
++            ]
++        ],
++        "meta": {
++            "nf-test": "0.9.0",
++            "nextflow": "24.04.4"
++        },
++        "timestamp": "2024-09-23T11:12:12.708997415"
+     }
+ }
+'modules/nf-core/cobrameta/tests/tags.yml' was removed
+************************************************************

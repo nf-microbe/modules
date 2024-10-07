@@ -1,0 +1,7 @@
+channels:
+- conda-forge
+- bioconda
+dependencies:
+- bioconda::seqkit=2.8.2
+- conda-forge::aria2c=1.37.0
+- conda-forge::biopython=1.83
