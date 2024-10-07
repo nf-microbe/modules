@@ -179,8 +179,8 @@
                             "single_end": true
                         },
                         [
-                            "test_1.part_001.fastq.gz:md5,ecc4b1841cd94704bba742ea4dcd48b0",
-                            "test_1.part_002.fastq.gz:md5,b3de467f2b6ab0d14e1f6ce14932a411"
+                            "test.part_001.fasta.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                            "test.part_002.fasta.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
                         ]
                     ]
                 ],
@@ -194,8 +194,8 @@
                             "single_end": true
                         },
                         [
-                            "test_1.part_001.fastq.gz:md5,ecc4b1841cd94704bba742ea4dcd48b0",
-                            "test_1.part_002.fastq.gz:md5,b3de467f2b6ab0d14e1f6ce14932a411"
+                            "test.part_001.fasta.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                            "test.part_002.fasta.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
                         ]
                     ]
                 ],
@@ -205,10 +205,10 @@
             }
         ],
         "meta": {
-            "nf-test": "0.8.4",
-            "nextflow": "23.10.1"
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
         },
-        "timestamp": "2024-05-08T05:44:01.29740288"
+        "timestamp": "2024-10-07T22:54:10.880361031"
     },
     "single_end - part - stub": {
         "content": [
@@ -220,9 +220,8 @@
                             "single_end": true
                         },
                         [
-                            "test_1.part_001.fastq.gz:md5,b3c4d28be7ea9b960fbf1cb452adb53c",
-                            "test_1.part_002.fastq.gz:md5,c134c70c5b70c6b3c65979448b38917e",
-                            "test_1.part_003.fastq.gz:md5,822a40283637e2715e77d1ed0ed5bd52"
+                            "test.part_001.fasta.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                            "test.part_002.fasta.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
                         ]
                     ]
                 ],
@@ -236,9 +235,8 @@
                             "single_end": true
                         },
                         [
-                            "test_1.part_001.fastq.gz:md5,b3c4d28be7ea9b960fbf1cb452adb53c",
-                            "test_1.part_002.fastq.gz:md5,c134c70c5b70c6b3c65979448b38917e",
-                            "test_1.part_003.fastq.gz:md5,822a40283637e2715e77d1ed0ed5bd52"
+                            "test.part_001.fasta.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                            "test.part_002.fasta.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
                         ]
                     ]
                 ],
@@ -248,33 +246,10 @@
             }
         ],
         "meta": {
-            "nf-test": "0.8.4",
-            "nextflow": "23.10.1"
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
         },
-        "timestamp": "2024-05-08T05:43:33.964460368"
-    },
-    "paired_end - length - stub": {
-        "content": [
-            {
-                "0": [
-                    
-                ],
-                "1": [
-                    
-                ],
-                "reads": [
-                    
-                ],
-                "versions": [
-                    
-                ]
-            }
-        ],
-        "meta": {
-            "nf-test": "0.8.4",
-            "nextflow": "23.10.1"
-        },
-        "timestamp": "2024-05-08T05:42:57.687195505"
+        "timestamp": "2024-10-07T22:53:38.393969135"
     },
     "single_end - length - stub": {
         "content": [
@@ -286,8 +261,8 @@
                             "single_end": true
                         },
                         [
-                            "test_1.part_001.fastq.gz:md5,ffc87eb34d91d23ec9095bd8609a6a70",
-                            "test_1.part_002.fastq.gz:md5,8d71a0abe239e05e5c57c4d27c799a1d"
+                            "test.part_001.fasta.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                            "test.part_002.fasta.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
                         ]
                     ]
                 ],
@@ -301,8 +276,8 @@
                             "single_end": true
                         },
                         [
-                            "test_1.part_001.fastq.gz:md5,ffc87eb34d91d23ec9095bd8609a6a70",
-                            "test_1.part_002.fastq.gz:md5,8d71a0abe239e05e5c57c4d27c799a1d"
+                            "test.part_001.fasta.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                            "test.part_002.fasta.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
                         ]
                     ]
                 ],
@@ -312,10 +287,10 @@
             }
         ],
         "meta": {
-            "nf-test": "0.8.4",
-            "nextflow": "23.10.1"
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
         },
-        "timestamp": "2024-05-08T05:43:07.15316163"
+        "timestamp": "2024-10-07T22:53:06.044969678"
     },
     "paired_end - part": {
         "content": [

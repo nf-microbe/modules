@@ -20,7 +20,7 @@ process SEQKIT_SPLIT2 {
     script:
     def args   = task.ext.args   ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
-    if(!meta.single_end || meta.single_end){
+    if(meta.single_end == null || meta.single_end){
         """
         seqkit \\
             split2 \\
