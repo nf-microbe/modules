@@ -1,4 +1,4 @@
-repository_type: pipeline
+repository_type: modules
 org_path: nf-core
 
 update:
