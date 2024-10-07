@@ -1,3 +1,7 @@
 repository_type: modules
-org_path: nf-microbe
+org_path: nf-core
 
+update:
+  https://github.com/nf-core/modules.git:
+    nf-core:
+      coverm/contig: False
