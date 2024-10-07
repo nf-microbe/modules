@@ -4,6 +4,7 @@ org_path: nf-core
 update:
   https://github.com/nf-core/modules.git:
     nf-core:
+      sequencestats: False
       seqhasher/sequniq: False
       seqhasher/seqhasher: False
       pyrodigalgv: False
