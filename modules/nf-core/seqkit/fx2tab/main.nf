@@ -34,4 +34,17 @@ process SEQKIT_FX2TAB {
         seqkit: \$( seqkit | sed '3!d; s/Version: //' )
     END_VERSIONS
     """
+
+    stub:
+    def args   = task.ext.args   ?: ''
+    def prefix = task.ext.prefix ?: "${meta.id}"
+    def suffix = task.ext.suffix ?: "txt.zst"
+    """
+    touch ${prefix}.${suffix}
+
+    cat <<-END_VERSIONS > versions.yml
+    "${task.process}":
+        seqkit: \$( seqkit | sed '3!d; s/Version: //' )
+    END_VERSIONS
+    """
 }
