@@ -9,6 +9,7 @@ process MEGAHIT {
 
     input:
     tuple val(meta), path(reads)
+    path fastg2gfa
 
     output:
     tuple val(meta), path("*.contigs.fa.gz")                            , emit: contigs
@@ -42,7 +43,7 @@ process MEGAHIT {
         megahit_out/*.fa > ${prefix}.graph.fastg
 
     # convert FastG to GFA format
-    fastg2gfa \\
+    ${fastg2gfa} \\
         ${prefix}.graph.fastg > ${prefix}.gfa
 
     # gzip megahit contigs
