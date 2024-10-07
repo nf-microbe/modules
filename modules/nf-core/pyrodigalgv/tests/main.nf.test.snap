@@ -1,0 +1,144 @@
+{
+    "sarscov2 - fasta.gz - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.pyrodigalgv.gff.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.pyrodigalgv.faa.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                    ]
+                ],
+                "2": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.pyrodigalgv.fna.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                    ]
+                ],
+                "3": [
+                    "versions.yml:md5,82e5548ec8bb7c496c955aeaef6c13b2"
+                ],
+                "faa": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.pyrodigalgv.faa.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                    ]
+                ],
+                "fna": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.pyrodigalgv.fna.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                    ]
+                ],
+                "gff": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.pyrodigalgv.gff.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,82e5548ec8bb7c496c955aeaef6c13b2"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-09-11T09:27:23.741379651"
+    },
+    "sarscov2 - fasta.gz": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.pyrodigalgv.gff.gz:md5,664a230efa8f6adeebd10e2da8c63821"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.pyrodigalgv.faa.gz:md5,dc074252303061fc3533edb44b069338"
+                    ]
+                ],
+                "2": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.pyrodigalgv.fna.gz:md5,b12dccd1f126ca157fbf18dca5994dd5"
+                    ]
+                ],
+                "3": [
+                    "versions.yml:md5,82e5548ec8bb7c496c955aeaef6c13b2"
+                ],
+                "faa": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.pyrodigalgv.faa.gz:md5,dc074252303061fc3533edb44b069338"
+                    ]
+                ],
+                "fna": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.pyrodigalgv.fna.gz:md5,b12dccd1f126ca157fbf18dca5994dd5"
+                    ]
+                ],
+                "gff": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.pyrodigalgv.gff.gz:md5,664a230efa8f6adeebd10e2da8c63821"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,82e5548ec8bb7c496c955aeaef6c13b2"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-09-11T09:27:00.988647594"
+    }
+}

@@ -1,0 +1,7 @@
+name: "plass_penguin"
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - "bioconda::plass=5.cf8933"

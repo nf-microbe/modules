@@ -1,0 +1,58 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
+name: "pyhmmer_plasmidclassify"
+description: Classify viruses using additional HMMs
+keywords:
+  - hmm
+  - pyhmmer
+  - palsmid
+tools:
+  - "pyhmmer":
+      description: "Cython bindings and Python interface to HMMER3."
+      homepage: "https://pyhmmer.readthedocs.io"
+      documentation: "https://pyhmmer.readthedocs.io"
+      tool_dev_url: "https://github.com/althonos/pyhmmer"
+      doi: 10.1093/bioinformatics/btad214
+      licence: ["MIT"]
+
+input:
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. `[ id:'sample1', single_end:false ]`
+  - faa:
+      type: file
+      description: Protein sequences in translated FastA format.
+      pattern: "*.{fasta,faa}.gz"
+  - conjscan_hmms:
+      type: file
+      description: HMMs for identifying conjugative plasmid proteins.
+      pattern: "*.hmm"
+  - pfam_ncbifam_hmms:
+      type: file
+      description: HMMs for identifying Pfam plasmid family proteins.
+      pattern: "*.hmm"
+
+output:
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. `[ id:'sample1', single_end:false ]`
+  - versions:
+      type: file
+      description: File containing software versions
+      pattern: "versions.yml"
+  - hits:
+      type: file
+      description: Pyhmmer output after searching against all plasmid HMMs.
+      pattern: "*.plasmid_hmms.tsv"
+  - markers:
+      type: file
+      description: Parsed Pyhmmer output containing hallmark counts and hits for each sequences.
+      pattern: "*.plasmid_markers.tsv"
+
+authors:
+  - "@CarsonJM"
+maintainers:
+  - "@CarsonJM"

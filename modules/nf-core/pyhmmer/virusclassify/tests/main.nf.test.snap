@@ -1,0 +1,108 @@
+{
+    "bacteroides_fragilis - faa - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.virus_hmms.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.virus_markers.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "2": [
+                    "versions.yml:md5,68224f42e55fbde510282ad93b34efae"
+                ],
+                "hits": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.virus_hmms.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "markers": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.virus_markers.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,68224f42e55fbde510282ad93b34efae"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-09-12T15:10:32.975612275"
+    },
+    "bacteroides_fragilis - faa": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.virus_hmms.tsv:md5,f40d15c39fd8b94175d99703c98e0d17"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.virus_markers.tsv:md5,257ff260fc8e9d1e3238148e9c3f3a14"
+                    ]
+                ],
+                "2": [
+                    "versions.yml:md5,68224f42e55fbde510282ad93b34efae"
+                ],
+                "hits": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.virus_hmms.tsv:md5,f40d15c39fd8b94175d99703c98e0d17"
+                    ]
+                ],
+                "markers": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.virus_markers.tsv:md5,257ff260fc8e9d1e3238148e9c3f3a14"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,68224f42e55fbde510282ad93b34efae"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-09-12T15:10:10.299803084"
+    }
+}

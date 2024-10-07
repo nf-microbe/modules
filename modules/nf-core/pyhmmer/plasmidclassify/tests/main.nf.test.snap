@@ -1,0 +1,108 @@
+{
+    "bacteroides_fragilis - faa - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.plasmid_hmms.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.plasmid_markers.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "2": [
+                    "versions.yml:md5,ef5266117af8b0677330ad16f541b552"
+                ],
+                "hits": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.plasmid_hmms.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "markers": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.plasmid_markers.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,ef5266117af8b0677330ad16f541b552"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-09-12T15:15:08.04115751"
+    },
+    "bacteroides_fragilis - faa": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.plasmid_hmms.tsv:md5,9fac5cb84608517ea940595f275d65e8"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.plasmid_markers.tsv:md5,cd9749ea509af4ba03535150b2cd2d75"
+                    ]
+                ],
+                "2": [
+                    "versions.yml:md5,ef5266117af8b0677330ad16f541b552"
+                ],
+                "hits": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.plasmid_hmms.tsv:md5,9fac5cb84608517ea940595f275d65e8"
+                    ]
+                ],
+                "markers": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.plasmid_markers.tsv:md5,cd9749ea509af4ba03535150b2cd2d75"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,ef5266117af8b0677330ad16f541b552"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-09-12T15:14:43.667404897"
+    }
+}

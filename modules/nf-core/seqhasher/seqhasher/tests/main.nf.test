@@ -1,0 +1,105 @@
+nextflow_process {
+
+    name "Test Process SEQHASHER_SEQHASHER"
+    script "../main.nf"
+    process "SEQHASHER_SEQHASHER"
+    config "./nextflow.config"
+
+    tag "modules"
+    tag "modules_nfcore"
+    tag "seqhasher"
+    tag "seqhasher/seqhasher"
+
+    test("fasta.gz") {
+        when {
+            params {
+                seqhasher_args ""
+            }
+            process {
+                """
+                input[0] = [
+                    [ id:'test', single_end:false ], // meta map
+                    file(params.modules_testdata_base_path + 'genomics/prokaryotes/bacteroides_fragilis/illumina/fasta/test1.contigs.fa.gz', checkIfExists: true),
+                ]
+                input[1] = file("https://github.com/nf-microbe/modules/raw/refs/heads/master/bin/seq-hasher", checkIfExists: true)
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("fasta.gz + --circular-rotation") {
+        when {
+            params {
+                seqhasher_args "--circular-rotation"
+            }
+            process {
+                """
+                input[0] = [
+                    [ id:'test', single_end:false ], // meta map
+                    file(params.modules_testdata_base_path + 'genomics/prokaryotes/bacteroides_fragilis/illumina/fasta/test1.contigs.fa.gz', checkIfExists: true),
+                ]
+                input[1] = file("https://github.com/nf-microbe/modules/raw/refs/heads/master/bin/seq-hasher", checkIfExists: true)
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("fasta.gz + --multi-kmer-hashing --circular-kmers") {
+        when {
+            params {
+                seqhasher_args "--multi-kmer-hashing --circular-kmers"
+            }
+            process {
+                """
+                input[0] = [
+                    [ id:'test', single_end:false ], // meta map
+                    file(params.modules_testdata_base_path + 'genomics/prokaryotes/bacteroides_fragilis/illumina/fasta/test1.contigs.fa.gz', checkIfExists: true),
+                ]
+                input[1] = file("https://github.com/nf-microbe/modules/raw/refs/heads/master/bin/seq-hasher", checkIfExists: true)
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("stub") {
+        options "-stub"
+        when {
+            params {
+                seqhasher_args ""
+            }
+            process {
+                """
+                input[0] = [
+                    [ id:'test', single_end:false ], // meta map
+                    file(params.modules_testdata_base_path + 'genomics/prokaryotes/bacteroides_fragilis/illumina/fasta/test1.contigs.fa.gz', checkIfExists: true),
+                ]
+                input[1] = file("https://github.com/nf-microbe/modules/raw/refs/heads/master/bin/seq-hasher", checkIfExists: true)
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+}

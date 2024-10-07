@@ -4,6 +4,13 @@ org_path: nf-core
 update:
   https://github.com/nf-core/modules.git:
     nf-core:
+      seqhasher/sequniq: False
+      seqhasher/seqhasher: False
+      pyrodigalgv: False
+      pyhmmer/virusclassify: False
+      pyhmmer/plasmidclassify: False
+      pyhmmer/buscoclassify: False
+      plass/penguin: False
       phables/run: False
       phables/install: False
       logan/unitigawsclimultiplier: False

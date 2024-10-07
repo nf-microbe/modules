@@ -1,0 +1,6 @@
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - "bioconda::pyhmmer=0.10.14"
+  - "conda-forge::pandas=2.2.2"

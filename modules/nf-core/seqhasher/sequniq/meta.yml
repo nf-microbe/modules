@@ -1,0 +1,61 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
+name: "seqhasher_sequniq"
+description: Identifies duplicate hash digests output by seqhasher
+keywords:
+  - hash
+  - sequence
+  - kmer
+tools:
+  - "seqhasher":
+      description: "Compute hash digests for DNA sequences in a FASTA file"
+      homepage: "https://github.com/apcamargo/seq-hasher"
+      documentation: "https://github.com/apcamargo/seq-hasher"
+      tool_dev_url: "https://github.com/apcamargo/seq-hasher"
+      licence: ["MIT"]
+
+input:
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. `[ id:'sample1', single_end:false ]`
+    - seq_hasher_tsv:
+        type: file
+        description: TSV file output by seq-hasher
+        pattern: "*.tsv"
+        ontologies:
+          - edam: "http://edamontology.org/format_3475"
+
+output:
+  - versions:
+      - "versions.yml":
+          type: file
+          description: File containing software versions
+          pattern: "versions.yml"
+  - dups:
+      - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1', single_end:false ]`
+      - "${prefix}.dups.tsv":
+          type: file
+          description: Output TSV containing removed duplicate sequence IDs
+          ontologies:
+            - edam: "http://edamontology.org/format_3475"
+  - unique:
+      - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1', single_end:false ]`
+      - "${prefix}.seq-uniq.tsv":
+          type: file
+          description: Output TSV containing unique sequence IDs
+          ontologies:
+            - edam: "http://edamontology.org/format_3475"
+
+authors:
+  - "@CarsonJM"
+maintainers:
+  - "@CarsonJM"

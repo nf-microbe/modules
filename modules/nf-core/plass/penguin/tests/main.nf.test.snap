@@ -1,0 +1,99 @@
+{
+    "sarscov2 - fastq.gz - pe - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.fasta.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.penguin.log:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "2": [
+                    "versions.yml:md5,089854bdd53e83fac050d2580ec72a9d"
+                ],
+                "contigs": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.fasta.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                    ]
+                ],
+                "log": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.penguin.log:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,089854bdd53e83fac050d2580ec72a9d"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-08-23T10:09:13.74021697"
+    },
+    "sarscov2 - fastq.gz - pe": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "test",
+                        "single_end": false
+                    },
+                    "test.fasta.gz:md5,ac3ea3cf0cfffe2b884e2edf547c103c"
+                ]
+            ],
+            [
+                "versions.yml:md5,089854bdd53e83fac050d2580ec72a9d"
+            ],
+            "test.penguin.log"
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-08-23T10:08:52.486026973"
+    },
+    "sarscov2 - fastq.gz - se": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "test",
+                        "single_end": true
+                    },
+                    "test.fasta.gz:md5,4645a1bcba5c26590def3928d0f4e374"
+                ]
+            ],
+            [
+                "versions.yml:md5,089854bdd53e83fac050d2580ec72a9d"
+            ],
+            "test.penguin.log"
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-08-23T10:09:04.078813394"
+    }
+}

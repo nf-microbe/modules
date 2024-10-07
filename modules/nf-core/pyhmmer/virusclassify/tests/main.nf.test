@@ -1,0 +1,56 @@
+nextflow_process {
+
+    name "Test Process PYHMMER_VIRUSCLASSIFY"
+    script "../main.nf"
+    process "PYHMMER_VIRUSCLASSIFY"
+
+    tag "modules"
+    tag "modules_nfcore"
+    tag "pyhmmer"
+    tag "pyhmmer/virusclassify"
+
+    test("bacteroides_fragilis - faa") {
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test', single_end:false ], // meta map
+                    file("${projectDir}/assets/test-datasets/genomics/prokaryotes/bacteroides_fragilis/illumina/faa/test1.pyrodigalgv.faa.gz", checkIfExists: true),
+                ]
+                input[1] = file("${projectDir}/assets/hmms/virus_hmms/DJR_MCP_virus_hallmarks.hmm", checkIfExists: true)
+                input[2] = file("${projectDir}/assets/hmms/virus_hmms/inovirus_MCP_virus_hallmarks.hmm", checkIfExists: true)
+                input[3] = file("${projectDir}/assets/hmms/virus_hmms/pleolipoviridae_virus_hallmarks.hmm", checkIfExists: true)
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("bacteroides_fragilis - faa - stub") {
+        options "-stub"
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test', single_end:false ], // meta map
+                    file("${projectDir}/assets/test-datasets/genomics/prokaryotes/bacteroides_fragilis/illumina/faa/test1.pyrodigalgv.faa.gz", checkIfExists: true),
+                ]
+                input[1] = file("${projectDir}/assets/hmms/virus_hmms/DJR_MCP_virus_hallmarks.hmm", checkIfExists: true)
+                input[2] = file("${projectDir}/assets/hmms/virus_hmms/inovirus_MCP_virus_hallmarks.hmm", checkIfExists: true)
+                input[3] = file("${projectDir}/assets/hmms/virus_hmms/pleolipoviridae_virus_hallmarks.hmm", checkIfExists: true)
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+}
