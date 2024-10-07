@@ -20,7 +20,7 @@
                 ]
             ],
             [
-                "versions.yml:md5,a2ec8dfa9f8dd51d9adf237ed133a2b3"
+                "versions.yml:md5,e3c0731297c9abe2f495ab6d541ac0e6"
             ],
             "test.megahit.log"
         ],
@@ -28,7 +28,7 @@
             "nf-test": "0.9.0",
             "nextflow": "24.04.4"
         },
-        "timestamp": "2024-09-13T11:53:03.041935086"
+        "timestamp": "2024-10-07T15:43:04.042373858"
     },
     "sarscov2 - fastq - pe": {
         "content": [
@@ -51,7 +51,7 @@
                 ]
             ],
             [
-                "versions.yml:md5,a2ec8dfa9f8dd51d9adf237ed133a2b3"
+                "versions.yml:md5,e3c0731297c9abe2f495ab6d541ac0e6"
             ],
             "test.megahit.log"
         ],
@@ -59,7 +59,7 @@
             "nf-test": "0.9.0",
             "nextflow": "24.04.4"
         },
-        "timestamp": "2024-09-13T11:53:23.345209603"
+        "timestamp": "2024-10-07T15:43:29.910194839"
     },
     "stub": {
         "content": [
@@ -92,7 +92,7 @@
                     ]
                 ],
                 "3": [
-                    "versions.yml:md5,a2ec8dfa9f8dd51d9adf237ed133a2b3"
+                    "versions.yml:md5,e3c0731297c9abe2f495ab6d541ac0e6"
                 ],
                 "contigs": [
                     [
@@ -122,7 +122,7 @@
                     ]
                 ],
                 "versions": [
-                    "versions.yml:md5,a2ec8dfa9f8dd51d9adf237ed133a2b3"
+                    "versions.yml:md5,e3c0731297c9abe2f495ab6d541ac0e6"
                 ]
             }
         ],
@@ -130,6 +130,6 @@
             "nf-test": "0.9.0",
             "nextflow": "24.04.4"
         },
-        "timestamp": "2024-09-13T11:53:41.821609415"
+        "timestamp": "2024-10-07T15:44:00.456746439"
     }
 }
