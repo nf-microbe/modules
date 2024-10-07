@@ -1,0 +1,7 @@
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - bioconda::seqkit=2.8.2
+  - conda-forge::awscli=1.32.101
+  - conda-forge::biopython=1.83
