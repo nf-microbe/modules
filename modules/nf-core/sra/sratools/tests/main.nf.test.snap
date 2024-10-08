@@ -1,0 +1,86 @@
+{
+    "SRR24085752": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "SRR24085752",
+                            "single_end": false,
+                            "md5_1": "e67296355980997dde170c602d9cb4c1",
+                            "md5_2": "86b4ee5d4860aed0a3a2538a7757cbc8"
+                        },
+                        [
+                            "SRR24085752_1.fastq.gz:md5,a1cabbdd6b366eec77afd3afb7b39c7a",
+                            "SRR24085752_2.fastq.gz:md5,7487dfa5e3e2a2d0fb34dab9e93c4ae5"
+                        ]
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,aaeedb9a859b12f929fbdbbf3e3d87db"
+                ],
+                "fastq": [
+                    [
+                        {
+                            "id": "SRR24085752",
+                            "single_end": false,
+                            "md5_1": "e67296355980997dde170c602d9cb4c1",
+                            "md5_2": "86b4ee5d4860aed0a3a2538a7757cbc8"
+                        },
+                        [
+                            "SRR24085752_1.fastq.gz:md5,a1cabbdd6b366eec77afd3afb7b39c7a",
+                            "SRR24085752_2.fastq.gz:md5,7487dfa5e3e2a2d0fb34dab9e93c4ae5"
+                        ]
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,aaeedb9a859b12f929fbdbbf3e3d87db"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-09-24T13:55:10.698298069"
+    },
+    "stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "SRR24085752",
+                            "single_end": false,
+                            "md5_1": "e67296355980997dde170c602d9cb4c1",
+                            "md5_2": "86b4ee5d4860aed0a3a2538a7757cbc8"
+                        },
+                        "SRR24085752.fastq.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,aaeedb9a859b12f929fbdbbf3e3d87db"
+                ],
+                "fastq": [
+                    [
+                        {
+                            "id": "SRR24085752",
+                            "single_end": false,
+                            "md5_1": "e67296355980997dde170c602d9cb4c1",
+                            "md5_2": "86b4ee5d4860aed0a3a2538a7757cbc8"
+                        },
+                        "SRR24085752.fastq.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,aaeedb9a859b12f929fbdbbf3e3d87db"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-09-24T13:58:24.989517216"
+    }
+}

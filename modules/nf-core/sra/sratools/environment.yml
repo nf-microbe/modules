@@ -1,0 +1,6 @@
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - bioconda::sra-tools=3.1.0
+  - bioconda::fastp=0.23.4
