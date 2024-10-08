@@ -157,7 +157,8 @@
                     "seqkit/fx2tab": {
                         "branch": "master",
                         "git_sha": "666652151335353eef2fcd58880bcef5bc2928e1",
-                        "installed_by": ["modules"]
+                        "installed_by": ["modules"],
+                        "patch": "modules/nf-core/seqkit/fx2tab/seqkit-fx2tab.diff"
                     },
                     "seqkit/grep": {
                         "branch": "master",
@@ -180,6 +181,23 @@
                         "installed_by": ["modules"]
                     },
                     "seqkit/stats": {
+                        "branch": "master",
+                        "git_sha": "666652151335353eef2fcd58880bcef5bc2928e1",
+                        "installed_by": ["modules"],
+                        "patch": "modules/nf-core/seqkit/stats/seqkit-stats.diff"
+                    },
+                    "sequencestats": {
+                        "branch": "master",
+                        "git_sha": "666652151335353eef2fcd58880bcef5bc2928e1",
+                        "installed_by": ["modules"]
+                    },
+                    "spades": {
+                        "branch": "master",
+                        "git_sha": "666652151335353eef2fcd58880bcef5bc2928e1",
+                        "installed_by": ["modules"],
+                        "patch": "modules/nf-core/spades/spades.diff"
+                    },
+                    "sra/sratools": {
                         "branch": "master",
                         "git_sha": "666652151335353eef2fcd58880bcef5bc2928e1",
                         "installed_by": ["modules"]

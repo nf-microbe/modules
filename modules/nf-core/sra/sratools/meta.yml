@@ -1,0 +1,49 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
+name: "sra_sratools"
+description: |
+  Download FastQ files from SRA using sratools
+keywords:
+  - download
+  - sra
+  - fastq
+tools:
+  - sratools:
+      description: SRA Toolkit and SDK from NCBI
+      homepage: https://github.com/ncbi/sra-tools
+      documentation: https://github.com/ncbi/sra-tools/wiki
+      tool_dev_url: https://github.com/ncbi/sra-tools
+      licence: ["Public Domain"]
+
+input:
+  - - meta:
+        type: map
+        description: |
+          e.g. `[ id:'sample1', single_end:false ]`
+          Groovy Map containing sample information
+    - accession:
+        type: string
+        description: A valid SRA accession ID
+
+output:
+  - versions:
+      - "versions.yml":
+          type: file
+          description: File containing software versions
+          pattern: "versions.yml"
+  - fastq:
+      - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1', single_end:false ]`
+      - "${accession}*.fastq.gz":
+          type: file
+          description: |
+            FastQ file containing Logan unitigs
+          ontologies:
+            - edam: "http://edamontology.org/format_1930"
+
+authors:
+  - "@CarsonJM"
+maintainers:
+  - "@CarsonJM"
