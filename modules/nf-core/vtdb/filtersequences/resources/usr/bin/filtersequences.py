@@ -65,7 +65,7 @@ def filter_sequences(
     completeness_data: Path,
     seqs_to_keep: Path,
     output_fasta: Path,
-    output_proteins: Path
+    output_proteins: Path,
 ) -> Path:
     """
     Filter sequences based on classification, composition, and completeness thresholds.
@@ -83,11 +83,7 @@ def filter_sequences(
     """
     if os.path.exists(seqs_to_keep):
         # Read in sequence IDs to keep
-        override_seqs_df = pd.read_csv(
-            seqs_to_keep,
-            sep="\t",
-            names=["seqid"],
-            header=None)
+        override_seqs_df = pd.read_csv(seqs_to_keep, sep="\t", names=["seqid"], header=None)
         override_seqs_set = set(override_seqs_df["seqid"].tolist())
     else:
         override_seqs_set = set()
@@ -97,18 +93,22 @@ def filter_sequences(
         completeness_data,
         sep="\t",
         header=0,
-        usecols=["contig_id", "completeness_status", "composition_status", "virus_classification"])
+        usecols=["contig_id", "completeness_status", "composition_status", "virus_classification"],
+    )
 
     # identify sequences passing all filters
-    passing_set = set(completeness_data_df[
-        (completeness_data_df['completeness_status'] == 'pass') &
-        (completeness_data_df['composition_status'] == 'pass') &
-        (completeness_data_df['virus_classification'] == 'viral')]['contig_id'].to_list())
+    passing_set = set(
+        completeness_data_df[
+            (completeness_data_df["completeness_status"] == "pass")
+            & (completeness_data_df["composition_status"] == "pass")
+            & (completeness_data_df["virus_classification"] == "viral")
+        ]["contig_id"].to_list()
+    )
     seqs_to_keep_set = override_seqs_set.union(passing_set)
 
     # Write out filtered sequences
     sequences_to_write = []
-    fasta = gzip.open(input_fasta, 'rt') if input_fasta.split(".")[-1] == "gz" else open(input_fasta)
+    fasta = gzip.open(input_fasta, "rt") if input_fasta.split(".")[-1] == "gz" else open(input_fasta)
     for record in SeqIO.parse(fasta, "fasta"):
         if record.id in seqs_to_keep_set:
             sequences_to_write.append(record)
@@ -117,9 +117,9 @@ def filter_sequences(
     # Write out filtered protein sequences
     proteins_to_write = []
     if os.path.exists(input_proteins):
-        proteins = gzip.open(input_proteins, 'rt') if input_fasta.split(".")[-1] == "gz" else open(input_proteins)
+        proteins = gzip.open(input_proteins, "rt") if input_fasta.split(".")[-1] == "gz" else open(input_proteins)
         for record in SeqIO.parse(proteins, "fasta"):
-            if record.id.rpartition('_')[0] in seqs_to_keep_set:
+            if record.id.rpartition("_")[0] in seqs_to_keep_set:
                 proteins_to_write.append(record)
         SeqIO.write(proteins_to_write, output_proteins, "fasta")
     else:
@@ -134,7 +134,7 @@ def main(args=None):
         args.completeness_data,
         args.seqs_to_keep,
         args.output_fasta,
-        args.output_proteins
+        args.output_proteins,
     )
 
 

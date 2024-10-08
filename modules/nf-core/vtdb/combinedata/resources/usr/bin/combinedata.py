@@ -41,12 +41,10 @@ def parse_args(args=None):
     parser.add_argument(
         "-tr",
         "--trfinder",
-        help="Path to input TSV file containing contigs to keep, regardless of whether they pass filters."
+        help="Path to input TSV file containing contigs to keep, regardless of whether they pass filters.",
     )
     parser.add_argument(
-        "-gs",
-        "--genomad_scores",
-        help="Path to input TSV file containing geNoamd aggregated classification scores."
+        "-gs", "--genomad_scores", help="Path to input TSV file containing geNoamd aggregated classification scores."
     )
     parser.add_argument(
         "-gg",
@@ -104,17 +102,17 @@ def parse_args(args=None):
 def combine_virus_data(
     input_fasta: Path,
     output: Path,
-    trfinder:Path = None,
-    genomad_scores:Path = None,
-    genomad_genes:Path = None,
-    genomad_taxa:Path = None,
-    busco_hmms:Path = None,
-    plasmid_hmms:Path = None,
-    virus_hmms:Path = None,
-    completeness:Path = None,
-    contamination:Path = None,
-    tantan:Path = None,
-    sequence_stats:Path = None
+    trfinder: Path = None,
+    genomad_scores: Path = None,
+    genomad_genes: Path = None,
+    genomad_taxa: Path = None,
+    busco_hmms: Path = None,
+    plasmid_hmms: Path = None,
+    virus_hmms: Path = None,
+    completeness: Path = None,
+    contamination: Path = None,
+    tantan: Path = None,
+    sequence_stats: Path = None,
 ) -> Path:
     # load trfinder data
     if trfinder:
@@ -124,11 +122,21 @@ def combine_virus_data(
                 sep="\t",
                 header=0,
                 index_col="contig_name",
-                usecols=["contig_name", "contig_len", "tr_type", "tr_seq", "tr_len", "tr_nt_acgt_count", "tr_nt_n_count", "tr_nt_max_freq"]
+                usecols=[
+                    "contig_name",
+                    "contig_len",
+                    "tr_type",
+                    "tr_seq",
+                    "tr_len",
+                    "tr_nt_acgt_count",
+                    "tr_nt_n_count",
+                    "tr_nt_max_freq",
+                ],
             )
-    if 'trfinder_df' not in locals():
-        trfinder_df = pd.DataFrame(columns=["contig_len", "tr_type", "tr_seq", "tr_len", "tr_nt_acgt_count", "tr_nt_n_count", "tr_nt_max_freq"])
-
+    if "trfinder_df" not in locals():
+        trfinder_df = pd.DataFrame(
+            columns=["contig_len", "tr_type", "tr_seq", "tr_len", "tr_nt_acgt_count", "tr_nt_n_count", "tr_nt_max_freq"]
+        )
 
     # load genomad agg scores
     if genomad_scores:
@@ -147,14 +155,9 @@ def combine_virus_data(
         if os.path.getsize(genomad_genes) > 0:
             # convert genomad genes to marker stats
             genomad_marker_stats = {}
-            input_gunzipped = gzip.open(input_fasta, 'rt') if input_fasta.split(".")[-1] == "gz" else open(input_fasta)
+            input_gunzipped = gzip.open(input_fasta, "rt") if input_fasta.split(".")[-1] == "gz" else open(input_fasta)
             for r in SeqIO.parse(input_gunzipped, "fasta"):
-                genomad_marker_stats[r.id] = {
-                "contig_id":r.id,
-                "uscg_count":0,
-                "plasmid_count":0,
-                "virus_count":0
-                }
+                genomad_marker_stats[r.id] = {"contig_id": r.id, "uscg_count": 0, "plasmid_count": 0, "virus_count": 0}
             # sum counts across genes within contigs
             for r in csv.DictReader(open(genomad_genes), delimiter="\t"):
                 contig_id = r["gene"].rsplit("_", 1)[0]
@@ -163,7 +166,9 @@ def combine_virus_data(
                 genomad_marker_stats[contig_id]["virus_count"] += int(r["virus_hallmark"])
             # convert dict to df
             if genomad_marker_stats:
-                genomad_hallmarks_df = pd.DataFrame.from_dict(genomad_marker_stats, orient="index").drop("contig_id", axis=1)
+                genomad_hallmarks_df = pd.DataFrame.from_dict(genomad_marker_stats, orient="index").drop(
+                    "contig_id", axis=1
+                )
     if "genomad_hallmarks_df" not in locals():
         genomad_hallmarks_df = pd.DataFrame(columns=["uscg_count", "plasmid_count", "virus_count"])
 
@@ -171,11 +176,7 @@ def combine_virus_data(
     if genomad_taxa:
         if os.path.getsize(genomad_taxa) > 0:
             genomad_taxa_df = pd.read_csv(
-                genomad_taxa,
-                sep="\t",
-                header=0,
-                index_col="seq_name",
-                usecols=["seq_name", "lineage"]
+                genomad_taxa, sep="\t", header=0, index_col="seq_name", usecols=["seq_name", "lineage"]
             )
     if "genomad_taxa_df" not in locals():
         genomad_taxa_df = pd.DataFrame(columns=["lineage"])
@@ -189,7 +190,7 @@ def combine_virus_data(
                 header=None,
                 names=["contig_id", "busco_count", "busco_list"],
                 index_col="contig_id",
-                usecols=["contig_id", "busco_count", "busco_list"]
+                usecols=["contig_id", "busco_count", "busco_list"],
             )
     if "busco_hmms_df" not in locals():
         busco_hmms_df = pd.DataFrame(columns=["busco_count", "busco_list"])
@@ -203,7 +204,7 @@ def combine_virus_data(
                 header=None,
                 names=["contig_id", "plasmid_count", "plasmid_list"],
                 index_col="contig_id",
-                usecols=["contig_id", "plasmid_count", "plasmid_list"]
+                usecols=["contig_id", "plasmid_count", "plasmid_list"],
             )
     if "plasmid_hmms_df" not in locals():
         plasmid_hmms_df = pd.DataFrame(columns=["plasmid_count", "plasmid_list"])
@@ -217,7 +218,7 @@ def combine_virus_data(
                 header=None,
                 names=["contig_id", "virus_count", "virus_list"],
                 index_col="contig_id",
-                usecols=["contig_id", "virus_count", "virus_list"]
+                usecols=["contig_id", "virus_count", "virus_list"],
             )
     if "virus_hmms_df" not in locals():
         virus_hmms_df = pd.DataFrame(columns=["virus_count", "virus_list"])
@@ -230,11 +231,21 @@ def combine_virus_data(
                 sep="\t",
                 header=0,
                 index_col="contig_id",
-                usecols=["contig_id", "viral_length", "aai_completeness", "aai_confidence", "hmm_completeness_lower", "hmm_num_hits", "kmer_freq"]
+                usecols=[
+                    "contig_id",
+                    "viral_length",
+                    "aai_completeness",
+                    "aai_confidence",
+                    "hmm_completeness_lower",
+                    "hmm_num_hits",
+                    "kmer_freq",
+                ],
             )
             completeness_df.hmm_completeness_lower = completeness_df.hmm_completeness_lower.round(4)
     if "completeness_df" not in locals():
-        completeness_df = pd.DataFrame(columns=["aai_completeness", "aai_confidence", "hmm_completeness_lower", "hmm_num_hits", "kmer_freq"])
+        completeness_df = pd.DataFrame(
+            columns=["aai_completeness", "aai_confidence", "hmm_completeness_lower", "hmm_num_hits", "kmer_freq"]
+        )
 
     # load checkv contamination data
     if contamination:
@@ -244,7 +255,7 @@ def combine_virus_data(
                 sep="\t",
                 header=0,
                 index_col="contig_id",
-                usecols=["contig_id", "viral_genes", "host_genes"]
+                usecols=["contig_id", "viral_genes", "host_genes"],
             )
     if "contamination_df" not in locals():
         contamination_df = pd.DataFrame(columns=["viral_genes", "host_genes"])
@@ -252,7 +263,7 @@ def combine_virus_data(
     # load tantan data
     if tantan:
         if os.path.getsize(tantan) > 0:
-            input_gunzipped = gzip.open(input_fasta, 'rt') if input_fasta.split(".")[-1] == "gz" else open(input_fasta)
+            input_gunzipped = gzip.open(input_fasta, "rt") if input_fasta.split(".")[-1] == "gz" else open(input_fasta)
             tantan_dict = {}
             for r in SeqIO.parse(input_gunzipped, "fasta"):
                 tantan_dict[r.id] = 0
@@ -277,29 +288,40 @@ def combine_virus_data(
             index_col="contig_id",
         )
     if "sequence_stats_df" not in locals():
-        sequence_stats_df = pd.DataFrame(columns=["contig_length", "cds_length", "cds_density", "gc_percent", "n_count"])
+        sequence_stats_df = pd.DataFrame(
+            columns=["contig_length", "cds_length", "cds_density", "gc_percent", "n_count"]
+        )
 
     # combine quality data from all sources by contig_id (index)
-    comb_virus_data_df = pd.concat([
-        trfinder_df,
-        genomad_scores_df,
-        genomad_hallmarks_df,
-        genomad_taxa_df,
-        busco_hmms_df,
-        plasmid_hmms_df,
-        virus_hmms_df,
-        completeness_df,
-        contamination_df,
-        tantan_df,
-        sequence_stats_df
-    ], axis=1)
+    comb_virus_data_df = pd.concat(
+        [
+            trfinder_df,
+            genomad_scores_df,
+            genomad_hallmarks_df,
+            genomad_taxa_df,
+            busco_hmms_df,
+            plasmid_hmms_df,
+            virus_hmms_df,
+            completeness_df,
+            contamination_df,
+            tantan_df,
+            sequence_stats_df,
+        ],
+        axis=1,
+    )
 
     # perform calculations
     if tantan and sequence_stats:
-        comb_virus_data_df.insert(29, "tantan_freq", comb_virus_data_df['tantan_len'] / comb_virus_data_df['contig_length'])
+        comb_virus_data_df.insert(
+            29, "tantan_freq", comb_virus_data_df["tantan_len"] / comb_virus_data_df["contig_length"]
+        )
         comb_virus_data_df.tantan_freq = comb_virus_data_df.tantan_freq.round(4)
     if sequence_stats:
-        comb_virus_data_df.insert(len(comb_virus_data_df.columns), "n_freq", comb_virus_data_df['n_count'] / comb_virus_data_df['contig_length'])
+        comb_virus_data_df.insert(
+            len(comb_virus_data_df.columns),
+            "n_freq",
+            comb_virus_data_df["n_count"] / comb_virus_data_df["contig_length"],
+        )
 
     # write combined metadata to output TSV
     comb_virus_data_df.insert(0, "contig_id", comb_virus_data_df.index)
@@ -322,7 +344,7 @@ def main(args=None):
         args.completeness,
         args.contamination,
         args.tantan,
-        args.sequence_stats
+        args.sequence_stats,
     )
 
 

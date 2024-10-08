@@ -29,7 +29,7 @@ def parse_args(args=None):
         "--min_len",
         help="Minimum sequence length (used as lower threshold for first quantile).",
         default=1500,
-        type=int
+        type=int,
     )
     parser.add_argument(
         "-f",
@@ -46,49 +46,44 @@ def parse_args(args=None):
 
 def filter_by_composition(comb_data: pd.DataFrame, min_len: int, max_len: int, filters: pd.DataFrame) -> pd.DataFrame:
     print(min_len, max_len)
-    len_filt_df = comb_data.query(f"`contig_length` >= {min_len} and `contig_length` < {max_len}").reset_index(drop=True)
+    len_filt_df = comb_data.query(f"`contig_length` >= {min_len} and `contig_length` < {max_len}").reset_index(
+        drop=True
+    )
     if len(len_filt_df) > 0:
         for index, row in filters.query(f"`genome_length` == {max_len}").iterrows():
-            len_filt_df.iloc[
-                len_filt_df.query(row["criteria"]).index,
-                len(comb_data.columns) - 1
-            ] = len_filt_df.iloc[
-                len_filt_df.query(row["criteria"]).index,
-                len(comb_data.columns) - 1
-            ] + row["criteria"] + ";"
+            len_filt_df.iloc[len_filt_df.query(row["criteria"]).index, len(comb_data.columns) - 1] = (
+                len_filt_df.iloc[len_filt_df.query(row["criteria"]).index, len(comb_data.columns) - 1]
+                + row["criteria"]
+                + ";"
+            )
         return len_filt_df
 
 
 def main(args=None):
     args = parse_args(args)
     # load virus data
-    comb_virus_data_df = pd.read_csv(
-        args.input,
-        sep='\t')
+    comb_virus_data_df = pd.read_csv(args.input, sep="\t")
 
     if len(comb_virus_data_df) > 0:
         # load compoisition filters
-        thresholds_df = pd.read_csv(
-            args.filters,
-            sep='\t')
+        thresholds_df = pd.read_csv(args.filters, sep="\t")
 
         # run composition filters on each length quantile and concatenate
         genome_length_thresholds = [args.min_len] + thresholds_df["genome_length"].unique().tolist()
         comb_virus_data_df["composition_filter_method"] = ""
-        comb_compos_df = pd.concat([
-            filter_by_composition(
-                comb_virus_data_df,
-                genome_length_thresholds[i],
-                genome_length_thresholds[i+1],
-                thresholds_df
-            ) for i in range(len(genome_length_thresholds) - 1)])
+        comb_compos_df = pd.concat(
+            [
+                filter_by_composition(
+                    comb_virus_data_df, genome_length_thresholds[i], genome_length_thresholds[i + 1], thresholds_df
+                )
+                for i in range(len(genome_length_thresholds) - 1)
+            ]
+        )
 
         # classify sequence as passing or failing
         comb_compos_df["composition_status"] = "passing"
         comb_compos_df["composition_status"] = np.where(
-            comb_compos_df["composition_filter_method"] == "",
-            "pass",
-            "fail"
+            comb_compos_df["composition_filter_method"] == "", "pass", "fail"
         )
 
         # write combined metadata to output TSV
