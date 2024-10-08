@@ -1,0 +1,86 @@
+Changes in module 'nf-core/seqkit/stats'
+'modules/nf-core/seqkit/stats/environment.yml' is unchanged
+'modules/nf-core/seqkit/stats/meta.yml' is unchanged
+Changes in 'seqkit/stats/main.nf':
+--- modules/nf-core/seqkit/stats/main.nf
++++ modules/nf-core/seqkit/stats/main.nf
+@@ -31,4 +31,16 @@
+         seqkit: \$( seqkit version | sed 's/seqkit v//' )
+     END_VERSIONS
+     """
++
++    stub:
++    def args = task.ext.args ?: '--all'
++    def prefix = task.ext.prefix ?: "${meta.id}"
++    """
++    touch ${prefix}.tsv
++
++    cat <<-END_VERSIONS > versions.yml
++    "${task.process}":
++        seqkit: \$( seqkit version | sed 's/seqkit v//' )
++    END_VERSIONS
++    """
+ }
+
+'modules/nf-core/seqkit/stats/tests/tags.yml' is unchanged
+'modules/nf-core/seqkit/stats/tests/main.nf.test' is unchanged
+Changes in 'seqkit/stats/tests/main.nf.test.snap':
+--- modules/nf-core/seqkit/stats/tests/main.nf.test.snap
++++ modules/nf-core/seqkit/stats/tests/main.nf.test.snap
+@@ -183,30 +183,30 @@
+                             "id": "test",
+                             "single_end": true
+                         },
+-                        "test.tsv:md5,97eb700f7e607dba8371e82d5de8a1a2"
+-                    ]
+-                ],
+-                "1": [
+-                    "versions.yml:md5,e5810dac4e10040b1a74b8672a829734"
+-                ],
+-                "stats": [
+-                    [
+-                        {
+-                            "id": "test",
+-                            "single_end": true
+-                        },
+-                        "test.tsv:md5,97eb700f7e607dba8371e82d5de8a1a2"
+-                    ]
+-                ],
+-                "versions": [
+-                    "versions.yml:md5,e5810dac4e10040b1a74b8672a829734"
+-                ]
+-            }
+-        ],
+-        "meta": {
+-            "nf-test": "0.8.4",
+-            "nextflow": "23.10.1"
+-        },
+-        "timestamp": "2024-05-08T08:35:49.267660809"
++                        "test.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
++                    ]
++                ],
++                "1": [
++                    "versions.yml:md5,e5810dac4e10040b1a74b8672a829734"
++                ],
++                "stats": [
++                    [
++                        {
++                            "id": "test",
++                            "single_end": true
++                        },
++                        "test.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
++                    ]
++                ],
++                "versions": [
++                    "versions.yml:md5,e5810dac4e10040b1a74b8672a829734"
++                ]
++            }
++        ],
++        "meta": {
++            "nf-test": "0.9.0",
++            "nextflow": "24.04.4"
++        },
++        "timestamp": "2024-10-07T22:42:23.955525218"
+     }
+ }
+************************************************************
