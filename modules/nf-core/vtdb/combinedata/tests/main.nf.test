@@ -1,8 +1,13 @@
 nextflow_process {
 
-    name "Test Process: COMBINEDATA"
+    name "Test Process: VTDB_COMBINEDATA"
     script "../main.nf"
-    process "COMBINEDATA"
+    process "VTDB_COMBINEDATA"
+
+    tag "modules_nfcore"
+    tag "modules"
+    tag "vtdb"
+    tag "vtdb/combinedata"
 
     test("all files") {
         when {
@@ -10,43 +15,51 @@ nextflow_process {
                 """
                 input[0] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_trfinder.fasta.gz", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_trfinder.fasta.gz", checkIfExists: true)
                 ]
                 input[1] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_trfinder.tsv", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_trfinder.tsv", checkIfExists: true)
                 ]
                 input[2] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_aggregated_classification.tsv", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_aggregated_classification.tsv", checkIfExists: true)
                 ]
                 input[3] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_genes.tsv", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_genes.tsv", checkIfExists: true)
                 ]
                 input[4] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_taxonomy.tsv", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_taxonomy.tsv", checkIfExists: true)
                 ]
                 input[5] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_extra_hmm_hits.tsv", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_busco_hits.tsv", checkIfExists: true)
                 ]
                 input[6] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_completeness.tsv", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_plasmid_hits.tsv", checkIfExists: true)
                 ]
                 input[7] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_contamination.tsv", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_virus_hits.tsv", checkIfExists: true)
                 ]
                 input[8] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_tantan.tsv", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_completeness.tsv", checkIfExists: true)
                 ]
                 input[9] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_nuc_stats.tsv", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_contamination.tsv", checkIfExists: true)
+                ]
+                input[10] = [
+                    [ id:'test' ],
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_tantan.tsv", checkIfExists: true)
+                ]
+                input[11] = [
+                    [ id:'test' ],
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_nuc_stats.tsv", checkIfExists: true)
                 ]
                 """
             }
@@ -65,40 +78,48 @@ nextflow_process {
                 """
                 input[0] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_trfinder.fasta.gz", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_trfinder.fasta.gz", checkIfExists: true)
                 ]
                 input[1] = Channel.of([ [:], [] ])
                 input[2] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_aggregated_classification.tsv", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_aggregated_classification.tsv", checkIfExists: true)
                 ]
                 input[3] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_genes.tsv", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_genes.tsv", checkIfExists: true)
                 ]
                 input[4] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_taxonomy.tsv", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_taxonomy.tsv", checkIfExists: true)
                 ]
                 input[5] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_extra_hmm_hits.tsv", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_busco_hits.tsv", checkIfExists: true)
                 ]
                 input[6] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_completeness.tsv", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_plasmid_hits.tsv", checkIfExists: true)
                 ]
                 input[7] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_contamination.tsv", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_virus_hits.tsv", checkIfExists: true)
                 ]
                 input[8] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_tantan.tsv", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_completeness.tsv", checkIfExists: true)
                 ]
                 input[9] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_nuc_stats.tsv", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_contamination.tsv", checkIfExists: true)
+                ]
+                input[10] = [
+                    [ id:'test' ],
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_tantan.tsv", checkIfExists: true)
+                ]
+                input[11] = [
+                    [ id:'test' ],
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_nuc_stats.tsv", checkIfExists: true)
                 ]
                 """
             }
@@ -117,34 +138,42 @@ nextflow_process {
                 """
                 input[0] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_trfinder.fasta.gz", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_trfinder.fasta.gz", checkIfExists: true)
                 ]
                 input[1] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_trfinder.tsv", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_trfinder.tsv", checkIfExists: true)
                 ]
                 input[2] = Channel.of([ [:], [] ])
                 input[3] = Channel.of([ [:], [] ])
                 input[4] = Channel.of([ [:], [] ])
                 input[5] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_extra_hmm_hits.tsv", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_busco_hits.tsv", checkIfExists: true)
                 ]
                 input[6] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_completeness.tsv", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_plasmid_hits.tsv", checkIfExists: true)
                 ]
                 input[7] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_contamination.tsv", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_virus_hits.tsv", checkIfExists: true)
                 ]
                 input[8] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_tantan.tsv", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_completeness.tsv", checkIfExists: true)
                 ]
                 input[9] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_nuc_stats.tsv", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_contamination.tsv", checkIfExists: true)
+                ]
+                input[10] = [
+                    [ id:'test' ],
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_tantan.tsv", checkIfExists: true)
+                ]
+                input[11] = [
+                    [ id:'test' ],
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_nuc_stats.tsv", checkIfExists: true)
                 ]
                 """
             }
@@ -163,40 +192,42 @@ nextflow_process {
                 """
                 input[0] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_trfinder.fasta.gz", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_trfinder.fasta.gz", checkIfExists: true)
                 ]
                 input[1] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_trfinder.tsv", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_trfinder.tsv", checkIfExists: true)
                 ]
                 input[2] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_aggregated_classification.tsv", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_aggregated_classification.tsv", checkIfExists: true)
                 ]
                 input[3] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_genes.tsv", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_genes.tsv", checkIfExists: true)
                 ]
                 input[4] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_taxonomy.tsv", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_taxonomy.tsv", checkIfExists: true)
                 ]
                 input[5] = Channel.of([ [:], [] ])
-                input[6] = [
-                    [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_completeness.tsv", checkIfExists: true)
-                ]
-                input[7] = [
-                    [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_contamination.tsv", checkIfExists: true)
-                ]
+                input[6] = Channel.of([ [:], [] ])
+                input[7] = Channel.of([ [:], [] ])
                 input[8] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_tantan.tsv", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_completeness.tsv", checkIfExists: true)
                 ]
                 input[9] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_nuc_stats.tsv", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_contamination.tsv", checkIfExists: true)
+                ]
+                input[10] = [
+                    [ id:'test' ],
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_tantan.tsv", checkIfExists: true)
+                ]
+                input[11] = [
+                    [ id:'test' ],
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_nuc_stats.tsv", checkIfExists: true)
                 ]
                 """
             }
@@ -215,37 +246,45 @@ nextflow_process {
                 """
                 input[0] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_trfinder.fasta.gz", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_trfinder.fasta.gz", checkIfExists: true)
                 ]
                 input[1] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_trfinder.tsv", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_trfinder.tsv", checkIfExists: true)
                 ]
                 input[2] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_aggregated_classification.tsv", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_aggregated_classification.tsv", checkIfExists: true)
                 ]
                 input[3] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_genes.tsv", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_genes.tsv", checkIfExists: true)
                 ]
                 input[4] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_taxonomy.tsv", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_taxonomy.tsv", checkIfExists: true)
                 ]
                 input[5] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_extra_hmm_hits.tsv", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_busco_hits.tsv", checkIfExists: true)
                 ]
-                input[6] = Channel.of([ [:], [] ])
-                input[7] = Channel.of([ [:], [] ])
-                input[8] = [
+                input[6] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_tantan.tsv", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_plasmid_hits.tsv", checkIfExists: true)
                 ]
-                input[9] = [
+                input[7] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_nuc_stats.tsv", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_virus_hits.tsv", checkIfExists: true)
+                ]
+                input[8] = Channel.of([ [:], [] ])
+                input[9] = Channel.of([ [:], [] ])
+                input[10] = [
+                    [ id:'test' ],
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_tantan.tsv", checkIfExists: true)
+                ]
+                input[11] = [
+                    [ id:'test' ],
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_nuc_stats.tsv", checkIfExists: true)
                 ]
                 """
             }
@@ -264,41 +303,49 @@ nextflow_process {
                 """
                 input[0] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_trfinder.fasta.gz", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_trfinder.fasta.gz", checkIfExists: true)
                 ]
                 input[1] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_trfinder.tsv", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_trfinder.tsv", checkIfExists: true)
                 ]
                 input[2] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_aggregated_classification.tsv", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_aggregated_classification.tsv", checkIfExists: true)
                 ]
                 input[3] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_genes.tsv", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_genes.tsv", checkIfExists: true)
                 ]
                 input[4] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_taxonomy.tsv", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_taxonomy.tsv", checkIfExists: true)
                 ]
                 input[5] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_extra_hmm_hits.tsv", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_busco_hits.tsv", checkIfExists: true)
                 ]
                 input[6] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_completeness.tsv", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_plasmid_hits.tsv", checkIfExists: true)
                 ]
                 input[7] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_contamination.tsv", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_virus_hits.tsv", checkIfExists: true)
                 ]
                 input[8] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_tantan.tsv", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_completeness.tsv", checkIfExists: true)
                 ]
-                input[9] = Channel.of([ [:], [] ])
+                input[9] = [
+                    [ id:'test' ],
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_contamination.tsv", checkIfExists: true)
+                ]
+                input[10] = Channel.of([ [:], [] ])
+                input[11] = [
+                    [ id:'test' ],
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_nuc_stats.tsv", checkIfExists: true)
+                ]
                 """
             }
         }
@@ -316,40 +363,48 @@ nextflow_process {
                 """
                 input[0] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_trfinder.fasta.gz", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_trfinder.fasta.gz", checkIfExists: true)
                 ]
                 input[1] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_trfinder.tsv", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_trfinder.tsv", checkIfExists: true)
                 ]
                 input[2] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_aggregated_classification.tsv", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_aggregated_classification.tsv", checkIfExists: true)
                 ]
                 input[3] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_genes.tsv", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_genes.tsv", checkIfExists: true)
                 ]
                 input[4] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_taxonomy.tsv", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_taxonomy.tsv", checkIfExists: true)
                 ]
                 input[5] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_extra_hmm_hits.tsv", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_busco_hits.tsv", checkIfExists: true)
                 ]
                 input[6] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_completeness.tsv", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_plasmid_hits.tsv", checkIfExists: true)
                 ]
                 input[7] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_contamination.tsv", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_virus_hits.tsv", checkIfExists: true)
                 ]
-                input[8] = Channel.of([ [:], [] ])
+                input[8] = [
+                    [ id:'test' ],
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_completeness.tsv", checkIfExists: true)
+                ]
                 input[9] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_nuc_stats.tsv", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_contamination.tsv", checkIfExists: true)
+                ]
+                input[10] = Channel.of([ [:], [] ])
+                input[11] = [
+                    [ id:'test' ],
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_nuc_stats.tsv", checkIfExists: true)
                 ]
                 """
             }
@@ -369,43 +424,51 @@ nextflow_process {
                 """
                 input[0] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_trfinder.fasta.gz", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_trfinder.fasta.gz", checkIfExists: true)
                 ]
                 input[1] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_trfinder.tsv", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_trfinder.tsv", checkIfExists: true)
                 ]
                 input[2] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_aggregated_classification.tsv", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_aggregated_classification.tsv", checkIfExists: true)
                 ]
                 input[3] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_genes.tsv", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_genes.tsv", checkIfExists: true)
                 ]
                 input[4] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_taxonomy.tsv", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_taxonomy.tsv", checkIfExists: true)
                 ]
                 input[5] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_extra_hmm_hits.tsv", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_busco_hits.tsv", checkIfExists: true)
                 ]
                 input[6] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_completeness.tsv", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_plasmid_hits.tsv", checkIfExists: true)
                 ]
                 input[7] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_contamination.tsv", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_virus_hits.tsv", checkIfExists: true)
                 ]
                 input[8] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_tantan.tsv", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_completeness.tsv", checkIfExists: true)
                 ]
                 input[9] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/combinedata/test1_nuc_stats.tsv", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_contamination.tsv", checkIfExists: true)
+                ]
+                input[10] = [
+                    [ id:'test' ],
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_tantan.tsv", checkIfExists: true)
+                ]
+                input[11] = [
+                    [ id:'test' ],
+                    file("${projectDir}/assets/test-datasets/modules/combinedata/test1_nuc_stats.tsv", checkIfExists: true)
                 ]
                 """
             }

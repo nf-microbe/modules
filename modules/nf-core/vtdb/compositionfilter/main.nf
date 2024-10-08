@@ -31,8 +31,8 @@ process VTDB_COMPOSITIONFILTER {
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
         python: \$( python --version | sed 's/Python //' )
-        pandas: \$(echo \$(pandas_version.py 2>&1))
-        biopython: \$(echo \$(biopython_version.py 2>&1))
+        biopython: \$(python -c "import Bio; print(Bio.__version__)")
+        pandas: \$(python -c "import pandas; print(pandas.__version__)")
     END_VERSIONS
     """
 
@@ -45,8 +45,8 @@ process VTDB_COMPOSITIONFILTER {
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
         python: \$( python --version | sed 's/Python //' )
-        pandas: \$(echo \$(pandas_version.py 2>&1))
-        biopython: \$(echo \$(biopython_version.py 2>&1))
+        biopython: \$(python -c "import Bio; print(Bio.__version__)")
+        pandas: \$(python -c "import pandas; print(pandas.__version__)")
     END_VERSIONS
     """
 }

@@ -1,8 +1,13 @@
 nextflow_process {
 
-    name "Test Process: COMPLETENESSFILTER"
+    name "Test Process: VTDB_COMPLETENESSFILTER"
     script "../main.nf"
-    process "COMPLETENESSFILTER"
+    process "VTDB_COMPLETENESSFILTER"
+
+    tag "modules_nfcore"
+    tag "modules"
+    tag "vtdb"
+    tag "vtdb/completenessfilter"
 
     test("combined.tsv + completeness_filters.tsv") {
         when {
@@ -11,7 +16,7 @@ nextflow_process {
                 input[0] = Channel.of(
                     [
                         [ id:'test' ],
-                        file("${projectDir}/assets/test-datasets/modules/local/completenessfilter/test_composition_data.tsv", checkIfExists: true)
+                        file("${projectDir}/assets/test-datasets/modules/completenessfilter/test_composition_data.tsv", checkIfExists: true)
                     ]
                 )
                 input[1] = file("${projectDir}/assets/filters/completeness_filters.tsv", checkIfExists: true)
@@ -34,7 +39,7 @@ nextflow_process {
                 input[0] = Channel.of(
                     [
                         [ id:'test' ],
-                        file("${projectDir}/assets/test-datasets/modules/local/completenessfilter/test_composition_data.tsv", checkIfExists: true)
+                        file("${projectDir}/assets/test-datasets/modules/completenessfilter/test_composition_data.tsv", checkIfExists: true)
                     ]
                 )
                 input[1] = file("${projectDir}/assets/filters/completeness_filters.tsv", checkIfExists: true)

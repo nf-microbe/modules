@@ -31,9 +31,9 @@ process VTDB_CLASSIFICATIONFILTER {
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
         python: \$( python --version | sed 's/Python //' )
-        biopython: \$(echo \$(biopython_version.py 2>&1))
-        numpy: \$(echo \$(numpy_version.py 2>&1))
-        pandas: \$(echo \$(pandas_version.py 2>&1))
+        biopython: \$(python -c "import Bio; print(Bio.__version__)")
+        numpy: \$(python -c "import numpy; print(numpy.__version__)")
+        pandas: \$(python -c "import pandas; print(pandas.__version__)")
     END_VERSIONS
     """
 
@@ -46,9 +46,9 @@ process VTDB_CLASSIFICATIONFILTER {
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
         python: \$( python --version | sed 's/Python //' )
-        biopython: \$(echo \$(biopython_version.py 2>&1))
-        numpy: \$(echo \$(numpy_version.py 2>&1))
-        pandas: \$(echo \$(pandas_version.py 2>&1))
+        biopython: \$(python -c "import Bio; print(Bio.__version__)")
+        numpy: \$(python -c "import numpy; print(numpy.__version__)")
+        pandas: \$(python -c "import pandas; print(pandas.__version__)")
     END_VERSIONS
     """
 }

@@ -1,8 +1,13 @@
 nextflow_process {
 
-    name "Test Process: FILTERSEQUENCES"
+    name "Test Process: VTDB_FILTERSEQUENCES"
     script "../main.nf"
-    process "FILTERSEQUENCES"
+    process "VTDB_FILTERSEQUENCES"
+
+    tag "modules_nfcore"
+    tag "modules"
+    tag "vtdb"
+    tag "vtdb/filtersequences"
 
     test("fasta.gz + faa.gz + combined_data.tsv + sequences_to_keep.tsv") {
         when {
@@ -11,24 +16,24 @@ nextflow_process {
                 input[0] = Channel.of(
                     [
                         [ id:'test' ],
-                        file("${projectDir}/assets/test-datasets/modules/local/filtersequences/test.fasta.gz", checkIfExists: true)
+                        file("${projectDir}/assets/test-datasets/modules/filtersequences/test.fasta.gz", checkIfExists: true)
                     ]
                 )
                 input[1] = Channel.of(
                     [
                         [ id:'test' ],
-                        file("${projectDir}/assets/test-datasets/modules/local/filtersequences/test.faa.gz", checkIfExists: true)
+                        file("${projectDir}/assets/test-datasets/modules/filtersequences/test.faa.gz", checkIfExists: true)
                     ]
                 )
                 input[2] = Channel.of(
                     [
                         [ id:'test' ],
-                        file("${projectDir}/assets/test-datasets/modules/local/filtersequences/test_completeness_data.tsv", checkIfExists: true)
+                        file("${projectDir}/assets/test-datasets/modules/filtersequences/test_completeness_data.tsv", checkIfExists: true)
                     ]
                 )
                 input[3] = Channel.of(
                     [
-                        file("${projectDir}/assets/test-datasets/modules/local/filtersequences/test_sequences_to_keep.tsv", checkIfExists: true)
+                        file("${projectDir}/assets/test-datasets/modules/filtersequences/test_sequences_to_keep.tsv", checkIfExists: true)
                     ]
                 )
                 """
@@ -49,19 +54,19 @@ nextflow_process {
                 input[0] = Channel.of(
                     [
                         [ id:'test' ],
-                        file("${projectDir}/assets/test-datasets/modules/local/filtersequences/test.fasta.gz", checkIfExists: true)
+                        file("${projectDir}/assets/test-datasets/modules/filtersequences/test.fasta.gz", checkIfExists: true)
                     ]
                 )
                 input[1] = Channel.of(
                     [
                         [ id:'test' ],
-                        file("${projectDir}/assets/test-datasets/modules/local/filtersequences/test.faa.gz", checkIfExists: true)
+                        file("${projectDir}/assets/test-datasets/modules/filtersequences/test.faa.gz", checkIfExists: true)
                     ]
                 )
                 input[2] = Channel.of(
                     [
                         [ id:'test' ],
-                        file("${projectDir}/assets/test-datasets/modules/local/filtersequences/test_completeness_data.tsv", checkIfExists: true)
+                        file("${projectDir}/assets/test-datasets/modules/filtersequences/test_completeness_data.tsv", checkIfExists: true)
                     ]
                 )
                 input[3] = Channel.of([])
@@ -83,24 +88,24 @@ nextflow_process {
                 input[0] = Channel.of(
                     [
                         [ id:'test' ],
-                        file("${projectDir}/assets/test-datasets/modules/local/filtersequences/test.fasta.gz", checkIfExists: true)
+                        file("${projectDir}/assets/test-datasets/modules/filtersequences/test.fasta.gz", checkIfExists: true)
                     ]
                 )
                 input[1] = Channel.of(
                     [
                         [ id:'test' ],
-                        file("${projectDir}/assets/test-datasets/modules/local/filtersequences/test.faa.gz", checkIfExists: true)
+                        file("${projectDir}/assets/test-datasets/modules/filtersequences/test.faa.gz", checkIfExists: true)
                     ]
                 )
                 input[2] = Channel.of(
                     [
                         [ id:'test' ],
-                        file("${projectDir}/assets/test-datasets/modules/local/filtersequences/test_completeness_data.tsv", checkIfExists: true)
+                        file("${projectDir}/assets/test-datasets/modules/filtersequences/test_completeness_data.tsv", checkIfExists: true)
                     ]
                 )
                 input[3] = Channel.of(
                     [
-                        file("${projectDir}/assets/test-datasets/modules/local/filtersequences/test_sequences_to_keep.tsv", checkIfExists: true)
+                        file("${projectDir}/assets/test-datasets/modules/filtersequences/test_sequences_to_keep.tsv", checkIfExists: true)
                     ]
                 )
                 """

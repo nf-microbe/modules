@@ -1,8 +1,13 @@
 nextflow_process {
 
-    name "Test Process: CLASSIFICATIONFILTER"
+    name "Test Process: VTDB_CLASSIFICATIONFILTER"
     script "../main.nf"
-    process "CLASSIFICATIONFILTER"
+    process "VTDB_CLASSIFICATIONFILTER"
+
+    tag "modules_nfcore"
+    tag "modules"
+    tag "vtdb"
+    tag "vtdb/classificationfilter"
 
     test("combined.tsv + classification_filters.tsv") {
         when {
@@ -10,7 +15,7 @@ nextflow_process {
                 """
                 input[0] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/classificationfilter/test_combined_data.tsv", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/classificationfilter/test_combined_data.tsv", checkIfExists: true)
                 ]
                 input[1] = file("${projectDir}/assets/filters/classification_filters.tsv", checkIfExists: true)
                 """
@@ -31,7 +36,7 @@ nextflow_process {
                 """
                 input[0] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/classificationfilter/test_combined_data.tsv", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/classificationfilter/test_combined_data.tsv", checkIfExists: true)
                 ]
                 input[1] = file("${projectDir}/assets/filters/classification_filters.tsv", checkIfExists: true)
                 """

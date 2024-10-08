@@ -22,7 +22,7 @@ def parse_args(args=None):
         -gs genomad_aggregated_classification.tsv \
         -gg genomad_hallmarks.tsv \
         -gt genomad_taxonomy.tsv \
-        -bh extra_hmm_hits.tsv \
+        -bh busco_hmm_hits.tsv \
         -ph plasmid_hmm_hits.tsv \
         -vh virus_hmm_hits.tsv \
         -cp completeness.tsv \
@@ -183,7 +183,7 @@ def combine_virus_data(
     # load busco HMM data
     if busco_hmms:
         if os.path.getsize(busco_hmms) > 0:
-            extra_hmms_df = pd.read_csv(
+            busco_hmms_df = pd.read_csv(
                 busco_hmms,
                 sep="\t",
                 header=None,
@@ -192,12 +192,12 @@ def combine_virus_data(
                 usecols=["contig_id", "busco_count", "busco_list"]
             )
     if "busco_hmms_df" not in locals():
-        busco_hmms_df = pd.DataFrame(columns=["contig_id", "busco_count", "busco_list"])
+        busco_hmms_df = pd.DataFrame(columns=["busco_count", "busco_list"])
 
     # load plasmid HMM data
     if plasmid_hmms:
         if os.path.getsize(plasmid_hmms) > 0:
-            extra_hmms_df = pd.read_csv(
+            plasmid_hmms_df = pd.read_csv(
                 plasmid_hmms,
                 sep="\t",
                 header=None,
@@ -206,12 +206,12 @@ def combine_virus_data(
                 usecols=["contig_id", "plasmid_count", "plasmid_list"]
             )
     if "plasmid_hmms_df" not in locals():
-        plasmid_hmms_df = pd.DataFrame(columns=["contig_id", "plasmid_count", "plasmid_list"])
+        plasmid_hmms_df = pd.DataFrame(columns=["plasmid_count", "plasmid_list"])
 
     # load busco HMM data
     if virus_hmms:
         if os.path.getsize(virus_hmms) > 0:
-            extra_hmms_df = pd.read_csv(
+            virus_hmms_df = pd.read_csv(
                 virus_hmms,
                 sep="\t",
                 header=None,
@@ -220,7 +220,7 @@ def combine_virus_data(
                 usecols=["contig_id", "virus_count", "virus_list"]
             )
     if "virus_hmms_df" not in locals():
-        virus_hmms_df = pd.DataFrame(columns=["contig_id", "virus_count", "virus_list"])
+        virus_hmms_df = pd.DataFrame(columns=["virus_count", "virus_list"])
 
     # load checkv completeness data
     if completeness:
@@ -316,7 +316,9 @@ def main(args=None):
         args.genomad_scores,
         args.genomad_genes,
         args.genomad_taxa,
-        args.extra_hmms,
+        args.busco_hmms,
+        args.plasmid_hmms,
+        args.virus_hmms,
         args.completeness,
         args.contamination,
         args.tantan,

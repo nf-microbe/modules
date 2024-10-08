@@ -1,8 +1,13 @@
 nextflow_process {
 
-    name "Test Process: COMPOSITIONFILTER"
+    name "Test Process: VTDB_COMPOSITIONFILTER"
     script "../main.nf"
-    process "COMPOSITIONFILTER"
+    process "VTDB_COMPOSITIONFILTER"
+
+    tag "modules_nfcore"
+    tag "modules"
+    tag "vtdb"
+    tag "vtdb/compositionfilter"
 
     test("combined.tsv + composition_filters.tsv") {
         when {
@@ -10,7 +15,7 @@ nextflow_process {
                 """
                 input[0] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/compositionfilter/test_class_data.tsv", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/compositionfilter/test_class_data.tsv", checkIfExists: true)
                 ]
                 input[1] = file("${projectDir}/assets/filters/composition_filters.tsv", checkIfExists: true)
                 """
@@ -31,7 +36,7 @@ nextflow_process {
                 """
                 input[0] = [
                     [ id:'test' ],
-                    file("${projectDir}/assets/test-datasets/modules/local/compositionfilter/test_class_data.tsv", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/modules/compositionfilter/test_class_data.tsv", checkIfExists: true)
                 ]
                 input[1] = file("${projectDir}/assets/filters/composition_filters.tsv", checkIfExists: true)
                 """
