@@ -1,0 +1,149 @@
+{
+    "fasta.gz + faa.gz + combined_data.tsv + no sequences to keep": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_filtered.fasta.gz:md5,8bb9e936bc24116c8b538ba95af9c482"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_filtered_proteins.faa.gz:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "2": [
+                    "versions.yml:md5,d4721da6102734d4c962030ed8c0fc17"
+                ],
+                "fasta": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_filtered.fasta.gz:md5,8bb9e936bc24116c8b538ba95af9c482"
+                    ]
+                ],
+                "proteins": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_filtered_proteins.faa.gz:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,d4721da6102734d4c962030ed8c0fc17"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-08-15T07:27:08.506438928"
+    },
+    "stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_filtered.fasta.gz:md5,8bb9e936bc24116c8b538ba95af9c482"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_filtered_proteins.faa.gz:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "2": [
+                    "versions.yml:md5,d4721da6102734d4c962030ed8c0fc17"
+                ],
+                "fasta": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_filtered.fasta.gz:md5,8bb9e936bc24116c8b538ba95af9c482"
+                    ]
+                ],
+                "proteins": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_filtered_proteins.faa.gz:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,d4721da6102734d4c962030ed8c0fc17"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-08-15T07:27:10.554334423"
+    },
+    "fasta.gz + faa.gz + combined_data.tsv + sequences_to_keep.tsv": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_filtered.fasta.gz:md5,8bb9e936bc24116c8b538ba95af9c482"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_filtered_proteins.faa.gz:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "2": [
+                    "versions.yml:md5,d4721da6102734d4c962030ed8c0fc17"
+                ],
+                "fasta": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_filtered.fasta.gz:md5,8bb9e936bc24116c8b538ba95af9c482"
+                    ]
+                ],
+                "proteins": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_filtered_proteins.faa.gz:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,d4721da6102734d4c962030ed8c0fc17"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-08-14T16:43:44.702919982"
+    }
+}

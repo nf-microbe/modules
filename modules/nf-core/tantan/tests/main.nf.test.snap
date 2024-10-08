@@ -1,0 +1,68 @@
+{
+    "sarscov2 - fasta.gz - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.tantan.bed:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,3a9fc324f83d2825d0fae5f08e5d8c31"
+                ],
+                "bed": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.tantan.bed:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,3a9fc324f83d2825d0fae5f08e5d8c31"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-09-11T08:53:59.906141846"
+    },
+    "sarscov2 - fasta.gz": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.tantan.bed:md5,f3c1b5f05a0d6fcc3ce74b9d79824c62"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,3a9fc324f83d2825d0fae5f08e5d8c31"
+                ],
+                "bed": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.tantan.bed:md5,f3c1b5f05a0d6fcc3ce74b9d79824c62"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,3a9fc324f83d2825d0fae5f08e5d8c31"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-09-11T08:53:44.898548748"
+    }
+}

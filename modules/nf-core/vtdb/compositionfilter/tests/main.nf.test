@@ -1,0 +1,47 @@
+nextflow_process {
+
+    name "Test Process: COMPOSITIONFILTER"
+    script "../main.nf"
+    process "COMPOSITIONFILTER"
+
+    test("combined.tsv + composition_filters.tsv") {
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test' ],
+                    file("${projectDir}/assets/test-datasets/modules/local/compositionfilter/test_class_data.tsv", checkIfExists: true)
+                ]
+                input[1] = file("${projectDir}/assets/filters/composition_filters.tsv", checkIfExists: true)
+                """
+            }
+        }
+        then {
+            assertAll (
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("stub") {
+        options "-stub"
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test' ],
+                    file("${projectDir}/assets/test-datasets/modules/local/compositionfilter/test_class_data.tsv", checkIfExists: true)
+                ]
+                input[1] = file("${projectDir}/assets/filters/composition_filters.tsv", checkIfExists: true)
+                """
+            }
+        }
+        then {
+            assertAll (
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+}

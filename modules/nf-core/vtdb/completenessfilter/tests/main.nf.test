@@ -1,0 +1,51 @@
+nextflow_process {
+
+    name "Test Process: COMPLETENESSFILTER"
+    script "../main.nf"
+    process "COMPLETENESSFILTER"
+
+    test("combined.tsv + completeness_filters.tsv") {
+        when {
+            process {
+                """
+                input[0] = Channel.of(
+                    [
+                        [ id:'test' ],
+                        file("${projectDir}/assets/test-datasets/modules/local/completenessfilter/test_composition_data.tsv", checkIfExists: true)
+                    ]
+                )
+                input[1] = file("${projectDir}/assets/filters/completeness_filters.tsv", checkIfExists: true)
+                """
+            }
+        }
+        then {
+            assertAll (
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("stub") {
+        options "-stub"
+        when {
+            process {
+                """
+                input[0] = Channel.of(
+                    [
+                        [ id:'test' ],
+                        file("${projectDir}/assets/test-datasets/modules/local/completenessfilter/test_composition_data.tsv", checkIfExists: true)
+                    ]
+                )
+                input[1] = file("${projectDir}/assets/filters/completeness_filters.tsv", checkIfExists: true)
+                """
+            }
+        }
+        then {
+            assertAll (
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+}

@@ -4,6 +4,19 @@ org_path: nf-core
 update:
   https://github.com/nf-core/modules.git:
     nf-core:
+      vtdb/filtersequences: False
+      vtdb/compositionfilter: False
+      vtdb/completenessfilter: False
+      vtdb/combinedata: False
+      vtdb/classificationfilter: False
+      viromeqc/viromeqc: False
+      viromeqc/install: False
+      vclust/cluster: False
+      vclust/prefilter: False
+      vclust/align: False
+      trtrimmer: False
+      trfinder: False
+      tantan: False
       sra/sratools: False
       sequencestats: False
       seqhasher/sequniq: False

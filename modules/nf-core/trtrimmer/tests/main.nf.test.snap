@@ -1,0 +1,72 @@
+{
+    "stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.tr-trimmer.fasta.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,cadc74c4f7bd101e917616e4d452bb36"
+                ],
+                "fasta": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.tr-trimmer.fasta.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,cadc74c4f7bd101e917616e4d452bb36"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-10-01T11:18:59.458449588"
+    },
+    "fasta.gz": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.tr-trimmer.fasta.gz:md5,0855dd3c3fad7e77a820d09c90540b12"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,cadc74c4f7bd101e917616e4d452bb36"
+                ],
+                "fasta": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.tr-trimmer.fasta.gz:md5,0855dd3c3fad7e77a820d09c90540b12"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,cadc74c4f7bd101e917616e4d452bb36"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-10-01T11:18:42.365088502"
+    }
+}
