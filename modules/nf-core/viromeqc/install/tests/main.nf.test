@@ -3,6 +3,7 @@ nextflow_process {
     name "Test Process VIROMEQC_INSTALL"
     script "../main.nf"
     process "VIROMEQC_INSTALL"
+    config "./nextflow.config"
 
     tag "modules"
     tag "modules_nfcore"
