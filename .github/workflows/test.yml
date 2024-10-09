@@ -298,10 +298,8 @@ jobs:
       [
         prettier,
         editorconfig,
-        pytest-changes,
         nf-core-lint-modules,
         nf-core-lint-subworkflows,
-        pytest,
         nf-test-changes,
         nf-test,
       ]
