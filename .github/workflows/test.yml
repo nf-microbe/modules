@@ -190,7 +190,7 @@ jobs:
       fail-fast: false
       matrix:
         path: ["${{ fromJson(needs.nf-test-changes.outputs.paths) }}"]
-        profile: [conda, docker, singularity]
+        profile: [conda, docker, apptainer]
     env:
       NXF_ANSI_LOG: false
       NFTEST_VER: "0.9.0"
@@ -213,11 +213,11 @@ jobs:
           version: ${{ env.NFTEST_VER }}
 
       - name: Setup apptainer
-        if: matrix.profile == 'singularity'
+        if: matrix.profile == 'apptainer'
         uses: eWaterCycle/setup-apptainer@main
 
       - name: Set up Singularity
-        if: matrix.profile == 'singularity'
+        if: matrix.profile == 'apptainer'
         run: |
           mkdir -p $NXF_SINGULARITY_CACHEDIR
           mkdir -p $NXF_SINGULARITY_LIBRARYDIR
