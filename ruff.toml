@@ -1,8 +1,3 @@
-exclude = [
-    "bin/vclust",
-    "modules/nf-core/viromeqc/install/resources/usr/bin/",
-]
-
 line-length = 120
 target-version = "py38"
 cache-dir = "~/.cache/ruff"
