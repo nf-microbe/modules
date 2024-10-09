@@ -1,0 +1,44 @@
+nextflow_workflow {
+
+    name "Test Subworkflow FASTA_SEQHASHER_FASTA"
+    script "../main.nf"
+    workflow "FASTA_SEQHASHER_FASTA"
+
+    tag "subworkflows"
+    tag "subworkflows_nfcore"
+    tag "subworkflows/fasta_seqhasher_fasta"
+    tag "csvtk"
+    tag "csvtk/concat"
+    tag "seqhasher"
+    tag "seqhasher/seqhasher"
+    tag "seqhasher/sequniq"
+    tag "seqhasher/sequniq"
+    tag "seqkit"
+    tag "seqkit/grep"
+
+    test("b_fragilis fasta.gz") {
+        when {
+            workflow {
+                """
+                input[0] = Channel.of(
+                    [
+                        [ id:'test1', single_end:false ], // meta map
+                        file(params.modules_testdata_base_path + 'genomics/prokaryotes/bacteroides_fragilis/illumina/fasta/test1.contigs.fa.gz', checkIfExists: true)
+                    ],
+                    [
+                        [ id:'test2', single_end:false ], // meta map
+                        file("${projectDir}/assets/test-datasets/genomics/prokaryotes/bacteroides_fragilis/illumina/fasta/test2.contigs.fa.gz", checkIfExists: true)
+                    ]
+                )
+                input[1] = file("${projectDir}/bin/seq-hasher", checkIfExists: true)
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success},
+                { assert snapshot(workflow.out).match()}
+            )
+        }
+    }
+}

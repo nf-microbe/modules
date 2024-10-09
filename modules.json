@@ -403,6 +403,13 @@
                             "subworkflows"
                         ]
                     },
+                    "fasta_seqhasher_fasta": {
+                        "branch": "master",
+                        "git_sha": "f533459a222ac53eb4c6bb7a5f574e4069197cdb",
+                        "installed_by": [
+                            "subworkflows"
+                        ]
+                    },
                     "utils_nextflow_pipeline": {
                         "branch": "master",
                         "git_sha": "f533459a222ac53eb4c6bb7a5f574e4069197cdb",

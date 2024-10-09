@@ -1,0 +1,43 @@
+{
+    "b_fragilis fasta.gz": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test1",
+                            "single_end": false
+                        },
+                        "test1.fa.gz:md5,3d5d63cdeeda1ea7299a68d674bf817c"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,3ada7082bf6dff36f6c62264c7264ca4",
+                    "versions.yml:md5,556aaad95a18aa6f9675af833b7c94ff",
+                    "versions.yml:md5,7c10d5ad7107a75066ec30828e696ff1",
+                    "versions.yml:md5,a9b1723acacf301e38c54cd33ab37363"
+                ],
+                "unique_seqs_fasta_gz": [
+                    [
+                        {
+                            "id": "test1",
+                            "single_end": false
+                        },
+                        "test1.fa.gz:md5,3d5d63cdeeda1ea7299a68d674bf817c"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,3ada7082bf6dff36f6c62264c7264ca4",
+                    "versions.yml:md5,556aaad95a18aa6f9675af833b7c94ff",
+                    "versions.yml:md5,7c10d5ad7107a75066ec30828e696ff1",
+                    "versions.yml:md5,a9b1723acacf301e38c54cd33ab37363"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-10-02T06:50:40.334413044"
+    }
+}
