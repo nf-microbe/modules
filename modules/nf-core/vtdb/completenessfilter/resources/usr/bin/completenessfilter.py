@@ -6,19 +6,17 @@ import sys
 import numpy as np
 import pandas as pd
 
-from pathlib import Path
-
 
 def parse_args(args=None):
-    Description = "Classify sequences as complete or not based on CheckV metrics."
-    Epilog = """
+    description = "Classify sequences as complete or not based on CheckV metrics."
+    epilog = """
     Example usage:
     python completenessnfilter.py \
         -i combined_data.tsv \
         -o output.tsv
     """
 
-    parser = argparse.ArgumentParser(description=Description, epilog=Epilog)
+    parser = argparse.ArgumentParser(description=description, epilog=epilog)
     parser.add_argument(
         "-i",
         "--input",

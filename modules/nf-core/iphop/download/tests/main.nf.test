@@ -1,0 +1,40 @@
+nextflow_process {
+
+    name "Test Process IPHOP_DOWNLOAD"
+    script "../main.nf"
+    process "IPHOP_DOWNLOAD"
+    config "./nextflow.config"
+
+    tag "modules"
+    tag "modules_nfcore"
+    tag "iphop"
+    tag "iphop/download"
+
+    test("No input") {
+        when {
+            params {
+                iphop_download_args = "-dbv iPHoP_db_rw_for-test"
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+            )
+        }
+    }
+
+    test("No input - stub") {
+        options "-stub"
+        when {
+            params {
+                iphop_download_args = ""
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+}

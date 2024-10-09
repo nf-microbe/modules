@@ -1,0 +1,69 @@
+nextflow_process {
+
+    name "Test Process IPHOP_PREDICT"
+    script "../main.nf"
+    process "IPHOP_PREDICT"
+    config "./nextflow.config"
+
+    tag "modules"
+    tag "modules_nfcore"
+    tag "iphop"
+    tag "iphop/download"
+    tag "iphop/predict"
+
+    setup {
+        run("IPHOP_DOWNLOAD") {
+            params {
+                iphop_download_args = "-dbv iPHoP_db_rw_for-test"
+            }
+            script "../../download/main.nf"
+        }
+    }
+
+    test("lambda - fasta") {
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test' ], // meta map
+                    file("${projectDir}/assets/test-datasets/genomics/lambda/illumina/fasta/SRR24085752.fa.gz", checkIfExists: true)
+                ]
+                input[1] = IPHOP_DOWNLOAD.out.iphop_db
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(
+                    process.out.iphop_genus,
+                    process.out.iphop_genome,
+                    process.out.versions,
+                    file(process.out.iphop_detailed_output[0][1]).name
+                    ).match()
+                }
+            )
+        }
+    }
+
+    test("stub") {
+        options "-stub"
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test' ], // meta map
+                    file("${projectDir}/assets/test-datasets/genomics/lambda/illumina/fasta/SRR24085752.fa.gz", checkIfExists: true)
+                ]
+                input[1] = IPHOP_DOWNLOAD.out.iphop_db
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+}
