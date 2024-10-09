@@ -2,19 +2,17 @@
 
 import argparse
 import csv
-import os
 import gzip
+import os
 import sys
 
 import pandas as pd
-
 from Bio import SeqIO
-from pathlib import Path
 
 
 def parse_args(args=None):
-    Description = "Combine virus data from multiple sources."
-    Epilog = """
+    description = "Combine virus data from multiple sources."
+    epilog = """
     Example usage:
     python combinedata.py \
         -i sequences.fasta.gz \
@@ -32,7 +30,7 @@ def parse_args(args=None):
         -o output.tsv
     """
 
-    parser = argparse.ArgumentParser(description=Description, epilog=Epilog)
+    parser = argparse.ArgumentParser(description=description, epilog=epilog)
     parser.add_argument(
         "-i",
         "--input",
@@ -100,20 +98,20 @@ def parse_args(args=None):
 
 
 def combine_virus_data(
-    input_fasta: Path,
-    output: Path,
-    trfinder: Path = None,
-    genomad_scores: Path = None,
-    genomad_genes: Path = None,
-    genomad_taxa: Path = None,
-    busco_hmms: Path = None,
-    plasmid_hmms: Path = None,
-    virus_hmms: Path = None,
-    completeness: Path = None,
-    contamination: Path = None,
-    tantan: Path = None,
-    sequence_stats: Path = None,
-) -> Path:
+    input_fasta,
+    output,
+    trfinder=None,
+    genomad_scores=None,
+    genomad_genes=None,
+    genomad_taxa=None,
+    busco_hmms=None,
+    plasmid_hmms=None,
+    virus_hmms=None,
+    completeness=None,
+    contamination=None,
+    tantan=None,
+    sequence_stats=None,
+):
     # load trfinder data
     if trfinder:
         if os.path.getsize(trfinder) > 0:

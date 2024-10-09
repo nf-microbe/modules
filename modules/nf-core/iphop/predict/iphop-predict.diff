@@ -1,0 +1,8 @@
+Changes in module 'nf-core/iphop/predict'
+'modules/nf-core/iphop/predict/environment.yml' is unchanged
+'modules/nf-core/iphop/predict/meta.yml' is unchanged
+'modules/nf-core/iphop/predict/main.nf' is unchanged
+'modules/nf-core/iphop/predict/tests/nextflow.config' was created
+'modules/nf-core/iphop/predict/tests/main.nf.test' was created
+'modules/nf-core/iphop/predict/tests/main.nf.test.snap' was created
+************************************************************
