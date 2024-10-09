@@ -2,19 +2,18 @@
 
 import argparse
 import csv
-import os
 import gzip
+import os
 import sys
+from pathlib import Path
 
 import pandas as pd
-
 from Bio import SeqIO
-from pathlib import Path
 
 
 def parse_args(args=None):
-    Description = "Combine virus data from multiple sources."
-    Epilog = """
+    description = "Combine virus data from multiple sources."
+    epilog = """
     Example usage:
     python combinedata.py \
         -i sequences.fasta.gz \
@@ -32,7 +31,7 @@ def parse_args(args=None):
         -o output.tsv
     """
 
-    parser = argparse.ArgumentParser(description=Description, epilog=Epilog)
+    parser = argparse.ArgumentParser(description=description, epilog=epilog)
     parser.add_argument(
         "-i",
         "--input",

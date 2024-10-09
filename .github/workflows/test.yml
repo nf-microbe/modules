@@ -212,22 +212,23 @@ jobs:
         with:
           version: ${{ env.NFTEST_VER }}
 
-      - name: Setup apptainer
-        if: matrix.profile == 'singularity'
-        uses: eWaterCycle/setup-apptainer@v2
-        with:
-          apptainer-version: 1.3.0
+      # - name: Setup apptainer
+      #   if: matrix.profile == 'singularity'
+      #   uses: eWaterCycle/setup-apptainer@v2
+      #   with:
+      #     apptainer-version: 1.3.0
 
       - name: Set up singularity
+        if: matrix.profile == 'singularity'
         uses: eWaterCycle/setup-singularity@v7
         with:
           singularity-version: 3.8.3
 
-      - name: Set up Singularity
-        if: matrix.profile == 'singularity'
-        run: |
-          mkdir -p $NXF_SINGULARITY_CACHEDIR
-          mkdir -p $NXF_SINGULARITY_LIBRARYDIR
+      # - name: Set up Singularity
+      #   if: matrix.profile == 'singularity'
+      #   run: |
+      #     mkdir -p $NXF_SINGULARITY_CACHEDIR
+      #     mkdir -p $NXF_SINGULARITY_LIBRARYDIR
 
       - name: Set up Python
         uses: actions/setup-python@v5 # v5
@@ -296,15 +297,7 @@ jobs:
 
   confirm-pass:
     runs-on: ubuntu-latest
-    needs:
-      [
-        prettier,
-        editorconfig,
-        nf-core-lint-modules,
-        nf-core-lint-subworkflows,
-        nf-test-changes,
-        nf-test,
-      ]
+    needs: [prettier, editorconfig, nf-core-lint-modules, nf-core-lint-subworkflows, nf-test-changes, nf-test]
     if: always()
     steps:
       - name: All tests ok

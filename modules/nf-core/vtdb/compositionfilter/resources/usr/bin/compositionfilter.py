@@ -6,19 +6,17 @@ import sys
 import numpy as np
 import pandas as pd
 
-from pathlib import Path
-
 
 def parse_args(args=None):
-    Description = "Filter sequences based on previously calculated composition metrics."
-    Epilog = """
+    description = "Filter sequences based on previously calculated composition metrics."
+    epilog = """
     Example usage:
     python compositionfilter.py \
         -i combined_data.tsv \
         -o output.tsv
     """
 
-    parser = argparse.ArgumentParser(description=Description, epilog=Epilog)
+    parser = argparse.ArgumentParser(description=description, epilog=epilog)
     parser.add_argument(
         "-i",
         "--input",

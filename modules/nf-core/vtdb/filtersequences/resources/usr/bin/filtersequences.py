@@ -5,16 +5,13 @@ import gzip
 import os
 import sys
 
-import numpy as np
 import pandas as pd
-
 from Bio import SeqIO
-from pathlib import Path
 
 
 def parse_args(args=None):
-    Description = "Filter sequences based on classification, composition, and completeness thresholds."
-    Epilog = """
+    description = "Filter sequences based on classification, composition, and completeness thresholds."
+    epilog = """
     Example usage:
     python filtersequences.py \
         --input_fasta sequences.fasta.gz \
@@ -25,7 +22,7 @@ def parse_args(args=None):
         --output_proteins filtered_proteins.faa
     """
 
-    parser = argparse.ArgumentParser(description=Description, epilog=Epilog)
+    parser = argparse.ArgumentParser(description=description, epilog=epilog)
     parser.add_argument(
         "-if",
         "--input_fasta",

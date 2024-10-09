@@ -6,12 +6,10 @@ import sys
 import numpy as np
 import pandas as pd
 
-from pathlib import Path
-
 
 def parse_args(args=None):
-    Description = "Classify sequences as viral/non-viral based on tool metrics."
-    Epilog = """
+    description = "Classify sequences as viral/non-viral based on tool metrics."
+    epilog = """
     Example usage:
     python classificationfilter.py \
         -i combined_data.tsv \
@@ -19,7 +17,7 @@ def parse_args(args=None):
         -o output.tsv
     """
 
-    parser = argparse.ArgumentParser(description=Description, epilog=Epilog)
+    parser = argparse.ArgumentParser(description=description, epilog=epilog)
     parser.add_argument(
         "-i",
         "--input",
