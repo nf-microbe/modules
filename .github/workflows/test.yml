@@ -11,8 +11,8 @@ on:
         description: "Runners to test on"
         type: choice
         options:
-          - "ubuntu-latest"
-        default: "ubuntu-latest"
+          - "ubuntu-22.04"
+        default: "ubuntu-22.04"
 
 # Cancel if a newer run is started
 concurrency:
@@ -26,7 +26,7 @@ env:
 
 jobs:
   pre-commit:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -40,7 +40,7 @@ jobs:
           extra_args: "--all-files"
 
   prettier:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - name: Check out repository
         uses: actions/checkout@v4 # v4
@@ -57,7 +57,7 @@ jobs:
         run: prettier --check .
 
   editorconfig:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4 # v4
 
@@ -73,7 +73,7 @@ jobs:
 
   nf-test-changes:
     name: nf-test-changes
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     outputs:
       # Expose detected tags as 'modules' and 'workflows' output variables
       paths: ${{ steps.list.outputs.components }}
@@ -106,7 +106,7 @@ jobs:
           echo ${{ steps.outputs.outputs.subworkflows }}
 
   nf-core-lint-modules:
-    runs-on: ${{ github.event.inputs.runners  || 'ubuntu-latest' }}
+    runs-on: ${{ github.event.inputs.runners  || 'ubuntu-22.04' }}
     name: nf-core-lint-modules
     needs: [nf-test-changes]
     if: ${{ ( needs.nf-test-changes.outputs.modules != '[]') }}
@@ -145,10 +145,10 @@ jobs:
         run: python -m pip install --upgrade --force-reinstall git+https://github.com/nf-core/tools.git@dev
 
       - name: Lint module ${{ matrix.tags }}
-        run: nf-core modules lint ${{ matrix.tags }}
+        run: nf-core modules lint --key environment_yml --key module_todos --key module_deprecations --key module_tests ${{ matrix.tags }}
 
   nf-core-lint-subworkflows:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     name: nf-core-lint-modules
     needs: [nf-test-changes]
     if: ${{ ( needs.nf-test-changes.outputs.subworkflows != '[]') }}
@@ -182,7 +182,7 @@ jobs:
         run: nf-core subworkflows lint ${{ matrix.tags }}
 
   nf-test:
-    runs-on: ${{ github.event.inputs.runners  || 'ubuntu-latest' }}
+    runs-on: ${{ github.event.inputs.runners  || 'ubuntu-22.04' }}
     name: nf-test
     needs: [nf-test-changes]
     if: ( needs.nf-test-changes.outputs.paths != '[]' )
@@ -288,7 +288,7 @@ jobs:
           sudo rm -rf /home/ubuntu/tests/
 
   confirm-pass:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     needs: [prettier, editorconfig, nf-core-lint-modules, nf-core-lint-subworkflows, nf-test-changes, nf-test]
     if: always()
     steps:

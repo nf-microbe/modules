@@ -120,7 +120,7 @@ def filter_sequences(
                 proteins_to_write.append(record)
         SeqIO.write(proteins_to_write, output_proteins, "fasta")
     else:
-        open(output_proteins, 'a').close()
+        open(output_proteins, "a").close()
 
 
 def main(args=None):
