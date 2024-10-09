@@ -41,15 +41,11 @@ def parse_args(args=None):
 def main(args=None):
     args = parse_args(args)
     # load virus data
-    comb_virus_data_df = pd.read_csv(
-        args.input,
-        sep='\t')
+    comb_virus_data_df = pd.read_csv(args.input, sep="\t")
 
     if len(comb_virus_data_df) > 0:
         # load classification filters
-        thresholds_df = pd.read_csv(
-            args.filters,
-            sep='\t')
+        thresholds_df = pd.read_csv(args.filters, sep="\t")
         viral_thresholds_df = thresholds_df[thresholds_df["classification"] == "viral"]
         nonviral_thresholds_df = thresholds_df[thresholds_df["classification"] == "non-viral"]
 
@@ -60,10 +56,14 @@ def main(args=None):
             comb_virus_data_df.iloc[
                 comb_virus_data_df.query(row["criteria"]).index,
                 len(comb_virus_data_df.columns) - 1,
-            ] = comb_virus_data_df.iloc[
-                comb_virus_data_df.query(row["criteria"]).index,
-                len(comb_virus_data_df.columns) - 1,
-            ] + row["name"] + ";"
+            ] = (
+                comb_virus_data_df.iloc[
+                    comb_virus_data_df.query(row["criteria"]).index,
+                    len(comb_virus_data_df.columns) - 1,
+                ]
+                + row["name"]
+                + ";"
+            )
 
         # iterate through non-viral filters
         comb_virus_data_df["nonviral_classification_method"] = ""
@@ -71,18 +71,22 @@ def main(args=None):
             comb_virus_data_df.iloc[
                 comb_virus_data_df.query(row["criteria"]).index,
                 len(comb_virus_data_df.columns) - 1,
-            ] = comb_virus_data_df.iloc[
-                comb_virus_data_df.query(row["criteria"]).index,
-                len(comb_virus_data_df.columns) - 1,
-            ] + row["name"] + ";"
+            ] = (
+                comb_virus_data_df.iloc[
+                    comb_virus_data_df.query(row["criteria"]).index,
+                    len(comb_virus_data_df.columns) - 1,
+                ]
+                + row["name"]
+                + ";"
+            )
 
         # classify sequence as viral or non-viral
         comb_virus_data_df["virus_classification"] = "non-viral"
         comb_virus_data_df["virus_classification"] = np.where(
-            (comb_virus_data_df["viral_classification_method"] != "") &
-            (comb_virus_data_df["nonviral_classification_method"] == ""),
+            (comb_virus_data_df["viral_classification_method"] != "")
+            & (comb_virus_data_df["nonviral_classification_method"] == ""),
             "viral",
-            "non-viral"
+            "non-viral",
         )
 
         # write combined metadata to output TSV
@@ -94,7 +98,6 @@ def main(args=None):
         comb_virus_data_df["virus_classification"] = ""
         comb_virus_data_df.sort_values("contig_id", inplace=True)
         comb_virus_data_df.to_csv(args.output, sep="\t", index=False)
-
 
 
 if __name__ == "__main__":

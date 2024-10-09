@@ -11,13 +11,12 @@ nextflow_process {
     tag "viromeqc/install"
     tag "viromeqc/viromeqc"
 
-    setup {
-        run("VIROMEQC_INSTALL") {
-            script "../../install/main.nf"
-        }
-    }
-
     test("sarscov2 - fastq.gz - pe") {
+        setup {
+            run("VIROMEQC_INSTALL") {
+                script "../../install/main.nf"
+            }
+        }
         when {
             process {
                 """
