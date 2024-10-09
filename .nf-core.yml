@@ -4,6 +4,8 @@ org_path: nf-core
 update:
   https://github.com/nf-core/modules.git:
     nf-core:
+      fastq_viromeqc_tsv: False
+      fastq_bowtie2_fastq: False
       fasta_vclust_fastatsv: False
       fasta_seqhasher_fasta: False
       fasta_genomad_faatsv: False

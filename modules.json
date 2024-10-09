@@ -417,6 +417,20 @@
                             "subworkflows"
                         ]
                     },
+                    "fastq_bowtie2_fastq": {
+                        "branch": "master",
+                        "git_sha": "f533459a222ac53eb4c6bb7a5f574e4069197cdb",
+                        "installed_by": [
+                            "subworkflows"
+                        ]
+                    },
+                    "fastq_viromeqc_tsv": {
+                        "branch": "master",
+                        "git_sha": "f533459a222ac53eb4c6bb7a5f574e4069197cdb",
+                        "installed_by": [
+                            "subworkflows"
+                        ]
+                    },
                     "utils_nextflow_pipeline": {
                         "branch": "master",
                         "git_sha": "f533459a222ac53eb4c6bb7a5f574e4069197cdb",

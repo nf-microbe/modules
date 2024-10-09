@@ -1,0 +1,45 @@
+nextflow_workflow {
+
+    name "Test Subworkflow FASTQ_VIROMEQC_TSV"
+    script "../main.nf"
+    workflow "FASTQ_VIROMEQC_TSV"
+
+    tag "subworkflows"
+    tag "subworkflows_nfcore"
+    tag "subworkflows/fastq_viromeqc_tsv"
+    tag "viromeqc"
+    tag "viromeqc/install"
+    tag "viromeqc/viromeqc"
+
+    test("sarscov2 - fastq - pe - no db") {
+        when {
+            workflow {
+                """
+                input[0] = Channel.of(
+                    [
+                        [ id:'test1', single_end:false ], // meta map
+                        [
+                            file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkifExists: true),
+                            file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_2.fastq.gz', checkifExists: true)
+                        ]
+                    ],
+                    [
+                        [ id:'test2', single_end:false ], // meta map
+                        [
+                            file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test2_1.fastq.gz', checkifExists: true),
+                            file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test2_2.fastq.gz', checkifExists: true)
+                        ]
+                    ]
+                )
+                input[1] = []
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success},
+                { assert snapshot(workflow.out).match()}
+            )
+        }
+    }
+}

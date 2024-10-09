@@ -1,0 +1,2 @@
+subworkflows/fastq_bowtie2_fastq:
+  - subworkflows/nf-core/fastq_bowtie2_fastq/**

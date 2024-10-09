@@ -1,0 +1,55 @@
+{
+    "sarscov2 - fastq - pe - no db": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test1",
+                            "single_end": false
+                        },
+                        "test1.viromeqc.tsv:md5,87fe55cead9456793cab8c88cec19745"
+                    ],
+                    [
+                        {
+                            "id": "test2",
+                            "single_end": false
+                        },
+                        "test2.viromeqc.tsv:md5,9b8938d58b2d61b9eea191d6e8585151"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,0b1b887ab740e7c151ce5620bca52444",
+                    "versions.yml:md5,0b1b887ab740e7c151ce5620bca52444",
+                    "versions.yml:md5,790fa966ff74fe8ff73caa4333418c0d"
+                ],
+                "enrichment_tsv": [
+                    [
+                        {
+                            "id": "test1",
+                            "single_end": false
+                        },
+                        "test1.viromeqc.tsv:md5,87fe55cead9456793cab8c88cec19745"
+                    ],
+                    [
+                        {
+                            "id": "test2",
+                            "single_end": false
+                        },
+                        "test2.viromeqc.tsv:md5,9b8938d58b2d61b9eea191d6e8585151"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,0b1b887ab740e7c151ce5620bca52444",
+                    "versions.yml:md5,0b1b887ab740e7c151ce5620bca52444",
+                    "versions.yml:md5,790fa966ff74fe8ff73caa4333418c0d"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-08-23T15:19:10.005049815"
+    }
+}
