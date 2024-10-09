@@ -1,0 +1,45 @@
+{
+    "b_fragilis - fasta.gz": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test_cluster_reps.fa.gz:md5,3dcef382a0f144a7d4282649cc3e0d0c"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,4152e9af05390f2ccffe6cbad417aa5a",
+                    "versions.yml:md5,4e1b518e8c3d0bfb49020fa3b6fc9b8b",
+                    "versions.yml:md5,795c024849c14da1c9f587bc2d07aa6e",
+                    "versions.yml:md5,9b8eb4e71f4dca0004ed0377e39b965e",
+                    "versions.yml:md5,9fd2d2cb61702b996ba6895786064cb1"
+                ],
+                "cluster_reps_fasta_gz": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test_cluster_reps.fa.gz:md5,3dcef382a0f144a7d4282649cc3e0d0c"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,4152e9af05390f2ccffe6cbad417aa5a",
+                    "versions.yml:md5,4e1b518e8c3d0bfb49020fa3b6fc9b8b",
+                    "versions.yml:md5,795c024849c14da1c9f587bc2d07aa6e",
+                    "versions.yml:md5,9b8eb4e71f4dca0004ed0377e39b965e",
+                    "versions.yml:md5,9fd2d2cb61702b996ba6895786064cb1"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-10-02T13:45:28.469004246"
+    }
+}
