@@ -1,0 +1,57 @@
+nextflow_process {
+
+    name "Test Process TRTRIMMER"
+    script "../main.nf"
+    process "TRTRIMMER"
+
+    tag "modules"
+    tag "modules_nfcore"
+    tag "trtrimmer"
+
+    test("fasta.gz") {
+        when {
+            params {
+                trtrimmer_args ""
+            }
+            process {
+                """
+                input[0] = [
+                    [ id:'test', single_end:false ], // meta map
+                    file(params.modules_testdata_base_path + 'genomics/prokaryotes/bacteroides_fragilis/illumina/fasta/test1.contigs.fa.gz', checkIfExists: true),
+                ]
+                input[1] = file("https://github.com/nf-microbe/modules/raw/refs/heads/master/bin/tr-trimmer", checkIfExists: true)
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("stub") {
+        options "-stub"
+        when {
+            params {
+                seqhasher_args ""
+            }
+            process {
+                """
+                input[0] = [
+                    [ id:'test', single_end:false ], // meta map
+                    file(params.modules_testdata_base_path + 'genomics/prokaryotes/bacteroides_fragilis/illumina/fasta/test1.contigs.fa.gz', checkIfExists: true),
+                ]
+                input[1] = file("https://github.com/nf-microbe/modules/raw/refs/heads/master/bin/tr-trimmer", checkIfExists: true)
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+}

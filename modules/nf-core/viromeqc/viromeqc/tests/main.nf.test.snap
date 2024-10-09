@@ -1,0 +1,72 @@
+{
+    "sarscov2 - fastq.gz - pe - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.viromeqc.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,04c1eaabeaaa45359f8cebd60f7ade20"
+                ],
+                "tsv": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.viromeqc.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,04c1eaabeaaa45359f8cebd60f7ade20"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-10-02T07:30:12.778198287"
+    },
+    "sarscov2 - fastq.gz - pe": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.viromeqc.tsv:md5,6acbffc97f75774cf9fcc953b98913ed"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,04c1eaabeaaa45359f8cebd60f7ade20"
+                ],
+                "tsv": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.viromeqc.tsv:md5,6acbffc97f75774cf9fcc953b98913ed"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,04c1eaabeaaa45359f8cebd60f7ade20"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-10-02T07:29:53.040698273"
+    }
+}

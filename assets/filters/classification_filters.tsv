@@ -1,0 +1,10 @@
+classification	name	criteria
+viral	viral geNomad score	`virus_score` >= 0.8
+viral	CheckV high-confidence	`aai_confidence` == 'high' and `viral_genes` > 0
+viral	CheckV viral markers	`viral_genes` > `host_genes` and `viral_genes` >= 2
+viral	geNomad viral markers	`virus_count` >= 2 and `virus_count` > (`plasmid_count` + `uscg_count`)
+viral	extra viral markers	`n_virus_hmm` > 0 and `uscg_count` == 0 and `contig_length` <= 50000
+non-viral	non-viral geNomad score	`virus_score` <= 0.33
+non-viral	non-viral geNomad markers	`virus_count` < (`plasmid_count` + `uscg_count`)
+non-viral	geNomad uscg count	`uscg_count` > =4
+non-viral	CheckV host genes	`host_genes` >= 3 and `host_genes` >= 1.5 * `viral_genes`

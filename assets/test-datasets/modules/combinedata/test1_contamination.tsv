@@ -1,0 +1,6 @@
+contig_id	contig_length	total_genes	viral_genes	host_genes	provirus	proviral_length	host_length	region_types	region_lengths	region_coords_bp	region_coords_genes	region_viral_genes	region_host_genes
+k141_8|test1	9592	18	2	0	No	NA	NA	NA	NA	NA	NA	NA	NA
+k141_184|test1	39919	51	47	0	No	NA	NA	NA	NA	NA	NA	NA	NA
+k141_3144|test1	169374	270	254	0	No	NA	NA	NA	NA	NA	NA	NA	NA
+k141_3405|test1	41224	70	31	0	No	NA	NA	NA	NA	NA	NA	NA	NA
+k141_3407|test1	5528	8	8	0	No	NA	NA	NA	NA	NA	NA	NA	NA

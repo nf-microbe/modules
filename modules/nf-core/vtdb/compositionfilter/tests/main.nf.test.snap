@@ -1,0 +1,68 @@
+{
+    "combined.tsv + composition_filters.tsv": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_composition_data.tsv:md5,805029c01a31b89682805b70abfc9611"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,86712d688f47a72cb70e2b7318d031b2"
+                ],
+                "compos_data": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_composition_data.tsv:md5,805029c01a31b89682805b70abfc9611"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,86712d688f47a72cb70e2b7318d031b2"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-10-08T08:36:49.818452679"
+    },
+    "stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_composition_data.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,86712d688f47a72cb70e2b7318d031b2"
+                ],
+                "compos_data": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_composition_data.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,86712d688f47a72cb70e2b7318d031b2"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-10-08T08:36:58.158717624"
+    }
+}

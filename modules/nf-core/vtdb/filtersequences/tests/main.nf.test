@@ -1,0 +1,121 @@
+nextflow_process {
+
+    name "Test Process: VTDB_FILTERSEQUENCES"
+    script "../main.nf"
+    process "VTDB_FILTERSEQUENCES"
+
+    tag "modules_nfcore"
+    tag "modules"
+    tag "vtdb"
+    tag "vtdb/filtersequences"
+
+    test("fasta.gz + faa.gz + combined_data.tsv + sequences_to_keep.tsv") {
+        when {
+            process {
+                """
+                input[0] = Channel.of(
+                    [
+                        [ id:'test' ],
+                        file("${projectDir}/assets/test-datasets/modules/filtersequences/test.fasta.gz", checkIfExists: true)
+                    ]
+                )
+                input[1] = Channel.of(
+                    [
+                        [ id:'test' ],
+                        file("${projectDir}/assets/test-datasets/modules/filtersequences/test.faa.gz", checkIfExists: true)
+                    ]
+                )
+                input[2] = Channel.of(
+                    [
+                        [ id:'test' ],
+                        file("${projectDir}/assets/test-datasets/modules/filtersequences/test_completeness_data.tsv", checkIfExists: true)
+                    ]
+                )
+                input[3] = Channel.of(
+                    [
+                        file("${projectDir}/assets/test-datasets/modules/filtersequences/test_sequences_to_keep.tsv", checkIfExists: true)
+                    ]
+                )
+                """
+            }
+        }
+        then {
+            assertAll (
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("fasta.gz + faa.gz + combined_data.tsv + no sequences to keep") {
+        when {
+            process {
+                """
+                input[0] = Channel.of(
+                    [
+                        [ id:'test' ],
+                        file("${projectDir}/assets/test-datasets/modules/filtersequences/test.fasta.gz", checkIfExists: true)
+                    ]
+                )
+                input[1] = Channel.of(
+                    [
+                        [ id:'test' ],
+                        file("${projectDir}/assets/test-datasets/modules/filtersequences/test.faa.gz", checkIfExists: true)
+                    ]
+                )
+                input[2] = Channel.of(
+                    [
+                        [ id:'test' ],
+                        file("${projectDir}/assets/test-datasets/modules/filtersequences/test_completeness_data.tsv", checkIfExists: true)
+                    ]
+                )
+                input[3] = Channel.of([])
+                """
+            }
+        }
+        then {
+            assertAll (
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("stub") {
+        when {
+            process {
+                """
+                input[0] = Channel.of(
+                    [
+                        [ id:'test' ],
+                        file("${projectDir}/assets/test-datasets/modules/filtersequences/test.fasta.gz", checkIfExists: true)
+                    ]
+                )
+                input[1] = Channel.of(
+                    [
+                        [ id:'test' ],
+                        file("${projectDir}/assets/test-datasets/modules/filtersequences/test.faa.gz", checkIfExists: true)
+                    ]
+                )
+                input[2] = Channel.of(
+                    [
+                        [ id:'test' ],
+                        file("${projectDir}/assets/test-datasets/modules/filtersequences/test_completeness_data.tsv", checkIfExists: true)
+                    ]
+                )
+                input[3] = Channel.of(
+                    [
+                        file("${projectDir}/assets/test-datasets/modules/filtersequences/test_sequences_to_keep.tsv", checkIfExists: true)
+                    ]
+                )
+                """
+            }
+        }
+        then {
+            assertAll (
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+}

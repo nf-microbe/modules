@@ -1,0 +1,6 @@
+seq_name	n_genes_with_taxonomy	agreement	taxid	lineage
+k141_8|test1	5	0.9281	8016	Viruses;Monodnaviria;Loebvirae;Hofneiviricota;Faserviricetes;Tubulavirales;Inoviridae
+k141_184|test1	45	0.9682	6064	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes;;Autographiviridae
+k141_3144|test1	224	0.9625	9067	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes;;Straboviridae
+k141_3405|test1	22	1.0000	2561	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes;;
+k141_3407|test1	7	1.0000	2790	Viruses;Monodnaviria;Sangervirae;Phixviricota;Malgrandaviricetes;Petitvirales;Microviridae

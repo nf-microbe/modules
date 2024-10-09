@@ -1,0 +1,65 @@
+nextflow_process {
+
+    name "Test Process VIROMEQC_VIROMEQC"
+    script "../main.nf"
+    process "VIROMEQC_VIROMEQC"
+    config "./nextflow.config"
+
+    tag "modules"
+    tag "modules_nfcore"
+    tag "viromeqc"
+    tag "viromeqc/install"
+    tag "viromeqc/viromeqc"
+
+    test("sarscov2 - fastq.gz - pe") {
+        setup {
+            run("VIROMEQC_INSTALL") {
+                script "../../install/main.nf"
+            }
+        }
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test', single_end:false ], // meta map
+                    [
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkifExists: true),
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_2.fastq.gz', checkifExists: true)
+                    ]
+                ]
+                input[1] = VIROMEQC_INSTALL.out.viromeqc_db
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("sarscov2 - fastq.gz - pe - stub") {
+        options "-stub"
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test', single_end:false ], // meta map
+                    [
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkifExists: true),
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_2.fastq.gz', checkifExists: true)
+                    ]
+                ]
+                input[1] = []
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+}
