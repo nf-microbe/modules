@@ -5,7 +5,6 @@ import csv
 import gzip
 import os
 import sys
-from pathlib import Path
 
 import pandas as pd
 from Bio import SeqIO
@@ -101,17 +100,17 @@ def parse_args(args=None):
 def combine_virus_data(
     input_fasta,
     output,
-    trfinder = None,
-    genomad_scores = None,
-    genomad_genes = None,
-    genomad_taxa = None,
-    busco_hmms = None,
-    plasmid_hmms = None,
-    virus_hmms = None,
-    completeness = None,
-    contamination = None,
-    tantan = None,
-    sequence_stats = None,
+    trfinder=None,
+    genomad_scores=None,
+    genomad_genes=None,
+    genomad_taxa=None,
+    busco_hmms=None,
+    plasmid_hmms=None,
+    virus_hmms=None,
+    completeness=None,
+    contamination=None,
+    tantan=None,
+    sequence_stats=None,
 ):
     # load trfinder data
     if trfinder:
