@@ -1,0 +1,59 @@
+{
+    "b_fragilis - fastq.gz - fasta.gz": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test1",
+                            "single_end": false,
+                            "assembler": "megahit",
+                            "extension": "cobra"
+                        },
+                        "test1_COBRA_extended.fasta.gz:md5,d45ad9b43ce1c58936fab36b5bc20aab"
+                    ],
+                    [
+                        {
+                            "id": "test2",
+                            "single_end": false,
+                            "assembler": "megahit",
+                            "extension": "cobra"
+                        },
+                        "test2_COBRA_extended.fasta.gz:md5,cf8402b8c3b6d616e43e35c087b4d694"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,cea70da660744e813688fbc9110210c2"
+                ],
+                "fasta_gz": [
+                    [
+                        {
+                            "id": "test1",
+                            "single_end": false,
+                            "assembler": "megahit",
+                            "extension": "cobra"
+                        },
+                        "test1_COBRA_extended.fasta.gz:md5,d45ad9b43ce1c58936fab36b5bc20aab"
+                    ],
+                    [
+                        {
+                            "id": "test2",
+                            "single_end": false,
+                            "assembler": "megahit",
+                            "extension": "cobra"
+                        },
+                        "test2_COBRA_extended.fasta.gz:md5,cf8402b8c3b6d616e43e35c087b4d694"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,cea70da660744e813688fbc9110210c2"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-09-23T13:43:51.442036171"
+    }
+}
