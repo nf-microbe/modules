@@ -1,11 +1,11 @@
 process IPHOP_PREDICT {
-    tag "$meta.id"
+    tag "${meta.id}"
     label 'process_high'
 
     conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'https://depot.galaxyproject.org/singularity/iphop:1.3.2--pyhdfd78af_0':
-        'biocontainers/iphop:1.3.2--pyhdfd78af_0' }"
+        'oras://community.wave.seqera.io/library/iphop:1.3.3--fa72498c1bff3fe4':
+        'biocontainers/iphop:1.3.3--pyhdfd78af_0' }"
 
     input:
     tuple val(meta), path(fasta)
@@ -23,14 +23,19 @@ process IPHOP_PREDICT {
     script:
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
+    def is_compressed = fasta.getName().endsWith(".gz") ? true : false
+    fasta_name = fasta.getName().replace(".gz", "")
     """
-    export PERL5LIB=/usr/local/lib/perl5/site_perl/5.22.0
+    if [ "$is_compressed" == "true" ]; then
+        gzip -c -d ${fasta} > ${fasta_name}
+    fi
+
     iphop \\
         predict \\
-        --fa_file $fasta \\
+        --fa_file ${fasta_name} \\
         --out_dir iphop_results \\
-        --db_dir $iphop_db \\
-        --num_threads $task.cpus \\
+        --db_dir ${iphop_db} \\
+        --num_threads ${task.cpus} \\
         $args
 
     mv iphop_results/Host_prediction_to_genus_m*.csv .
@@ -48,7 +53,6 @@ process IPHOP_PREDICT {
     def prefix = task.ext.prefix ?: "${meta.id}"
     def min_score = args.contains('--min_score') ? args.split('--min_score ')[1] : '90'
     """
-    mkdir -p iphop_results
     touch Host_prediction_to_genus_m${min_score}.csv
     touch Host_prediction_to_genome_m${min_score}.csv
     touch Detailed_output_by_tool.csv
