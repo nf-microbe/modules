@@ -4,6 +4,7 @@ org_path: nf-core
 update:
   https://github.com/nf-core/modules.git:
     nf-core:
+      fasta_genomad_faatsv: False
       fasta_checkv_tsv: False
       vtdb/filtersequences: False
       vtdb/compositionfilter: False
