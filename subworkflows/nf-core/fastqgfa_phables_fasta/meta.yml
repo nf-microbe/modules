@@ -1,0 +1,51 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/subworkflows/yaml-schema.json
+name: "fastqgfa_phables_fasta"
+description: Resolve phage genome assembly graphs.
+keywords:
+  - phage
+  - genome
+  - assembly
+  - phables
+  - graph
+components:
+  - phables/install
+  - phables/run
+
+input:
+  - fastq_gz:
+      type: file
+      description: |
+        Input channel containing FastQ files
+        Structure: [ [ meta.id, meta.single_end ], [ reads_1.fastq.gz, reads_2.fastq.gz ] ]
+      pattern: "*.{fastq,fq,fastq.gz,fq.gz}"
+  - gfa_gz:
+      type: file
+      description: "Assembly graph in GFA format"
+      pattern: "*.{gfa, gfa.gz}"
+  - phables_config:
+      type: file
+      description: "Template Phables config file to identify database location"
+      pattern: "phables_config.yml"
+  - phables_db:
+      type: directory
+      description: PHROG and SMG files for unitig alignment.
+      pattern: "*phables_db/"
+
+output:
+  - fasta_gz:
+      type: file
+      description: |
+        Channel containing resolved phage genome graphs in FastA format.
+        Structure: [ val(meta), path(fasta.gz) ]
+      pattern: "*.fasta.gz"
+  - versions:
+      type: file
+      description: |
+        File containing software versions
+        Structure: [ path(versions.yml) ]
+      pattern: "versions.yml"
+
+authors:
+  - "@CarsonJM"
+maintainers:
+  - "@CarsonJM"

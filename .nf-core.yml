@@ -4,6 +4,7 @@ org_path: nf-core
 update:
   https://github.com/nf-core/modules.git:
     nf-core:
+      fastqgfa_phables_fasta: False
       fastqfasta_cobra_fasta: False
       fastq_viromeqc_tsv: False
       fastq_bowtie2_fastq: False
