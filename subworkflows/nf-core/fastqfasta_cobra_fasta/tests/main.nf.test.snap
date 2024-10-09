@@ -7,46 +7,50 @@
                         {
                             "id": "test1",
                             "single_end": false,
-                            "assembler": "megahit",
-                            "extension": "cobra"
+                            "assembler": "megahit"
                         },
-                        "test1_COBRA_extended.fasta.gz:md5,d45ad9b43ce1c58936fab36b5bc20aab"
+                        "test1_COBRA_extended.fasta.gz:md5,945b59a8eaa853696462691901ede51b"
                     ],
                     [
                         {
                             "id": "test2",
                             "single_end": false,
-                            "assembler": "megahit",
-                            "extension": "cobra"
+                            "assembler": "megahit"
                         },
-                        "test2_COBRA_extended.fasta.gz:md5,cf8402b8c3b6d616e43e35c087b4d694"
+                        "test2_COBRA_extended.fasta.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
                     ]
                 ],
                 "1": [
-                    "versions.yml:md5,cea70da660744e813688fbc9110210c2"
+                    "versions.yml:md5,32d8add84e4d306eda90fd3e382b77a2",
+                    "versions.yml:md5,684f58cb9d708f836b2fc07f6501dada",
+                    "versions.yml:md5,684f58cb9d708f836b2fc07f6501dada",
+                    "versions.yml:md5,6e92f9c0c7dabef325eee05e0226d13a",
+                    "versions.yml:md5,6e92f9c0c7dabef325eee05e0226d13a"
                 ],
                 "fasta_gz": [
                     [
                         {
                             "id": "test1",
                             "single_end": false,
-                            "assembler": "megahit",
-                            "extension": "cobra"
+                            "assembler": "megahit"
                         },
-                        "test1_COBRA_extended.fasta.gz:md5,d45ad9b43ce1c58936fab36b5bc20aab"
+                        "test1_COBRA_extended.fasta.gz:md5,945b59a8eaa853696462691901ede51b"
                     ],
                     [
                         {
                             "id": "test2",
                             "single_end": false,
-                            "assembler": "megahit",
-                            "extension": "cobra"
+                            "assembler": "megahit"
                         },
-                        "test2_COBRA_extended.fasta.gz:md5,cf8402b8c3b6d616e43e35c087b4d694"
+                        "test2_COBRA_extended.fasta.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
                     ]
                 ],
                 "versions": [
-                    "versions.yml:md5,cea70da660744e813688fbc9110210c2"
+                    "versions.yml:md5,32d8add84e4d306eda90fd3e382b77a2",
+                    "versions.yml:md5,684f58cb9d708f836b2fc07f6501dada",
+                    "versions.yml:md5,684f58cb9d708f836b2fc07f6501dada",
+                    "versions.yml:md5,6e92f9c0c7dabef325eee05e0226d13a",
+                    "versions.yml:md5,6e92f9c0c7dabef325eee05e0226d13a"
                 ]
             }
         ],
@@ -54,6 +58,6 @@
             "nf-test": "0.9.0",
             "nextflow": "24.04.4"
         },
-        "timestamp": "2024-09-23T13:43:51.442036171"
+        "timestamp": "2024-10-09T15:02:53.074756036"
     }
 }

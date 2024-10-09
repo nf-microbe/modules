@@ -3,6 +3,7 @@ nextflow_workflow {
     name "Test Subworkflow FASTQ_VIROMEQC_TSV"
     script "../main.nf"
     workflow "FASTQ_VIROMEQC_TSV"
+    config "./nextflow.config"
 
     tag "subworkflows"
     tag "subworkflows_nfcore"

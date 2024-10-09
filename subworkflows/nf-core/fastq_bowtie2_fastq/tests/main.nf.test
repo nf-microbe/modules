@@ -30,7 +30,10 @@ nextflow_workflow {
                         ]
                     ]
                 )
-                input[1] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta.gz',checkIfExists: true)
+                input[1] = [
+                    [ id:'index' ],
+                    file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta.gz',checkIfExists: true)
+                ]
                 input[2] = []
                 """
             }
@@ -63,8 +66,14 @@ nextflow_workflow {
                         ]
                     ]
                 )
-                input[1] = file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta.gz',checkIfExists: true)
-                input[2] = file("${projectDir}/assets/test-datasets/genomics/sarscov2/bowtie2/", checkifExists: true)
+                input[1] = [
+                    [ id:'fasta' ],
+                    file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta.gz',checkIfExists: true)
+                ]
+                input[2] = [
+                    [ id:'fasta' ],
+                    file("${projectDir}/assets/test-datasets/genomics/sarscov2/bowtie2/", checkifExists: true)
+                ]
                 """
             }
         }

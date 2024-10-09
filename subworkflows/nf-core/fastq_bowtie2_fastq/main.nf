@@ -21,8 +21,10 @@ workflow FASTQ_BOWTIE2_FASTQ {
         BOWTIE2_BUILD(
             fasta_gz
         )
-        ch_bowtie2_index    = BOWTIE2_BUILD.out.index
-        ch_versions         = ch_versions.mix(BOWTIE2_BUILD.out.versions)
+        ch_bt2_index    = BOWTIE2_BUILD.out.index
+        ch_versions     = ch_versions.mix(BOWTIE2_BUILD.out.versions)
+    } else {
+        ch_bt2_index    = bt2_index
     }
 
     //
@@ -30,7 +32,7 @@ workflow FASTQ_BOWTIE2_FASTQ {
     //
     BOWTIE2_ALIGN(
         fastq_gz,
-        bt2_index,
+        ch_bt2_index,
         fasta_gz,
         true,
         true

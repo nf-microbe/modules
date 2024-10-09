@@ -1,8 +1,8 @@
 nextflow_workflow {
 
-    name "Test Subworkflow FASTA_CHECKV_FASTATSV"
+    name "Test Subworkflow FASTA_CHECKV_TSV"
     script "../main.nf"
-    workflow "FASTA_CHECKV_FASTATSV"
+    workflow "FASTA_CHECKV_TSV"
 
     tag "subworkflows"
     tag "subworkflows_nfcore"

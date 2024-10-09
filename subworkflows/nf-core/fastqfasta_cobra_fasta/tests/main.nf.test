@@ -46,16 +46,6 @@ nextflow_workflow {
                 input[2] = Channel.of(
                     [
                         [ id:'test1', single_end:false, assembler:'megahit' ],
-                        file("${projectDir}/assets/test-datasets/genomics/prokaryotes/bacteroides_fragilis/text/test1_contig_names.tsv", checkIfExists: true)
-                    ],
-                    [
-                        [ id:'test2', single_end:false, assembler:'megahit' ],
-                        file("${projectDir}/assets/test-datasets/genomics/prokaryotes/bacteroides_fragilis/text/test2_contig_names.tsv", checkIfExists: true)
-                    ]
-                )
-                input[3] = Channel.of(
-                    [
-                        [ id:'test1', single_end:false, assembler:'megahit' ],
                         file("${projectDir}/assets/test-datasets/genomics/sarscov2/illumina/log/test.megahit.log", checkIfExists: true)
                     ],
                     [

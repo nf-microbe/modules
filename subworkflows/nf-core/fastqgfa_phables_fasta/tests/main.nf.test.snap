@@ -6,16 +6,14 @@
                     [
                         {
                             "id": "test1",
-                            "assembler": "megahit",
-                            "extension": "phables"
+                            "assembler": "megahit"
                         },
                         "test1.phables.fasta.gz:md5,f8002e736576e646d5204488a7b32ec4"
                     ],
                     [
                         {
                             "id": "test2",
-                            "assembler": "megahit",
-                            "extension": "phables"
+                            "assembler": "megahit"
                         },
                         "test2.phables.fasta.gz:md5,9c1b16b637bb6944107d382401801a4a"
                     ]
@@ -29,16 +27,14 @@
                     [
                         {
                             "id": "test1",
-                            "assembler": "megahit",
-                            "extension": "phables"
+                            "assembler": "megahit"
                         },
                         "test1.phables.fasta.gz:md5,f8002e736576e646d5204488a7b32ec4"
                     ],
                     [
                         {
                             "id": "test2",
-                            "assembler": "megahit",
-                            "extension": "phables"
+                            "assembler": "megahit"
                         },
                         "test2.phables.fasta.gz:md5,9c1b16b637bb6944107d382401801a4a"
                     ]
