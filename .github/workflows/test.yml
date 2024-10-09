@@ -190,7 +190,7 @@ jobs:
       fail-fast: false
       matrix:
         path: ["${{ fromJson(needs.nf-test-changes.outputs.paths) }}"]
-        profile: [conda, docker, apptainer]
+        profile: [conda, docker, singularity]
     env:
       NXF_ANSI_LOG: false
       NFTEST_VER: "0.9.0"
