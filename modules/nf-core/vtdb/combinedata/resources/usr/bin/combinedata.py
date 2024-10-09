@@ -99,20 +99,20 @@ def parse_args(args=None):
 
 
 def combine_virus_data(
-    input_fasta: Path,
-    output: Path,
-    trfinder: Path = None,
-    genomad_scores: Path = None,
-    genomad_genes: Path = None,
-    genomad_taxa: Path = None,
-    busco_hmms: Path = None,
-    plasmid_hmms: Path = None,
-    virus_hmms: Path = None,
-    completeness: Path = None,
-    contamination: Path = None,
-    tantan: Path = None,
-    sequence_stats: Path = None,
-) -> Path:
+    input_fasta,
+    output,
+    trfinder = None,
+    genomad_scores = None,
+    genomad_genes = None,
+    genomad_taxa = None,
+    busco_hmms = None,
+    plasmid_hmms = None,
+    virus_hmms = None,
+    completeness = None,
+    contamination = None,
+    tantan = None,
+    sequence_stats = None,
+):
     # load trfinder data
     if trfinder:
         if os.path.getsize(trfinder) > 0:

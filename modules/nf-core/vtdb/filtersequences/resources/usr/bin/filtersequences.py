@@ -57,13 +57,13 @@ def parse_args(args=None):
 
 
 def filter_sequences(
-    input_fasta: Path,
-    input_proteins: Path,
-    completeness_data: Path,
-    seqs_to_keep: Path,
-    output_fasta: Path,
-    output_proteins: Path,
-) -> Path:
+    input_fasta,
+    input_proteins,
+    completeness_data,
+    seqs_to_keep,
+    output_fasta,
+    output_proteins,
+):
     """
     Filter sequences based on classification, composition, and completeness thresholds.
 
@@ -120,7 +120,7 @@ def filter_sequences(
                 proteins_to_write.append(record)
         SeqIO.write(proteins_to_write, output_proteins, "fasta")
     else:
-        Path(output_proteins).touch()
+        open(output_proteins, 'a').close()
 
 
 def main(args=None):

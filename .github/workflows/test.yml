@@ -224,11 +224,11 @@ jobs:
         with:
           singularity-version: 3.8.3
 
-      # - name: Set up Singularity
-      #   if: matrix.profile == 'singularity'
-      #   run: |
-      #     mkdir -p $NXF_SINGULARITY_CACHEDIR
-      #     mkdir -p $NXF_SINGULARITY_LIBRARYDIR
+      - name: Set up Singularity
+        if: matrix.profile == 'singularity'
+        run: |
+          mkdir -p $NXF_SINGULARITY_CACHEDIR
+          mkdir -p $NXF_SINGULARITY_LIBRARYDIR
 
       - name: Set up Python
         uses: actions/setup-python@v5 # v5
