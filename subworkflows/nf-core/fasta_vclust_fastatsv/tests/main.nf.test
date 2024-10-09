@@ -12,6 +12,7 @@ nextflow_workflow {
     tag "seqhasher/sequniq"
     tag "seqkit"
     tag "seqkit/grep"
+    tag "seqkit/concat"
     tag "vclust"
     tag "vclust/align"
     tag "vclust/cluster"

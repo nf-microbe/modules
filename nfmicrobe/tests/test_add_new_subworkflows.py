@@ -21,7 +21,7 @@ def test_add_subworkflow_to_nfcore_yml():
     with open(".nf-core.yml.test") as f:
         content = f.read()
     assert "nf-core:\n      b_test: False" in content
-    os.remove('.nf-core.yml.test')
+    os.remove(".nf-core.yml.test")
 
 
 # test main function

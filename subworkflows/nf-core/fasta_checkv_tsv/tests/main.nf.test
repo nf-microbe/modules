@@ -6,7 +6,7 @@ nextflow_workflow {
 
     tag "subworkflows"
     tag "subworkflows_nfcore"
-    tag "subworkflows/fasta_checkv_fastatsv"
+    tag "subworkflows/fasta_checkv_tsv"
     tag "checkv"
     tag "checkv/downloaddatabase"
     tag "checkv/endtoend"

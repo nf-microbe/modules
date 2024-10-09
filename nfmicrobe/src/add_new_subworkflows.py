@@ -31,9 +31,11 @@ def update_modules_json(subworkflow_name, modules_json="modules.json"):
     with open(modules_json) as file:
         subworkflows = json.load(file)
     # add module to json
-    subworkflows["repos"]["https://github.com/nf-core/modules.git"]["subworkflows"]["nf-core"][subworkflow_name] = subworkflows["repos"][
-        "https://github.com/nf-core/modules.git"
-    ]["subworkflows"]["nf-core"]["utils_nextflow_pipeline"]
+    subworkflows["repos"]["https://github.com/nf-core/modules.git"]["subworkflows"]["nf-core"][subworkflow_name] = (
+        subworkflows[
+            "repos"
+        ]["https://github.com/nf-core/modules.git"]["subworkflows"]["nf-core"]["utils_nextflow_pipeline"]
+    )
     # sort json dict
     sorted_subworkflows = subworkflows.copy()
     sorted_subworkflows["repos"]["https://github.com/nf-core/modules.git"]["subworkflows"]["nf-core"] = dict(

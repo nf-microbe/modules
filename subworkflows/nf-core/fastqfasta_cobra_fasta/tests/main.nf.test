@@ -9,6 +9,8 @@ nextflow_workflow {
     tag "subworkflows/fastqfasta_cobra_fasta"
     tag "coverm"
     tag "coverm/contig"
+    tag "seqkit/fx2tab"
+    tag "seqkit/seq"
     tag "cobrameta"
 
     test("b_fragilis - fastq.gz - fasta.gz") {
