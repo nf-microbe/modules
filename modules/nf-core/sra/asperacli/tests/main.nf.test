@@ -7,7 +7,7 @@ nextflow_process {
     tag "modules"
     tag "modules_nfcore"
     tag "sra"
-    tag "sra/aspera"
+    tag "sra/asperacli"
 
     test("paired end + SRR24085752") {
         when {
