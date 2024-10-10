@@ -87,9 +87,23 @@
                     ]
                 ],
                 "6": [
-                    "versions.yml:md5,05c77f0513d8d9f8e7634b0f4f30ae61",
-                    "versions.yml:md5,6c264fbc929fe9f57b97eac5e082c2bc",
-                    "versions.yml:md5,6c264fbc929fe9f57b97eac5e082c2bc"
+                    [
+                        {
+                            "id": "test1"
+                        },
+                        "test1_proteins.faa.gz:md5,6850bd46dcb921e5cfb23bfbb8fcc12b"
+                    ],
+                    [
+                        {
+                            "id": "test2"
+                        },
+                        "test2_proteins.faa.gz:md5,63d0544a5d8e1448d375e09329eec1b7"
+                    ]
+                ],
+                "7": [
+                    "versions.yml:md5,2a9074bb10605724a4986c6f52919839",
+                    "versions.yml:md5,a9b7acb49920049fbcd519326fe63cf7",
+                    "versions.yml:md5,a9b7acb49920049fbcd519326fe63cf7"
                 ],
                 "features_tsv": [
                     [
@@ -133,6 +147,20 @@
                         "test2_plasmid_summary.tsv:md5,951e9110c265af707b2c65500a7acacd"
                     ]
                 ],
+                "proteins_faa_gz": [
+                    [
+                        {
+                            "id": "test1"
+                        },
+                        "test1_proteins.faa.gz:md5,6850bd46dcb921e5cfb23bfbb8fcc12b"
+                    ],
+                    [
+                        {
+                            "id": "test2"
+                        },
+                        "test2_proteins.faa.gz:md5,63d0544a5d8e1448d375e09329eec1b7"
+                    ]
+                ],
                 "scores_tsv": [
                     [
                         {
@@ -162,9 +190,9 @@
                     ]
                 ],
                 "versions": [
-                    "versions.yml:md5,05c77f0513d8d9f8e7634b0f4f30ae61",
-                    "versions.yml:md5,6c264fbc929fe9f57b97eac5e082c2bc",
-                    "versions.yml:md5,6c264fbc929fe9f57b97eac5e082c2bc"
+                    "versions.yml:md5,2a9074bb10605724a4986c6f52919839",
+                    "versions.yml:md5,a9b7acb49920049fbcd519326fe63cf7",
+                    "versions.yml:md5,a9b7acb49920049fbcd519326fe63cf7"
                 ],
                 "virus_tsv": [
                     [
@@ -186,6 +214,6 @@
             "nf-test": "0.9.0",
             "nextflow": "24.04.4"
         },
-        "timestamp": "2024-09-12T12:26:13.599840418"
+        "timestamp": "2024-10-10T07:30:33.357738596"
     }
 }
