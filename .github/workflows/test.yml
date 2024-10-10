@@ -145,7 +145,7 @@ jobs:
         run: python -m pip install --upgrade --force-reinstall git+https://github.com/nf-core/tools.git@dev
 
       - name: Lint module ${{ matrix.tags }}
-        run: nf-core modules lint --key environment_yml --key module_todos --key module_deprecations --key module_tests ${{ matrix.tags }}
+        run: nf-core modules lint -k environment_yml -k main_nf -k module_deprecations -k module_tests -k module_todos ${{ matrix.tags }}
 
   nf-core-lint-subworkflows:
     runs-on: ubuntu-22.04
@@ -179,7 +179,7 @@ jobs:
         run: python -m pip install --upgrade --force-reinstall git+https://github.com/nf-core/tools.git@dev
 
       - name: Lint module ${{ matrix.tags }}
-        run: nf-core subworkflows lint ${{ matrix.tags }}
+        run: nf-core subworkflows lint -k main_nf -k subworkflow_tests -k subworkflow_todos ${{ matrix.tags }}
 
   nf-test:
     runs-on: ${{ github.event.inputs.runners  || 'ubuntu-22.04' }}
