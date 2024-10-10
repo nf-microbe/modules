@@ -19,11 +19,20 @@ process SRA_SRATOOLS {
 
     script:
     def args    = task.ext.args ?: ''
-    prefix  = task.ext.prefix ?: "${meta.id}"
+    def args2   = task.ext.args2 ?: ''
+    prefix      = task.ext.prefix ?: "${meta.id}"
     """
     ### Download FastQ files with sratools
-    prefetch ${accession}
-    fasterq-dump ${accession}
+    prefetch \\
+        ${accession} \\
+        --output-file ${accession}/${accession}.sra \\
+        ${args}
+
+    fasterq-dump \\
+        ${accession} \\
+        --threads ${task.cpus} \\
+        ${args2} \\
+
 
     rm -rf ${accession}/${accession}.sra
     gzip ${accession}*.fastq
@@ -35,8 +44,8 @@ process SRA_SRATOOLS {
     """
 
     stub:
-    def args = task.ext.args ?: ''
-    prefix = task.ext.prefix ?: "${meta.id}"
+    def args    = task.ext.args ?: ''
+    prefix      = task.ext.prefix ?: "${meta.id}"
     """
     echo "" | gzip > ${accession}.fastq.gz
 
