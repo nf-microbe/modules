@@ -274,7 +274,6 @@ jobs:
           nf-test test \
             --profile=${{ matrix.profile }} \
             --tap=test.tap \
-            --verbose \
             ${{ matrix.path }}
 
       - uses: pcolby/tap-summary@v1 # v1

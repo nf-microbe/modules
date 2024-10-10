@@ -1,0 +1,95 @@
+{
+    "rmEmptyFastQs: single end + empty.fastq.gz": {
+        "content": [
+            [
+                "[[id:nonempty, single_end:true], /nf-core/test-datasets/modules/data/genomics/sarscov2/illumina/fastq/test_1.fastq.gz]"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-09-27T12:33:33.88962521"
+    },
+    "getWorkDirs: single workdir": {
+        "content": [
+            [
+                "[[id:test], /somepath/work/12/hashforworkdirtoclean/]"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-09-27T12:33:18.337800595"
+    },
+    "rmEmptyFastQs: paired end + cleaned.fasta.gz": {
+        "content": [
+            "[[id:nonempty, single_end:false], [/nf-core/test-datasets/modules/data/genomics/sarscov2/illumina/fastq/test_1.fastq.gz, /nf-core/test-datasets/modules/data/genomics/sarscov2/illumina/fastq/test_2.fastq.gz]]",
+            "[[id:cleaned, single_end:true],"
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-09-27T12:33:28.729491491"
+    },
+    "rmEmptyFastQs: single end + empty.fastq.gz - stub": {
+        "content": [
+            "[[id:nonempty, single_end:true], /nf-core/test-datasets/modules/data/genomics/sarscov2/illumina/fastq/test_1.fastq.gz]",
+            "[[id:empty, single_end:true],"
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-09-27T12:33:39.23215877"
+    },
+    "rmEmptyFastAs: nonempty + empty - stub": {
+        "content": [
+            "[[id:nonempty], /nf-core/test-datasets/modules/data/genomics/sarscov2/genome/genome.fasta.gz]",
+            "[[id:empty],"
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-09-27T12:33:55.712194713"
+    },
+    "rmEmptyFastAs: nonempty + cleaned": {
+        "content": [
+            "[[id:nonempty], /nf-core/test-datasets/modules/data/genomics/sarscov2/genome/genome.fasta.gz]",
+            "[[id:cleaned],"
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-09-27T12:38:31.273126602"
+    },
+    "getWorkDirs: two workdirs": {
+        "content": [
+            [
+                "[[id:test], /somepath/work/12/hashforworkdirtoclean/]",
+                "[[id:test], /somepath/work/24/hashforworkdirtoclean/]"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-09-27T12:33:23.37021052"
+    },
+    "rmEmptyFastAs: nonempty + empty": {
+        "content": [
+            [
+                "[[id:nonempty], /nf-core/test-datasets/modules/data/genomics/sarscov2/genome/genome.fasta.gz]"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-09-27T12:33:50.366840648"
+    }
+}
