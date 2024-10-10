@@ -22,12 +22,7 @@ def parse_args(args=None):
         default=0,
         type=float,
     )
-    parser.add_argument(
-        "-m",
-        "--multiplier",
-        help="Multiply sequences by kmer abundance",
-        action="store_true"
-    )
+    parser.add_argument("-m", "--multiplier", help="Multiply sequences by kmer abundance", action="store_true")
     parser.add_argument(
         "-o",
         "--output",
@@ -75,6 +70,7 @@ def multiply_sequences(input, min_abund, multiplier, output):
                 if multiplier:
                     for i in range(round(contig_mult)):
                         filt_mult_outfile.write(f">{contig_id}_{i}\n{contig_seq}\n")
+
 
 def main(args=None):
     args = parse_args(args)
