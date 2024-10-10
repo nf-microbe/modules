@@ -287,6 +287,13 @@
                         ],
                         "patch": "modules/nf-core/spades/spades.diff"
                     },
+                    "sra/asperacli": {
+                        "branch": "master",
+                        "git_sha": "666652151335353eef2fcd58880bcef5bc2928e1",
+                        "installed_by": [
+                            "modules"
+                        ]
+                    },
                     "sra/sratools": {
                         "branch": "master",
                         "git_sha": "666652151335353eef2fcd58880bcef5bc2928e1",
