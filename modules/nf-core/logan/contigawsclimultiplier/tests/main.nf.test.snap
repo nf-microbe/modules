@@ -1,8 +1,136 @@
 {
-    "SRR24085752": {
+    "SRR24085752 - raw only": {
         "content": [
             {
                 "0": [
+                    [
+                        {
+                            "id": "SRR24085752",
+                            "single_end": false,
+                            "md5_1": "e67296355980997dde170c602d9cb4c1",
+                            "md5_2": "86b4ee5d4860aed0a3a2538a7757cbc8"
+                        },
+                        "SRR24085752.contigs.fa.gz:md5,5673115466baa83cc844215658ef356f"
+                    ]
+                ],
+                "1": [
+                    
+                ],
+                "2": [
+                    
+                ],
+                "3": [
+                    
+                ],
+                "4": [
+                    "versions.yml:md5,e652f17c5570c4e0d40f63cdc12eab8f"
+                ],
+                "filt_mult_fasta": [
+                    
+                ],
+                "filtered_fasta": [
+                    
+                ],
+                "multiplied_fasta": [
+                    
+                ],
+                "raw_fasta": [
+                    [
+                        {
+                            "id": "SRR24085752",
+                            "single_end": false,
+                            "md5_1": "e67296355980997dde170c602d9cb4c1",
+                            "md5_2": "86b4ee5d4860aed0a3a2538a7757cbc8"
+                        },
+                        "SRR24085752.contigs.fa.gz:md5,5673115466baa83cc844215658ef356f"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,e652f17c5570c4e0d40f63cdc12eab8f"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-10-10T12:04:04.571048717"
+    },
+    "stub - raw": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "SRR24085752",
+                            "single_end": false,
+                            "md5_1": "e67296355980997dde170c602d9cb4c1",
+                            "md5_2": "86b4ee5d4860aed0a3a2538a7757cbc8"
+                        },
+                        "SRR24085752.contigs.fa.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                    ]
+                ],
+                "1": [
+                    
+                ],
+                "2": [
+                    
+                ],
+                "3": [
+                    
+                ],
+                "4": [
+                    "versions.yml:md5,e652f17c5570c4e0d40f63cdc12eab8f"
+                ],
+                "filt_mult_fasta": [
+                    
+                ],
+                "filtered_fasta": [
+                    
+                ],
+                "multiplied_fasta": [
+                    
+                ],
+                "raw_fasta": [
+                    [
+                        {
+                            "id": "SRR24085752",
+                            "single_end": false,
+                            "md5_1": "e67296355980997dde170c602d9cb4c1",
+                            "md5_2": "86b4ee5d4860aed0a3a2538a7757cbc8"
+                        },
+                        "SRR24085752.contigs.fa.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,e652f17c5570c4e0d40f63cdc12eab8f"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-10-10T12:08:14.630596034"
+    },
+    "SRR24085752 - multiplied": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "SRR24085752",
+                            "single_end": false,
+                            "md5_1": "e67296355980997dde170c602d9cb4c1",
+                            "md5_2": "86b4ee5d4860aed0a3a2538a7757cbc8"
+                        },
+                        "SRR24085752.contigs.fa.gz:md5,5673115466baa83cc844215658ef356f"
+                    ]
+                ],
+                "1": [
+                    
+                ],
+                "2": [
                     [
                         {
                             "id": "SRR24085752",
@@ -13,10 +141,19 @@
                         "SRR24085752.multiplier.fasta.gz:md5,a6d17ae95f5b21d3f2e0af976e90ffcf"
                     ]
                 ],
-                "1": [
+                "3": [
+                    
+                ],
+                "4": [
                     "versions.yml:md5,e652f17c5570c4e0d40f63cdc12eab8f"
                 ],
-                "fasta": [
+                "filt_mult_fasta": [
+                    
+                ],
+                "filtered_fasta": [
+                    
+                ],
+                "multiplied_fasta": [
                     [
                         {
                             "id": "SRR24085752",
@@ -27,6 +164,17 @@
                         "SRR24085752.multiplier.fasta.gz:md5,a6d17ae95f5b21d3f2e0af976e90ffcf"
                     ]
                 ],
+                "raw_fasta": [
+                    [
+                        {
+                            "id": "SRR24085752",
+                            "single_end": false,
+                            "md5_1": "e67296355980997dde170c602d9cb4c1",
+                            "md5_2": "86b4ee5d4860aed0a3a2538a7757cbc8"
+                        },
+                        "SRR24085752.contigs.fa.gz:md5,5673115466baa83cc844215658ef356f"
+                    ]
+                ],
                 "versions": [
                     "versions.yml:md5,e652f17c5570c4e0d40f63cdc12eab8f"
                 ]
@@ -36,9 +184,9 @@
             "nf-test": "0.9.0",
             "nextflow": "24.04.4"
         },
-        "timestamp": "2024-09-26T09:10:35.262901961"
+        "timestamp": "2024-10-10T12:04:57.788984419"
     },
-    "SRR24085752 - min_abund": {
+    "SRR24085752 - filtered + multiplied": {
         "content": [
             {
                 "0": [
@@ -49,13 +197,10 @@
                             "md5_1": "e67296355980997dde170c602d9cb4c1",
                             "md5_2": "86b4ee5d4860aed0a3a2538a7757cbc8"
                         },
-                        "SRR24085752.multiplier.fasta.gz:md5,e5470d63449f019917fd40c178eaf478"
+                        "SRR24085752.contigs.fa.gz:md5,5673115466baa83cc844215658ef356f"
                     ]
                 ],
                 "1": [
-                    "versions.yml:md5,e652f17c5570c4e0d40f63cdc12eab8f"
-                ],
-                "fasta": [
                     [
                         {
                             "id": "SRR24085752",
@@ -63,7 +208,76 @@
                             "md5_1": "e67296355980997dde170c602d9cb4c1",
                             "md5_2": "86b4ee5d4860aed0a3a2538a7757cbc8"
                         },
-                        "SRR24085752.multiplier.fasta.gz:md5,e5470d63449f019917fd40c178eaf478"
+                        "SRR24085752.filter.fasta.gz:md5,07b7fe166bf92dda1b6cbea097e05f13"
+                    ]
+                ],
+                "2": [
+                    [
+                        {
+                            "id": "SRR24085752",
+                            "single_end": false,
+                            "md5_1": "e67296355980997dde170c602d9cb4c1",
+                            "md5_2": "86b4ee5d4860aed0a3a2538a7757cbc8"
+                        },
+                        "SRR24085752.multiplier.fasta.gz:md5,a6d17ae95f5b21d3f2e0af976e90ffcf"
+                    ]
+                ],
+                "3": [
+                    [
+                        {
+                            "id": "SRR24085752",
+                            "single_end": false,
+                            "md5_1": "e67296355980997dde170c602d9cb4c1",
+                            "md5_2": "86b4ee5d4860aed0a3a2538a7757cbc8"
+                        },
+                        "SRR24085752.filt_mult.fasta.gz:md5,e5470d63449f019917fd40c178eaf478"
+                    ]
+                ],
+                "4": [
+                    "versions.yml:md5,e652f17c5570c4e0d40f63cdc12eab8f"
+                ],
+                "filt_mult_fasta": [
+                    [
+                        {
+                            "id": "SRR24085752",
+                            "single_end": false,
+                            "md5_1": "e67296355980997dde170c602d9cb4c1",
+                            "md5_2": "86b4ee5d4860aed0a3a2538a7757cbc8"
+                        },
+                        "SRR24085752.filt_mult.fasta.gz:md5,e5470d63449f019917fd40c178eaf478"
+                    ]
+                ],
+                "filtered_fasta": [
+                    [
+                        {
+                            "id": "SRR24085752",
+                            "single_end": false,
+                            "md5_1": "e67296355980997dde170c602d9cb4c1",
+                            "md5_2": "86b4ee5d4860aed0a3a2538a7757cbc8"
+                        },
+                        "SRR24085752.filter.fasta.gz:md5,07b7fe166bf92dda1b6cbea097e05f13"
+                    ]
+                ],
+                "multiplied_fasta": [
+                    [
+                        {
+                            "id": "SRR24085752",
+                            "single_end": false,
+                            "md5_1": "e67296355980997dde170c602d9cb4c1",
+                            "md5_2": "86b4ee5d4860aed0a3a2538a7757cbc8"
+                        },
+                        "SRR24085752.multiplier.fasta.gz:md5,a6d17ae95f5b21d3f2e0af976e90ffcf"
+                    ]
+                ],
+                "raw_fasta": [
+                    [
+                        {
+                            "id": "SRR24085752",
+                            "single_end": false,
+                            "md5_1": "e67296355980997dde170c602d9cb4c1",
+                            "md5_2": "86b4ee5d4860aed0a3a2538a7757cbc8"
+                        },
+                        "SRR24085752.contigs.fa.gz:md5,5673115466baa83cc844215658ef356f"
                     ]
                 ],
                 "versions": [
@@ -75,9 +289,9 @@
             "nf-test": "0.9.0",
             "nextflow": "24.04.4"
         },
-        "timestamp": "2024-09-26T09:10:59.852582266"
+        "timestamp": "2024-10-10T12:05:24.755369478"
     },
-    "stub": {
+    "stub - filtered + multiplied": {
         "content": [
             {
                 "0": [
@@ -88,13 +302,13 @@
                             "md5_1": "e67296355980997dde170c602d9cb4c1",
                             "md5_2": "86b4ee5d4860aed0a3a2538a7757cbc8"
                         },
-                        "SRR24085752.multiplier.fasta.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                        "SRR24085752.contigs.fa.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
                     ]
                 ],
                 "1": [
-                    "versions.yml:md5,e652f17c5570c4e0d40f63cdc12eab8f"
+                    
                 ],
-                "fasta": [
+                "2": [
                     [
                         {
                             "id": "SRR24085752",
@@ -103,6 +317,56 @@
                             "md5_2": "86b4ee5d4860aed0a3a2538a7757cbc8"
                         },
                         "SRR24085752.multiplier.fasta.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                    ]
+                ],
+                "3": [
+                    [
+                        {
+                            "id": "SRR24085752",
+                            "single_end": false,
+                            "md5_1": "e67296355980997dde170c602d9cb4c1",
+                            "md5_2": "86b4ee5d4860aed0a3a2538a7757cbc8"
+                        },
+                        "SRR24085752.filt_mult.fasta.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                    ]
+                ],
+                "4": [
+                    "versions.yml:md5,e652f17c5570c4e0d40f63cdc12eab8f"
+                ],
+                "filt_mult_fasta": [
+                    [
+                        {
+                            "id": "SRR24085752",
+                            "single_end": false,
+                            "md5_1": "e67296355980997dde170c602d9cb4c1",
+                            "md5_2": "86b4ee5d4860aed0a3a2538a7757cbc8"
+                        },
+                        "SRR24085752.filt_mult.fasta.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                    ]
+                ],
+                "filtered_fasta": [
+                    
+                ],
+                "multiplied_fasta": [
+                    [
+                        {
+                            "id": "SRR24085752",
+                            "single_end": false,
+                            "md5_1": "e67296355980997dde170c602d9cb4c1",
+                            "md5_2": "86b4ee5d4860aed0a3a2538a7757cbc8"
+                        },
+                        "SRR24085752.multiplier.fasta.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                    ]
+                ],
+                "raw_fasta": [
+                    [
+                        {
+                            "id": "SRR24085752",
+                            "single_end": false,
+                            "md5_1": "e67296355980997dde170c602d9cb4c1",
+                            "md5_2": "86b4ee5d4860aed0a3a2538a7757cbc8"
+                        },
+                        "SRR24085752.contigs.fa.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
                     ]
                 ],
                 "versions": [
@@ -114,6 +378,79 @@
             "nf-test": "0.9.0",
             "nextflow": "24.04.4"
         },
-        "timestamp": "2024-09-26T09:11:19.256710809"
+        "timestamp": "2024-10-10T12:08:36.209349358"
+    },
+    "SRR24085752 - filtered": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "SRR24085752",
+                            "single_end": false,
+                            "md5_1": "e67296355980997dde170c602d9cb4c1",
+                            "md5_2": "86b4ee5d4860aed0a3a2538a7757cbc8"
+                        },
+                        "SRR24085752.contigs.fa.gz:md5,5673115466baa83cc844215658ef356f"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "SRR24085752",
+                            "single_end": false,
+                            "md5_1": "e67296355980997dde170c602d9cb4c1",
+                            "md5_2": "86b4ee5d4860aed0a3a2538a7757cbc8"
+                        },
+                        "SRR24085752.filter.fasta.gz:md5,07b7fe166bf92dda1b6cbea097e05f13"
+                    ]
+                ],
+                "2": [
+                    
+                ],
+                "3": [
+                    
+                ],
+                "4": [
+                    "versions.yml:md5,e652f17c5570c4e0d40f63cdc12eab8f"
+                ],
+                "filt_mult_fasta": [
+                    
+                ],
+                "filtered_fasta": [
+                    [
+                        {
+                            "id": "SRR24085752",
+                            "single_end": false,
+                            "md5_1": "e67296355980997dde170c602d9cb4c1",
+                            "md5_2": "86b4ee5d4860aed0a3a2538a7757cbc8"
+                        },
+                        "SRR24085752.filter.fasta.gz:md5,07b7fe166bf92dda1b6cbea097e05f13"
+                    ]
+                ],
+                "multiplied_fasta": [
+                    
+                ],
+                "raw_fasta": [
+                    [
+                        {
+                            "id": "SRR24085752",
+                            "single_end": false,
+                            "md5_1": "e67296355980997dde170c602d9cb4c1",
+                            "md5_2": "86b4ee5d4860aed0a3a2538a7757cbc8"
+                        },
+                        "SRR24085752.contigs.fa.gz:md5,5673115466baa83cc844215658ef356f"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,e652f17c5570c4e0d40f63cdc12eab8f"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-10-10T12:04:30.967600513"
     }
 }
