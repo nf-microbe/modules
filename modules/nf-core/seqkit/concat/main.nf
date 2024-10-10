@@ -11,21 +11,25 @@ process SEQKIT_CONCAT {
     tuple val(meta), path(input, stageAs: 'in/*')
 
     output:
-    tuple val(meta), path("*.{fasta,fastq,fa,fq,fas,fna,faa}"), emit: fastx
-    path "versions.yml",                                        emit: versions
+    tuple val(meta), path("${prefix}.*")    , emit: fastx
+    path "versions.yml"                     , emit: versions
 
     when:
     task.ext.when == null || task.ext.when
 
     script:
     def args        = task.ext.args         ?: ""
-    def prefix      = task.ext.prefix       ?: "${meta.id}"
-    def file_type   = input instanceof List ? input[0].getExtension() : input.getExtension()
+    prefix      = task.ext.prefix       ?: "${meta.id}"
+    def extension   = "fastq"
+    if (input[0] ==~ /.+\.fasta|.+\.fasta.gz|.+\.fa|.+\.fa.gz|.+\.fas|.+\.fas.gz|.+\.fna|.+\.fna.gz|.+\.fsa|.+\.fsa.gz/ ) {
+        extension   = "fasta"
+    }
+    extension       = input[0].toString().endsWith('.gz') ? "${extension}.gz" : extension
     """
     seqkit \\
         concat \\
         $args \\
-        in/* > ${prefix}.${file_type}
+        in/* > ${prefix}.${extension}
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
@@ -34,9 +38,14 @@ process SEQKIT_CONCAT {
     """
 
     stub:
-    def prefix  = task.ext.prefix   ?: "${meta.id}"
+    prefix  = task.ext.prefix   ?: "${meta.id}"
+    def extension   = "fastq"
+    if (input[0] ==~ /.+\.fasta|.+\.fasta.gz|.+\.fa|.+\.fa.gz|.+\.fas|.+\.fas.gz|.+\.fna|.+\.fna.gz|.+\.fsa|.+\.fsa.gz/ ) {
+        extension   = "fasta"
+    }
+    extension       = input[0].toString().endsWith('.gz') ? "${extension}.gz" : extension
     """
-    touch ${prefix}.fasta
+    touch ${prefix}.${extension}
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":

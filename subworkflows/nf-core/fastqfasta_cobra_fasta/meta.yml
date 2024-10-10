@@ -1,0 +1,55 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/subworkflows/yaml-schema.json
+name: "fastqfasta_cobra_fasta"
+description: Extend contigs using read overlaps.
+keywords:
+  - extend
+  - assembly
+  - contig
+  - cobra
+components:
+  - coverm/contig
+  - cobrameta
+
+input:
+  - fastq_gz:
+      type: file
+      description: |
+        Input channel containing FastQ files
+        Structure: [ [ meta.id, meta.single_end ], [ reads_1.fastq.gz, reads_2.fastq.gz ] ]
+      pattern: "*.{fastq,fq,fastq.gz,fq.gz}"
+  - fasta_gz:
+      type: file
+      description: |
+        Input channel containing FastA files
+        Structure: [ [ meta.id, meta.single_end, meta.assembler ], path(fasta.gz) ]
+      pattern: "*.{fasta,fa,fna,fasta.gz,fna.gz,fasta.gz}"
+  - query_contigs_tsv:
+      type: file
+      description: |
+        Input channel containing query contigs to be extended in TSV format
+        Structure: [ [ meta.id, meta.single_end, meta.assembler ], path(query.tsv) ]
+      pattern: "*.{fasta,fa,fna,fasta.gz,fna.gz,fasta.gz}"
+  - assembly_logs:
+      type: file
+      description: |
+        Input channel containing assembly logs
+        Structure: [ [ meta.id, meta.single_end, meta.assembler ], path(assembler.log) ]
+      pattern: "*.log"
+
+output:
+  - fasta_gz:
+      type: file
+      description: |
+        Output channel containing extended FastA files
+        Structure: [ [ meta.id, meta.single_end, meta.assembler, meta.mink, meta.maxk ], path(fasta.gz) ]
+      pattern: "*.fasta.gz"
+  - versions:
+      type: file
+      description: |
+        File containing software versions
+        Structure: [ path(versions.yml) ]
+      pattern: "versions.yml"
+authors:
+  - "@CarsonJM"
+maintainers:
+  - "@CarsonJM"

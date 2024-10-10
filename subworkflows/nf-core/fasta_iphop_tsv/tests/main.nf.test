@@ -1,0 +1,43 @@
+nextflow_workflow {
+
+    name "Test Subworkflow FASTA_IPHOP_TSV"
+    script "../main.nf"
+    workflow "FASTA_IPHOP_TSV"
+    config "./nextflow.config"
+
+    tag "subworkflows"
+    tag "subworkflows_nfcore"
+    tag "subworkflows/fasta_iphop_tsv"
+    tag "iphop"
+    tag "iphop/download"
+    tag "iphop/predict"
+
+    test("sarscov2 - genome - fasta.gz") {
+        when {
+            params {
+                iphop_download_args = "-dbv iPHoP_db_rw_for-test"
+            }
+            workflow {
+                """
+                input[0] = Channel.of(
+                    [
+                        [ id:'test1' ], // meta map
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta.gz', checkIfExists: true)
+                    ],
+                    [
+                        [ id:'test2' ], // meta map
+                        file(params.modules_testdata_base_path + 'genomics/prokaryotes/bacteroides_fragilis/genome/genome.fna.gz', checkIfExists: true)
+                    ]
+                )
+                input[1] = null
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(workflow.out).match() }
+            )
+        }
+    }
+}

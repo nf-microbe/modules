@@ -1,0 +1,87 @@
+nextflow_workflow {
+
+    name "Test Subworkflow FASTQ_BOWTIE2_FASTQ"
+    script "../main.nf"
+    workflow "FASTQ_BOWTIE2_FASTQ"
+
+    tag "subworkflows"
+    tag "subworkflows_nfcore"
+    tag "subworkflows/fastq_bowtie2_fastq"
+    tag "bowtie2/build"
+    tag "bowtie2/align"
+
+    test("fasta input") {
+        when {
+            workflow {
+                """
+                input[0] = Channel.of(
+                    [
+                        [ id:'test1', single_end:false ], // meta map
+                        [
+                            file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz',checkIfExists: true),
+                            file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_2.fastq.gz',checkIfExists: true)
+                        ]
+                    ],
+                    [
+                        [ id:'test2', single_end:false ], // meta map
+                        [
+                            file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test2_1.fastq.gz',checkIfExists: true),
+                            file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test2_2.fastq.gz',checkIfExists: true)
+                        ]
+                    ]
+                )
+                input[1] = [
+                    [ id:'index' ],
+                    file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta.gz',checkIfExists: true)
+                ]
+                input[2] = []
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success},
+                { assert snapshot(workflow.out).match()}
+            )
+        }
+    }
+
+    test("bt2 index input") {
+        when {
+            workflow {
+                """
+                input[0] = Channel.of(
+                    [
+                        [ id:'test1', single_end:false ], // meta map
+                        [
+                            file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz',checkIfExists: true),
+                            file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_2.fastq.gz',checkIfExists: true)
+                        ]
+                    ],
+                    [
+                        [ id:'test2', single_end:false ], // meta map
+                        [
+                            file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test2_1.fastq.gz',checkIfExists: true),
+                            file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test2_2.fastq.gz',checkIfExists: true)
+                        ]
+                    ]
+                )
+                input[1] = [
+                    [ id:'fasta' ],
+                    file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta.gz',checkIfExists: true)
+                ]
+                input[2] = [
+                    [ id:'fasta' ],
+                    file("${projectDir}/assets/test-datasets/genomics/sarscov2/bowtie2/", checkifExists: true)
+                ]
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success},
+                { assert snapshot(workflow.out).match()}
+            )
+        }
+    }
+}

@@ -1,0 +1,79 @@
+{
+    "sarscov2 - genome - fasta.gz": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test1"
+                        },
+                        "Host_prediction_to_genus_m90.csv:md5,6f80d41b3a5ef039141effe4b644bb65"
+                    ],
+                    [
+                        {
+                            "id": "test2"
+                        },
+                        "Host_prediction_to_genus_m90.csv:md5,80ccdf83ce025aafc57fdef5a843f697"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test1"
+                        },
+                        "Host_prediction_to_genome_m90.csv:md5,ff5e6a01204756c5f7eca4fc050f41c0"
+                    ],
+                    [
+                        {
+                            "id": "test2"
+                        },
+                        "Host_prediction_to_genome_m90.csv:md5,946202be48d61b4961fe2f541e0ec256"
+                    ]
+                ],
+                "2": [
+                    "versions.yml:md5,39a45cab5b23795bf4ee316052acf29e",
+                    "versions.yml:md5,5dbdeebc6b88051af651b5b7cdeb2254",
+                    "versions.yml:md5,5dbdeebc6b88051af651b5b7cdeb2254"
+                ],
+                "ch_iphop_genome_tsv": [
+                    [
+                        {
+                            "id": "test1"
+                        },
+                        "Host_prediction_to_genome_m90.csv:md5,ff5e6a01204756c5f7eca4fc050f41c0"
+                    ],
+                    [
+                        {
+                            "id": "test2"
+                        },
+                        "Host_prediction_to_genome_m90.csv:md5,946202be48d61b4961fe2f541e0ec256"
+                    ]
+                ],
+                "ch_iphop_genus_tsv": [
+                    [
+                        {
+                            "id": "test1"
+                        },
+                        "Host_prediction_to_genus_m90.csv:md5,6f80d41b3a5ef039141effe4b644bb65"
+                    ],
+                    [
+                        {
+                            "id": "test2"
+                        },
+                        "Host_prediction_to_genus_m90.csv:md5,80ccdf83ce025aafc57fdef5a843f697"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,39a45cab5b23795bf4ee316052acf29e",
+                    "versions.yml:md5,5dbdeebc6b88051af651b5b7cdeb2254",
+                    "versions.yml:md5,5dbdeebc6b88051af651b5b7cdeb2254"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-10-02T14:24:16.303411492"
+    }
+}

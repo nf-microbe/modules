@@ -1,0 +1,219 @@
+{
+    "sarscov2 - genome - fasta.gz": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test1"
+                        },
+                        "test1_plasmid_summary.tsv:md5,8c4ddaa8a90da779c11537be0fddb799"
+                    ],
+                    [
+                        {
+                            "id": "test2"
+                        },
+                        "test2_plasmid_summary.tsv:md5,951e9110c265af707b2c65500a7acacd"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test1"
+                        },
+                        "test1_virus_summary.tsv:md5,923b36db276dfee18ac1f1b57cae617e"
+                    ],
+                    [
+                        {
+                            "id": "test2"
+                        },
+                        "test2_virus_summary.tsv:md5,e2f291c05ebe6cbeaca7a30cb845eb04"
+                    ]
+                ],
+                "2": [
+                    [
+                        {
+                            "id": "test1"
+                        },
+                        "test1_genes.tsv:md5,f84d8a9fce3c92c49e78672bea16561f"
+                    ],
+                    [
+                        {
+                            "id": "test2"
+                        },
+                        "test2_genes.tsv:md5,2cd0f7b98a3c880e7eea765aa821ff19"
+                    ]
+                ],
+                "3": [
+                    [
+                        {
+                            "id": "test1"
+                        },
+                        "test1_features.tsv:md5,868804cf1857d3c7e129086ec747c77c"
+                    ],
+                    [
+                        {
+                            "id": "test2"
+                        },
+                        "test2_features.tsv:md5,2de71bfdaa71a6a6ced6dc5160c6378c"
+                    ]
+                ],
+                "4": [
+                    [
+                        {
+                            "id": "test1"
+                        },
+                        "test1_aggregated_classification.tsv:md5,702aead49cca96c98e43c5f032f60b26"
+                    ],
+                    [
+                        {
+                            "id": "test2"
+                        },
+                        "test2_aggregated_classification.tsv:md5,52472567bef1698395d7afef49bd0350"
+                    ]
+                ],
+                "5": [
+                    [
+                        {
+                            "id": "test1"
+                        },
+                        "test1_taxonomy.tsv:md5,44c6cf5ff4c836f66648457ae8deb0d5"
+                    ],
+                    [
+                        {
+                            "id": "test2"
+                        },
+                        "test2_taxonomy.tsv:md5,22081fd09bee75003b5aac12f05b7a29"
+                    ]
+                ],
+                "6": [
+                    [
+                        {
+                            "id": "test1"
+                        },
+                        "test1_proteins.faa.gz:md5,6850bd46dcb921e5cfb23bfbb8fcc12b"
+                    ],
+                    [
+                        {
+                            "id": "test2"
+                        },
+                        "test2_proteins.faa.gz:md5,63d0544a5d8e1448d375e09329eec1b7"
+                    ]
+                ],
+                "7": [
+                    "versions.yml:md5,2a9074bb10605724a4986c6f52919839",
+                    "versions.yml:md5,a9b7acb49920049fbcd519326fe63cf7",
+                    "versions.yml:md5,a9b7acb49920049fbcd519326fe63cf7"
+                ],
+                "features_tsv": [
+                    [
+                        {
+                            "id": "test1"
+                        },
+                        "test1_features.tsv:md5,868804cf1857d3c7e129086ec747c77c"
+                    ],
+                    [
+                        {
+                            "id": "test2"
+                        },
+                        "test2_features.tsv:md5,2de71bfdaa71a6a6ced6dc5160c6378c"
+                    ]
+                ],
+                "genes_tsv": [
+                    [
+                        {
+                            "id": "test1"
+                        },
+                        "test1_genes.tsv:md5,f84d8a9fce3c92c49e78672bea16561f"
+                    ],
+                    [
+                        {
+                            "id": "test2"
+                        },
+                        "test2_genes.tsv:md5,2cd0f7b98a3c880e7eea765aa821ff19"
+                    ]
+                ],
+                "plasmid_tsv": [
+                    [
+                        {
+                            "id": "test1"
+                        },
+                        "test1_plasmid_summary.tsv:md5,8c4ddaa8a90da779c11537be0fddb799"
+                    ],
+                    [
+                        {
+                            "id": "test2"
+                        },
+                        "test2_plasmid_summary.tsv:md5,951e9110c265af707b2c65500a7acacd"
+                    ]
+                ],
+                "proteins_faa_gz": [
+                    [
+                        {
+                            "id": "test1"
+                        },
+                        "test1_proteins.faa.gz:md5,6850bd46dcb921e5cfb23bfbb8fcc12b"
+                    ],
+                    [
+                        {
+                            "id": "test2"
+                        },
+                        "test2_proteins.faa.gz:md5,63d0544a5d8e1448d375e09329eec1b7"
+                    ]
+                ],
+                "scores_tsv": [
+                    [
+                        {
+                            "id": "test1"
+                        },
+                        "test1_aggregated_classification.tsv:md5,702aead49cca96c98e43c5f032f60b26"
+                    ],
+                    [
+                        {
+                            "id": "test2"
+                        },
+                        "test2_aggregated_classification.tsv:md5,52472567bef1698395d7afef49bd0350"
+                    ]
+                ],
+                "taxonomy_tsv": [
+                    [
+                        {
+                            "id": "test1"
+                        },
+                        "test1_taxonomy.tsv:md5,44c6cf5ff4c836f66648457ae8deb0d5"
+                    ],
+                    [
+                        {
+                            "id": "test2"
+                        },
+                        "test2_taxonomy.tsv:md5,22081fd09bee75003b5aac12f05b7a29"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,2a9074bb10605724a4986c6f52919839",
+                    "versions.yml:md5,a9b7acb49920049fbcd519326fe63cf7",
+                    "versions.yml:md5,a9b7acb49920049fbcd519326fe63cf7"
+                ],
+                "virus_tsv": [
+                    [
+                        {
+                            "id": "test1"
+                        },
+                        "test1_virus_summary.tsv:md5,923b36db276dfee18ac1f1b57cae617e"
+                    ],
+                    [
+                        {
+                            "id": "test2"
+                        },
+                        "test2_virus_summary.tsv:md5,e2f291c05ebe6cbeaca7a30cb845eb04"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-10-10T07:30:33.357738596"
+    }
+}
