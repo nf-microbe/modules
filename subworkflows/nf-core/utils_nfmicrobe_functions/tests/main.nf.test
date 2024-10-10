@@ -1,0 +1,255 @@
+nextflow_function {
+
+    name "Test nf-microbe functions"
+    script "../main.nf"
+
+    tag "subworkflows"
+    tag "subworkflows_nfcore"
+    tag "subworkflows/utils_nfmicrobe_functions"
+
+    test("getWorkDirs: single workdir") {
+        function "getWorkDirs"
+        when {
+            function {
+            """
+            input[0] = Channel.of(
+                [
+                    [ id:'test' ], // meta map
+                    "/somepath/work/12/hashforworkdirtoclean/somefile.txt"
+                ]
+            )
+            input[1] = Channel.of(
+                [
+                    [ id:'test' ], // meta map
+                    "/somepath/work/34/hashforworkdirdownstream/someotherfile.txt"
+                ]
+            )
+            input[2] = true
+            """
+            }
+        }
+        then {
+            assertAll (
+                { assert function.success },
+                { assert snapshot(function.stdout).match() }
+            )
+        }
+    }
+
+    test("getWorkDirs: two workdirs") {
+        function "getWorkDirs"
+        when {
+            function {
+            """
+            input[0] = Channel.of(
+                [
+                    [ id:'test' ], // meta map
+                    "/somepath/work/12/hashforworkdirtoclean/somefile.txt"
+                ],
+                [
+                    [ id:'test' ], // meta map
+                    "/somepath/work/24/hashforworkdirtoclean/somefile.txt"
+                ]
+            )
+            input[1] = Channel.of(
+                [
+                    [ id:'test' ], // meta map
+                    "/somepath/work/34/hashforworkdirdownstream/someotherfile.txt"
+                ]
+            )
+            input[2] = true
+            """
+            }
+        }
+        then {
+            assertAll (
+                { assert function.success },
+                { assert snapshot(function.stdout).match() }
+            )
+        }
+    }
+
+    test("rmEmptyFastQs: paired end + cleaned.fasta.gz") {
+        function "rmEmptyFastQs"
+        when {
+            function {
+            """
+            input[0] = Channel.of(
+                [
+                    [ id:'nonempty', single_end:false], // meta map
+                    [
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkifExists: true),
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_2.fastq.gz', checkifExists: true)
+                    ]
+                ],
+                [
+                    [ id:'cleaned', single_end:true ], // meta map
+                    file("${projectDir}/assets/test-datasets/genomics/sarscov2/illumina/fastq/cleaned.fastq.gz", checkIfExists: true)
+                ]
+            )
+            input[1] = true
+            """
+            }
+        }
+        then {
+            assertAll (
+                { assert function.success },
+                { assert snapshot(
+                    function.stdout[0],
+                    function.stdout[1][0..30]
+                    ).match()
+                }
+                // { assert function.stdout.readLines()[1].contains("cleaned") }
+            )
+        }
+    }
+
+    test("rmEmptyFastQs: single end + empty.fastq.gz") {
+        function "rmEmptyFastQs"
+        when {
+            function {
+            """
+            input[0] = Channel.of(
+                [
+                    [ id:'nonempty', single_end: true], // meta map
+                    file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkifExists: true)
+                ],
+                [
+                    [ id:'empty', single_end:true ], // meta map
+                    file("${projectDir}/assets/test-datasets/genomics/sarscov2/illumina/fastq/empty.fastq.gz", checkIfExists: true)
+                ]
+            )
+            input[1] = true
+            """
+            }
+        }
+        then {
+            assertAll (
+                { assert function.success },
+                { assert snapshot(function.stdout).match() }
+            )
+        }
+    }
+
+    test("rmEmptyFastQs: single end + empty.fastq.gz - stub") {
+        function "rmEmptyFastQs"
+        options "-stub"
+        when {
+            function {
+            """
+            input[0] = Channel.of(
+                [
+                    [ id:'nonempty', single_end: true], // meta map
+                    file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkifExists: true)
+                ],
+                [
+                    [ id:'empty', single_end:true ], // meta map
+                    file("${projectDir}/assets/test-datasets/genomics/sarscov2/illumina/fastq/empty.fastq.gz", checkIfExists: true)
+                ]
+            )
+            input[1] = true
+            """
+            }
+        }
+        then {
+            assertAll (
+                { assert function.success },
+                { assert snapshot(
+                    function.stdout[0],
+                    function.stdout[1][0..28]
+                    ).match()
+                }
+            )
+        }
+    }
+
+    test("rmEmptyFastAs: nonempty + cleaned") {
+        function "rmEmptyFastAs"
+        when {
+            function {
+            """
+            input[0] = Channel.of(
+                [
+                    [ id:'nonempty' ], // meta map
+                    file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta.gz', checkifExists: true)
+                ],
+                [
+                    [ id:'cleaned' ], // meta map
+                    file("${projectDir}/assets/test-datasets/genomics/sarscov2/illumina/fastq/cleaned.fastq.gz", checkIfExists: true)
+                ]
+            )
+            input[1] = true
+            """
+            }
+        }
+        then {
+            assertAll (
+                { assert function.success },
+                { assert snapshot(
+                    function.stdout[0],
+                    function.stdout[1][0..13]
+                    ).match()
+                }
+            )
+        }
+    }
+
+    test("rmEmptyFastAs: nonempty + empty") {
+        function "rmEmptyFastAs"
+        when {
+            function {
+            """
+            input[0] = Channel.of(
+                [
+                    [ id:'nonempty' ], // meta map
+                    file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta.gz', checkifExists: true)
+                ],
+                [
+                    [ id:'empty' ], // meta map
+                    file("${projectDir}/assets/test-datasets/genomics/sarscov2/genome/empty.fasta.gz", checkIfExists: true)
+                ]
+            )
+            input[1] = true
+            """
+            }
+        }
+        then {
+            assertAll (
+                { assert function.success },
+                { assert snapshot(function.stdout).match() }
+            )
+        }
+    }
+
+    test("rmEmptyFastAs: nonempty + empty - stub") {
+        function "rmEmptyFastAs"
+        options "-stub"
+        when {
+            function {
+            """
+            input[0] = Channel.of(
+                [
+                    [ id:'nonempty' ], // meta map
+                    file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta.gz', checkifExists: true)
+                ],
+                [
+                    [ id:'empty' ], // meta map
+                    file("${projectDir}/assets/test-datasets/genomics/sarscov2/genome/empty.fasta.gz", checkIfExists: true)
+                ]
+            )
+            input[1] = true
+            """
+            }
+        }
+        then {
+            assertAll (
+                { assert function.success },
+                { assert snapshot(
+                    function.stdout[0],
+                    function.stdout[1][0..11]
+                    ).match()
+                }
+            )
+        }
+    }
+}
