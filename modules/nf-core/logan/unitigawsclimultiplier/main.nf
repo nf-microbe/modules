@@ -22,9 +22,9 @@ process LOGAN_UNITIGAWSCLIMULTIPLIER {
 
     script:
     def args            = task.ext.args ?: ''
-    def run_filt        = task.ext.args.contains("-a")
-    def run_mult        = task.ext.args.contains("-m")
-    def run_filt_mult   = task.ext.args.contains("-a") && task.ext.args.contains("-m")
+    def run_filt        = args.contains("-a")
+    def run_mult        = args.contains("-m")
+    def run_filt_mult   = args.contains("-a") && args.contains("-m")
     prefix              = task.ext.prefix ?: "${meta.id}"
     """
     ### Download Logan unitigs
@@ -64,9 +64,9 @@ process LOGAN_UNITIGAWSCLIMULTIPLIER {
 
     stub:
     def args            = task.ext.args ?: ''
-    def run_filt        = task.ext.args.contains("-a")
-    def run_mult        = task.ext.args.contains("-m")
-    def run_filt_mult   = task.ext.args.contains("-a") && task.ext.args.contains("-m")
+    def run_filt        = args.contains("-a")
+    def run_mult        = args.contains("-m")
+    def run_filt_mult   = args.contains("-a") && args.contains("-m")
     prefix              = task.ext.prefix ?: "${meta.id}"
     """
     echo "" | gzip > ${accession}.unitigs.fa.gz
