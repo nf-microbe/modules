@@ -1,0 +1,56 @@
+nextflow_process {
+
+    name "Test Process ENA_ASPERACLISEQKITTRFINDER"
+    script "../main.nf"
+    process "ENA_ASPERACLISEQKITTRFINDER"
+
+    tag "modules"
+    tag "modules_nfcore"
+    tag "ena"
+    tag "ena/asperacliseqkittrfinder"
+
+    test("ERZ1023958 + ERZ1024284") {
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test' ],
+                    [
+                        "fasp.sra.ebi.ac.uk:/vol1/sequence/ERZ102/ERZ1023958/contig.fa.gz",
+                        "fasp.sra.ebi.ac.uk:/vol1/sequence/ERZ102/ERZ1024284/contig.fa.gz"
+                    ]
+                ]
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("stub") {
+        options "-stub"
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test' ],
+                    [
+                        "fasp.sra.ebi.ac.uk:/vol1/sequence/ERZ102/ERZ1023958/contig.fa.gz",
+                        "fasp.sra.ebi.ac.uk:/vol1/sequence/ERZ102/ERZ1024284/contig.fa.gz"
+                    ]
+                ]
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+}

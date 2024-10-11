@@ -3,6 +3,6 @@ channels:
   - bioconda
 dependencies:
   - bioconda::seqkit=2.8.2
-  - conda-forge::aria2=1.37.0
+  - bioconda::aspera-cli=4.14.0
   - conda-forge::biopython=1.84
-  - conda-forge::python=3.12.5
+  - conda-forge::python=3.12.7
