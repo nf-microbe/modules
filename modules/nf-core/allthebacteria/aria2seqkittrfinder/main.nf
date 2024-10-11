@@ -12,6 +12,7 @@ process ALLTHEBACTERIA_ARIA2SEQKITTRFINDER {
 
     output:
     tuple val(meta), path("${prefix}.trfinder.fasta.gz")    , emit: fasta
+    tuple val(meta), path("${prefix}.trfinder.tsv")         , emit: tsv
     path "versions.yml"                                     , emit: versions
 
     when:
@@ -24,34 +25,59 @@ process ALLTHEBACTERIA_ARIA2SEQKITTRFINDER {
     def args3       = task.ext.args3 ?: ''
     prefix          = task.ext.prefix ?: "${meta.id}"
     """
-    mkdir -p tmp
+    mkdir -p tmp/download tmp/seqkit tmp/trfinder
     echo "${url_list.join('\n')}" > aria2_file.tsv
+
     ### Download AllTheBacteria assemblies
     aria2c \\
         --input-file=aria2_file.tsv \\
-        --dir=tmp \\
+        --dir=tmp/download/ \\
         --max-connection-per-server=${task.cpus} \\
         --split=${task.cpus} \\
         --max-concurrent-downloads=${task.cpus} \\
         ${args}
-    tar -xvf tmp/*.tar.xz -C tmp
-    cat tmp/**/*.fa > ${prefix}.fasta
-    rm -rf tmp
+
+    tar -xvf tmp/download/*.tar.xz -C tmp/download
+    rm tmp/download/*.tar.xz
+
     ### Remove short contigs
-    seqkit \\
-        seq \\
-        --threads ${task.cpus} \\
-        ${args2} \\
-        ${prefix}.fasta \\
-        --out-file ${prefix}.seqkit.fasta
-    rm ${prefix}.fasta
+    for dir in tmp/download/*; do
+        for file in \$dir/*; do
+            filename=\$(basename \$file)
+
+            seqkit \\
+                seq \\
+                --threads ${task.cpus} \\
+                ${args2} \\
+                \$file \\
+                --out-file tmp/seqkit/\${filename%.*}.fasta
+        done
+    done
+
+    #rm -rf tmp/download/
+
     ### Identify Terminal repeats
-    trfinder.py \\
-        --input ${prefix}.seqkit.fasta \\
-        --prefix ${prefix} \\
-        ${args3}
+    cd tmp/trfinder
+
+    for file in ../seqkit/*.fasta; do
+        filename=\$(basename \$file)
+
+        trfinder.py \\
+            --input \$file \\
+            --prefix ATB_\${filename%.*} \\
+            ${args3}
+    done
+
+    cd ../..
+    #rm -rf tmp/seqkit/
+
+    # combine and compress tr finder files
+    cat tmp/trfinder/*.trfinder.fasta > ${prefix}.trfinder.fasta
+    awk '(NR == 1) || (FNR > 1)' tmp/trfinder/*.trfinder.tsv > ${prefix}.trfinder.tsv
+
+    #rm -rf tmp/trfinder/
     gzip -f ${prefix}.trfinder.fasta
-    rm -rf ${prefix}.seqkit.fasta
+
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
         aria2: \$(echo \$(aria2c --version 2>&1) | grep 'aria2 version' | cut -f3 -d ' ')
@@ -68,6 +94,8 @@ process ALLTHEBACTERIA_ARIA2SEQKITTRFINDER {
     prefix  = task.ext.prefix ?: "${meta.id}"
     """
     echo "" | gzip > ${prefix}.trfinder.fasta.gz
+    touch ${prefix}.trfinder.tsv
+
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
         aria2: \$(echo \$(aria2c --version 2>&1) | grep 'aria2 version' | cut -f3 -d ' ')

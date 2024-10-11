@@ -35,14 +35,14 @@ def parse_args(args=None):
 
 def parse_fasta(handle):
     # try:
-    id = next(handle).split()[0][1:]
+    id = next(handle)[1:]
     # except:
     #     return
     seq = ""
     for line in handle:
         if line[0] == ">":
             yield id, seq
-            id = line.split()[0][1:]
+            id = line[1:]
             seq = ""
         else:
             seq += line.rstrip().upper()
@@ -139,7 +139,7 @@ def write_batch(sample, results):
                 # write TR info to tsv
                 tsv_outfile.write("\t".join([str(_[f]) for f in fields]) + "\n")
                 # write TR sequence to fasta
-                fasta_outfile.write(">" + str(_["contig_name"]) + "\n" + str(_["contig_seq"]) + "\n")
+                fasta_outfile.write(">" + str(_["contig_id"]) + "\n" + str(_["contig_seq"]) + "\n")
 
 
 def trfinder(
