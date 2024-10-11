@@ -19,14 +19,15 @@ process ENA_ARIA2SEQKITTRFINDER {
     task.ext.when == null || task.ext.when
 
     script:
-    def url_list    = url.collect { urls -> urls.toString() }
+    def url_list    = url.collect { urls -> urls.toString() }.join(',')
     def args        = task.ext.args ?: ''
     def args2       = task.ext.args2 ?: ''
     def args3       = task.ext.args3 ?: ''
     prefix          = task.ext.prefix ?: "${meta.id}"
     """
     mkdir -p tmp/download tmp/seqkit tmp/trfinder
-    echo "${url_list.join('\n')}" > aria2_file.tsv
+    IFS=',' read -r -a url_array <<< "${url_list}"
+    printf '%s\\n' "\${url_array[@]}" > aria2_file.tsv
 
     ### Download ENA assemblies
     aria2c \\

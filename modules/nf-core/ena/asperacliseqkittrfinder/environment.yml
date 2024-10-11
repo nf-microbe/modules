@@ -5,3 +5,4 @@ dependencies:
   - bioconda::seqkit=2.8.2
   - bioconda::aspera-cli=4.14.0
   - conda-forge::biopython=1.84
+  - conda-forge::python=3.12.7

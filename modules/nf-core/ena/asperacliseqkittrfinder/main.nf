@@ -19,7 +19,7 @@ process ENA_ASPERACLISEQKITTRFINDER {
     task.ext.when == null || task.ext.when
 
     script:
-    def url_list    = url.collect { urls -> urls.toString() }
+    def url_list    = url.collect { urls -> urls.toString() }.join(',')
     def args        = task.ext.args ?: ''
     def args2       = task.ext.args2 ?: ''
     def conda_prefix= ['singularity', 'apptainer'].contains(workflow.containerEngine) ? "export CONDA_PREFIX=/opt/conda" : ""
@@ -27,14 +27,13 @@ process ENA_ASPERACLISEQKITTRFINDER {
     """
     mkdir -p tmp/download tmp/seqkit tmp/trfinder
     ${conda_prefix}
-    echo "${url_list.join('\n')}" > url_list.tsv
+    IFS=',' read -r -a url_array <<< "${url_list}"
 
     ### Download ENA assemblies
-    cat url_list.tsv | xargs -I{} -n 1 -P ${task.cpus} bash -c \\
+    printf '%s\\n' "\${url_array[@]}" | xargs -I{} -n 1 -P ${task.cpus} bash -c \\
     'IFS=":" read -ra file <<< "{}"; \\
     mod_file=\$(echo \${file[1]:1} | tr / _); \\
     echo \${mod_file}; \\
-    echo {}; \\
     ascp \\
         -QT -l 300m -P 33001 \\
         -i \$CONDA_PREFIX/etc/aspera/aspera_bypass_dsa.pem \\
