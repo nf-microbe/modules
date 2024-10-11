@@ -35,14 +35,14 @@ def parse_args(args=None):
 
 def parse_fasta(handle):
     # try:
-    id = next(handle)[1:]
+    id = next(handle).strip()[1:]
     # except:
     #     return
     seq = ""
     for line in handle:
         if line[0] == ">":
             yield id, seq
-            id = line[1:]
+            id = line.strip()[1:]
             seq = ""
         else:
             seq += line.rstrip().upper()

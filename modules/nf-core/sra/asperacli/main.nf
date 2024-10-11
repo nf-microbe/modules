@@ -69,7 +69,7 @@ process SRA_ASPERACLI {
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        aspera_cli: 4.14.0
+        ascli: 4.14.0
     END_VERSIONS
     """
 
@@ -97,7 +97,7 @@ process SRA_ASPERACLI {
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        aspera_cli: 4.14.0
+        ascli: 4.14.0
     END_VERSIONS
     """
 }

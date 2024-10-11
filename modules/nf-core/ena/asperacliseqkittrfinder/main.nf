@@ -4,8 +4,8 @@ process ENA_ASPERACLISEQKITTRFINDER {
 
     conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'oras://community.wave.seqera.io/library/seqkit_aria2_biopython:2bb0d76d26291e6d' :
-        'community.wave.seqera.io/library/seqkit_aria2_biopython:2256c902d3a46191' }"
+        'oras://community.wave.seqera.io/library/aspera-cli_seqkit_biopython:b1c05ee4816a116b' :
+        'community.wave.seqera.io/library/aspera-cli_seqkit_biopython:ce3fa7446f366f82' }"
 
     input:
     tuple val(meta), val(url)
@@ -22,20 +22,24 @@ process ENA_ASPERACLISEQKITTRFINDER {
     def url_list    = url.collect { urls -> urls.toString() }
     def args        = task.ext.args ?: ''
     def args2       = task.ext.args2 ?: ''
-    def args3       = task.ext.args3 ?: ''
+    def conda_prefix= ['singularity', 'apptainer'].contains(workflow.containerEngine) ? "export CONDA_PREFIX=/opt/conda" : ""
     prefix          = task.ext.prefix ?: "${meta.id}"
     """
     mkdir -p tmp/download tmp/seqkit tmp/trfinder
-    echo "${url_list.join('\n')}" > aria2_file.tsv
+    ${conda_prefix}
+    echo "${url_list.join('\n')}" > url_list.tsv
 
     ### Download ENA assemblies
-    aria2c \\
-        --input-file=aria2_file.tsv \\
-        --dir=tmp/download/ \\
-        --max-connection-per-server=${task.cpus} \\
-        --split=${task.cpus} \\
-        --max-concurrent-downloads=${task.cpus} \\
-        ${args}
+    cat url_list.tsv | xargs -I{} -n 1 -P ${task.cpus} bash -c \\
+    'IFS=":" read -ra file <<< "{}"; \\
+    mod_file=\$(echo \${file[1]:1} | tr / _); \\
+    echo \${mod_file}; \\
+    echo {}; \\
+    ascp \\
+        -QT -l 300m -P 33001 \\
+        -i \$CONDA_PREFIX/etc/aspera/aspera_bypass_dsa.pem \\
+        era-fasp@{} \\
+        tmp/download/\$mod_file.fna.gz'
 
     ### Remove short contigs
     for file in tmp/download/*; do
@@ -44,12 +48,12 @@ process ENA_ASPERACLISEQKITTRFINDER {
         seqkit \\
             seq \\
             --threads ${task.cpus} \\
-            ${args2} \\
+            ${args} \\
             \$file \\
-            --out-file tmp/seqkit/\${filename%.*}.fasta
+            --out-file tmp/seqkit/\${filename%%.*}.fasta
     done
 
-    #rm -rf tmp/download/
+    rm -rf tmp/download/
 
     ### Identify Terminal repeats
     cd tmp/trfinder
@@ -59,13 +63,23 @@ process ENA_ASPERACLISEQKITTRFINDER {
 
         trfinder.py \\
             --input \$file \\
-            --prefix ATB_\${filename%.*} \\
-            ${args3}
+            --prefix ENA_\${filename%.*} \\
+            ${args2}
     done
+
+    cd ../..
+    rm -rf tmp/seqkit/
+
+    # combine and compress tr finder files
+    cat tmp/trfinder/*.trfinder.fasta > ${prefix}.trfinder.fasta
+    awk '(NR == 1) || (FNR > 1)' tmp/trfinder/*.trfinder.tsv > ${prefix}.trfinder.tsv
+
+    rm -rf tmp/trfinder/
+    gzip -f ${prefix}.trfinder.fasta
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        aria2: \$(echo \$(aria2c --version 2>&1) | grep 'aria2 version' | cut -f3 -d ' ')
+        ascli: 4.14.0
         seqkit: \$(seqkit version | cut -d' ' -f2)
         python: \$( python --version | sed 's/Python //' )
         biopython: \$(python -c "import Bio; print(Bio.__version__)")
@@ -79,10 +93,11 @@ process ENA_ASPERACLISEQKITTRFINDER {
     prefix  = task.ext.prefix ?: "${meta.id}"
     """
     echo "" | gzip > ${prefix}.trfinder.fasta.gz
+    touch ${prefix}.trfinder.tsv
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        aria2: \$(echo \$(aria2c --version 2>&1) | grep 'aria2 version' | cut -f3 -d ' ')
+        ascli: 4.14.0
         seqkit: \$(seqkit version | cut -d' ' -f2)
         python: \$( python --version | sed 's/Python //' )
         biopython: \$(python -c "import Bio; print(Bio.__version__)")

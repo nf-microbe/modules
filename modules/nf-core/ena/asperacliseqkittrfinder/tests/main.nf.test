@@ -1,23 +1,23 @@
 nextflow_process {
 
-    name "Test Process ENA_ARIA2SEQKITTRFINDER"
+    name "Test Process ENA_ASPERACLISEQKITTRFINDER"
     script "../main.nf"
-    process "ENA_ARIA2SEQKITTRFINDER"
+    process "ENA_ASPERACLISEQKITTRFINDER"
 
     tag "modules"
     tag "modules_nfcore"
     tag "ena"
-    tag "ena/aria2seqkittrfinder"
+    tag "ena/asperacliseqkittrfinder"
 
-    test("SRR11489779 + SRR11489784") {
+    test("ERZ1023958 + ERZ1024284") {
         when {
             process {
                 """
                 input[0] = [
                     [ id:'test' ],
                     [
-                        "https://ftp.sra.ebi.ac.uk/vol1/analysis/ERZ114/ERZ11466704/SRR11489779.fasta.gz",
-                        "https://ftp.sra.ebi.ac.uk/vol1/analysis/ERZ114/ERZ11466716/SRR11489784.fasta.gz"
+                        "fasp.sra.ebi.ac.uk:/vol1/sequence/ERZ102/ERZ1023958/contig.fa.gz",
+                        "fasp.sra.ebi.ac.uk:/vol1/sequence/ERZ102/ERZ1024284/contig.fa.gz"
                     ]
                 ]
                 """
@@ -39,8 +39,8 @@ nextflow_process {
                 input[0] = [
                     [ id:'test' ],
                     [
-                        "https://ftp.sra.ebi.ac.uk/vol1/analysis/ERZ114/ERZ11466704/SRR11489779.fasta.gz",
-                        "https://ftp.sra.ebi.ac.uk/vol1/analysis/ERZ114/ERZ11466716/SRR11489784.fasta.gz"
+                        "fasp.sra.ebi.ac.uk:/vol1/sequence/ERZ102/ERZ1023958/contig.fa.gz",
+                        "fasp.sra.ebi.ac.uk:/vol1/sequence/ERZ102/ERZ1024284/contig.fa.gz"
                     ]
                 ]
                 """
