@@ -4,6 +4,9 @@ org_path: nf-core
 update:
   https://github.com/nf-core/modules.git:
     nf-core:
+      seqkit/sample: False
+      kcounter/kmerfreq: False
+      ena/asperacliseqkittrfinder: False
       sra/asperacli: False
       utils_nfmicrobe_functions: False
       fasta_iphop_tsv: False

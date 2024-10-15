@@ -50,18 +50,4 @@ process SEQKIT_SPLIT2 {
         END_VERSIONS
         """
     }
-
-    stub:
-    def args   = task.ext.args   ?: ''
-    def prefix = task.ext.prefix ?: "${meta.id}"
-    """
-    mkdir -p ${prefix}
-    echo "" | gzip > ${prefix}/${prefix}.part_001.fasta.gz
-    echo "" | gzip > ${prefix}/${prefix}.part_002.fasta.gz
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        seqkit: \$(echo \$(seqkit 2>&1) | sed 's/^.*Version: //; s/ .*\$//')
-    END_VERSIONS
-    """
 }
