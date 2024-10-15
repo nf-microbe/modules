@@ -5,7 +5,7 @@ process PROPHAGETRACER_WGS {
     conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
         'oras://community.wave.seqera.io/library/blast_bwa_sambamba_samtools_gawk:6d2fecd74dcf1c21' :
-        'community.wave.seqera.io/library/blast_bwa_sambamba_samtools:4b89bb5b2ebc9725' }"
+        'community.wave.seqera.io/library/blast_bwa_sambamba_samtools_gawk:edd6b16d4dd01302' }"
 
     input:
     tuple val(meta) , path(fasta)

@@ -193,7 +193,7 @@
                         "test2.mvirs.oprs:md5,6ee89377971c3156b03db4fdf2b3a0a0"
                     ]
                 ],
-                "prophages": [
+                "prophage": [
                     [
                         {
                             "id": "test2",

@@ -50,51 +50,19 @@
     },
     "fastq.gz + fasta.gz + coords.tsv": {
         "content": [
-            {
-                "0": [
-                    [
-                        {
-                            "id": "test"
-                        },
-                        "test.propagate.tsv:md5,546afd777a6782677163130a5efb2869"
-                    ]
-                ],
-                "1": [
-                    [
-                        {
-                            "id": "test"
-                        },
-                        "test.propagate.log:md5,1312f9fad2b6a4cfc8a7166ef94883d8"
-                    ]
-                ],
-                "2": [
-                    "versions.yml:md5,67ff2549247db9f84c3b0bb539876381"
-                ],
-                "log": [
-                    [
-                        {
-                            "id": "test"
-                        },
-                        "test.propagate.log:md5,1312f9fad2b6a4cfc8a7166ef94883d8"
-                    ]
-                ],
-                "results": [
-                    [
-                        {
-                            "id": "test"
-                        },
-                        "test.propagate.tsv:md5,546afd777a6782677163130a5efb2869"
-                    ]
-                ],
-                "versions": [
-                    "versions.yml:md5,67ff2549247db9f84c3b0bb539876381"
+            [
+                [
+                    {
+                        "id": "test"
+                    },
+                    "test.propagate.tsv:md5,546afd777a6782677163130a5efb2869"
                 ]
-            }
+            ]
         ],
         "meta": {
             "nf-test": "0.9.0",
             "nextflow": "24.04.4"
         },
-        "timestamp": "2024-10-15T12:58:53.064115019"
+        "timestamp": "2024-10-15T13:12:24.254615943"
     }
 }

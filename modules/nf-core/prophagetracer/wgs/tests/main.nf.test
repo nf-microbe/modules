@@ -4,6 +4,11 @@ nextflow_process {
     script "../main.nf"
     process "PROPHAGETRACER_WGS"
 
+    tag "modules"
+    tag "modules_nfcore"
+    tag "prophagetracer"
+    tag "prophagetracer/wgs"
+
     test("fasta.gz - bam") {
         when {
             process {

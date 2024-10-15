@@ -10,7 +10,7 @@ nextflow_workflow {
     tag "subworkflows/fastqfasta_prophagetracer_tsv"
     tag "bwa/index"
     tag "bwa/mem"
-    tag "prohpagetracer/wgs"
+    tag "prophagetracer/wgs"
     tag "sambamba/markdup"
 
     test("b_fragilis - fastq.gz - fasta.gz") {

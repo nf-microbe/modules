@@ -4,6 +4,11 @@ nextflow_process {
     script "../main.nf"
     process "MVIRS_INDEX"
 
+    tag "modules"
+    tag "modules_nfcore"
+    tag "mvirs"
+    tag "mvirs/index"
+
     test("fasta.gz") {
         when {
             process {
