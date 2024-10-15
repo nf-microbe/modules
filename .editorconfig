@@ -38,7 +38,7 @@ trim_trailing_whitespace = unset
 indent_style = unset
 indent_size = unset
 
-[/modules/nf-core/propagate/resources/usr/bin/{modules.py,Propagate}]
+[*{Propagate,modules.py,prophage_tracer_WGS.sh}]
 charset = unset
 end_of_line = unset
 insert_final_newline = unset
@@ -46,7 +46,7 @@ trim_trailing_whitespace = unset
 indent_style = unset
 indent_size = unset
 
-[/modules/nf-core/prophagetracer/wgs/resources/usr/bin/prophage_tracer_WGS.sh]
+[/modules/nf-core/prophagetracer/wgs/resources/usr/bin/*]
 charset = unset
 end_of_line = unset
 insert_final_newline = unset
