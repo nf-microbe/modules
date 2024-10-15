@@ -1,0 +1,56 @@
+nextflow_workflow {
+
+    name "Test Subworkflow FASTQFASTA_PROPHAGETRACER_TSV"
+    script "../main.nf"
+    workflow "FASTQFASTA_PROPHAGETRACER_TSV"
+    config "./nextflow.config"
+
+    tag "subworkflows"
+    tag "subworkflows_nfcore"
+    tag "subworkflows/fastqfasta_prophagetracer_tsv"
+    tag "bwa/index"
+    tag "bwa/mem"
+    tag "prohpagetracer/wgs"
+    tag "sambamba/markdup"
+
+    test("b_fragilis - fastq.gz - fasta.gz") {
+        when {
+            workflow {
+                """
+                input[0] = Channel.of(
+                    [
+                        [ id:'test1', single_end:false ],
+                        [
+                            file("${projectDir}/assets/test-datasets/genomics/provirus/illumina/fastq/ERR4552622_100k_1.fastq.gz", checkIfExists: true),
+                            file("${projectDir}/assets/test-datasets/genomics/provirus/illumina/fastq/ERR4552622_100k_2.fastq.gz", checkIfExists: true)
+                        ]
+                    ],
+                    [
+                        [ id:'test2', single_end:false ],
+                        [
+                            file("${projectDir}/assets/test-datasets/genomics/provirus/illumina/fastq/ERR4552622_100k_copy_1.fastq.gz", checkIfExists: true),
+                            file("${projectDir}/assets/test-datasets/genomics/provirus/illumina/fastq/ERR4552622_100k_copy_2.fastq.gz", checkIfExists: true)
+                        ]
+                    ]
+                )
+                input[1] = Channel.of(
+                    [
+                        [ id:'test1', single_end:false ],
+                        file("${projectDir}/assets/test-datasets/genomics/provirus/illumina/fasta/np_salmoLT2.fasta.gz", checkIfExists: true)
+                    ],
+                    [
+                        [ id:'test2', single_end:false ],
+                        file("${projectDir}/assets/test-datasets/genomics/provirus/illumina/fasta/np_salmoLT2_copy.fasta.gz", checkIfExists: true)
+                    ]
+                )
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success},
+                { assert snapshot(workflow.out).match()}
+            )
+        }
+    }
+}

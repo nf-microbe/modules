@@ -4,6 +4,10 @@ org_path: nf-core
 update:
   https://github.com/nf-core/modules.git:
     nf-core:
+      fastqfasta_mvirs_tsv: False
+      mvirs/oprs: False
+      mvirs/index: False
+      fastqfasta_prophagetracer_tsv: False
       prophagetracer/wgs: False
       seqkit/sample: False
       kcounter/kmerfreq: False

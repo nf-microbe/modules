@@ -10,11 +10,11 @@ nextflow_process {
                 """
                 input[0] = [
                     [ id:'test' ], // meta map
-                    [ file("/mmfs1/gscratch/pedslabs_hoffman/carsonjm/CarsonJM/HoffLab-phageannotator/prophage_tracer_setup/NC_013967_1_genome.fasta.gz", checkIfExists: true) ]
+                    file("${projectDir}/assets/test-datasets/genomics/provirus/illumina/fasta/np_salmoLT2.fasta.gz", checkIfExists: true)
                 ]
                 input[1] = [
                     [ id:'test' ], // meta map
-                    [ file("/mmfs1/gscratch/pedslabs_hoffman/carsonjm/CarsonJM/HoffLab-phageannotator/prophage_tracer_setup/test.rmdup.bam", checkIfExists: true) ]
+                    file("${projectDir}/assets/test-datasets/genomics/provirus/illumina/bam/test1.markdup.bam", checkIfExists: true)
                 ]
                 """
             }
@@ -34,11 +34,11 @@ nextflow_process {
                 """
                 input[0] = [
                     [ id:'test' ], // meta map
-                    [ file("/mmfs1/gscratch/pedslabs_hoffman/carsonjm/CarsonJM/HoffLab-phageannotator/prophage_tracer_setup/NC_013967_1_genome.fasta.gz", checkIfExists: true) ]
+                    file("${projectDir}/assets/test-datasets/genomics/provirus/illumina/fasta/np_salmoLT2.fasta.gz", checkIfExists: true)
                 ]
                 input[1] = [
                     [ id:'test' ], // meta map
-                    [ file("/mmfs1/gscratch/pedslabs_hoffman/carsonjm/CarsonJM/HoffLab-phageannotator/prophage_tracer_setup/test.rmdup.bam", checkIfExists: true) ]
+                    file("${projectDir}/assets/test-datasets/genomics/provirus/illumina/bam/test1.markdup.bam", checkIfExists: true)
                 ]
                 """
             }
