@@ -1,0 +1,92 @@
+{
+    "fasta.gz - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        [
+                            "np_salmoLT2.fasta.gz.amb:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "np_salmoLT2.fasta.gz.ann:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "np_salmoLT2.fasta.gz.bwt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "np_salmoLT2.fasta.gz.pac:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "np_salmoLT2.fasta.gz.sa:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        ]
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,52881581963fea342b366724181425e8"
+                ],
+                "index": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        [
+                            "np_salmoLT2.fasta.gz.amb:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "np_salmoLT2.fasta.gz.ann:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "np_salmoLT2.fasta.gz.bwt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "np_salmoLT2.fasta.gz.pac:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "np_salmoLT2.fasta.gz.sa:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        ]
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,52881581963fea342b366724181425e8"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-10-15T09:53:58.005792194"
+    },
+    "fasta.gz": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        [
+                            "np_salmoLT2.fasta.gz.amb:md5,6dde654bc5be58061962ea36dd1afd23",
+                            "np_salmoLT2.fasta.gz.ann:md5,9ce2dcfb968c66795a1f3cd3565defd2",
+                            "np_salmoLT2.fasta.gz.bwt:md5,77768c75ec9f3edb4a49d752bfdbc654",
+                            "np_salmoLT2.fasta.gz.pac:md5,ca733f9827be11eef6fdd4390b03b56e",
+                            "np_salmoLT2.fasta.gz.sa:md5,433a1b979e2c4bda8eedf8eeb40237ce"
+                        ]
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,52881581963fea342b366724181425e8"
+                ],
+                "index": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        [
+                            "np_salmoLT2.fasta.gz.amb:md5,6dde654bc5be58061962ea36dd1afd23",
+                            "np_salmoLT2.fasta.gz.ann:md5,9ce2dcfb968c66795a1f3cd3565defd2",
+                            "np_salmoLT2.fasta.gz.bwt:md5,77768c75ec9f3edb4a49d752bfdbc654",
+                            "np_salmoLT2.fasta.gz.pac:md5,ca733f9827be11eef6fdd4390b03b56e",
+                            "np_salmoLT2.fasta.gz.sa:md5,433a1b979e2c4bda8eedf8eeb40237ce"
+                        ]
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,52881581963fea342b366724181425e8"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-10-15T09:53:42.933763199"
+    }
+}

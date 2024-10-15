@@ -4,6 +4,15 @@ org_path: nf-core
 update:
   https://github.com/nf-core/modules.git:
     nf-core:
+      propagate: False
+      fastqfasta_mvirs_tsv: False
+      mvirs/oprs: False
+      mvirs/index: False
+      fastqfasta_prophagetracer_tsv: False
+      prophagetracer/wgs: False
+      seqkit/sample: False
+      kcounter/kmerfreq: False
+      ena/asperacliseqkittrfinder: False
       sra/asperacli: False
       utils_nfmicrobe_functions: False
       fasta_iphop_tsv: False

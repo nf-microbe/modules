@@ -34,6 +34,12 @@ def parse_args(args=None):
         help="Minimum AAI completeness to consider 'high' or 'medium' quality CheckV hits as passing.",
     )
     parser.add_argument(
+        "-m",
+        "--no_taxa_minimum_length",
+        default=1000000,
+        help="Minimum length for non-taxonomically annotated sequences.",
+    )
+    parser.add_argument(
         "-o",
         "--output",
         help="Output completeness data file in TSV format.",
@@ -68,7 +74,7 @@ def main(args=None):
         )
 
         # map taxon information onto df
-        thresholds_dict[None] = 1000000
+        thresholds_dict[None] = args.no_taxa_minimum_length
         comb_virus_data_df["taxon_min_length"] = comb_virus_data_df.taxon_for_threshold.map(
             lambda x: thresholds_dict[x]
         )

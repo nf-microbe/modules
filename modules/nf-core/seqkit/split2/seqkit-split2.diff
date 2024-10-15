@@ -1,0 +1,23 @@
+Changes in module 'nf-core/seqkit/split2'
+'modules/nf-core/seqkit/split2/environment.yml' is unchanged
+'modules/nf-core/seqkit/split2/meta.yml' is unchanged
+Changes in 'seqkit/split2/main.nf':
+--- modules/nf-core/seqkit/split2/main.nf
++++ modules/nf-core/seqkit/split2/main.nf
+@@ -20,7 +20,7 @@
+     script:
+     def args   = task.ext.args   ?: ''
+     def prefix = task.ext.prefix ?: "${meta.id}"
+-    if(meta.single_end){
++    if(meta.assembler != null || meta.single_end){
+         """
+         seqkit \\
+             split2 \\
+
+'modules/nf-core/seqkit/split2/tests/part.config' is unchanged
+'modules/nf-core/seqkit/split2/tests/size.config' is unchanged
+'modules/nf-core/seqkit/split2/tests/tags.yml' is unchanged
+'modules/nf-core/seqkit/split2/tests/main.nf.test' is unchanged
+'modules/nf-core/seqkit/split2/tests/length.config' is unchanged
+'modules/nf-core/seqkit/split2/tests/main.nf.test.snap' is unchanged
+************************************************************

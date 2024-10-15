@@ -6,7 +6,7 @@
                     {
                         "id": "test"
                     },
-                    "Host_prediction_to_genus_m90.csv:md5,68256d4c474bd8ce37ab05e2a68a11a6"
+                    "test_Host_prediction_to_genus.csv:md5,68256d4c474bd8ce37ab05e2a68a11a6"
                 ]
             ],
             [
@@ -14,19 +14,19 @@
                     {
                         "id": "test"
                     },
-                    "Host_prediction_to_genome_m90.csv:md5,4ff8baf261a77abcc020bc9886f44653"
+                    "test_Host_prediction_to_genome.csv:md5,4ff8baf261a77abcc020bc9886f44653"
                 ]
             ],
             [
                 "versions.yml:md5,a35d9cbfea9790601629ff6ce16062a7"
             ],
-            "Detailed_output_by_tool.csv"
+            "test_Detailed_output_by_tool.csv"
         ],
         "meta": {
             "nf-test": "0.9.0",
             "nextflow": "24.04.4"
         },
-        "timestamp": "2024-10-02T17:21:30.845663501"
+        "timestamp": "2024-10-15T09:29:50.707737954"
     },
     "stub": {
         "content": [
@@ -36,7 +36,7 @@
                         {
                             "id": "test"
                         },
-                        "Host_prediction_to_genus_m90.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test_Host_prediction_to_genus.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "1": [
@@ -44,7 +44,7 @@
                         {
                             "id": "test"
                         },
-                        "Host_prediction_to_genome_m90.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test_Host_prediction_to_genome.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "2": [
@@ -52,7 +52,7 @@
                         {
                             "id": "test"
                         },
-                        "Detailed_output_by_tool.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test_Detailed_output_by_tool.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "3": [
@@ -63,7 +63,7 @@
                         {
                             "id": "test"
                         },
-                        "Detailed_output_by_tool.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test_Detailed_output_by_tool.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "iphop_genome": [
@@ -71,7 +71,7 @@
                         {
                             "id": "test"
                         },
-                        "Host_prediction_to_genome_m90.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test_Host_prediction_to_genome.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "iphop_genus": [
@@ -79,7 +79,7 @@
                         {
                             "id": "test"
                         },
-                        "Host_prediction_to_genus_m90.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test_Host_prediction_to_genus.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "versions": [
@@ -91,6 +91,6 @@
             "nf-test": "0.9.0",
             "nextflow": "24.04.4"
         },
-        "timestamp": "2024-10-02T09:32:17.621897693"
+        "timestamp": "2024-10-15T09:30:36.43500417"
     }
 }

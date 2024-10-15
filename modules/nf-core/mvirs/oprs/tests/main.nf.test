@@ -1,0 +1,80 @@
+nextflow_process {
+
+    name "Test Process MVIRS_OPRS"
+    script "../main.nf"
+    process "MVIRS_OPRS"
+
+    tag "modules"
+    tag "modules_nfcore"
+    tag "mvirs"
+    tag "mvirs/index"
+    tag "mvirs/oprs"
+
+    test("fasta.gz") {
+        setup {
+            run("MVIRS_INDEX") {
+                script "../../index/main.nf"
+                process {
+                    """
+                    input[0] = [
+                        [ id:'test' ], // meta map
+                        file("${projectDir}/assets/test-datasets/genomics/provirus/illumina/fasta/np_salmoLT2.fasta.gz", checkIfExists: true)
+                    ]
+                    """
+                }
+            }
+        }
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test2', single_end:false ],
+                    [
+                        file("${projectDir}/assets/test-datasets/genomics/provirus/illumina/fastq/ERR4552622_100k_copy_1.fastq.gz", checkIfExists: true),
+                        file("${projectDir}/assets/test-datasets/genomics/provirus/illumina/fastq/ERR4552622_100k_copy_2.fastq.gz", checkIfExists: true)
+                    ]
+                ]
+                input[1] = [
+                    [ id:'test' ], // meta map
+                    file("${projectDir}/assets/test-datasets/genomics/provirus/illumina/fasta/np_salmoLT2.fasta.gz", checkIfExists: true)
+                ]
+                input[2] = MVIRS_INDEX.out.index
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("fasta.gz - stub") {
+        options "-stub"
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test2', single_end:false ],
+                    [
+                        file("${projectDir}/assets/test-datasets/genomics/provirus/illumina/fastq/ERR4552622_100k_copy_1.fastq.gz", checkIfExists: true),
+                        file("${projectDir}/assets/test-datasets/genomics/provirus/illumina/fastq/ERR4552622_100k_copy_2.fastq.gz", checkIfExists: true)
+                    ]
+                ]
+                input[1] = [
+                    [ id:'test' ], // meta map
+                    file("${projectDir}/assets/test-datasets/genomics/provirus/illumina/fasta/np_salmoLT2.fasta.gz", checkIfExists: true)
+                ]
+                input[2] = [ [:], [] ]
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+}

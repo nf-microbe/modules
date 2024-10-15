@@ -2,6 +2,7 @@ exclude = [
     "bin/vclust",
     "modules/nf-core/viromeqc/install/resources",
     "modules/nf-core/viromeqc/viromeqc/resources",
+    "modules/nf-core/propagate/resources",
 ]
 
 line-length = 120

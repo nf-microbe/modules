@@ -1,6 +1,5 @@
 // Import modules
 include { SEQHASHER_SEQUNIQ } from '../../../modules/nf-core/seqhasher/sequniq'
-include { SEQKIT_CONCAT     } from '../../../modules/nf-core/seqkit/concat'
 include { SEQKIT_GREP       } from '../../../modules/nf-core/seqkit/grep'
 include { VCLUST_ALIGN      } from '../../../modules/nf-core/vclust/align'
 include { VCLUST_CLUSTER    } from '../../../modules/nf-core/vclust/cluster'
@@ -14,34 +13,29 @@ workflow FASTA_VCLUST_FASTATSV {
     main:
     ch_versions = Channel.empty()
 
-    // combine all input fasta files into a single file
-    ch_seqkit_concat_input  = fasta_gz
-        .map { meta, fasta -> [ [ id: "all_samples" ], fasta ] }
-        .groupTuple(sort: 'deep')
-
-    //
-    // MODULE: Concatenate all input FastA files
-    //
-    SEQKIT_CONCAT(
-        ch_seqkit_concat_input
-    )
-    ch_versions = ch_versions.mix(SEQKIT_CONCAT.out.versions)
-
     //
     // MODULE: Prefilter alignments
     //
     VCLUST_PREFILTER(
-        SEQKIT_CONCAT.out.fastx,
+        fasta_gz,
         vclust
     )
     ch_versions = ch_versions.mix(VCLUST_PREFILTER.out.versions)
+
+    // combine input by meta
+    ch_vclust_align_input = fasta_gz
+        .combine(VCLUST_PREFILTER.out.prefilter, by:0)
+        .multiMap { meta, fasta, prefilter ->
+            fasta:      [ meta, fasta ]
+            prefilter:  [ meta, prefilter ]
+        }
 
     //
     // MODULE: Align sequences
     //
     VCLUST_ALIGN(
-        SEQKIT_CONCAT.out.fastx,
-        VCLUST_PREFILTER.out.prefilter,
+        ch_vclust_align_input.fasta,
+        ch_vclust_align_input.prefilter,
         vclust
     )
     ch_versions = ch_versions.mix(VCLUST_ALIGN.out.versions)
@@ -64,12 +58,20 @@ workflow FASTA_VCLUST_FASTATSV {
     )
     ch_versions = ch_versions.mix(SEQHASHER_SEQUNIQ.out.versions)
 
+    // combine input by meta
+    ch_seqkit_grep_input = fasta_gz
+        .combine(SEQHASHER_SEQUNIQ.out.unique, by:0)
+        .multiMap { meta, fasta, sequniq ->
+            fasta:      [ meta, fasta ]
+            sequniq:    [ meta, sequniq ]
+        }
+
     //
     // MODULE: Extract rep sequences from FastA file
     //
     SEQKIT_GREP(
-        SEQKIT_CONCAT.out.fastx,
-        SEQHASHER_SEQUNIQ.out.unique.map { meta, tsv -> tsv }
+        ch_seqkit_grep_input.fasta,
+        ch_seqkit_grep_input.sequniq.map { meta, tsv -> tsv }
     )
     ch_versions = ch_versions.mix(SEQKIT_GREP.out.versions)
 

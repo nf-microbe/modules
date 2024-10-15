@@ -1,0 +1,68 @@
+{
+    "bacteroides_fragilis - genome - fasta - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.kcounter_kmerfreq.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,96d0faf51ae4246803f4787ad85fb595"
+                ],
+                "tsv": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.kcounter_kmerfreq.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,96d0faf51ae4246803f4787ad85fb595"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-10-15T07:32:37.535550501"
+    },
+    "bacteroides_fragilis - illumina - fasta": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.kcounter_kmerfreq.tsv:md5,90347d7a7b3b78788c03fea3d6586067"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,96d0faf51ae4246803f4787ad85fb595"
+                ],
+                "tsv": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.kcounter_kmerfreq.tsv:md5,90347d7a7b3b78788c03fea3d6586067"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,96d0faf51ae4246803f4787ad85fb595"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-10-15T07:32:22.764295386"
+    }
+}
