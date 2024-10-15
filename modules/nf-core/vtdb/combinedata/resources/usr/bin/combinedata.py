@@ -119,8 +119,9 @@ def combine_virus_data(
                 trfinder,
                 sep="\t",
                 header=0,
-                index_col="contig_name",
+                index_col="contig_id",
                 usecols=[
+                    "contig_id",
                     "contig_name",
                     "contig_len",
                     "tr_type",
@@ -133,7 +134,7 @@ def combine_virus_data(
             )
     if "trfinder_df" not in locals():
         trfinder_df = pd.DataFrame(
-            columns=["contig_len", "tr_type", "tr_seq", "tr_len", "tr_nt_acgt_count", "tr_nt_n_count", "tr_nt_max_freq"]
+            columns=["contig_name", "contig_len", "tr_type", "tr_seq", "tr_len", "tr_nt_acgt_count", "tr_nt_n_count", "tr_nt_max_freq"]
         )
 
     # load genomad agg scores
