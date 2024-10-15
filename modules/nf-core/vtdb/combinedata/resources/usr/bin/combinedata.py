@@ -313,6 +313,7 @@ def combine_virus_data(
         comb_virus_data_df.insert(
             29, "tantan_freq", comb_virus_data_df["tantan_len"] / comb_virus_data_df["contig_length"]
         )
+        comb_virus_data_df.tantan_freq = comb_virus_data_df.tantan_freq.astype(float)
         comb_virus_data_df.tantan_freq = comb_virus_data_df.tantan_freq.round(4)
     if sequence_stats:
         comb_virus_data_df.insert(
@@ -323,6 +324,7 @@ def combine_virus_data(
 
     # write combined metadata to output TSV
     comb_virus_data_df.insert(0, "contig_id", comb_virus_data_df.index)
+    comb_virus_data_df['contig_id'] = comb_virus_data_df['contig_id'].astype(str)
     comb_virus_data_df.sort_values("contig_id", inplace=True)
     comb_virus_data_df.to_csv(output, sep="\t", index=False)
 
