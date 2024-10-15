@@ -4,6 +4,7 @@ org_path: nf-core
 update:
   https://github.com/nf-core/modules.git:
     nf-core:
+      prophagetracer/wgs: False
       seqkit/sample: False
       kcounter/kmerfreq: False
       ena/asperacliseqkittrfinder: False
