@@ -134,7 +134,16 @@ def combine_virus_data(
             )
     if "trfinder_df" not in locals():
         trfinder_df = pd.DataFrame(
-            columns=["contig_name", "contig_len", "tr_type", "tr_seq", "tr_len", "tr_nt_acgt_count", "tr_nt_n_count", "tr_nt_max_freq"]
+            columns=[
+                "contig_name",
+                "contig_len",
+                "tr_type",
+                "tr_seq",
+                "tr_len",
+                "tr_nt_acgt_count",
+                "tr_nt_n_count",
+                "tr_nt_max_freq",
+            ]
         )
 
     # load genomad agg scores
@@ -325,7 +334,7 @@ def combine_virus_data(
 
     # write combined metadata to output TSV
     comb_virus_data_df.insert(0, "contig_id", comb_virus_data_df.index)
-    comb_virus_data_df['contig_id'] = comb_virus_data_df['contig_id'].astype(str)
+    comb_virus_data_df["contig_id"] = comb_virus_data_df["contig_id"].astype(str)
     comb_virus_data_df.sort_values("contig_id", inplace=True)
     comb_virus_data_df.to_csv(output, sep="\t", index=False)
 
