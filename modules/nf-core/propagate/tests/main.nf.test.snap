@@ -57,12 +57,15 @@
                     },
                     "test.propagate.tsv:md5,546afd777a6782677163130a5efb2869"
                 ]
+            ],
+            [
+                "versions.yml:md5,67ff2549247db9f84c3b0bb539876381"
             ]
         ],
         "meta": {
             "nf-test": "0.9.0",
             "nextflow": "24.04.4"
         },
-        "timestamp": "2024-10-15T13:12:24.254615943"
+        "timestamp": "2024-10-15T13:24:14.614754547"
     }
 }
