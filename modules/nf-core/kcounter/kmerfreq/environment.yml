@@ -1,0 +1,8 @@
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - bioconda::kcounter=0.1.1
+  - conda-forge::numpy=2.1.1
+  - conda-forge::biopython=1.84
+  - conda-forge::python=3.10.14
