@@ -4,6 +4,7 @@ org_path: nf-core
 update:
   https://github.com/nf-core/modules.git:
     nf-core:
+      propagate: False
       fastqfasta_mvirs_tsv: False
       mvirs/oprs: False
       mvirs/index: False
