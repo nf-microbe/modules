@@ -5,7 +5,7 @@ include { MVIRS_OPRS    } from '../../../modules/nf-core/mvirs/oprs'
 workflow FASTQFASTA_MVIRS_TSV {
 
     take:
-    fastq_gz            // channel: [ [ meta.id, meta.single_end ], [ path(fastq_1), path(fastq_2) ] ]
+    fastq_gz            // channel: [ [ meta.id, meat.group, meta.single_end ], [ path(fastq_1), path(fastq_2) ] ]
     fasta_gz            // channel: [ [ meta.id ], path(fasta)]
 
     main:
@@ -21,13 +21,14 @@ workflow FASTQFASTA_MVIRS_TSV {
     ch_versions = ch_versions.mix(MVIRS_INDEX.out.versions)
 
     // join fastQ and Fasta
-    ch_mvirs_oprs_input = fastq_gz
+    ch_mvirs_oprs_input = fastq_gz.map { meta, fastq -> [ [ id:meta.group ], meta, fastq ] }
         .combine(fasta_gz, by:0)
         .combine(MVIRS_INDEX.out.index, by:0)
-        .multiMap { meta, fastq, fasta, index ->
-            fastq:  [ meta, fastq ]
-            fasta:  [ meta, fasta ]
-            index:  [ meta, index ]
+        .multiMap { meta_group, meta_fastq, fastq, fasta, index ->
+            meta_fastq.id   = meta_fastq.id + '-' + meta_group.id
+            fastq:  [ meta_fastq, fastq ]
+            fasta:  [ meta_fastq, fasta ]
+            index:  [ meta_fastq, index ]
         }
 
     //
