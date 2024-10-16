@@ -2,7 +2,6 @@ process PROPAGATE {
     tag "${meta.id}"
     label 'process_high'
 
-    // TODO: run nfmicrobe command to add new module
     conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
         'https://depot.galaxyproject.org/singularity/vrhyme:1.1.0--pyhdfd78af_1' :
