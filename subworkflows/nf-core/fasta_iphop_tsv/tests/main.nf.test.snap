@@ -7,13 +7,13 @@
                         {
                             "id": "test1"
                         },
-                        "Host_prediction_to_genus_m90.csv:md5,6f80d41b3a5ef039141effe4b644bb65"
+                        "test1_Host_prediction_to_genus.csv:md5,6f80d41b3a5ef039141effe4b644bb65"
                     ],
                     [
                         {
                             "id": "test2"
                         },
-                        "Host_prediction_to_genus_m90.csv:md5,80ccdf83ce025aafc57fdef5a843f697"
+                        "test2_Host_prediction_to_genus.csv:md5,80ccdf83ce025aafc57fdef5a843f697"
                     ]
                 ],
                 "1": [
@@ -21,13 +21,13 @@
                         {
                             "id": "test1"
                         },
-                        "Host_prediction_to_genome_m90.csv:md5,ff5e6a01204756c5f7eca4fc050f41c0"
+                        "test1_Host_prediction_to_genome.csv:md5,ff5e6a01204756c5f7eca4fc050f41c0"
                     ],
                     [
                         {
                             "id": "test2"
                         },
-                        "Host_prediction_to_genome_m90.csv:md5,946202be48d61b4961fe2f541e0ec256"
+                        "test2_Host_prediction_to_genome.csv:md5,946202be48d61b4961fe2f541e0ec256"
                     ]
                 ],
                 "2": [
@@ -40,13 +40,13 @@
                         {
                             "id": "test1"
                         },
-                        "Host_prediction_to_genome_m90.csv:md5,ff5e6a01204756c5f7eca4fc050f41c0"
+                        "test1_Host_prediction_to_genome.csv:md5,ff5e6a01204756c5f7eca4fc050f41c0"
                     ],
                     [
                         {
                             "id": "test2"
                         },
-                        "Host_prediction_to_genome_m90.csv:md5,946202be48d61b4961fe2f541e0ec256"
+                        "test2_Host_prediction_to_genome.csv:md5,946202be48d61b4961fe2f541e0ec256"
                     ]
                 ],
                 "ch_iphop_genus_tsv": [
@@ -54,13 +54,13 @@
                         {
                             "id": "test1"
                         },
-                        "Host_prediction_to_genus_m90.csv:md5,6f80d41b3a5ef039141effe4b644bb65"
+                        "test1_Host_prediction_to_genus.csv:md5,6f80d41b3a5ef039141effe4b644bb65"
                     ],
                     [
                         {
                             "id": "test2"
                         },
-                        "Host_prediction_to_genus_m90.csv:md5,80ccdf83ce025aafc57fdef5a843f697"
+                        "test2_Host_prediction_to_genus.csv:md5,80ccdf83ce025aafc57fdef5a843f697"
                     ]
                 ],
                 "versions": [
@@ -74,6 +74,6 @@
             "nf-test": "0.9.0",
             "nextflow": "24.04.4"
         },
-        "timestamp": "2024-10-02T14:24:16.303411492"
+        "timestamp": "2024-10-15T16:49:34.267980443"
     }
 }
