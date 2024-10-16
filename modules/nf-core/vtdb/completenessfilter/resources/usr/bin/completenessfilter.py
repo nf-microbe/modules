@@ -37,6 +37,7 @@ def parse_args(args=None):
         "-m",
         "--no_taxa_minimum_length",
         default=1000000,
+        type=int,
         help="Minimum length for non-taxonomically annotated sequences.",
     )
     parser.add_argument(
