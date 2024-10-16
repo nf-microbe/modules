@@ -196,12 +196,12 @@ def combine_virus_data(
                 busco_hmms,
                 sep="\t",
                 header=None,
-                names=["contig_id", "busco_count", "busco_list"],
+                names=["contig_id", "busco_hmm_count", "busco_hmm_list"],
                 index_col="contig_id",
-                usecols=["contig_id", "busco_count", "busco_list"],
+                usecols=["contig_id", "busco_hmm_count", "busco_hmm_list"],
             )
     if "busco_hmms_df" not in locals():
-        busco_hmms_df = pd.DataFrame(columns=["busco_count", "busco_list"])
+        busco_hmms_df = pd.DataFrame(columns=["busco_hmm_count", "busco_hmm_list"])
 
     # load plasmid HMM data
     if plasmid_hmms:
@@ -210,12 +210,12 @@ def combine_virus_data(
                 plasmid_hmms,
                 sep="\t",
                 header=None,
-                names=["contig_id", "plasmid_count", "plasmid_list"],
+                names=["contig_id", "plasmid_hmm_count", "plasmid_hmm_list"],
                 index_col="contig_id",
-                usecols=["contig_id", "plasmid_count", "plasmid_list"],
+                usecols=["contig_id", "plasmid_hmm_count", "plasmid_hmm_list"],
             )
     if "plasmid_hmms_df" not in locals():
-        plasmid_hmms_df = pd.DataFrame(columns=["plasmid_count", "plasmid_list"])
+        plasmid_hmms_df = pd.DataFrame(columns=["plasmid_hmm_count", "plasmid_hmm_list"])
 
     # load busco HMM data
     if virus_hmms:
@@ -224,12 +224,12 @@ def combine_virus_data(
                 virus_hmms,
                 sep="\t",
                 header=None,
-                names=["contig_id", "virus_count", "virus_list"],
+                names=["contig_id", "virus_hmm_count", "virus_hmm_list"],
                 index_col="contig_id",
-                usecols=["contig_id", "virus_count", "virus_list"],
+                usecols=["contig_id", "virus_hmm_count", "virus_hmm_list"],
             )
     if "virus_hmms_df" not in locals():
-        virus_hmms_df = pd.DataFrame(columns=["virus_count", "virus_list"])
+        virus_hmms_df = pd.DataFrame(columns=["virus_hmm_count", "virus_hmm_list"])
 
     # load checkv completeness data
     if completeness:

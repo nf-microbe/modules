@@ -7,7 +7,7 @@
                         {
                             "id": "test"
                         },
-                        "test_combined_data.tsv:md5,406b36bee7ce1a77712e19521b5d829b"
+                        "test_combined_data.tsv:md5,42650b20c37ee077616ad8b18951ec8e"
                     ]
                 ],
                 "1": [
@@ -18,7 +18,7 @@
                         {
                             "id": "test"
                         },
-                        "test_combined_data.tsv:md5,406b36bee7ce1a77712e19521b5d829b"
+                        "test_combined_data.tsv:md5,42650b20c37ee077616ad8b18951ec8e"
                     ]
                 ],
                 "versions": [
@@ -30,7 +30,7 @@
             "nf-test": "0.9.0",
             "nextflow": "24.04.4"
         },
-        "timestamp": "2024-10-08T06:49:43.522508318"
+        "timestamp": "2024-10-16T14:38:02.527752864"
     },
     "no tantan": {
         "content": [
@@ -40,7 +40,7 @@
                         {
                             "id": "test"
                         },
-                        "test_combined_data.tsv:md5,bf3913e7f918308c7d9361a4502f18fc"
+                        "test_combined_data.tsv:md5,976f8011cec3aa3eb42a09e05a1f0845"
                     ]
                 ],
                 "1": [
@@ -51,7 +51,7 @@
                         {
                             "id": "test"
                         },
-                        "test_combined_data.tsv:md5,bf3913e7f918308c7d9361a4502f18fc"
+                        "test_combined_data.tsv:md5,976f8011cec3aa3eb42a09e05a1f0845"
                     ]
                 ],
                 "versions": [
@@ -63,7 +63,7 @@
             "nf-test": "0.9.0",
             "nextflow": "24.04.4"
         },
-        "timestamp": "2024-10-08T06:56:02.324973036"
+        "timestamp": "2024-10-16T14:39:44.17688071"
     },
     "no nucleotide stats": {
         "content": [
@@ -73,7 +73,7 @@
                         {
                             "id": "test"
                         },
-                        "test_combined_data.tsv:md5,bf3913e7f918308c7d9361a4502f18fc"
+                        "test_combined_data.tsv:md5,976f8011cec3aa3eb42a09e05a1f0845"
                     ]
                 ],
                 "1": [
@@ -84,7 +84,7 @@
                         {
                             "id": "test"
                         },
-                        "test_combined_data.tsv:md5,bf3913e7f918308c7d9361a4502f18fc"
+                        "test_combined_data.tsv:md5,976f8011cec3aa3eb42a09e05a1f0845"
                     ]
                 ],
                 "versions": [
@@ -96,7 +96,7 @@
             "nf-test": "0.9.0",
             "nextflow": "24.04.4"
         },
-        "timestamp": "2024-10-08T06:55:42.706266796"
+        "timestamp": "2024-10-16T14:39:23.821703716"
     },
     "all files - stub": {
         "content": [
@@ -139,7 +139,7 @@
                         {
                             "id": "test"
                         },
-                        "test_combined_data.tsv:md5,383c4b4c5e5c10bbaa437c8eba34116c"
+                        "test_combined_data.tsv:md5,b7b397fa03dd02f636805198caf8d3f0"
                     ]
                 ],
                 "1": [
@@ -150,7 +150,7 @@
                         {
                             "id": "test"
                         },
-                        "test_combined_data.tsv:md5,383c4b4c5e5c10bbaa437c8eba34116c"
+                        "test_combined_data.tsv:md5,b7b397fa03dd02f636805198caf8d3f0"
                     ]
                 ],
                 "versions": [
@@ -162,7 +162,7 @@
             "nf-test": "0.9.0",
             "nextflow": "24.04.4"
         },
-        "timestamp": "2024-10-08T06:55:18.312176268"
+        "timestamp": "2024-10-16T14:39:03.331099619"
     },
     "no pyhmmer": {
         "content": [
@@ -172,7 +172,7 @@
                         {
                             "id": "test"
                         },
-                        "test_combined_data.tsv:md5,40860c2c6c876a6ea0755faeadd94e5a"
+                        "test_combined_data.tsv:md5,0462d65ebf0bea1e258d4305e4a97a9d"
                     ]
                 ],
                 "1": [
@@ -183,7 +183,7 @@
                         {
                             "id": "test"
                         },
-                        "test_combined_data.tsv:md5,40860c2c6c876a6ea0755faeadd94e5a"
+                        "test_combined_data.tsv:md5,0462d65ebf0bea1e258d4305e4a97a9d"
                     ]
                 ],
                 "versions": [
@@ -195,7 +195,7 @@
             "nf-test": "0.9.0",
             "nextflow": "24.04.4"
         },
-        "timestamp": "2024-10-08T06:54:58.901299368"
+        "timestamp": "2024-10-16T14:38:43.15879205"
     },
     "no genomad": {
         "content": [
@@ -205,7 +205,7 @@
                         {
                             "id": "test"
                         },
-                        "test_combined_data.tsv:md5,e910ac25a694245c9788201858530256"
+                        "test_combined_data.tsv:md5,13cee2c2b7c0053e55c5addf928b69ce"
                     ]
                 ],
                 "1": [
@@ -216,7 +216,7 @@
                         {
                             "id": "test"
                         },
-                        "test_combined_data.tsv:md5,e910ac25a694245c9788201858530256"
+                        "test_combined_data.tsv:md5,13cee2c2b7c0053e55c5addf928b69ce"
                     ]
                 ],
                 "versions": [
@@ -228,7 +228,7 @@
             "nf-test": "0.9.0",
             "nextflow": "24.04.4"
         },
-        "timestamp": "2024-10-08T06:50:03.545512254"
+        "timestamp": "2024-10-16T14:38:22.581422177"
     },
     "all files": {
         "content": [
@@ -238,7 +238,7 @@
                         {
                             "id": "test"
                         },
-                        "test_combined_data.tsv:md5,8ec59bfa3975d0e36f94a160e3df0292"
+                        "test_combined_data.tsv:md5,994630010252576f5cfa9c3863a3ddcf"
                     ]
                 ],
                 "1": [
@@ -249,7 +249,7 @@
                         {
                             "id": "test"
                         },
-                        "test_combined_data.tsv:md5,8ec59bfa3975d0e36f94a160e3df0292"
+                        "test_combined_data.tsv:md5,994630010252576f5cfa9c3863a3ddcf"
                     ]
                 ],
                 "versions": [
@@ -261,6 +261,6 @@
             "nf-test": "0.9.0",
             "nextflow": "24.04.4"
         },
-        "timestamp": "2024-10-08T06:49:23.379325035"
+        "timestamp": "2024-10-16T14:37:41.900235079"
     }
 }

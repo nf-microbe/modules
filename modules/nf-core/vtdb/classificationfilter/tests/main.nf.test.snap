@@ -40,7 +40,7 @@
                         {
                             "id": "test"
                         },
-                        "test_class_data.tsv:md5,baf4106480e05841a1a8b6516f6a33b9"
+                        "test_class_data.tsv:md5,e89662c598aab651443a85a22300d164"
                     ]
                 ],
                 "1": [
@@ -51,7 +51,7 @@
                         {
                             "id": "test"
                         },
-                        "test_class_data.tsv:md5,baf4106480e05841a1a8b6516f6a33b9"
+                        "test_class_data.tsv:md5,e89662c598aab651443a85a22300d164"
                     ]
                 ],
                 "versions": [
@@ -63,6 +63,6 @@
             "nf-test": "0.9.0",
             "nextflow": "24.04.4"
         },
-        "timestamp": "2024-10-08T08:32:13.295942537"
+        "timestamp": "2024-10-16T14:41:32.479052871"
     }
 }
