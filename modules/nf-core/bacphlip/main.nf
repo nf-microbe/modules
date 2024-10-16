@@ -22,9 +22,15 @@ process BACPHLIP {
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
     def VERSION = '0.9.6' // WARN: Version information not provided by tool on CLI. Please update this string when bumping container versions.
+    def is_compressed = fasta.getExtension() == "gz" ? true : false
+    def fasta_name = is_compressed ? fasta.getBaseName() : fasta
     """
+    if [ "${is_compressed}" == "true" ]; then
+        gzip -c -d ${fasta} > ${fasta_name}
+    fi
+
     bacphlip \\
-        -i $fasta \\
+        -i ${fasta_name} \\
         $args
 
     cat <<-END_VERSIONS > versions.yml
