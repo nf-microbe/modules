@@ -5,19 +5,19 @@
                 "0": [
                     [
                         {
-                            "id": "test1-test",
+                            "id": "test1",
                             "group": "test",
                             "single_end": false
                         },
-                        "test1-test.prophage.out:md5,8166ad81eb844e4172fd02fb2ec0db2f"
+                        "test1.prophage.out:md5,8166ad81eb844e4172fd02fb2ec0db2f"
                     ],
                     [
                         {
-                            "id": "test2-test",
+                            "id": "test2",
                             "group": "test",
                             "single_end": false
                         },
-                        "test2-test.prophage.out:md5,8166ad81eb844e4172fd02fb2ec0db2f"
+                        "test2.prophage.out:md5,8166ad81eb844e4172fd02fb2ec0db2f"
                     ]
                 ],
                 "1": [
@@ -31,19 +31,19 @@
                 "prophage": [
                     [
                         {
-                            "id": "test1-test",
+                            "id": "test1",
                             "group": "test",
                             "single_end": false
                         },
-                        "test1-test.prophage.out:md5,8166ad81eb844e4172fd02fb2ec0db2f"
+                        "test1.prophage.out:md5,8166ad81eb844e4172fd02fb2ec0db2f"
                     ],
                     [
                         {
-                            "id": "test2-test",
+                            "id": "test2",
                             "group": "test",
                             "single_end": false
                         },
-                        "test2-test.prophage.out:md5,8166ad81eb844e4172fd02fb2ec0db2f"
+                        "test2.prophage.out:md5,8166ad81eb844e4172fd02fb2ec0db2f"
                     ]
                 ],
                 "versions": [
@@ -60,6 +60,6 @@
             "nf-test": "0.9.0",
             "nextflow": "24.04.4"
         },
-        "timestamp": "2024-10-16T08:48:30.761323877"
+        "timestamp": "2024-10-16T16:37:16.45898851"
     }
 }
