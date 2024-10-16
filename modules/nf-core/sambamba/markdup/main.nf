@@ -36,4 +36,17 @@ process SAMBAMBA_MARKDUP {
         sambamba: \$(echo \$(sambamba --version 2>&1) | awk '{print \$2}' )
     END_VERSIONS
     """
+
+    stub:
+    def args = task.ext.args ?: ''
+    def prefix = task.ext.prefix ?: "${meta.id}"
+    """
+    touch ${prefix}.bam
+
+    cat <<-END_VERSIONS > versions.yml
+    "${task.process}":
+        sambamba: \$(echo \$(sambamba --version 2>&1) | awk '{print \$2}' )
+    END_VERSIONS
+    """
 }
+
