@@ -23,11 +23,14 @@ workflow FASTQFASTA_PROPHAGETRACER_TSV {
     ch_versions = ch_versions.mix(BWA_INDEX.out.versions)
 
     // join fastQ and Fasta
-    ch_bwa_mem_input = fastq_gz
+    ch_bwa_mem_input = fastq_gz.map { meta, fastq -> [ [ id:meta.group ], meta, fastq ] }
         .combine(fasta_gz, by:0)
-        .multiMap { meta, fastq, fasta ->
-            fastq:  [ meta, fastq ]
-            fasta:  [ meta, fasta ]
+        .combine(BWA_INDEX.out.index, by:0)
+        .multiMap { meta_group, meta_fastq, fastq, fasta, index ->
+            meta_fastq.id   = meta_fastq.id + '-' + meta_group.id
+            fastq:  [ meta_fastq, fastq ]
+            fasta:  [ meta_fastq, fasta ]
+            index:  [ meta_fastq, index ]
         }
 
     //
@@ -35,7 +38,7 @@ workflow FASTQFASTA_PROPHAGETRACER_TSV {
     //
     BWA_MEM(
         ch_bwa_mem_input.fastq,
-        BWA_INDEX.out.index,
+        ch_bwa_mem_input.index,
         ch_bwa_mem_input.fasta,
         false
     )
@@ -49,12 +52,12 @@ workflow FASTQFASTA_PROPHAGETRACER_TSV {
     )
     ch_versions = ch_versions.mix(SAMBAMBA_MARKDUP.out.versions)
 
-    // join sam and fasta
+    // join bam and Fasta
     ch_prophage_tracer_input = fasta_gz
-        .combine(SAMBAMBA_MARKDUP.out.bam, by:0)
-        .multiMap { meta, fasta, bam ->
-            fasta:  [ meta, fasta ]
-            bam:    [ meta, bam ]
+        .combine(SAMBAMBA_MARKDUP.out.bam.map { meta, bam -> [ [ id: meta.group ], meta, bam ] }, by:0)
+        .multiMap { meta_group, fasta, meta_bam, bam ->
+            fasta:  [ meta_bam, fasta ]
+            bam:  [ meta_bam, bam ]
         }
 
     //

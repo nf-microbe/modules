@@ -19,14 +19,14 @@ nextflow_workflow {
                 """
                 input[0] = Channel.of(
                     [
-                        [ id:'test1', single_end:false ],
+                        [ id:'test1', group:'test', single_end:false ],
                         [
                             file("${projectDir}/assets/test-datasets/genomics/provirus/illumina/fastq/ERR4552622_100k_1.fastq.gz", checkIfExists: true),
                             file("${projectDir}/assets/test-datasets/genomics/provirus/illumina/fastq/ERR4552622_100k_2.fastq.gz", checkIfExists: true)
                         ]
                     ],
                     [
-                        [ id:'test2', single_end:false ],
+                        [ id:'test2', group:'test', single_end:false ],
                         [
                             file("${projectDir}/assets/test-datasets/genomics/provirus/illumina/fastq/ERR4552622_100k_copy_1.fastq.gz", checkIfExists: true),
                             file("${projectDir}/assets/test-datasets/genomics/provirus/illumina/fastq/ERR4552622_100k_copy_2.fastq.gz", checkIfExists: true)
@@ -35,12 +35,8 @@ nextflow_workflow {
                 )
                 input[1] = Channel.of(
                     [
-                        [ id:'test1', single_end:false ],
+                        [ id:'test' ],
                         file("${projectDir}/assets/test-datasets/genomics/provirus/illumina/fasta/np_salmoLT2.fasta.gz", checkIfExists: true)
-                    ],
-                    [
-                        [ id:'test2', single_end:false ],
-                        file("${projectDir}/assets/test-datasets/genomics/provirus/illumina/fasta/np_salmoLT2_copy.fasta.gz", checkIfExists: true)
                     ]
                 )
                 """
