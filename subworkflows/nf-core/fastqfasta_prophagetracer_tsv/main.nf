@@ -27,7 +27,6 @@ workflow FASTQFASTA_PROPHAGETRACER_TSV {
         .combine(fasta_gz, by:0)
         .combine(BWA_INDEX.out.index, by:0)
         .multiMap { meta_group, meta_fastq, fastq, fasta, index ->
-            meta_fastq.id   = meta_fastq.id + '-' + meta_group.id
             fastq:  [ meta_fastq, fastq ]
             fasta:  [ meta_fastq, fasta ]
             index:  [ meta_fastq, index ]
