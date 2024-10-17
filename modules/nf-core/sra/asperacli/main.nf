@@ -45,7 +45,7 @@ process SRA_ASPERACLI {
             era-fasp@\${fastq_array[0]} \\
             ${accession}_1.fastq.gz
 
-        echo "\${md5_array[0]}  ${accession}_1.fastq.gz" > ${prefix}_1.fastq.gz.md5
+        echo "\${md5_array[0]} ${accession}_1.fastq.gz" > ${accession}_1.fastq.gz.md5
         md5sum -c ${accession}_1.fastq.gz.md5
 
         ascp \\
@@ -54,7 +54,7 @@ process SRA_ASPERACLI {
             era-fasp@\${fastq_array[1]} \\
             ${accession}_2.fastq.gz
 
-        echo "\${md5_array[1]}  ${accession}_2.fastq.gz" > ${prefix}_2.fastq.gz.md5
+        echo "\${md5_array[1]}  ${accession}_2.fastq.gz" > ${accession}_2.fastq.gz.md5
         md5sum -c ${accession}_2.fastq.gz.md5
     else
         ascp \\
@@ -63,7 +63,7 @@ process SRA_ASPERACLI {
             era-fasp@\$fastq \\
             ${accession}.fastq.gz
 
-        echo "\$md5  ${accession}.fastq.gz" > ${prefix}.fastq.gz.md5
+        echo "\$md5  ${accession}.fastq.gz" > ${accession}.fastq.gz.md5
         md5sum -c ${accession}.fastq.gz.md5
     fi
 
