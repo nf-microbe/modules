@@ -9,16 +9,15 @@ nextflow_process {
     tag "allthebacteria"
     tag "allthebacteria/aria2seqkit"
 
-    test("achromobacter_xylosoxidans__01") {
+    test("SAMD00000652") {
         when {
             process {
                 """
                 input[0] = [
-                    [ id:'achromobacter_xylosoxidans__01' ], // meta map
-                    [
-                        "https://ftp.ebi.ac.uk/pub/databases/AllTheBacteria/Releases/0.2/assembly/achromobacter_xylosoxidans__01.asm.tar.xz"
-                    ]
+                    [ id:'SAMD00000652' ], // meta map
+                    "SAMD00000652"
                 ]
+                input[1] = "${projectDir}/assets/db/atb_file_list.all.2024_10_17.tsv.gz"
                 """
             }
         }
@@ -30,17 +29,16 @@ nextflow_process {
         }
     }
 
-    test("achromobacter_xylosoxidans__01 - stub") {
+    test("SAMD00000652 - stub") {
         options "-stub"
         when {
             process {
                 """
                 input[0] = [
-                    [ id:'achromobacter_xylosoxidans__01' ], // meta map
-                    [
-                        "https://ftp.ebi.ac.uk/pub/databases/AllTheBacteria/Releases/0.2/assembly/achromobacter_xylosoxidans__01.asm.tar.xz"
-                    ]
+                    [ id:'SAMD00000652' ], // meta map
+                    "SAMD00000652"
                 ]
+                input[1] = "${projectDir}/assets/db/atb_file_list.all.2024_10_17.tsv.gz"
                 """
             }
         }

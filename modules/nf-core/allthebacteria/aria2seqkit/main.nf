@@ -8,29 +8,30 @@ process ALLTHEBACTERIA_ARIA2SEQKIT {
         'community.wave.seqera.io/library/seqkit_aria2_biopython:2256c902d3a46191' }"
 
     input:
-    tuple val(meta), val(url)
+    tuple val(meta), val(sample_id)
+    val atb_file_list
 
     output:
-    tuple val(meta), path("tmp/seqkit/*.fasta.gz")  , emit: fastas
+    tuple val(meta), path("${sample_id}.fasta.gz")  , emit: fasta
     path "versions.yml"                             , emit: versions
 
     when:
     task.ext.when == null || task.ext.when
 
     script:
-    def url_list    = url.collect { urls -> urls.toString() }.join(',')
     def args        = task.ext.args ?: ''
     def args2       = task.ext.args2 ?: ''
     prefix          = task.ext.prefix ?: "${meta.id}"
     """
     mkdir -p tmp/download tmp/seqkit
-    IFS=',' read -r -a url_array <<< "${url_list}"
-    printf '%s\\n' "\${url_array[@]}" > aria2_file.tsv
+    ### Identify assembly to download based on sample_id
+    atb_data=\$(zcat ${atb_file_list} | grep "${sample_id}" | cut -f4,5,6)
+    read -a atb_array <<< "\$atb_data"
 
     ### Download AllTheBacteria assemblies
     aria2c \\
-        --input-file=aria2_file.tsv \\
-        --dir=tmp/download/ \\
+        \${atb_array[2]} \\
+        --out=tmp/download/\${atb_array[1]} \\
         --max-connection-per-server=${task.cpus} \\
         --split=${task.cpus} \\
         --max-concurrent-downloads=${task.cpus} \\
@@ -40,23 +41,14 @@ process ALLTHEBACTERIA_ARIA2SEQKIT {
     rm tmp/download/*.tar.xz
 
     ### Remove short contigs
-    for dir in tmp/download/*; do
-        for file in \$dir/*; do
-            filename=\$(basename \$file)
-
-            seqkit \\
-                seq \\
-                --threads ${task.cpus} \\
-                ${args2} \\
-                \$file \\
-                --out-file tmp/seqkit/\${filename%.*}.fasta
-        done
-    done
+    seqkit \\
+        seq \\
+        --threads ${task.cpus} \\
+        ${args2} \\
+        tmp/download/\${atb_array[0]} \\
+        --out-file ${sample_id}.fasta.gz
 
     rm -rf tmp/download/
-
-    #### compress fasta files
-    gzip tmp/seqkit/*.fasta
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
@@ -70,9 +62,7 @@ process ALLTHEBACTERIA_ARIA2SEQKIT {
     def args2   = task.ext.args2 ?: ''
     prefix  = task.ext.prefix ?: "${meta.id}"
     """
-    mkdir -p tmp/seqkit/
-    echo "" | gzip > tmp/seqkit/test1.fasta.gz
-    echo "" | gzip > tmp/seqkit/test2.fasta.gz
+    echo "" | gzip > ${sample_id}.fasta.gz
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
