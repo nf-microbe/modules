@@ -7,8 +7,8 @@ nextflow_process {
     tag "modules"
     tag "modules_nfcore"
     tag "hostile"
-    tag "hostile_fetch"
-    tag "hostile_clean"
+    tag "hostile/fetch"
+    tag "hostile/clean"
 
     test("fastq.gz - se") {
         setup {

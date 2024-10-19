@@ -7,7 +7,7 @@ nextflow_process {
     tag "modules"
     tag "modules_nfcore"
     tag "hostile"
-    tag "hostile_fetch"
+    tag "hostile/fetch"
 
     test("human-t2t-hla.argos-bacteria-985_rs-viral-202401_ml-phage-202401") {
         when {
