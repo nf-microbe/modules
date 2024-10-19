@@ -1,0 +1,88 @@
+{
+    "human-t2t-hla.argos-bacteria-985_rs-viral-202401_ml-phage-202401 - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "hostile_index"
+                        },
+                        [
+                            "index_file:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        ]
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,946753059fc7eb42e87c6e22a8bbfd7b"
+                ],
+                "index": [
+                    [
+                        {
+                            "id": "hostile_index"
+                        },
+                        [
+                            "index_file:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        ]
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,946753059fc7eb42e87c6e22a8bbfd7b"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-10-17T16:45:47.406843213"
+    },
+    "human-t2t-hla.argos-bacteria-985_rs-viral-202401_ml-phage-202401": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "hostile_index"
+                        },
+                        [
+                            "human-t2t-hla.argos-bacteria-985_rs-viral-202401_ml-phage-202401.1.bt2:md5,d096af31ae318892f5fad24b59b67985",
+                            "human-t2t-hla.argos-bacteria-985_rs-viral-202401_ml-phage-202401.2.bt2:md5,56349c1b76848d3cd9dd7c605508aadf",
+                            "human-t2t-hla.argos-bacteria-985_rs-viral-202401_ml-phage-202401.3.bt2:md5,f4f54b68ccfb2dc7908e261a48843649",
+                            "human-t2t-hla.argos-bacteria-985_rs-viral-202401_ml-phage-202401.4.bt2:md5,51572ad2d51a9666c529b60ef7d53d76",
+                            "human-t2t-hla.argos-bacteria-985_rs-viral-202401_ml-phage-202401.fa.gz:md5,36378c3b6291c8236fa58b7a3aec39dc",
+                            "human-t2t-hla.argos-bacteria-985_rs-viral-202401_ml-phage-202401.rev.1.bt2:md5,2692ca3ddb060c8fd30b50236158588e",
+                            "human-t2t-hla.argos-bacteria-985_rs-viral-202401_ml-phage-202401.rev.2.bt2:md5,5b00bbf7208e67b9fe2be7c38ac17f2f"
+                        ]
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,946753059fc7eb42e87c6e22a8bbfd7b"
+                ],
+                "index": [
+                    [
+                        {
+                            "id": "hostile_index"
+                        },
+                        [
+                            "human-t2t-hla.argos-bacteria-985_rs-viral-202401_ml-phage-202401.1.bt2:md5,d096af31ae318892f5fad24b59b67985",
+                            "human-t2t-hla.argos-bacteria-985_rs-viral-202401_ml-phage-202401.2.bt2:md5,56349c1b76848d3cd9dd7c605508aadf",
+                            "human-t2t-hla.argos-bacteria-985_rs-viral-202401_ml-phage-202401.3.bt2:md5,f4f54b68ccfb2dc7908e261a48843649",
+                            "human-t2t-hla.argos-bacteria-985_rs-viral-202401_ml-phage-202401.4.bt2:md5,51572ad2d51a9666c529b60ef7d53d76",
+                            "human-t2t-hla.argos-bacteria-985_rs-viral-202401_ml-phage-202401.fa.gz:md5,36378c3b6291c8236fa58b7a3aec39dc",
+                            "human-t2t-hla.argos-bacteria-985_rs-viral-202401_ml-phage-202401.rev.1.bt2:md5,2692ca3ddb060c8fd30b50236158588e",
+                            "human-t2t-hla.argos-bacteria-985_rs-viral-202401_ml-phage-202401.rev.2.bt2:md5,5b00bbf7208e67b9fe2be7c38ac17f2f"
+                        ]
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,946753059fc7eb42e87c6e22a8bbfd7b"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-10-17T16:21:49.47198834"
+    }
+}
