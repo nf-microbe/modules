@@ -1,0 +1,102 @@
+nextflow_process {
+
+    name "Test Process HOSTILE_CLEAN"
+    script "../main.nf"
+    process "HOSTILE_CLEAN"
+
+    tag "modules"
+    tag "modules_nfcore"
+    tag "hostile"
+    tag "hostile_fetch"
+    tag "hostile_clean"
+
+    test("fastq.gz - se") {
+        setup {
+            run("HOSTILE_FETCH") {
+                process {
+                    """
+                    input[0] = [
+                        [ id:'hostile_index' ],
+                        'human-t2t-hla.argos-bacteria-985_rs-viral-202401_ml-phage-202401'
+                    ]
+                    """
+                }
+                script "../../fetch/main.nf"
+            }
+        }
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test', single_end:true ], // meta map
+                    file(params.modules_testdata_base_path + "genomics/prokaryotes/bacteroides_fragilis/illumina/fastq/test1_1.fastq.gz", checkIfExists: true),
+                ]
+                input[1] = HOSTILE_FETCH.out.index
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("fastq.gz - pe") {
+        setup {
+            run("HOSTILE_FETCH") {
+                process {
+                    """
+                    input[0] = [
+                        [ id:'hostile_index' ],
+                        'human-t2t-hla.argos-bacteria-985_rs-viral-202401_ml-phage-202401'
+                    ]
+                    """
+                }
+                script "../../fetch/main.nf"
+            }
+        }
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test', single_end:true ], // meta map
+                    file(params.modules_testdata_base_path + "genomics/prokaryotes/bacteroides_fragilis/illumina/fastq/test1_1.fastq.gz", checkIfExists: true),
+                ]
+                input[1] = HOSTILE_FETCH.out.index
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("fastq.gz - pe - stub") {
+        options "-stub"
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test', single_end:false ], // meta map
+                    [
+                        file(params.modules_testdata_base_path + "genomics/prokaryotes/bacteroides_fragilis/illumina/fastq/test1_1.fastq.gz", checkIfExists: true),
+                        file(params.modules_testdata_base_path + "genomics/prokaryotes/bacteroides_fragilis/illumina/fastq/test1_2.fastq.gz", checkIfExists: true)
+                    ]
+                ]
+                input[1] = [ [:], [] ]
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+}
