@@ -1,0 +1,68 @@
+{
+    "SAMD00000652 - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "SAMD00000652"
+                        },
+                        "SAMD00000652.fasta.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,ead5aa87d4e602648e657160c754ff89"
+                ],
+                "fasta": [
+                    [
+                        {
+                            "id": "SAMD00000652"
+                        },
+                        "SAMD00000652.fasta.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,ead5aa87d4e602648e657160c754ff89"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-10-17T17:00:51.692923623"
+    },
+    "SAMD00000652": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "SAMD00000652"
+                        },
+                        "SAMD00000652.fasta.gz:md5,b185c3b6dd9592f6993230c693854701"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,ead5aa87d4e602648e657160c754ff89"
+                ],
+                "fasta": [
+                    [
+                        {
+                            "id": "SAMD00000652"
+                        },
+                        "SAMD00000652.fasta.gz:md5,b185c3b6dd9592f6993230c693854701"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,ead5aa87d4e602648e657160c754ff89"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-10-17T17:00:35.960155286"
+    }
+}

@@ -1,0 +1,52 @@
+nextflow_process {
+
+    name "Test Process ALLTHEBACTERIA_ARIA2SEQKIT"
+    script "../main.nf"
+    process "ALLTHEBACTERIA_ARIA2SEQKIT"
+
+    tag "modules"
+    tag "modules_nfcore"
+    tag "allthebacteria"
+    tag "allthebacteria/aria2seqkit"
+
+    test("SAMD00000652") {
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'SAMD00000652' ], // meta map
+                    "SAMD00000652"
+                ]
+                input[1] = "${projectDir}/assets/db/atb_file_list.all.2024_10_17.tsv.gz"
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("SAMD00000652 - stub") {
+        options "-stub"
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'SAMD00000652' ], // meta map
+                    "SAMD00000652"
+                ]
+                input[1] = "${projectDir}/assets/db/atb_file_list.all.2024_10_17.tsv.gz"
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+}
