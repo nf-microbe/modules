@@ -34,7 +34,7 @@ process MVIRS_OPRS {
         -db ${index[0].getBaseName()} \\
         -o ${prefix}.mvirs \\
         -t ${task.cpus} \\
-        ${args} || if [ grep "Finishing mVIRs" .command.log ]; then true; else false; fi
+        ${args} || if grep -q "Finishing mVIRs" .command.log; then true; else false; fi
 
     ### Extract fasta header information into TSV
     grep "^>" ${prefix}.mvirs.fasta \\
