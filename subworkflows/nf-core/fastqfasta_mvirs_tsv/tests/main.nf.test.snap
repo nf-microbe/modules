@@ -1,5 +1,5 @@
 {
-    "b_fragilis - fastq.gz - fasta.gz": {
+    "ERR4552622 - fastq.gz - fasta.gz": {
         "content": [
             {
                 "0": [
@@ -54,6 +54,6 @@
             "nf-test": "0.9.0",
             "nextflow": "24.04.4"
         },
-        "timestamp": "2024-10-16T16:37:19.586768135"
+        "timestamp": "2024-10-21T08:05:37.319050787"
     }
 }

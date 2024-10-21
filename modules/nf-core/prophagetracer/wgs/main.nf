@@ -35,7 +35,7 @@ process PROPHAGETRACER_WGS {
         -r ${fasta_name} \\
         -p ${prefix} \\
         -t ${task.cpus} \\
-        ${args}
+        ${args} || if grep -q "SR_evidence.list1" .command.log; then true; else false; fi
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":

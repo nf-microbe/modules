@@ -10,7 +10,7 @@ nextflow_workflow {
     tag "mvirs/index"
     tag "mvirs/oprs"
 
-    test("b_fragilis - fastq.gz - fasta.gz") {
+    test("ERR4552622 - fastq.gz - fasta.gz") {
         when {
             workflow {
                 """
