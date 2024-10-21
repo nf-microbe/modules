@@ -1,21 +1,21 @@
 {
-    "atb.assembly.incr_release.202408.batch.1.tar.xz": {
+    "atb.assembly.incr_release.202408.batch.104.tar.xz": {
         "content": [
             {
                 "0": [
                     [
                         {
-                            "id": "atb.assembly.incr_release.202408.batch.1.tar.xz"
+                            "id": "atb.assembly.incr_release.202408.batch.104.tar.xz"
                         },
-                        "atb.assembly.incr_release.202408.batch.1.tar.xz.trfinder.fasta.gz:md5,adbf4eabc203c99ab102737edb8b3bba"
+                        "atb.assembly.incr_release.202408.batch.104.tar.xz.trfinder.fasta.gz:md5,6decac710cbcbcef855ddb61f5a943f2"
                     ]
                 ],
                 "1": [
                     [
                         {
-                            "id": "atb.assembly.incr_release.202408.batch.1.tar.xz"
+                            "id": "atb.assembly.incr_release.202408.batch.104.tar.xz"
                         },
-                        "atb.assembly.incr_release.202408.batch.1.tar.xz.trfinder.tsv:md5,e1a7850e590af17a2337ac882f0a4a76"
+                        "atb.assembly.incr_release.202408.batch.104.tar.xz.trfinder.tsv:md5,abc053a04761504ede8b69c7095342d2"
                     ]
                 ],
                 "2": [
@@ -24,17 +24,17 @@
                 "fasta": [
                     [
                         {
-                            "id": "atb.assembly.incr_release.202408.batch.1.tar.xz"
+                            "id": "atb.assembly.incr_release.202408.batch.104.tar.xz"
                         },
-                        "atb.assembly.incr_release.202408.batch.1.tar.xz.trfinder.fasta.gz:md5,adbf4eabc203c99ab102737edb8b3bba"
+                        "atb.assembly.incr_release.202408.batch.104.tar.xz.trfinder.fasta.gz:md5,6decac710cbcbcef855ddb61f5a943f2"
                     ]
                 ],
                 "tsv": [
                     [
                         {
-                            "id": "atb.assembly.incr_release.202408.batch.1.tar.xz"
+                            "id": "atb.assembly.incr_release.202408.batch.104.tar.xz"
                         },
-                        "atb.assembly.incr_release.202408.batch.1.tar.xz.trfinder.tsv:md5,e1a7850e590af17a2337ac882f0a4a76"
+                        "atb.assembly.incr_release.202408.batch.104.tar.xz.trfinder.tsv:md5,abc053a04761504ede8b69c7095342d2"
                     ]
                 ],
                 "versions": [
@@ -46,25 +46,25 @@
             "nf-test": "0.9.0",
             "nextflow": "24.04.4"
         },
-        "timestamp": "2024-10-21T09:15:34.98738437"
+        "timestamp": "2024-10-21T09:49:30.125046494"
     },
-    "atb.assembly.incr_release.202408.batch.1.tar.xz - stub": {
+    "atb.assembly.incr_release.202408.batch.104.tar.xz - stub": {
         "content": [
             {
                 "0": [
                     [
                         {
-                            "id": "achromobacter_xylosoxidans__01"
+                            "id": "atb.assembly.incr_release.202408.batch.104.tar.xz"
                         },
-                        "achromobacter_xylosoxidans__01.trfinder.fasta.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                        "atb.assembly.incr_release.202408.batch.104.tar.xz.trfinder.fasta.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
                     ]
                 ],
                 "1": [
                     [
                         {
-                            "id": "achromobacter_xylosoxidans__01"
+                            "id": "atb.assembly.incr_release.202408.batch.104.tar.xz"
                         },
-                        "achromobacter_xylosoxidans__01.trfinder.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "atb.assembly.incr_release.202408.batch.104.tar.xz.trfinder.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "2": [
@@ -73,17 +73,17 @@
                 "fasta": [
                     [
                         {
-                            "id": "achromobacter_xylosoxidans__01"
+                            "id": "atb.assembly.incr_release.202408.batch.104.tar.xz"
                         },
-                        "achromobacter_xylosoxidans__01.trfinder.fasta.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                        "atb.assembly.incr_release.202408.batch.104.tar.xz.trfinder.fasta.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
                     ]
                 ],
                 "tsv": [
                     [
                         {
-                            "id": "achromobacter_xylosoxidans__01"
+                            "id": "atb.assembly.incr_release.202408.batch.104.tar.xz"
                         },
-                        "achromobacter_xylosoxidans__01.trfinder.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "atb.assembly.incr_release.202408.batch.104.tar.xz.trfinder.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "versions": [
@@ -95,6 +95,6 @@
             "nf-test": "0.9.0",
             "nextflow": "24.04.4"
         },
-        "timestamp": "2024-10-21T09:16:19.540946236"
+        "timestamp": "2024-10-21T09:51:25.080630255"
     }
 }
