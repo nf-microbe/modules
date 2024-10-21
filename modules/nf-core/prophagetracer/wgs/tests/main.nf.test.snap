@@ -11,7 +11,7 @@
                     ]
                 ],
                 "1": [
-                    "versions.yml:md5,e4ec57dd9ee845f5409bc7f06d89bfaf"
+                    "versions.yml:md5,f4b0fae644ad382d8293360ba4f493fc"
                 ],
                 "prophage": [
                     [
@@ -22,15 +22,15 @@
                     ]
                 ],
                 "versions": [
-                    "versions.yml:md5,e4ec57dd9ee845f5409bc7f06d89bfaf"
+                    "versions.yml:md5,f4b0fae644ad382d8293360ba4f493fc"
                 ]
             }
         ],
         "meta": {
-            "nf-test": "0.8.4",
-            "nextflow": "24.04.1"
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
         },
-        "timestamp": "2024-07-16T11:27:20.147806848"
+        "timestamp": "2024-10-21T08:12:13.601083178"
     },
     "fasta.gz - bam": {
         "content": [
@@ -44,7 +44,7 @@
                     ]
                 ],
                 "1": [
-                    "versions.yml:md5,e4ec57dd9ee845f5409bc7f06d89bfaf"
+                    "versions.yml:md5,f4b0fae644ad382d8293360ba4f493fc"
                 ],
                 "prophage": [
                     [
@@ -55,7 +55,7 @@
                     ]
                 ],
                 "versions": [
-                    "versions.yml:md5,e4ec57dd9ee845f5409bc7f06d89bfaf"
+                    "versions.yml:md5,f4b0fae644ad382d8293360ba4f493fc"
                 ]
             }
         ],
@@ -63,6 +63,6 @@
             "nf-test": "0.9.0",
             "nextflow": "24.04.4"
         },
-        "timestamp": "2024-10-15T09:42:12.105261789"
+        "timestamp": "2024-10-21T08:11:53.23877017"
     }
 }

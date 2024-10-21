@@ -1,15 +1,15 @@
-#!/bin/bash -e
+#!/bin/bash -e 
 
 set -eo pipefail
 
 ##########################################################
-# Prophage Tracer V1.0.0
+# Prophage Tracer V1.0.2
 #########################################################
 
 ## usage
 usage() {
     echo "
-Prophage Tracer V1.0.0 07/05/2021
+Prophage Tracer V1.0.2 07/05/2021
 usage:   bash prophage_tracer-WGS.sh [options] -m <in.sam> -r <in.fasta> -p <prefix>
 requirement：locally installed BLAST+ software
 
@@ -46,9 +46,9 @@ do
 	  usage
       exit 1
       ;;
-	?)
+	?) 
 	  echo "Invalid option: -$OPTARG"
-	  usage
+	  usage      
       exit 1
 	  ;;
   esac
@@ -76,9 +76,10 @@ cat $fasta | awk '$0 ~ ">" {print c; c=0;split($0,a,"[> ]"); printf a[2] "\t"; }
 
 
 #Get read length and insert size
-read_length=`head -n 10000 $sam_file | gawk 'BEGIN { max=0 } { if (length($10)>max) max=length($10) } END { print max }'`
-
-insert_size=`head -n 10000 $sam_file | awk '($2 ~ /163|83|99|147/ )' | cut -f9 | awk '{print sqrt($0^2)}' | awk '$0<10000'| awk '{ sum += $0;i++ } END { print int(sum/i) }'`
+#read_length=`head -n 10000 $sam_file | gawk 'BEGIN { max=0 } { if (length($10)>max) max=length($10) } END { print max }'`
+read_length=150
+#insert_size=`head -n 10000 $sam_file | awk '($2 ~ /163|83|99|147/ )' | cut -f9 | awk '{print sqrt($0^2)}' | awk '$0<10000'| awk '{ sum += $0;i++ } END { print int(sum/i) }'`
+insert_size=500
 
 #Step 1: Extracting split reads
 echo -e "Step 1: Extracting split reads"
@@ -91,9 +92,9 @@ awk '!a[$2"_"$3"_"$4"_"$5"_"$6"_"$7"_"$8]++' $prefix.sr.temp.1 | awk '($1 !~ /^@
 
 #Blastn searching reads against the reference genome.
 
-makeblastdb -in $fasta -dbtype nucl -out $prefix.nuclDB > makeblastdb.log 2>&1
+makeblastdb -in $fasta -dbtype nucl -out $prefix.nuclDB > makeblastdb.log 2>&1 
 
-blastn -query $prefix.reads.fasta -db $prefix.nuclDB -out $prefix.blastn.result -evalue 1e-3 -outfmt 6 -word_size 11 -num_threads $threads > blastn.log 2>&1
+blastn -query $prefix.reads.fasta -db $prefix.nuclDB -out $prefix.blastn.result -evalue 1e-3 -outfmt 6 -word_size 11 -num_threads $threads > blastn.log 2>&1 
 
 #Manipulate blastn result ######################################################################################下面筛选到2条后再加一个按照reads起始位点排序的命令
 
@@ -146,7 +147,7 @@ function calculation4() {
 
 
 {
-if (NR==1)
+if (NR==1) 
 {
     query = $1; contig=$2; qstart1 = $7; qend1 = $8; sstart1 = $9; send1 = $10; next
 }
@@ -155,10 +156,10 @@ if (NR==1)
 Flag_pos=split ($1,flag,"_")
 
 if ($1 == query && $2 == contig)
-{   qstart2 = $7; qend2 = $8; sstart2 = $9; send2 = $10
-
+{   qstart2 = $7; qend2 = $8; sstart2 = $9; send2 = $10 
+	
 	if (flag[Flag_pos] == 83)
-	{
+	{	
 #attB
 		if ( (qend2 > qend1 && qend1 > qstart2 && qstart2 > qstart1 && qstart1 < 10) && (send2 > sstart2 && sstart2 > send1 && send1 > sstart1) )
 		{
@@ -174,7 +175,7 @@ if ($1 == query && $2 == contig)
             evidence="attB"
 			calculation2()
 		}
-#attP
+#attP	
 	    if ( (qend2 > qend1 && qend1 > qstart2 && qstart2 > qstart1 && qstart1 < 10) && (send1 > sstart1 && sstart1 > send2 && send2 > sstart2) )
 		{
 		    SR_type="SR"
@@ -192,7 +193,7 @@ if ($1 == query && $2 == contig)
 	}
 
 	if (flag[Flag_pos] == 147)
-	{
+	{	
 #attB
 		if ( (qend2 > qend1 && qend1 > qstart2 && qstart2 > qstart1 && qstart1 < 10) && (send2 > sstart2 && sstart2 > send1 && send1 > sstart1) )
 		{
@@ -208,7 +209,7 @@ if ($1 == query && $2 == contig)
             evidence="attB"
 			calculation2()
 		}
-#attP
+#attP	
 	    if ( (qend2 > qend1 && qend1 > qstart2 && qstart2 > qstart1 && qstart1 < 10) && (send1 > sstart1 && sstart1 > send2 && send2 > sstart2) )
 		{
 		    SR_type="SR"
@@ -226,7 +227,7 @@ if ($1 == query && $2 == contig)
 	}
 
 	if (flag[Flag_pos] == 97)
-	{
+	{	
 #attB
 		if ( (qend2 > qend1 && qend1 > qstart2 && qstart2 > qstart1 && qstart1 < 10) && (send2 > sstart2 && sstart2 > send1 && send1 > sstart1) )
 		{
@@ -242,7 +243,7 @@ if ($1 == query && $2 == contig)
             evidence="attB"
 			calculation2()
 		}
-#attP
+#attP	
 	    if ( (qend2 > qend1 && qend1 > qstart2 && qstart2 > qstart1 && qstart1 < 10) && (send1 > sstart1 && sstart1 > send2 && send2 > sstart2) )
 		{
 		    SR_type="SR"
@@ -258,9 +259,9 @@ if ($1 == query && $2 == contig)
 			calculation4()
 	    }
 	}
-
+	
 	if (flag[Flag_pos] == 161)
-	{
+	{	
 #attB
 		if ( (qend2 > qend1 && qend1 > qstart2 && qstart2 > qstart1 && qstart1 < 10) && (send2 > sstart2 && sstart2 > send1 && send1 > sstart1) )
 		{
@@ -276,7 +277,7 @@ if ($1 == query && $2 == contig)
             evidence="attB"
 			calculation2()
 		}
-#attP
+#attP	
 	    if ( (qend2 > qend1 && qend1 > qstart2 && qstart2 > qstart1 && qstart1 < 10) && (send1 > sstart1 && sstart1 > send2 && send2 > sstart2) )
 		{
 		    SR_type="SR"
@@ -293,11 +294,11 @@ if ($1 == query && $2 == contig)
 	    }
 	}
 
-
+	
 ####Second
 
 	if (flag[Flag_pos] == 99)
-	{
+	{	
 #attB
 		if ( (qend2 > qend1 && qend1 > qstart2 && qstart2 > qstart1 && qstart1 < 10) && (send2 > sstart2 && sstart2 > send1 && send1 > sstart1) )
 		{
@@ -313,7 +314,7 @@ if ($1 == query && $2 == contig)
             evidence="attB"
 			calculation2()
 		}
-#attP
+#attP	
 	    if ( (qend2 > qend1 && qend1 > qstart2 && qstart2 > qstart1 && qstart1 < 10) && (send1 > sstart1 && sstart1 > send2 && send2 > sstart2) )
 		{
 		    SR_type="SR"
@@ -331,7 +332,7 @@ if ($1 == query && $2 == contig)
 	}
 
 	if (flag[Flag_pos] == 163)
-	{
+	{	
 #attB
 		if ( (qend2 > qend1 && qend1 > qstart2 && qstart2 > qstart1 && qstart1 < 10) && (send2 > sstart2 && sstart2 > send1 && send1 > sstart1) )
 		{
@@ -347,7 +348,7 @@ if ($1 == query && $2 == contig)
             evidence="attB"
 			calculation2()
 		}
-#attP
+#attP	
 	    if ( (qend2 > qend1 && qend1 > qstart2 && qstart2 > qstart1 && qstart1 < 10) && (send1 > sstart1 && sstart1 > send2 && send2 > sstart2) )
 		{
 		    SR_type="SR"
@@ -365,7 +366,7 @@ if ($1 == query && $2 == contig)
 	}
 
 	if (flag[Flag_pos] == 81)
-	{
+	{	
 #attB
 		if ( (qend2 > qend1 && qend1 > qstart2 && qstart2 > qstart1 && qstart1 < 10) && (send2 > sstart2 && sstart2 > send1 && send1 > sstart1) )
 		{
@@ -381,7 +382,7 @@ if ($1 == query && $2 == contig)
             evidence="attB"
 			calculation2()
 		}
-#attP
+#attP	
 	    if ( (qend2 > qend1 && qend1 > qstart2 && qstart2 > qstart1 && qstart1 < 10) && (send1 > sstart1 && sstart1 > send2 && send2 > sstart2) )
 		{
 		    SR_type="SR"
@@ -397,9 +398,9 @@ if ($1 == query && $2 == contig)
 			calculation4()
 	    }
 	}
-
+	
 	if (flag[Flag_pos] == 145)
-	{
+	{	
 #attB
 		if ( (qend2 > qend1 && qend1 > qstart2 && qstart2 > qstart1 && qstart1 < 10) && (send2 > sstart2 && sstart2 > send1 && send1 > sstart1) )
 		{
@@ -415,7 +416,7 @@ if ($1 == query && $2 == contig)
             evidence="attB"
 			calculation2()
 		}
-#attP
+#attP	
 	    if ( (qend2 > qend1 && qend1 > qstart2 && qstart2 > qstart1 && qstart1 < 10) && (send1 > sstart1 && sstart1 > send2 && send2 > sstart2) )
 		{
 		    SR_type="SR"
@@ -431,19 +432,19 @@ if ($1 == query && $2 == contig)
 			calculation4()
 	    }
 	}
-
+	
 
 }
 else if ($1 != query)
 {
-	query = $1; contig = $2; qstart1 = $7; qend1 = $8; sstart1 = $9; send1 = $10
+	query = $1; contig = $2; qstart1 = $7; qend1 = $8; sstart1 = $9; send1 = $10   
 }
-
+	
 }' $prefix.sr.temp.2 | awk '
 
 #Cluster split reads
-
-BEGIN{FS="\t";OFS="\t"}
+ 
+BEGIN{FS="\t";OFS="\t"} 
 
 {
     if( $8 > '"$prophage_size_min"' && $8 < '"$prophage_size_max"' ) a[$9]=$3"\t"$4"\t"$5"\t"$6"\t"$7"\t"$8"\t"$10
@@ -453,24 +454,24 @@ END{
 
 count=1
 
-for (i in a)
+for (i in a) 
 {
-	split(a[i],b,"\t")
+	split(a[i],b,"\t") 
 	print i,b[1],b[2],b[3],b[4],b[5],b[6],b[7],"candidate_"count
 
     for (j in a)
 	{
-		split(a[j],c,"\t")
+		split(a[j],c,"\t")  
 	    if ( i != j && c[7] == b[7])
 		{
 		    if (b[7]==c[7] && b[2]-c[2] > -5 && b[2]-c[2] < 5 && b[4]-c[4] > -5 && b[4]-c[4] < 5 && b[6]-c[6] > -10 && b[6]-c[6] < 10)
 			{
 				print j,c[1],c[2],c[3],c[4],c[5],c[6],c[7],"candidate_"count
-				delete a[j]
-			}
+				delete a[j]				
+			}	
         }
 	}
-    count++
+    count++		
     delete a[i]
 }
 }' |awk '{if (!($3 == "")) print $0}' >$prefix.sr.temp.3
@@ -478,7 +479,7 @@ for (i in a)
 
 awk '
 
-BEGIN{FS="\t";OFS="\t"}
+BEGIN{FS="\t";OFS="\t"} 
 {
 if ( !(a[$NF,1] >0) )
 {
@@ -492,7 +493,7 @@ if ( !(a[$NF,2] >0) )
 
 if ($2 == "attB")
 {
-    a[$NF,1]+=1
+    a[$NF,1]+=1 
 	sum[$NF,3]+=$3
 	sum[$NF,4]+=$4
 	sum[$NF,5]+=$5
@@ -512,7 +513,7 @@ else if ($2 == "attP")
 }
 }
 END{
-    for(i in a)
+    for(i in a) 
 	{
 	    split(i,idx,SUBSEP)
         a[idx[1],3]=int(sum[idx[1],3]/(a[idx[1],1]+a[idx[1],2]))
@@ -530,7 +531,7 @@ if [ $? -eq 0 ]
 then
 	echo -e "Step 2: Extracting discordant read pairs "
 else
-    echo "!!!Unsuccessfully summarizing informations of split reads!!!"
+    echo "!!!Unsuccessfully summarizing informations of split reads!!!" 
 	exit
 fi
 
@@ -542,7 +543,7 @@ awk --re-interval '$1 ~ /^@/ || ($2 ~ /97|145|81|161/ && ($6 ~ /^[1][0-5][0-9]M/
 BEGIN {FS="\t";OFS="\t"}
 
 {
-if (NR==1)
+if (NR==1) 
 {
     read = $1; read_flag = $2; len=$9; a[$1] = $0; next
 }
@@ -554,29 +555,29 @@ if ($1 == read)
 	{
 	    print "DRP","attP",a[$1]"\n""DRP","attP",$0
 	}
-
+	
 	else if ((read_flag == 145 && len < 0 && $2 ==97 && $9 >0) || (read_flag == 97 && len > 0 && $2 == 145 && $9 <0) || (read_flag == 81 && len < 0 && $2 == 161 && $9 >0) || (read_flag == 161 && len > 0 && $2 == 81 && $9 <0))
 	{
 	    print "DRP","attB",a[$1]"\n""DRP","attB",$0
 	}
-}
+}	
 
 else if ($1 != read)
 {
-	read = $1; read_flag = $2; len=$9; a[$1] = $0; next
+	read = $1; read_flag = $2; len=$9; a[$1] = $0; next   
 }
-
+	
 }' | awk '($4 ~ /97|161|81|145/ && $11 > 0)' | awk 'BEGIN {FS="\t";OFS="\t"} NR==FNR {split($1,readname,"_"); a[readname[1]]=readname[1]} NR>FNR  { if(!($3 in a)) print $0}' $prefix.sr.temp.2 - >$prefix.drp.temp.1
 
 ##First round merging DRP reads accroding to the SR position. Not merged DRP reads collected in the '$prefix'.drp.temp.left file
 awk ' BEGIN {FS="\t";OFS="\t"}
 
-FILENAME==ARGV[1] { a[$3]=$0; next}
-FILENAME==ARGV[2] {
+FILENAME==ARGV[1] { a[$3]=$0; next} 
+FILENAME==ARGV[2] {  
 
     T_L=int('"$insert_size"'*1.6) #threshold low for clsutering
     T_H=int('"$insert_size"'*3.5) #threshold low for clsutering
-
+ 
 	attP_count = 0
 	attB_count = 0
 	for (i in a)
@@ -586,13 +587,13 @@ FILENAME==ARGV[2] {
 	   {
 	       if (b[2] == "attP" && b[6] >= $5 && $8-b[10]+10 > '"$read_length"' )
 		   {
-		       attP_count++
+		       attP_count++  
 		       delete a[i]
 		   }
 		   else if (b[2] == "attB" && $6-b[6]+10 > '"$read_length"'  && b[10] >= $7)
 		   {
-		       attB_count++
-		       delete a[i]
+		       attB_count++ 	   
+		       delete a[i]	   
 		   }
 		}
 	}
@@ -615,7 +616,7 @@ if test -s $prefix.drp.temp.left; then
 
 awk '
 
-BEGIN{FS="\t";OFS="\t"}
+BEGIN{FS="\t";OFS="\t"} 
 
 {
     if($11 > '"$prophage_size_min"' && $11 < '"$prophage_size_max"') a[$3]=$2"\t"$4"\t"$6"\t"$10"\t"$11"\t"$5
@@ -625,27 +626,27 @@ END{
 count=1
 T_L=int('"$insert_size"'*2.2) #threshold low for clsutering
 T_H=int('"$insert_size"'*3.5) #threshold low for clsutering
-for (i in a)
+for (i in a) 
 {
-	split(a[i],b,"\t")
+	split(a[i],b,"\t") 
 	print i,b[1],b[2],b[3],b[4],b[5],b[6],"DRP_candidate_"count
 
     for (j in a)
-	{
-	    split(a[j],c,"\t")
+	{	
+	    split(a[j],c,"\t")  
 	    if ( i != j )
 		{
 		    if (b[6]==c[6] && b[3]-c[3] > -T_L && b[3]-c[3] < T_L && b[4]-c[4] > -T_L && b[4]-c[4] < T_L && b[5]-c[5] > -T_H && b[5]-c[5] < T_H)
 			{
 			    if ((b[1] == "attB" && c[1] == "attB")||(b[1] == "attP" && c[1] == "attP")||(b[1] == "attB" && c[1] == "attP" && b[3] < c[3] && b[4] > c[4])||(b[1] == "attP" && c[1] == "attB" && b[3] > c[3] && b[4] < c[4]))
-				    {
+				    { 
 					    print j,c[1],c[2],c[3],c[4],c[5],c[6],"DRP_candidate_"count
 				        delete a[j]
-                	}
-			}
+                	}		
+			}	
         }
 	}
-    count++
+    count++		
     delete a[i]
 }
 }' $prefix.drp.temp.left >$prefix.drp.temp.2
@@ -662,10 +663,10 @@ if test -s $prefix.drp.temp.2; then
 
 awk '{if (!($3 == "")) print $0}' $prefix.drp.temp.2| awk '
 
-BEGIN{FS="\t";OFS="\t"}
+BEGIN{FS="\t";OFS="\t"} 
 {
 
-#if (NR==1)
+#if (NR==1) 
 #{
 #    a[$NF,3] = $4+0; a[$NF,4] = $5+0
 #}
@@ -684,7 +685,7 @@ if ( !(a[$NF,2] >0) )
 
 if ($2 == "attB")
 {
-    a[$NF,1]+=1
+    a[$NF,1]+=1 
 	a[$NF,3]=a[$NF,3]>=$4?a[$NF,3]:$4
 	a[$NF,4]=a[$NF,4]<=$5?a[$NF,4]:$5
 	a[$NF,5]=$7
@@ -698,9 +699,9 @@ else if ($2 == "attP")
 }
 }
 END{
-    for(i in a)
+    for(i in a) 
 	{
-	    split(i,idx,SUBSEP)
+	    split(i,idx,SUBSEP) 
 		print idx[1],a[idx[1],1],a[idx[1],2],a[idx[1],1]+a[idx[1],2],a[idx[1],3],a[idx[1],4],a[idx[1],4]-a[idx[1],3],a[idx[1],5]
 	}
 }
@@ -717,7 +718,7 @@ if [ $? -eq 0 ]
 then
 	echo -e "Step 3: Combine split reads and discordant read pairs"
 else
-    echo "!!!Unsuccessfully extracting discordant read pairs!!!"
+    echo "!!!Unsuccessfully extracting discordant read pairs!!!" 
 	exit
 fi
 
@@ -767,7 +768,7 @@ function calculation4() {
 	 CONTIGPOSITION="="contig"::="$2
 	 print SR_type,contig"::"$2,evidence,attL_start,attL_end,attR_start,attR_end,prophage_size,$1,CONTIGPOSITION
 }
-
+	 
 function calculation5() {
      attL_start=sstart2-qend1+qstart2
      attL_end=sstart2
@@ -832,7 +833,7 @@ function calculation10() {
 FILENAME==ARGV[1] {CONTIGLEN[$1]=$2}
 
 FILENAME==ARGV[2] {
-if (FNR==1)
+if (FNR==1) 
 {
     query = $1; contig=$2; qstart1 = $7; qend1 = $8; sstart1 = $9; send1 = $10; next
 }
@@ -841,11 +842,11 @@ if (FNR==1)
 Flag_pos=split ($1,flag,"_")
 
 if ($1 == query && $2 != contig)
-{   qstart2 = $7; qend2 = $8; sstart2 = $9; send2 = $10
+{   qstart2 = $7; qend2 = $8; sstart2 = $9; send2 = $10 
 
-#Plus-Plus or Minus-Minus
+#Plus-Plus or Minus-Minus	
 	if (flag[Flag_pos] ~ /83|97|147|161|81|99|145|163/ && (qend2 > qend1 && qend1 > qstart2 && qstart2 > qstart1 && qstart1 < 10))
-	{
+	{	
 		if ( (send2 > sstart2 && send1 > sstart1) && CONTIGLEN[contig]-send1+send2 > '"$prophage_size_min"' && CONTIGLEN[contig]-send1+send2 < '"$prophage_size_max"' )
 		{
 		    SR_type="SR"
@@ -858,11 +859,11 @@ if ($1 == query && $2 != contig)
             evidence="attP"
 			calculation3()
 		}
-    }
-
-#Plus-Minus or Minus-Plus
+    }		
+	
+#Plus-Minus or Minus-Plus	
 	if (flag[Flag_pos] ~ /65|83|129|147|99|113|163|177/ && (qend2 > qend1 && qend1 > qstart2 && qstart2 > qstart1 && qstart1 < 10))
-	{
+	{	
 		if ( flag[Flag_pos] ~ /99|113|163|177/ && (send2 > sstart2 && send1 < sstart1) && send1+send2 > '"$prophage_size_min"' && send1+send2 < '"$prophage_size_max"' )
 		{
 		    SR_type="SR"
@@ -872,7 +873,7 @@ if ($1 == query && $2 != contig)
 			else if($2 > contig)
 			{ calculation4() }
 		}
-
+		
 		  else if ( flag[Flag_pos] ~ /99|113|163|177/ && (send2 > sstart2 && send1 < sstart1) && (CONTIGLEN[$2]+CONTIGLEN[contig]-send2-send1 > '"$prophage_size_min"') && (CONTIGLEN[$2]+CONTIGLEN[contig]-send2-send1 < '"$prophage_size_max"') )
 		{
 		    SR_type="SR"
@@ -882,7 +883,7 @@ if ($1 == query && $2 != contig)
 			else if($2 > contig)
 			{ calculation8() }
 		}
-
+		
 		else if ( flag[Flag_pos] ~ /65|83|129|147/ && (send2 < sstart2 && send1 > sstart1) && (send1+send2 > '"$prophage_size_min"') && (send1+send2 < '"$prophage_size_max"') )
 		{
 		    SR_type="SR"
@@ -892,7 +893,7 @@ if ($1 == query && $2 != contig)
 			else if($2 > contig)
 			{ calculation6() }
 		}
-
+		
 		else if ( flag[Flag_pos] ~ /65|83|129|147/ && (send2 < sstart2 && send1 > sstart1) && (CONTIGLEN[$2]+CONTIGLEN[contig]-send2-send1 > '"$prophage_size_min"') && (CONTIGLEN[$2]+CONTIGLEN[contig]-send2-send1 < '"$prophage_size_max"'))
 		{
 		    SR_type="SR"
@@ -902,22 +903,22 @@ if ($1 == query && $2 != contig)
 			else if($2 > contig)
 			{ calculation10() }
 		}
-    }
+    }		
 
 
 }
 else if ($1 != query)
 {
-	query = $1; contig = $2; qstart1 = $7; qend1 = $8; sstart1 = $9; send1 = $10
+	query = $1; contig = $2; qstart1 = $7; qend1 = $8; sstart1 = $9; send1 = $10   
 }
-
+	
 }' contiglength.file $prefix.sr.temp.2 >$prefix.WGS.sr.temp.3
 
 awk '
 
 #Cluster split reads
-
-BEGIN{FS="\t";OFS="\t"}
+ 
+BEGIN{FS="\t";OFS="\t"} 
 
 {
     if( $8 > '"$prophage_size_min"' && $8 < '"$prophage_size_max"' ) a[$9]=$3"\t"$4"\t"$5"\t"$6"\t"$7"\t"$8"\t"$10
@@ -929,31 +930,31 @@ count=1
 T_L=int('"$read_length"'/3) #threshold low for clsutering
 T_H=int('"$read_length"'*0.7) #threshold low for clsutering
 
-for (i in a)
+for (i in a) 
 {
-	split(a[i],b,"\t")
+	split(a[i],b,"\t") 
 	print i,b[1],b[2],b[3],b[4],b[5],b[6],b[7],"WGS_candidate_"count
 
     for (j in a)
 	{
-		split(a[j],c,"\t")
+		split(a[j],c,"\t")  
 	    if ( i != j && c[7] == b[7])
 		{
 		    if (b[7]==c[7] && b[2]-c[2] > -T_L && b[2]-c[2] < T_L && b[4]-c[4] > -T_L && b[4]-c[4] < T_L && b[6]-c[6] > -T_H && b[6]-c[6] < T_H)
 			{
 				print j,c[1],c[2],c[3],c[4],c[5],c[6],c[7],"WGS_candidate_"count
-				delete a[j]
-			}
+				delete a[j]				
+			}	
         }
 	}
-    count++
+    count++		
     delete a[i]
 }
 }' $prefix.WGS.sr.temp.3|awk '{if (!($3 == "")) print $0}' >$prefix.WGS.sr.temp.4
 
 awk '
 
-BEGIN{FS="\t";OFS="\t"}
+BEGIN{FS="\t";OFS="\t"} 
 {
 if ( !(a[$NF,1] >0) )
 {
@@ -967,7 +968,7 @@ if ( !(a[$NF,2] >0) )
 
 if ($2 == "attB")
 {
-    a[$NF,1]+=1
+    a[$NF,1]+=1 
 	sum[$NF,3]+=$3
 	sum[$NF,4]+=$4
 	sum[$NF,5]+=$5
@@ -987,7 +988,7 @@ else if ($2 == "attP")
 }
 }
 END{
-    for(i in a)
+    for(i in a) 
 	{
 	    split(i,idx,SUBSEP)
         a[idx[1],3]=int(sum[idx[1],3]/(a[idx[1],1]+a[idx[1],2]))
@@ -1008,7 +1009,7 @@ awk --re-interval '$1 ~ /^@/ || ($2 ~ /97|145|81|161|177|113|129|65/ && ($6 ~ /^
 BEGIN {FS="\t";OFS="\t"}
 
 {
-if (NR==1)
+if (NR==1) 
 {
     read = $1; read_flag = $2; len=$9; a[$1] = $0; next
 }
@@ -1020,29 +1021,29 @@ if ($1 == read)
 	{
 	    print "DRP","attPorattB",a[$1]"\n""DRP","attPorattB",$0
 	}
-
+	
 	else if (read_flag ~ /177|113|129|65/)
 	{
 	    print "DRP","attPorattB",a[$1]"\n""DRP","attPorattB",$0
 	}
-}
+}	
 
 else if ($1 != read)
 {
-	read = $1; read_flag = $2; len=$9; a[$1] = $0; next
+	read = $1; read_flag = $2; len=$9; a[$1] = $0; next   
 }
-
+	
 }' | awk 'BEGIN {FS="\t";OFS="\t"} ($4 ~ /97|81|65|113/ )' | awk 'BEGIN {FS="\t";OFS="\t"} NR==FNR {split($9,readname,"_"); a[readname[1]]=readname[1]} NR>FNR { if(!($3 in a)) print $0}' $prefix.WGS.sr.temp.3 - >$prefix.WGS.drp.temp.1
 
 
 awk ' BEGIN {FS="\t";OFS="\t"}
 
-FILENAME==ARGV[1] { a[$3]=$0; next}
-FILENAME==ARGV[2] {
+FILENAME==ARGV[1] { a[$3]=$0; next} 
+FILENAME==ARGV[2] {  
 
     T_L=int('"$insert_size"'*1.6) #threshold low for clsutering
     T_H=int('"$insert_size"'*3.5) #threshold low for clsutering
-
+ 
 	attP_count = 0
 	attB_count = 0
 	for (i in a)
@@ -1054,7 +1055,7 @@ FILENAME==ARGV[2] {
 	        if (b[5]==d[1] && b[9]==e[2])
 	        {
 	            if($6-b[6] > -T_L && $6-b[6] <T_L && $7-b[10] >-T_L && $7-b[10] <T_L )
-	            {
+	            {   
 	                if ($6-b[6]+10 > '"$read_length"' && b[10] >= $7)
 		            {
 		                attB_count++
@@ -1062,15 +1063,15 @@ FILENAME==ARGV[2] {
 		            }
 	                else if (b[6] >= $5 && $8-b[10]+10 > '"$read_length"'  )
 		            {
-		                attP_count++
+		                attP_count++ 
 		                delete a[i]
-		            }
+		            }             			  
 		        }
 		    }
 		    else if (b[5]==e[2] && b[9]==d[1])
 		    {
 		        if($6-b[10] > -T_L && $6-b[10] <T_L && $7-b[6] >-T_L && $7-b[6] <T_L )
-	            {
+	            {   
 	                if ($6-b[10]+10 > '"$read_length"' && b[6] >= $7)
 		            {
 		                attB_count++
@@ -1078,10 +1079,10 @@ FILENAME==ARGV[2] {
 		            }
 	                else if ( b[10] >= $5 && $8-b[6]+10 > '"$read_length"'  )
 		            {
-		               attP_count++
+		               attP_count++  
 		               delete a[i]
-                    }
-		        }
+                    }				   
+		        }		
 		    }
 		}
 		else if(d[1]=="" && e[1]=="")
@@ -1089,7 +1090,7 @@ FILENAME==ARGV[2] {
 	        if (b[5]==d[2] && b[9]==e[2])
 	        {
 	            if($6-b[6] > -T_L && $6-b[6] <T_L && $7-b[10] >-T_L && $7-b[10] <T_L )
-	            {
+	            { 
 	                if (b[6] >= $5 && b[10] >= $7)
 		            {
 		                attB_count++
@@ -1097,7 +1098,7 @@ FILENAME==ARGV[2] {
 		            }
 	                else if ($6-b[6]+10 >= '"$read_length"' && $8-b[10]+10 >= '"$read_length"')
 		            {
-		                attP_count++
+		                attP_count++ 
 		                delete a[i]
 		            }
 		        }
@@ -1105,7 +1106,7 @@ FILENAME==ARGV[2] {
 	        else if (b[5]==e[2] && b[9]==d[2])
 	        {
 	            if($7-b[6] > -T_L && $7-b[6] <T_L && $6-b[10] >-T_L && $6-b[10] <T_L )
-	            {
+	            {   
 	                if ((b[10] >= $5 && b[6] >= $7))
 		            {
 		                attB_count++
@@ -1113,18 +1114,18 @@ FILENAME==ARGV[2] {
 		            }
 	                else if ( $8-b[6]+10 >= '"$read_length"' && $6-b[10]+10 > '"$read_length"')
 		            {
-		                attP_count++
+		                attP_count++ 
 		                delete a[i]
 		            }
 		        }
 		    }
-		}
+		}		
 		else if(d[2]=="" && e[2]=="")
 		{
 	        if (b[5]==d[1] && b[9]==e[1])
 	        {
 	            if($6-b[6] > -T_L && $6-b[6] <T_L && $7-b[10] >-T_L && $7-b[10] <T_L )
-	            {
+	            {   
 	                if ($6-b[6]+10 >= '"$read_length"' && $8-b[10]+10 > '"$read_length"')
 		            {
 		                attB_count++
@@ -1132,7 +1133,7 @@ FILENAME==ARGV[2] {
 		            }
 	                else if (b[6] >= $5 && b[10] >= $7)
 		            {
-		                attP_count++
+		                attP_count++ 
 		                delete a[i]
 		            }
 		        }
@@ -1140,7 +1141,7 @@ FILENAME==ARGV[2] {
 	        else if (b[5]==e[1] && b[9]==d[1])
 	        {
 	            if($7-b[6] > -T_L && $7-b[6] <T_L && $6-b[10] >-T_L && $6-b[10] <T_L )
-	            {
+	            {   
 	                if ($8-b[6]+10 >= '"$read_length"' && $6-b[10]+10 > '"$read_length"')
 		            {
 		                attB_count++
@@ -1148,12 +1149,12 @@ FILENAME==ARGV[2] {
 		            }
 	                else if (b[6] >= $7 && b[10] >= $5)
 		            {
-		                attP_count++
+		                attP_count++ 
 		                delete a[i]
 		            }
 		        }
 		    }
-		}
+		}		
 	}
     f[$1]=$0"\t"attB_count"\t"attP_count"\t"attB_count+attP_count
 	}
@@ -1180,7 +1181,7 @@ cat $prefix.sr-drp.temp.out $prefix.WGS.sr-drp.temp.out | awk '
 
 BEGIN {FS="\t";OFS="\t"}
 
-FILENAME==ARGV[1] { print $0; next}
+FILENAME==ARGV[1] { print $0; next} 
 FILENAME==ARGV[2]  { print $1,"0","0","0",$5,"-",$6,"-",$7,$8,$2,$3,$4}
 
 ' - $prefix.drp.temp.out >$prefix.temp.out
@@ -1198,23 +1199,23 @@ fi
 
 if [ -f "$prefix.SR_evidence.list1" ]
 then
-
+ 
  rm $prefix.SR_evidence.list1
-
+ 
 fi
 
 awk ' BEGIN {FS="\t";OFS="\t";i=1;print "prophage_candidate","contig","attL_start","attL_end","attR_start","attR_end","prophage_size","SR_evidence_attB","SR_evidence_attP","DRP_evidence_attB","DRP_evidence_attP"}
 
 
-{
-	if ( $9 > '"$prophage_size_min"' && $9 < '"$prophage_size_max"')
+{		
+	if ( $9 > '"$prophage_size_min"' && $9 < '"$prophage_size_max"')  
 	{
 	    if(($4 >= '"$SR_COUNT"' && $13 >='"$DRP_COUNT"'))
-	    {
+	    {    
 		    if ($4 != 0 && $5 > 1 && $7 >1)
 		    {
 		        if ( $6-$5 >= '"$att_length_min"' )
-			    {
+			    {    
 				    print "candidate_"i,$10,$5,$6,$7,$8,$9,$2,$3,$11,$12
 					print $1 >> "'$prefix'.SR_evidence.list1"
 	                i++
@@ -1225,10 +1226,10 @@ awk ' BEGIN {FS="\t";OFS="\t";i=1;print "prophage_candidate","contig","attL_star
 				print "candidate_"i,$10,$5,$6,$7,$8,$9,$2,$3,$11,$12
 				i++
 			}
-
-        }
+			
+        }				    
 	}
-
+	
 }' $prefix.temp.out > $prefix.prophage.out
 
 
@@ -1244,7 +1245,7 @@ blastn -query $prefix.SR.reads.fasta -db $prefix.nuclDB -out $prefix.SR.blastn.r
 
 #Clean up
 if [ -f "$prefix.SR_evidence.list1" ]
-then
+then 
 rm $prefix.SR_evidence.list1
 fi
 
@@ -1256,8 +1257,9 @@ then
     echo "Successfully running prophage_GPS.sh"
 	echo -e "checking predicted prophage in $prefix.prophage.out\n\n"
 else
-    echo "!!!Unsuccessfully running prophage_GPS.sh!!!"
+    echo "!!!Unsuccessfully running prophage_GPS.sh!!!" 
 	exit
 fi
 
 exit 0
+ 
