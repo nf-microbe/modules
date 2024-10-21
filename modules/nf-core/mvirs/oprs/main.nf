@@ -39,7 +39,7 @@ process MVIRS_OPRS {
     ### Extract fasta header information into TSV
     grep "^>" ${prefix}.mvirs.fasta \\
         | sed 's/^>//; s/\t/ /; s/:/ /; s/-/ /g; s/OPRs=//; s/HSs=//; s/SF=//' \\
-        | awk '{print \$1"\\t"\$2"\\t"\$3"\\t"\$4"\\t"\$5"\\t"\$6}' > ${prefix}.mvirs.prophages
+        | awk '{print \$1"\\t"\$2"\\t"\$3"\\t"\$4"\\t"\$5"\\t"\$6}' > ${prefix}.mvirs.prophages  || true
 
     gzip -f ${prefix}.mvirs.fasta
 
