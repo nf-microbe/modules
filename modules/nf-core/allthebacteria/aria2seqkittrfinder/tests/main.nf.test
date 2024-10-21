@@ -9,14 +9,14 @@ nextflow_process {
     tag "allthebacteria"
     tag "allthebacteria/aria2seqkittrfinder"
 
-    test("achromobacter_xylosoxidans__01") {
+    test("atb.assembly.incr_release.202408.batch.1.tar.xz") {
         when {
             process {
                 """
                 input[0] = [
-                    [ id:'achromobacter_xylosoxidans__01' ], // meta map
+                    [ id:'atb.assembly.incr_release.202408.batch.1.tar.xz' ], // meta map
                     [
-                        "https://ftp.ebi.ac.uk/pub/databases/AllTheBacteria/Releases/0.2/assembly/achromobacter_xylosoxidans__01.asm.tar.xz"
+                        "https://osf.io/download/bfeqh/"
                     ]
                 ]
                 """
@@ -30,7 +30,7 @@ nextflow_process {
         }
     }
 
-    test("achromobacter_xylosoxidans__01 - stub") {
+    test("atb.assembly.incr_release.202408.batch.1.tar.xz - stub") {
         options "-stub"
         when {
             process {
@@ -38,7 +38,7 @@ nextflow_process {
                 input[0] = [
                     [ id:'achromobacter_xylosoxidans__01' ], // meta map
                     [
-                        "https://ftp.ebi.ac.uk/pub/databases/AllTheBacteria/Releases/0.2/assembly/achromobacter_xylosoxidans__01.asm.tar.xz"
+                        "https://osf.io/download/bfeqh/"
                     ]
                 ]
                 """

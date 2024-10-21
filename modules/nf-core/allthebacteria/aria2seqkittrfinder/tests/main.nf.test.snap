@@ -1,21 +1,21 @@
 {
-    "achromobacter_xylosoxidans__01": {
+    "atb.assembly.incr_release.202408.batch.1.tar.xz": {
         "content": [
             {
                 "0": [
                     [
                         {
-                            "id": "achromobacter_xylosoxidans__01"
+                            "id": "atb.assembly.incr_release.202408.batch.1.tar.xz"
                         },
-                        "achromobacter_xylosoxidans__01.trfinder.fasta.gz:md5,eec7430cdc2ca58b32a80563d620b450"
+                        "atb.assembly.incr_release.202408.batch.1.tar.xz.trfinder.fasta.gz:md5,adbf4eabc203c99ab102737edb8b3bba"
                     ]
                 ],
                 "1": [
                     [
                         {
-                            "id": "achromobacter_xylosoxidans__01"
+                            "id": "atb.assembly.incr_release.202408.batch.1.tar.xz"
                         },
-                        "achromobacter_xylosoxidans__01.trfinder.tsv:md5,9be5dec8d2f7ff5ed8ae346d37d73e14"
+                        "atb.assembly.incr_release.202408.batch.1.tar.xz.trfinder.tsv:md5,e1a7850e590af17a2337ac882f0a4a76"
                     ]
                 ],
                 "2": [
@@ -24,17 +24,17 @@
                 "fasta": [
                     [
                         {
-                            "id": "achromobacter_xylosoxidans__01"
+                            "id": "atb.assembly.incr_release.202408.batch.1.tar.xz"
                         },
-                        "achromobacter_xylosoxidans__01.trfinder.fasta.gz:md5,eec7430cdc2ca58b32a80563d620b450"
+                        "atb.assembly.incr_release.202408.batch.1.tar.xz.trfinder.fasta.gz:md5,adbf4eabc203c99ab102737edb8b3bba"
                     ]
                 ],
                 "tsv": [
                     [
                         {
-                            "id": "achromobacter_xylosoxidans__01"
+                            "id": "atb.assembly.incr_release.202408.batch.1.tar.xz"
                         },
-                        "achromobacter_xylosoxidans__01.trfinder.tsv:md5,9be5dec8d2f7ff5ed8ae346d37d73e14"
+                        "atb.assembly.incr_release.202408.batch.1.tar.xz.trfinder.tsv:md5,e1a7850e590af17a2337ac882f0a4a76"
                     ]
                 ],
                 "versions": [
@@ -46,9 +46,9 @@
             "nf-test": "0.9.0",
             "nextflow": "24.04.4"
         },
-        "timestamp": "2024-10-11T08:32:34.133236198"
+        "timestamp": "2024-10-21T09:15:34.98738437"
     },
-    "achromobacter_xylosoxidans__01 - stub": {
+    "atb.assembly.incr_release.202408.batch.1.tar.xz - stub": {
         "content": [
             {
                 "0": [
@@ -95,6 +95,6 @@
             "nf-test": "0.9.0",
             "nextflow": "24.04.4"
         },
-        "timestamp": "2024-10-11T07:34:51.605829282"
+        "timestamp": "2024-10-21T09:16:19.540946236"
     }
 }
