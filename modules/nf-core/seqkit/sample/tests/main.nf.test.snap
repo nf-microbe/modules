@@ -1,13 +1,55 @@
 {
+    "sarscov2-fastq pe - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        [
+                            "test.subsampled_1.fastq.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                            "test.subsampled_2.fastq.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                        ]
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,c1281e3f2fe960a95147ff8efe52986a"
+                ],
+                "fastx": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        [
+                            "test.subsampled_1.fastq.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                            "test.subsampled_2.fastq.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                        ]
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,c1281e3f2fe960a95147ff8efe52986a"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-10-21T13:11:12.35489224"
+    },
     "sarscov2-genome_fasta-stub": {
         "content": [
             {
                 "0": [
                     [
                         {
-                            "id": "test"
+                            "id": "test",
+                            "assembler": "megahit"
                         },
-                        "test.fasta:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test.subsampled.fasta:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "1": [
@@ -16,9 +58,10 @@
                 "fastx": [
                     [
                         {
-                            "id": "test"
+                            "id": "test",
+                            "assembler": "megahit"
                         },
-                        "test.fasta:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test.subsampled.fasta:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "versions": [
@@ -30,17 +73,21 @@
             "nf-test": "0.9.0",
             "nextflow": "24.04.4"
         },
-        "timestamp": "2024-10-11T11:30:40.03141103"
+        "timestamp": "2024-10-21T12:04:13.400425583"
     },
-    "sarscov2-test_1_fastq_gz": {
+    "sarscov2-fastq pe": {
         "content": [
             {
                 "0": [
                     [
                         {
-                            "id": "test"
+                            "id": "test",
+                            "single_end": false
                         },
-                        "test.fastq.gz:md5,3dd77b8b832bb977908008619eeab7be"
+                        [
+                            "test.subsampled_1.fastq.gz:md5,4b3ded73f93e3d5217ac094f5995e396",
+                            "test.subsampled_2.fastq.gz:md5,e2d292ac9edfc58ef13d5b3226b078f3"
+                        ]
                     ]
                 ],
                 "1": [
@@ -49,9 +96,13 @@
                 "fastx": [
                     [
                         {
-                            "id": "test"
+                            "id": "test",
+                            "single_end": false
                         },
-                        "test.fastq.gz:md5,3dd77b8b832bb977908008619eeab7be"
+                        [
+                            "test.subsampled_1.fastq.gz:md5,4b3ded73f93e3d5217ac094f5995e396",
+                            "test.subsampled_2.fastq.gz:md5,e2d292ac9edfc58ef13d5b3226b078f3"
+                        ]
                     ]
                 ],
                 "versions": [
@@ -63,7 +114,7 @@
             "nf-test": "0.9.0",
             "nextflow": "24.04.4"
         },
-        "timestamp": "2024-10-11T11:30:19.62092629"
+        "timestamp": "2024-10-21T12:03:28.368494019"
     },
     "sarscov2-genome_fasta": {
         "content": [
@@ -71,9 +122,10 @@
                 "0": [
                     [
                         {
-                            "id": "test"
+                            "id": "test",
+                            "assembler": "megahit"
                         },
-                        "test.fasta:md5,483f4a5dfe60171c86ee9b7e6dff908b"
+                        "test.subsampled.fasta:md5,483f4a5dfe60171c86ee9b7e6dff908b"
                     ]
                 ],
                 "1": [
@@ -82,9 +134,10 @@
                 "fastx": [
                     [
                         {
-                            "id": "test"
+                            "id": "test",
+                            "assembler": "megahit"
                         },
-                        "test.fasta:md5,483f4a5dfe60171c86ee9b7e6dff908b"
+                        "test.subsampled.fasta:md5,483f4a5dfe60171c86ee9b7e6dff908b"
                     ]
                 ],
                 "versions": [
@@ -96,7 +149,7 @@
             "nf-test": "0.9.0",
             "nextflow": "24.04.4"
         },
-        "timestamp": "2024-10-11T11:29:49.532001208"
+        "timestamp": "2024-10-21T12:02:56.944916286"
     },
     "sarscov2-genome_fasta_gz": {
         "content": [
@@ -104,9 +157,10 @@
                 "0": [
                     [
                         {
-                            "id": "test"
+                            "id": "test",
+                            "assembler": "megahit"
                         },
-                        "test.fasta.gz:md5,483f4a5dfe60171c86ee9b7e6dff908b"
+                        "test.subsampled.fasta.gz:md5,483f4a5dfe60171c86ee9b7e6dff908b"
                     ]
                 ],
                 "1": [
@@ -115,9 +169,10 @@
                 "fastx": [
                     [
                         {
-                            "id": "test"
+                            "id": "test",
+                            "assembler": "megahit"
                         },
-                        "test.fasta.gz:md5,483f4a5dfe60171c86ee9b7e6dff908b"
+                        "test.subsampled.fasta.gz:md5,483f4a5dfe60171c86ee9b7e6dff908b"
                     ]
                 ],
                 "versions": [
@@ -129,6 +184,41 @@
             "nf-test": "0.9.0",
             "nextflow": "24.04.4"
         },
-        "timestamp": "2024-10-11T11:30:04.665415595"
+        "timestamp": "2024-10-21T12:03:12.139646101"
+    },
+    "sarscov2-test_1_fastq_gz se": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test.subsampled.fastq.gz:md5,3dd77b8b832bb977908008619eeab7be"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,c1281e3f2fe960a95147ff8efe52986a"
+                ],
+                "fastx": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test.subsampled.fastq.gz:md5,3dd77b8b832bb977908008619eeab7be"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,c1281e3f2fe960a95147ff8efe52986a"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-10-21T12:03:43.581580341"
     }
 }
