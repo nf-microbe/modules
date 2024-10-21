@@ -15,7 +15,7 @@ nextflow_process {
             process {
                 """
                 input[0] = [
-                    [ id:'test' ], // meta map
+                    [ id:'test', assembler:'megahit' ], // meta map
                     file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta', checkIfExists: true)
                 ]
                 """
@@ -34,7 +34,7 @@ nextflow_process {
             process {
                 """
                 input[0] = [
-                    [ id:'test' ], // meta map
+                    [ id:'test', assembler:'megahit'  ], // meta map
                     file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta.gz', checkIfExists: true)
                 ]
                 """
@@ -48,13 +48,16 @@ nextflow_process {
         }
     }
 
-    test("sarscov2-test_1_fastq_gz") {
+    test("sarscov2-fastq pe") {
         when {
             process {
                 """
                 input[0] = [
-                    [ id:'test' ], // meta map
-                    file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true)
+                    [ id:'test', single_end:false ], // meta map
+                    [
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true),
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_2.fastq.gz', checkIfExists: true)
+                    ]
                 ]
                 """
             }
@@ -67,12 +70,12 @@ nextflow_process {
         }
     }
 
-    test("file_name_conflict-fail_with_error") {
+    test("sarscov2-test_1_fastq_gz se") {
         when {
             process {
                 """
                 input[0] = [
-                    [ id:'test_1' ], // meta map
+                    [ id:'test', single_end:true ], // meta map
                     file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true)
                 ]
                 """
@@ -80,8 +83,8 @@ nextflow_process {
         }
         then {
             assertAll(
-                { assert !process.success },
-                { assert process.stdout.toString().contains("Input and output names are the same") }
+                { assert process.success },
+                { assert snapshot(process.out).match() },
             )
         }
     }
@@ -92,7 +95,7 @@ nextflow_process {
             process {
                 """
                 input[0] = [
-                    [ id:'test' ], // meta map
+                    [ id:'test', assembler:'megahit'  ], // meta map
                     file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta', checkIfExists: true)
                 ]
                 """
@@ -106,22 +109,25 @@ nextflow_process {
         }
     }
 
-    test("file_name_conflict-fail_with_error-stub") {
-        options '-stub'
+    test("sarscov2-fastq pe - stub") {
+        options "-stub"
         when {
             process {
                 """
                 input[0] = [
-                    [ id:'genome' ], // meta map
-                    file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta', checkIfExists: true)
+                    [ id:'test', single_end:false ], // meta map
+                    [
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true),
+                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_2.fastq.gz', checkIfExists: true)
+                    ]
                 ]
                 """
             }
         }
         then {
             assertAll(
-                { assert !process.success },
-                { assert process.stdout.toString().contains("Input and output names are the same") }
+                { assert process.success },
+                { assert snapshot(process.out).match() },
             )
         }
     }
