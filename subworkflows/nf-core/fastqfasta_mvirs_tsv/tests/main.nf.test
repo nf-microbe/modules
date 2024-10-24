@@ -7,6 +7,7 @@ nextflow_workflow {
     tag "subworkflows"
     tag "subworkflows_nfcore"
     tag "subworkflows/fastqfasta_mvirs_tsv"
+    tag "subworkflows/utils_nfmicrobe_functions"
     tag "mvirs/index"
     tag "mvirs/oprs"
     tag "mvirs/drs"
