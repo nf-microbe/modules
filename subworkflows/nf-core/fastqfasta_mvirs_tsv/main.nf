@@ -3,6 +3,9 @@ include { MVIRS_DRS    } from '../../../modules/nf-core/mvirs/drs'
 include { MVIRS_INDEX   } from '../../../modules/nf-core/mvirs/index'
 include { MVIRS_OPRS    } from '../../../modules/nf-core/mvirs/oprs'
 
+// Import subworkflows
+include { rmEmptyFastAs; rmEmptyFastQs  } from '../utils_nfmicrobe_functions'
+
 workflow FASTQFASTA_MVIRS_TSV {
 
     take:
@@ -41,8 +44,11 @@ workflow FASTQFASTA_MVIRS_TSV {
     )
     ch_versions = ch_versions.mix(MVIRS_OPRS.out.versions)
 
+    // remove channels with empty proviruses
+    ch_mvirs_provirus_fasta_gz  = rmEmptyFastAs(MVIRS_OPRS.out.fasta, false)
+
     // join fasta and mvirs prophages
-    ch_mvirs_drs_input = MVIRS_OPRS.out.fasta.map { meta, fastq -> [ [ id:meta.group ], meta, fastq ] }
+    ch_mvirs_drs_input = ch_mvirs_provirus_fasta_gz.map { meta, fastq -> [ [ id:meta.group ], meta, fastq ] }
         .combine(fasta_gz, by:0)
         .multiMap { meta_group, meta, provirus, contigs ->
             contigs:  [ meta, contigs ]
