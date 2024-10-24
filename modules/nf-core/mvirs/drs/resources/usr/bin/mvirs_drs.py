@@ -62,8 +62,6 @@ def main(fna_path, mvirs_path, out_path, max_repeat):
     prophages = dict([[r.id, r.seq] for r in Bio.SeqIO.parse(gzip.open(mvirs_path, "rt"), "fasta")])
     contigs = dict([[r.id, r.seq] for r in Bio.SeqIO.parse(gzip.open(fna_path, "rt"), "fasta")])
 
-    print(contigs.keys())
-
     rows = []
     for prophage_id, prophage_seq in prophages.items():
         assembly_id = prophage_id.split("_")[0].split(":")[0]
