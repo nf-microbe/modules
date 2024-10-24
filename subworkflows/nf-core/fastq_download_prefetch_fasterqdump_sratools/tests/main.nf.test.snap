@@ -39,16 +39,16 @@
     "versions": {
         "content": [
             [
-                "versions.yml:md5,1a2218ff913fc33408bffccb081b5048",
-                "versions.yml:md5,53d6e983afde3a28add2ffc6b7eba4f3",
-                "versions.yml:md5,9c558ff624585a6eee82a19c8c0136db"
+                "versions.yml:md5,2c2d8c1ec453ce601d6e090103ea248a",
+                "versions.yml:md5,6ebe8e632902a355452ef978b19746a7",
+                "versions.yml:md5,7f9cdf486c1004daa94db11a117d29f8"
             ]
         ],
         "meta": {
-            "nf-test": "0.8.4",
-            "nextflow": "24.01.0"
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
         },
-        "timestamp": "2024-02-28T15:19:18.755939"
+        "timestamp": "2024-10-24T11:03:10.0633581"
     },
     "test_pe_reads_1_size": {
         "content": [
