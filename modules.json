@@ -85,7 +85,7 @@
                     "custom/sratoolsncbisettings": {
                         "branch": "master",
                         "git_sha": "666652151335353eef2fcd58880bcef5bc2928e1",
-                        "installed_by": ["modules"]
+                        "installed_by": ["fastq_download_prefetch_fasterqdump_sratools", "modules"]
                     },
                     "ena/aria2seqkittrfinder": {
                         "branch": "master",
@@ -303,12 +303,12 @@
                     "sratools/fasterqdump": {
                         "branch": "master",
                         "git_sha": "666652151335353eef2fcd58880bcef5bc2928e1",
-                        "installed_by": ["modules"]
+                        "installed_by": ["fastq_download_prefetch_fasterqdump_sratools", "modules"]
                     },
                     "sratools/prefetch": {
                         "branch": "master",
                         "git_sha": "666652151335353eef2fcd58880bcef5bc2928e1",
-                        "installed_by": ["modules"]
+                        "installed_by": ["fastq_download_prefetch_fasterqdump_sratools", "modules"]
                     },
                     "tantan": {
                         "branch": "master",
@@ -412,6 +412,11 @@
                     "fastq_bowtie2_fastq": {
                         "branch": "master",
                         "git_sha": "f533459a222ac53eb4c6bb7a5f574e4069197cdb",
+                        "installed_by": ["subworkflows"]
+                    },
+                    "fastq_download_prefetch_fasterqdump_sratools": {
+                        "branch": "master",
+                        "git_sha": "1fc29f92e439d5631fdf34b8ac4687297d70f5ec",
                         "installed_by": ["subworkflows"]
                     },
                     "fastq_viromeqc_tsv": {
