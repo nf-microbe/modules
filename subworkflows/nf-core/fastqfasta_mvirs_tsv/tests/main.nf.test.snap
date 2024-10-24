@@ -21,11 +21,157 @@
                     ]
                 ],
                 "1": [
-                    "versions.yml:md5,2bbd7571a3157e4cef36f8e1a5b13d81",
-                    "versions.yml:md5,2bbd7571a3157e4cef36f8e1a5b13d81",
-                    "versions.yml:md5,676f25ae084db4cbe3d8ae446ec39372"
+                    [
+                        {
+                            "id": "test1",
+                            "group": "test",
+                            "single_end": false
+                        },
+                        "test1.mvirs.fasta.gz:md5,9e1e21890100e9b020a33231a513a2a1"
+                    ],
+                    [
+                        {
+                            "id": "test2",
+                            "group": "test",
+                            "single_end": false
+                        },
+                        "test2.mvirs.fasta.gz:md5,9e1e21890100e9b020a33231a513a2a1"
+                    ]
                 ],
-                "prophage": [
+                "2": [
+                    [
+                        {
+                            "id": "test1",
+                            "group": "test",
+                            "single_end": false
+                        },
+                        "test1.mvirs.clipped:md5,e52b358cb85381ea526452dae127d38d"
+                    ],
+                    [
+                        {
+                            "id": "test2",
+                            "group": "test",
+                            "single_end": false
+                        },
+                        "test2.mvirs.clipped:md5,e52b358cb85381ea526452dae127d38d"
+                    ]
+                ],
+                "3": [
+                    [
+                        {
+                            "id": "test1",
+                            "group": "test",
+                            "single_end": false
+                        },
+                        "test1.mvirs.oprs:md5,6ee89377971c3156b03db4fdf2b3a0a0"
+                    ],
+                    [
+                        {
+                            "id": "test2",
+                            "group": "test",
+                            "single_end": false
+                        },
+                        "test2.mvirs.oprs:md5,6ee89377971c3156b03db4fdf2b3a0a0"
+                    ]
+                ],
+                "4": [
+                    [
+                        {
+                            "id": "test1",
+                            "group": "test",
+                            "single_end": false
+                        },
+                        "test1.mvirs.dr_info.tsv:md5,c3a67b2bbdca6274550c4512ed566f6b"
+                    ],
+                    [
+                        {
+                            "id": "test2",
+                            "group": "test",
+                            "single_end": false
+                        },
+                        "test2.mvirs.dr_info.tsv:md5,c3a67b2bbdca6274550c4512ed566f6b"
+                    ]
+                ],
+                "5": [
+                    "versions.yml:md5,2bbd7571a3157e4cef36f8e1a5b13d81",
+                    "versions.yml:md5,2bbd7571a3157e4cef36f8e1a5b13d81",
+                    "versions.yml:md5,676f25ae084db4cbe3d8ae446ec39372",
+                    "versions.yml:md5,6e5d25d2783131b2f59b8bd8078c0423",
+                    "versions.yml:md5,6e5d25d2783131b2f59b8bd8078c0423"
+                ],
+                "mvirs_clipped": [
+                    [
+                        {
+                            "id": "test1",
+                            "group": "test",
+                            "single_end": false
+                        },
+                        "test1.mvirs.clipped:md5,e52b358cb85381ea526452dae127d38d"
+                    ],
+                    [
+                        {
+                            "id": "test2",
+                            "group": "test",
+                            "single_end": false
+                        },
+                        "test2.mvirs.clipped:md5,e52b358cb85381ea526452dae127d38d"
+                    ]
+                ],
+                "mvirs_dr_info": [
+                    [
+                        {
+                            "id": "test1",
+                            "group": "test",
+                            "single_end": false
+                        },
+                        "test1.mvirs.dr_info.tsv:md5,c3a67b2bbdca6274550c4512ed566f6b"
+                    ],
+                    [
+                        {
+                            "id": "test2",
+                            "group": "test",
+                            "single_end": false
+                        },
+                        "test2.mvirs.dr_info.tsv:md5,c3a67b2bbdca6274550c4512ed566f6b"
+                    ]
+                ],
+                "mvirs_fasta": [
+                    [
+                        {
+                            "id": "test1",
+                            "group": "test",
+                            "single_end": false
+                        },
+                        "test1.mvirs.fasta.gz:md5,9e1e21890100e9b020a33231a513a2a1"
+                    ],
+                    [
+                        {
+                            "id": "test2",
+                            "group": "test",
+                            "single_end": false
+                        },
+                        "test2.mvirs.fasta.gz:md5,9e1e21890100e9b020a33231a513a2a1"
+                    ]
+                ],
+                "mvirs_oprs": [
+                    [
+                        {
+                            "id": "test1",
+                            "group": "test",
+                            "single_end": false
+                        },
+                        "test1.mvirs.oprs:md5,6ee89377971c3156b03db4fdf2b3a0a0"
+                    ],
+                    [
+                        {
+                            "id": "test2",
+                            "group": "test",
+                            "single_end": false
+                        },
+                        "test2.mvirs.oprs:md5,6ee89377971c3156b03db4fdf2b3a0a0"
+                    ]
+                ],
+                "mvirs_prophages": [
                     [
                         {
                             "id": "test1",
@@ -46,7 +192,9 @@
                 "versions": [
                     "versions.yml:md5,2bbd7571a3157e4cef36f8e1a5b13d81",
                     "versions.yml:md5,2bbd7571a3157e4cef36f8e1a5b13d81",
-                    "versions.yml:md5,676f25ae084db4cbe3d8ae446ec39372"
+                    "versions.yml:md5,676f25ae084db4cbe3d8ae446ec39372",
+                    "versions.yml:md5,6e5d25d2783131b2f59b8bd8078c0423",
+                    "versions.yml:md5,6e5d25d2783131b2f59b8bd8078c0423"
                 ]
             }
         ],
@@ -54,6 +202,6 @@
             "nf-test": "0.9.0",
             "nextflow": "24.04.4"
         },
-        "timestamp": "2024-10-21T08:05:37.319050787"
+        "timestamp": "2024-10-24T14:28:55.365827548"
     }
 }

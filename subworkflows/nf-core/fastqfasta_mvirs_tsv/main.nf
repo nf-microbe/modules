@@ -1,4 +1,5 @@
 // Import modules
+include { MVIRS_DRS    } from '../../../modules/nf-core/mvirs/drs'
 include { MVIRS_INDEX   } from '../../../modules/nf-core/mvirs/index'
 include { MVIRS_OPRS    } from '../../../modules/nf-core/mvirs/oprs'
 
@@ -40,7 +41,28 @@ workflow FASTQFASTA_MVIRS_TSV {
     )
     ch_versions = ch_versions.mix(MVIRS_OPRS.out.versions)
 
+    // join fasta and mvirs prophages
+    ch_mvirs_drs_input = MVIRS_OPRS.out.fasta.map { meta, fastq -> [ [ id:meta.group ], meta, fastq ] }
+        .combine(fasta_gz, by:0)
+        .multiMap { meta_group, meta, provirus, contigs ->
+            contigs:  [ meta, contigs ]
+            provirus: [ meta, provirus ]
+        }
+
+    //
+    // MODULE: Detect direct repeats in proviruses
+    //
+    MVIRS_DRS(
+        ch_mvirs_drs_input.contigs,
+        ch_mvirs_drs_input.provirus
+    )
+    ch_versions = ch_versions.mix(MVIRS_DRS.out.versions)
+
     emit:
-    prophage    = MVIRS_OPRS.out.prophage   // channel: [ [ meta ], prophage.tsv ]
-    versions    = ch_versions               // channel: [ versions.yml ]
+    mvirs_prophages = MVIRS_OPRS.out.prophage   // channel: [ [ meta ], prophage.tsv ]
+    mvirs_fasta     = MVIRS_OPRS.out.fasta      // channel: [ [ meta ], provirus.fasta.gz ]
+    mvirs_clipped   = MVIRS_OPRS.out.clipped    // channel: [ [ meta ], clipped.tsv ]
+    mvirs_oprs      = MVIRS_OPRS.out.oprs       // channel: [ [ meta ], oprs.tsv ]
+    mvirs_dr_info   = MVIRS_DRS.out.dr_info     // channel: [ [ meta ], dr_info.tsv ]
+    versions    = ch_versions                   // channel: [ versions.yml ]
 }
