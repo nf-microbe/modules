@@ -4,8 +4,8 @@ process SRATOOLS_FASTERQDUMP {
 
     conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'https://depot.galaxyproject.org/singularity/mulled-v2-5f89fe0cd045cb1d615630b9261a1d17943a9b6a:2f4a4c900edd6801ff0068c2b3048b4459d119eb-0' :
-        'biocontainers/mulled-v2-5f89fe0cd045cb1d615630b9261a1d17943a9b6a:2f4a4c900edd6801ff0068c2b3048b4459d119eb-0' }"
+        'oras://community.wave.seqera.io/library/sra-tools_pigz:d727d033dabe5809' :
+        'community.wave.seqera.io/library/sra-tools_pigz:ea3c9a8753ff57e1' }"
 
     input:
     tuple val(meta), path(sra)
