@@ -4,6 +4,8 @@ org_path: nf-core
 update:
   https://github.com/nf-core/modules.git:
     nf-core:
+      hostile/clean: False
+      hostile/fetch: False
       allthebacteria/aria2seqkit: False
       propagate: False
       fastqfasta_mvirs_tsv: False
