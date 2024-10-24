@@ -62,13 +62,11 @@ def main(fna_path, mvirs_path, out_path, max_repeat):
     prophages = dict([[r.id, r.seq] for r in Bio.SeqIO.parse(gzip.open(mvirs_path, "rt"), "fasta")])
     contigs = dict([[r.id, r.seq] for r in Bio.SeqIO.parse(gzip.open(fna_path, "rt"), "fasta")])
 
-    print(contigs.keys())
-
     rows = []
     for prophage_id, prophage_seq in prophages.items():
         assembly_id = prophage_id.split("_")[0].split(":")[0]
         contig_id = prophage_id.split(":")[0]
-        mge_start, mge_end = [int(_) for _ in prophage_id.split(":")[-1].split("-")]
+        mge_start, mge_end = (int(_) for _ in prophage_id.split(":")[-1].split("-"))
         contig_seq = contigs[contig_id]
         dr_len, dr_seq = find_direct_repeat(contig_seq, mge_start, mge_end, max_repeat)
         row = [prophage_id, assembly_id, contig_id, mge_start, mge_end, dr_len, dr_seq]
