@@ -1,0 +1,100 @@
+{
+    "fasta.gz + integrases.hmm": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.mvirs.summary.tsv:md5,9918439ea21b10132f6df7434c74107a"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.mvirs.integrases.tsv:md5,545639e690399fe07da3cae9306d68f4"
+                    ]
+                ],
+                "2": [
+                    "versions.yml:md5,a98833d0eaa28fe37eb1685b05b4c8a8"
+                ],
+                "integrases": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.mvirs.integrases.tsv:md5,545639e690399fe07da3cae9306d68f4"
+                    ]
+                ],
+                "summary": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.mvirs.summary.tsv:md5,9918439ea21b10132f6df7434c74107a"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,a98833d0eaa28fe37eb1685b05b4c8a8"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-10-25T11:20:18.759679614"
+    },
+    "fasta.gz - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.mvirs.summary.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.mvirs.integrases.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "2": [
+                    "versions.yml:md5,a98833d0eaa28fe37eb1685b05b4c8a8"
+                ],
+                "integrases": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.mvirs.integrases.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "summary": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.mvirs.summary.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,a98833d0eaa28fe37eb1685b05b4c8a8"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-10-25T11:20:39.520294388"
+    }
+}
