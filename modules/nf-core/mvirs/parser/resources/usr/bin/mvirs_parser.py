@@ -25,11 +25,10 @@ def find_direct_repeat(contig_seq, mge_start, mge_end, max_repeat=30, max_att=10
 
     # Extract the flanks
     left_flank = contig_seq[:mge_start]  # Left side of the subsequence
-    right_flank = contig_seq[mge_end:]   # Right side of the subsequence
+    right_flank = contig_seq[mge_end:]  # Right side of the subsequence
 
     # Start with the largest possible repeat size and work down
     for dr_len in range(max_repeat, 0, -1):
-
         # Make sure enough flanking sequence is present for the DR + att site
         if dr_len + max_att > len(left_flank) or dr_len + max_att > len(right_flank):
             continue
@@ -48,11 +47,11 @@ def find_direct_repeat(contig_seq, mge_start, mge_end, max_repeat=30, max_att=10
 
 
 def find_att_sites(contig_seq, mge_start, mge_end, dr_seq, att_len):
-    b1 = contig_seq[:mge_start-len(dr_seq)][-att_len:]
-    b2 = contig_seq[mge_end+len(dr_seq):][:att_len]
+    b1 = contig_seq[: mge_start - len(dr_seq)][-att_len:]
+    b2 = contig_seq[mge_end + len(dr_seq) :][:att_len]
     attb = b1 + dr_seq + b2
-    p1 = contig_seq[mge_start:mge_start+att_len]
-    p2 = contig_seq[mge_end-att_len:mge_end]
+    p1 = contig_seq[mge_start : mge_start + att_len]
+    p2 = contig_seq[mge_end - att_len : mge_end]
     attp = p2 + dr_seq + p1
     return attb, attp
 
@@ -116,7 +115,6 @@ def run_hmmsearch(domtbl_path, hmm_path, faa_path):
 
 
 def find_integrases(args):
-
     faa_path = f"{args.prefix}.faa"
     domtbl_path = f"{args.prefix}.domtbl"
 
@@ -130,9 +128,7 @@ def find_integrases(args):
 
 def make_integrase_output(faa_path, domtbl_path, integrases_path):
     rows = []
-    proteins = dict(
-        [[r.id, str(r.seq)] for r in Bio.SeqIO.parse(faa_path, "fasta")]
-    )
+    proteins = dict([[r.id, str(r.seq)] for r in Bio.SeqIO.parse(faa_path, "fasta")])
     for line in open(domtbl_path):
         if line[0] == "#":
             continue
@@ -157,13 +153,18 @@ def make_integrase_output(faa_path, domtbl_path, integrases_path):
 
 
 if __name__ == "__main__":
-
-    parser = argparse.ArgumentParser(description="Parse mVIRs output to identify recombinases, find direct repeats, and att sites.")
+    parser = argparse.ArgumentParser(
+        description="Parse mVIRs output to identify recombinases, find direct repeats, and att sites."
+    )
     parser.add_argument("--mvirs_path", type=str, help="Path to the prophages .fasta.gz file")
     parser.add_argument("--fna_path", type=str, help="Path to the contigs .fna.gz file")
     parser.add_argument("--hmm_path", type=str, help="Path to the recombinase HMM file")
-    parser.add_argument("--att_len", metavar="INT", type=int, default=100, help="Length for attachment sites (default: 100)")
-    parser.add_argument("--max_repeat", metavar="INT", type=int, default=50, help="Maximum repeat size to search for (default: 50)")
+    parser.add_argument(
+        "--att_len", metavar="INT", type=int, default=100, help="Length for attachment sites (default: 100)"
+    )
+    parser.add_argument(
+        "--max_repeat", metavar="INT", type=int, default=50, help="Maximum repeat size to search for (default: 50)"
+    )
     parser.add_argument("--prefix", type=str, help="Prefix for output files")
 
     args = parser.parse_args()
