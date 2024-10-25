@@ -1,7 +1,7 @@
 // Import modules
-include { MVIRS_DRS    } from '../../../modules/nf-core/mvirs/drs'
 include { MVIRS_INDEX   } from '../../../modules/nf-core/mvirs/index'
 include { MVIRS_OPRS    } from '../../../modules/nf-core/mvirs/oprs'
+include { MVIRS_PARSER  } from '../../../modules/nf-core/mvirs/parser'
 
 // Import subworkflows
 include { rmEmptyFastAs; rmEmptyFastQs  } from '../utils_nfmicrobe_functions'
@@ -11,6 +11,7 @@ workflow FASTQFASTA_MVIRS_TSV {
     take:
     fastq_gz            // channel: [ [ meta.id, meat.group, meta.single_end ], [ path(fastq_1), path(fastq_2) ] ]
     fasta_gz            // channel: [ [ meta.id ], path(fasta)]
+    integrase_hmm       // path: "assets/hmms/integrases/integrases.hmm"
 
     main:
 
@@ -58,17 +59,19 @@ workflow FASTQFASTA_MVIRS_TSV {
     //
     // MODULE: Detect direct repeats in proviruses
     //
-    MVIRS_DRS(
+    MVIRS_PARSER(
         ch_mvirs_drs_input.contigs,
-        ch_mvirs_drs_input.provirus
+        ch_mvirs_drs_input.provirus,
+        integrase_hmm
     )
-    ch_versions = ch_versions.mix(MVIRS_DRS.out.versions)
+    ch_versions = ch_versions.mix(MVIRS_PARSER.out.versions)
 
     emit:
-    mvirs_prophages = MVIRS_OPRS.out.prophage   // channel: [ [ meta ], prophage.tsv ]
-    mvirs_fasta     = MVIRS_OPRS.out.fasta      // channel: [ [ meta ], provirus.fasta.gz ]
-    mvirs_clipped   = MVIRS_OPRS.out.clipped    // channel: [ [ meta ], clipped.tsv ]
-    mvirs_oprs      = MVIRS_OPRS.out.oprs       // channel: [ [ meta ], oprs.tsv ]
-    mvirs_dr_info   = MVIRS_DRS.out.dr_info     // channel: [ [ meta ], dr_info.tsv ]
-    versions    = ch_versions                   // channel: [ versions.yml ]
+    mvirs_prophages = MVIRS_OPRS.out.prophage       // channel: [ [ meta ], prophage.tsv ]
+    mvirs_fasta     = MVIRS_OPRS.out.fasta          // channel: [ [ meta ], provirus.fasta.gz ]
+    mvirs_clipped   = MVIRS_OPRS.out.clipped        // channel: [ [ meta ], clipped.tsv ]
+    mvirs_oprs      = MVIRS_OPRS.out.oprs           // channel: [ [ meta ], oprs.tsv ]
+    mvirs_summary   = MVIRS_PARSER.out.summary      // channel: [ [ meta ], summary.tsv ]
+    mvirs_integrases= MVIRS_PARSER.out.integrases   // channel: [ [ meta ], integrases.tsv ]
+    versions        = ch_versions                   // channel: [ versions.yml ]
 }

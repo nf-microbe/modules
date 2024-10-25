@@ -1,18 +1,20 @@
-process MVIRS_DRS {
+process MVIRS_PARSER {
     tag "${meta.id}"
-    label 'process_high'
+    label 'process_low'
 
     conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'https://depot.galaxyproject.org/singularity/mulled-v2-80c23cbcd32e2891421c54d1899665046feb07ef:77a31e289d22068839533bf21f8c4248ad274b60-0' :
-        'biocontainers/mulled-v2-80c23cbcd32e2891421c54d1899665046feb07ef:77a31e289d22068839533bf21f8c4248ad274b60-0' }"
+        'oras://community.wave.seqera.io/library/hmmer_prodigal-gv_biopython_pandas:de876e9113694da7' :
+        'community.wave.seqera.io/library/hmmer_prodigal-gv_biopython_pandas:aaaf7b9a9207df90' }"
 
     input:
     tuple val(meta) , path(contigs)
     tuple val(meta2), path(prophages)
+    path integrases_hmm
 
     output:
-    tuple val(meta), path("${prefix}.mvirs.dr_info.tsv")    , emit: dr_info
+    tuple val(meta), path("${prefix}.mvirs.summary.tsv")    , emit: summary
+    tuple val(meta), path("${prefix}.mvirs.integrases.tsv") , emit: integrases
     path "versions.yml"                                     , emit: versions
 
     when:
@@ -22,10 +24,11 @@ process MVIRS_DRS {
     def args = task.ext.args   ?: ''
     prefix   = task.ext.prefix ?: "${meta.id}"
     """
-    mvirs_drs.py \\
-        ${contigs} \\
-        ${prophages} \\
-        ${prefix}.mvirs.dr_info.tsv \\
+    mvirs_parser.py \\
+        --mvirs_path ${prophages} \\
+        --fna_path ${contigs} \\
+        --hmm_path ${integrases_hmm} \\
+        --prefix ${prefix}.mvirs \\
         ${args}
 
     cat <<-END_VERSIONS > versions.yml
@@ -33,19 +36,24 @@ process MVIRS_DRS {
         python: \$( python --version | sed 's/Python //' )
         biopython: \$(python -c "import Bio; print(Bio.__version__)")
         pandas: \$(python -c "import pandas; print(pandas.__version__)")
+        prodigal-gv: \$(echo \$(prodigal-gv -v 2>&1) | sed -n 's/^.*Prodigal V//; s/-gv.*//; 1p')
+        hmmer: \$(hmmsearch -h | grep HMMER | sed 's/.*HMMER //; s/ (.*//')
     END_VERSIONS
     """
 
     stub:
     prefix = task.ext.prefix ?: "${meta.id}"
     """
-    touch ${prefix}.mvirs.dr_info.tsv
+    touch ${prefix}.mvirs.summary.tsv
+    touch ${prefix}.mvirs.integrases.tsv
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
         python: \$( python --version | sed 's/Python //' )
         biopython: \$(python -c "import Bio; print(Bio.__version__)")
         pandas: \$(python -c "import pandas; print(pandas.__version__)")
+        prodigal-gv: \$(echo \$(prodigal-gv -v 2>&1) | sed -n 's/^.*Prodigal V//; s/-gv.*//; 1p')
+        hmmer: \$(hmmsearch -h | grep HMMER | sed 's/.*HMMER //; s/ (.*//')
     END_VERSIONS
     """
 }

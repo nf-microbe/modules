@@ -1,17 +1,17 @@
 nextflow_process {
 
-    name "Test Process MVIRS_DRS"
+    name "Test Process MVIRS_PARSER"
     script "../main.nf"
-    process "MVIRS_DRS"
+    process "MVIRS_PARSER"
 
     tag "modules"
     tag "modules_nfcore"
     tag "mvirs"
     tag "mvirs/index"
     tag "mvirs/oprs"
-    tag "mvirs/drs"
+    tag "mvirs/parser"
 
-    test("fasta.gz") {
+    test("fasta.gz + integrases.hmm") {
         when {
             process {
                 """
@@ -23,6 +23,7 @@ nextflow_process {
                     [ id:'test' ], // meta map
                     file("${projectDir}/assets/test-datasets/genomics/provirus/illumina/fasta/test1.mvirs.provirus.fasta.gz", checkIfExists: true)
                 ]
+                input[2] = file("${projectDir}/assets/hmms/integrases/integrases.hmm", checkIfExists: true)
                 """
             }
         }
@@ -47,6 +48,7 @@ nextflow_process {
                     [ id:'test' ], // meta map
                     file("${projectDir}/assets/test-datasets/genomics/provirus/illumina/fasta/test1.mvirs.provirus.fasta.gz", checkIfExists: true)
                 ]
+                input[2] = file("${projectDir}/assets/hmms/integrases/integrases.hmm", checkIfExists: true)
                 """
             }
         }
