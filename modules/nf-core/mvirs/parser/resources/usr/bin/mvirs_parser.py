@@ -148,8 +148,11 @@ def make_integrase_output(faa_path, domtbl_path, integrases_path):
         row = [mge_id, cds_num, hmm_id, start, stop, strand, score, evalue, protein]
         rows.append(row)
     df = pd.DataFrame(rows)
-    df.columns = ["mge_id", "cds_num", "hmm_id", "start", "stop", "score", "strand", "evalue", "protein"]
-    df.to_csv(integrases_path, sep="\t", index=False)
+    if len(df.columns) == 9:
+        df.columns = ["mge_id", "cds_num", "hmm_id", "start", "stop", "score", "strand", "evalue", "protein"]
+        df.to_csv(integrases_path, sep="\t", index=False)
+    else:
+        df.to_csv(integrases_path, sep="\t", index=False)
 
 
 if __name__ == "__main__":
