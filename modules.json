@@ -113,6 +113,11 @@
                         "git_sha": "666652151335353eef2fcd58880bcef5bc2928e1",
                         "installed_by": ["fasta_genomad_faatsv"]
                     },
+                    "hmmer/hmmsearch": {
+                        "branch": "master",
+                        "git_sha": "666652151335353eef2fcd58880bcef5bc2928e1",
+                        "installed_by": ["modules"]
+                    },
                     "hostile/clean": {
                         "branch": "master",
                         "git_sha": "666652151335353eef2fcd58880bcef5bc2928e1",
@@ -161,11 +166,6 @@
                         "installed_by": ["modules"],
                         "patch": "modules/nf-core/megahit/megahit.diff"
                     },
-                    "mvirs/drs": {
-                        "branch": "master",
-                        "git_sha": "666652151335353eef2fcd58880bcef5bc2928e1",
-                        "installed_by": ["fastqfasta_cobra_fasta"]
-                    },
                     "mvirs/index": {
                         "branch": "master",
                         "git_sha": "666652151335353eef2fcd58880bcef5bc2928e1",
@@ -175,6 +175,11 @@
                         "branch": "master",
                         "git_sha": "666652151335353eef2fcd58880bcef5bc2928e1",
                         "installed_by": ["fastqfasta_mvirs_tsv"]
+                    },
+                    "mvirs/parser": {
+                        "branch": "master",
+                        "git_sha": "666652151335353eef2fcd58880bcef5bc2928e1",
+                        "installed_by": ["fastqfasta_cobra_fasta", "fastqfasta_mvirs_tsv"]
                     },
                     "phables/install": {
                         "branch": "master",
