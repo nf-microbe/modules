@@ -2,8 +2,6 @@
 
 import argparse
 import gzip
-import os
-import subprocess as sp
 
 import Bio.SeqIO
 import pandas as pd
