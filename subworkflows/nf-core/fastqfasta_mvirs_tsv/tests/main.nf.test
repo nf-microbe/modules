@@ -10,7 +10,6 @@ nextflow_workflow {
     tag "subworkflows/utils_nfmicrobe_functions"
     tag "mvirs/index"
     tag "mvirs/oprs"
-    tag "mvirs/parser"
 
     test("ERR4552622 - fastq.gz - fasta.gz") {
         when {
@@ -38,7 +37,6 @@ nextflow_workflow {
                         file("${projectDir}/assets/test-datasets/genomics/provirus/illumina/fasta/np_salmoLT2.fasta.gz", checkIfExists: true)
                     ]
                 )
-                input[2] = file("${projectDir}/assets/hmms/integrases/integrases.hmm", checkIfExists: true)
                 """
             }
         }

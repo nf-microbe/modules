@@ -89,6 +89,7 @@ def find_direct_repeats(fna_path, mvirs_path, summary_path, max_repeat, att_len)
     df.columns = ["mge_id", "assembly_id", "contig_id", "mge_start", "mge_end", "dr_len", "dr_seq", "attb", "attp"]
     df.to_csv(summary_path, sep="\t", index=False)
 
+
 def make_integrase_output(faa_path, domtbl_path, integrases_path):
     rows = []
     proteins = dict([[r.id, r.seq] for r in Bio.SeqIO.parse(gzip.open(faa_path, "rt"), "fasta")])

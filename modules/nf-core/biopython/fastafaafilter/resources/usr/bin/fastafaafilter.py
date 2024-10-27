@@ -54,7 +54,7 @@ def filter_sequences(input_fasta, input_faa, prefix, fasta_min_len):
     min_len = int(fasta_min_len)
     # Write out filtered sequences
     sequences_to_write = []
-    passing_record_ids = {}
+    passing_record_ids = set()
     fasta = gzip.open(input_fasta, "rt") if input_fasta.split(".")[-1] == "gz" else open(input_fasta)
     for record in SeqIO.parse(fasta, "fasta"):
         if len(record.seq) > min_len:

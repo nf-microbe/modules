@@ -75,44 +75,6 @@
                     ]
                 ],
                 "4": [
-                    [
-                        {
-                            "id": "test1",
-                            "group": "test",
-                            "single_end": false
-                        },
-                        "test1.mvirs.summary.tsv:md5,25cc97209f438b854fbd3093175012ee"
-                    ],
-                    [
-                        {
-                            "id": "test2",
-                            "group": "test",
-                            "single_end": false
-                        },
-                        "test2.mvirs.summary.tsv:md5,25cc97209f438b854fbd3093175012ee"
-                    ]
-                ],
-                "5": [
-                    [
-                        {
-                            "id": "test1",
-                            "group": "test",
-                            "single_end": false
-                        },
-                        "test1.mvirs.integrases.tsv:md5,94dc3d9060d89c6cb895dd9d581f73d4"
-                    ],
-                    [
-                        {
-                            "id": "test2",
-                            "group": "test",
-                            "single_end": false
-                        },
-                        "test2.mvirs.integrases.tsv:md5,94dc3d9060d89c6cb895dd9d581f73d4"
-                    ]
-                ],
-                "6": [
-                    "versions.yml:md5,1efbf072e194483bdbd2dbdc3ea3ad0d",
-                    "versions.yml:md5,1efbf072e194483bdbd2dbdc3ea3ad0d",
                     "versions.yml:md5,2bbd7571a3157e4cef36f8e1a5b13d81",
                     "versions.yml:md5,2bbd7571a3157e4cef36f8e1a5b13d81",
                     "versions.yml:md5,676f25ae084db4cbe3d8ae446ec39372"
@@ -153,24 +115,6 @@
                         "test2.mvirs.fasta.gz:md5,9e1e21890100e9b020a33231a513a2a1"
                     ]
                 ],
-                "mvirs_integrases": [
-                    [
-                        {
-                            "id": "test1",
-                            "group": "test",
-                            "single_end": false
-                        },
-                        "test1.mvirs.integrases.tsv:md5,94dc3d9060d89c6cb895dd9d581f73d4"
-                    ],
-                    [
-                        {
-                            "id": "test2",
-                            "group": "test",
-                            "single_end": false
-                        },
-                        "test2.mvirs.integrases.tsv:md5,94dc3d9060d89c6cb895dd9d581f73d4"
-                    ]
-                ],
                 "mvirs_oprs": [
                     [
                         {
@@ -207,27 +151,7 @@
                         "test2.mvirs.prophages:md5,70ce813cbba0d016917d380ea2cf6af4"
                     ]
                 ],
-                "mvirs_summary": [
-                    [
-                        {
-                            "id": "test1",
-                            "group": "test",
-                            "single_end": false
-                        },
-                        "test1.mvirs.summary.tsv:md5,25cc97209f438b854fbd3093175012ee"
-                    ],
-                    [
-                        {
-                            "id": "test2",
-                            "group": "test",
-                            "single_end": false
-                        },
-                        "test2.mvirs.summary.tsv:md5,25cc97209f438b854fbd3093175012ee"
-                    ]
-                ],
                 "versions": [
-                    "versions.yml:md5,1efbf072e194483bdbd2dbdc3ea3ad0d",
-                    "versions.yml:md5,1efbf072e194483bdbd2dbdc3ea3ad0d",
                     "versions.yml:md5,2bbd7571a3157e4cef36f8e1a5b13d81",
                     "versions.yml:md5,2bbd7571a3157e4cef36f8e1a5b13d81",
                     "versions.yml:md5,676f25ae084db4cbe3d8ae446ec39372"
@@ -235,9 +159,9 @@
             }
         ],
         "meta": {
-            "nf-test": "0.9.0",
+            "nf-test": "0.9.1",
             "nextflow": "24.04.4"
         },
-        "timestamp": "2024-10-25T11:15:07.362586371"
+        "timestamp": "2024-10-27T22:28:22.03706674"
     }
 }
