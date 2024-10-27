@@ -110,7 +110,7 @@ def run_prodigal(fna_path, faa_path):
 
 
 def run_hmmsearch(domtbl_path, hmm_path, faa_path):
-    cmd = f"hmmsearch -Z 1 --cpu 1 -E 1e-5 --tblout {domtbl_path} {hmm_path} {faa_path} &> /dev/null"
+    cmd = f"hmmsearch -Z 1 --cpu 1 --tblout {domtbl_path} {hmm_path} {faa_path} &> /dev/null"
     run_command(cmd)
 
 
