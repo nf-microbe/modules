@@ -23,7 +23,14 @@ nextflow_process {
                     [ id:'test' ], // meta map
                     file("${projectDir}/assets/test-datasets/genomics/provirus/illumina/fasta/test1.mvirs.provirus.fasta.gz", checkIfExists: true)
                 ]
-                input[2] = file("${projectDir}/assets/hmms/integrases/integrases.hmm", checkIfExists: true)
+                input[2] = [
+                    [ id: 'test' ],
+                    file("${projectDir}/assets/test-datasets/genomics/provirus/illumina/hmmsearch/test.hmmsearch", checkIfExists: true)
+                ]
+                input[3] = [
+                    [ id: 'test' ],
+                    file("${projectDir}/assets/test-datasets/genomics/provirus/illumina/fasta/test1.faa.gz", checkIfExists: true)
+                ]
                 """
             }
         }
@@ -48,7 +55,14 @@ nextflow_process {
                     [ id:'test' ], // meta map
                     file("${projectDir}/assets/test-datasets/genomics/provirus/illumina/fasta/test1.mvirs.provirus.fasta.gz", checkIfExists: true)
                 ]
-                input[2] = file("${projectDir}/assets/hmms/integrases/integrases.hmm", checkIfExists: true)
+                input[2] = [
+                    [ id: 'test' ],
+                    file("${projectDir}/assets/test-datasets/genomics/provirus/illumina/hmmsearch/test.hmmsearch", checkIfExists: true)
+                ]
+                input[3] = [
+                    [ id: 'test' ],
+                    file("${projectDir}/assets/test-datasets/genomics/provirus/illumina/fasta/test1.faa.gz", checkIfExists: true)
+                ]
                 """
             }
         }

@@ -10,7 +10,8 @@ process MVIRS_PARSER {
     input:
     tuple val(meta) , path(contigs)
     tuple val(meta2), path(prophages)
-    path integrases_hmm
+    tuple val(meta3), path(hmmsearch)
+    tuple val(meta4), path(contigs_faa)
 
     output:
     tuple val(meta), path("${prefix}.mvirs.summary.tsv")    , emit: summary
@@ -25,9 +26,10 @@ process MVIRS_PARSER {
     prefix   = task.ext.prefix ?: "${meta.id}"
     """
     mvirs_parser.py \\
-        --mvirs_path ${prophages} \\
-        --fna_path ${contigs} \\
-        --hmm_path ${integrases_hmm} \\
+        --mvirs ${prophages} \\
+        --fna ${contigs} \\
+        --hmmsearch ${hmmsearch} \\
+        --faa ${contigs_faa} \\
         --prefix ${prefix}.mvirs \\
         ${args}
 
@@ -36,8 +38,6 @@ process MVIRS_PARSER {
         python: \$( python --version | sed 's/Python //' )
         biopython: \$(python -c "import Bio; print(Bio.__version__)")
         pandas: \$(python -c "import pandas; print(pandas.__version__)")
-        prodigal-gv: \$(echo \$(prodigal-gv -v 2>&1) | sed -n 's/^.*Prodigal V//; s/-gv.*//; 1p')
-        hmmer: \$(hmmsearch -h | grep HMMER | sed 's/.*HMMER //; s/ (.*//')
     END_VERSIONS
     """
 
@@ -52,8 +52,6 @@ process MVIRS_PARSER {
         python: \$( python --version | sed 's/Python //' )
         biopython: \$(python -c "import Bio; print(Bio.__version__)")
         pandas: \$(python -c "import pandas; print(pandas.__version__)")
-        prodigal-gv: \$(echo \$(prodigal-gv -v 2>&1) | sed -n 's/^.*Prodigal V//; s/-gv.*//; 1p')
-        hmmer: \$(hmmsearch -h | grep HMMER | sed 's/.*HMMER //; s/ (.*//')
     END_VERSIONS
     """
 }

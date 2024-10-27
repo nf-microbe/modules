@@ -2,8 +2,6 @@
 
 import argparse
 import gzip
-import os
-import subprocess as sp
 
 import Bio.SeqIO
 import pandas as pd
@@ -90,45 +88,9 @@ def find_direct_repeats(fna_path, mvirs_path, summary_path, max_repeat, att_len)
     df.to_csv(summary_path, sep="\t", index=False)
 
 
-def run_command(cmd):
-    proc = sp.Popen(cmd, shell=True, stderr=sp.PIPE, stdout=sp.PIPE)
-    out, err = proc.communicate()
-    if proc.returncode != 0:
-        print(f"   Error running command: {err.decode()}")
-        print(f"   Command output: {out.decode()}")
-        return False
-    else:
-        return True
-
-
-def run_prodigal(fna_path, faa_path):
-    if fna_path.endswith("gz"):
-        cmd = f"zcat {fna_path} | prodigal-gv -p meta -a {faa_path} -p meta"
-    else:
-        cmd = f"prodigal-gv -p meta -i {fna_path} -a {faa_path} -p meta"
-    run_command(cmd)
-
-
-def run_hmmsearch(domtbl_path, hmm_path, faa_path):
-    cmd = f"hmmsearch -Z 1 --cpu 1 -E 1e-5 --tblout {domtbl_path} {hmm_path} {faa_path} &> /dev/null"
-    run_command(cmd)
-
-
-def find_integrases(args):
-    faa_path = f"{args.prefix}.faa"
-    domtbl_path = f"{args.prefix}.domtbl"
-
-    run_prodigal(args.mvirs_path, faa_path)
-    run_hmmsearch(domtbl_path, args.hmm_path, faa_path)
-    make_integrase_output(faa_path, domtbl_path, args.integrases_path)
-
-    for file in [domtbl_path, faa_path]:
-        os.remove(file)
-
-
 def make_integrase_output(faa_path, domtbl_path, integrases_path):
     rows = []
-    proteins = dict([[r.id, str(r.seq)] for r in Bio.SeqIO.parse(faa_path, "fasta")])
+    proteins = dict([[r.id, r.seq] for r in Bio.SeqIO.parse(gzip.open(faa_path, "rt"), "fasta")])
     for line in open(domtbl_path):
         if line[0] == "#":
             continue
@@ -159,9 +121,10 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description="Parse mVIRs output to identify recombinases, find direct repeats, and att sites."
     )
-    parser.add_argument("--mvirs_path", type=str, help="Path to the prophages .fasta.gz file")
-    parser.add_argument("--fna_path", type=str, help="Path to the contigs .fna.gz file")
-    parser.add_argument("--hmm_path", type=str, help="Path to the recombinase HMM file")
+    parser.add_argument("--mvirs", type=str, help="Path to the prophages .fasta.gz file")
+    parser.add_argument("--fna", type=str, help="Path to the contigs .fna.gz file")
+    parser.add_argument("--faa", type=str, help="Path to the protein .faa.gz file")
+    parser.add_argument("--hmmsearch", type=str, help="Path to the recombinase HMMsearch output file")
     parser.add_argument(
         "--att_len", metavar="INT", type=int, default=100, help="Length for attachment sites (default: 100)"
     )
@@ -177,7 +140,7 @@ if __name__ == "__main__":
 
     ## check args
     print("finding integrases")
-    find_integrases(args)
+    make_integrase_output(args.faa, args.hmmsearch, args.integrases_path)
 
     print("finding direct repeats")
-    find_direct_repeats(args.fna_path, args.mvirs_path, args.summary_path, args.max_repeat, args.att_len)
+    find_direct_repeats(args.fna, args.mvirs, args.summary_path, args.max_repeat, args.att_len)
