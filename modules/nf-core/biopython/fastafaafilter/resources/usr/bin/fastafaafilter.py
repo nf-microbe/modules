@@ -64,7 +64,7 @@ def filter_sequences(input_fasta, input_faa, prefix, fasta_min_len):
 
     # Write out filtered protein sequences
     proteins_to_write = []
-    proteins = gzip.open(input_faa, "rt") if input_fasta.split(".")[-1] == "gz" else open(input_faa)
+    proteins = gzip.open(input_faa, "rt") if input_faa.split(".")[-1] == "gz" else open(input_faa)
     for record in SeqIO.parse(proteins, "fasta"):
         if record.id.rpartition("_")[0] in passing_record_ids:
             proteins_to_write.append(record)

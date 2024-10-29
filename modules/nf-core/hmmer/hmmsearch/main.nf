@@ -27,7 +27,13 @@ process HMMER_HMMSEARCH {
     alignment      = write_align     ? "-A ${prefix}.sto" : ''
     target_summary = write_target    ? "--tblout ${prefix}.tbl" : ''
     domain_summary = write_domain    ? "--domtblout ${prefix}.domtbl" : ''
+    def is_compressed = seqdb.getExtension() == "gz" ? true : false
+    def seqdb_name = is_compressed ? seqdb.getBaseName() : seqdb
     """
+    if [ "${is_compressed}" == "true" ]; then
+        gzip -c -d ${seqdb} > ${seqdb_name}
+    fi
+
     hmmsearch \\
         $args \\
         --cpu $task.cpus \\
@@ -36,7 +42,7 @@ process HMMER_HMMSEARCH {
         $target_summary \\
         $domain_summary \\
         $hmmfile \\
-        $seqdb
+        ${seqdb_name}
 
     gzip --no-name *.txt \\
         ${write_align ? '*.sto' : ''} \\
