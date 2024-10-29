@@ -15,19 +15,26 @@ workflow FASTQFASTA_MVIRS_TSV {
 
     ch_versions = Channel.empty()
 
+    // identify FastA files with associated FastQ files
+    ch_mvirs_inputs  = fastq_gz.map { meta, fastq -> [ meta.group, meta, fastq ] }
+        .join(fasta_gz.map { meta, fasta -> [ meta.id, meta, fasta ] } )
+        .map { meta_id, meta_fastq, fastq, meta_fasta, fasta ->
+            [ meta_fasta, fasta ]
+        }
+
     //
     // MODULE: Index reference genome/assembly
     //
     MVIRS_INDEX(
-        fasta_gz
+        ch_mvirs_inputs
     )
     ch_versions = ch_versions.mix(MVIRS_INDEX.out.versions)
 
-    // join fastQ and Fasta
-    ch_mvirs_oprs_input = fastq_gz.map { meta, fastq -> [ [ id:meta.group ], meta, fastq ] }
-        .combine(fasta_gz, by:0)
-        .combine(MVIRS_INDEX.out.index, by:0)
-        .multiMap { meta_group, meta_fastq, fastq, fasta, index ->
+    // join fastQ, Fasta, and index
+    ch_mvirs_oprs_input = MVIRS_INDEX.out.index.map { meta, index -> [ meta.id, index ] }
+        .combine(fastq_gz.map { meta, fastq -> [ meta.group, meta, fastq ] }, by:0)
+        .combine(fasta_gz.map { meta, fasta -> [ meta.id, fasta ] }, by:0)
+        .multiMap { meta_group, index, meta_fastq, fastq, fasta ->
             fastq:  [ meta_fastq, fastq ]
             fasta:  [ meta_fastq, fasta ]
             index:  [ meta_fastq, index ]
