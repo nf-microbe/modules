@@ -2,10 +2,10 @@
     "SAMEA3586081": {
         "content": [
             [
-                
+
             ],
             [
-                
+
             ],
             [
                 "versions.yml:md5,9c9b3d5cd54535a372b73b67d1f4bcfd"
@@ -17,8 +17,7 @@
                 "#",
                 "# Program:         hmmsearch",
                 "# Version:         3.4 (Aug 2023)",
-                "# Pipeline mode:   SEARCH",
-                "# Query file:      /workspaces/modules/assets/hmms/integrases/integrases.hmm"
+                "# Pipeline mode:   SEARCH"
             ]
         ],
         "meta": {
@@ -30,10 +29,10 @@
     "SAMN34082720": {
         "content": [
             [
-                
+
             ],
             [
-                
+
             ],
             [
                 "versions.yml:md5,9c9b3d5cd54535a372b73b67d1f4bcfd"
@@ -58,10 +57,10 @@
     "SAMN07141558": {
         "content": [
             [
-                
+
             ],
             [
-                
+
             ],
             [
                 "versions.yml:md5,9c9b3d5cd54535a372b73b67d1f4bcfd"

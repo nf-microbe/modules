@@ -69,7 +69,7 @@ nextflow_process {
                     process.out.integrases,
                     process.out.summary,
                     process.out.versions,
-                    file(process.out.hmmer_tbl[0][1]).readLines()[0..7]
+                    file(process.out.hmmer_tbl[0][1]).readLines()[0..6]
                     ).match()
                 }
             )
