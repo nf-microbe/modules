@@ -53,7 +53,7 @@ def filter_sequences(input_fasta, hmm_tbl, prefix):
         if line[0] == "#":
             continue
         parts = line.split()
-        seqs_w_hmm_set.add(parts[0].rpartition('_')[0])
+        seqs_w_hmm_set.add(parts[0].rpartition("_")[0])
 
     # Write out filtered sequences
     sequences_to_write = []
