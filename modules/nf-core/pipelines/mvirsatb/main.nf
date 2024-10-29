@@ -5,7 +5,7 @@ process PIPELINES_MVIRSATB {
     conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
         'oras://community.wave.seqera.io/library/fastp_hmmer_mvirs_sra-tools_pruned:e51b03139b970e16' :
-        'community.wave.seqera.io/library/seqkit_aria2_biopython:2256c902d3a46191' }"
+        'community.wave.seqera.io/library/fastp_hmmer_mvirs_sra-tools_pruned:0c067f9fe60f5eb1' }"
 
     input:
     tuple val(meta) , path(fasta)

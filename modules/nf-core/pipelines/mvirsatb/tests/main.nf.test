@@ -35,7 +35,8 @@ nextflow_process {
                 { assert snapshot(
                     process.out.integrases,
                     process.out.summary,
-                    file(process.out.hmmer_tbl[0][1]).readLines()[0..9]
+                    process.out.versions,
+                    file(process.out.hmmer_tbl[0][1]).readLines()[0..7]
                     ).match()
                 }
             )
@@ -67,7 +68,8 @@ nextflow_process {
                 { assert snapshot(
                     process.out.integrases,
                     process.out.summary,
-                    file(process.out.hmmer_tbl[0][1]).readLines()[0..9]
+                    process.out.versions,
+                    file(process.out.hmmer_tbl[0][1]).readLines()[0..7]
                     ).match()
                 }
             )
@@ -99,7 +101,8 @@ nextflow_process {
                 { assert snapshot(
                     process.out.integrases,
                     process.out.summary,
-                    file(process.out.hmmer_tbl[0][1]).readLines()[0..9]
+                    process.out.versions,
+                    file(process.out.hmmer_tbl[0][1]).readLines()[0..7]
                     ).match()
                 }
             )
