@@ -32,10 +32,7 @@ def parse_args(args=None):
         help="Prefix to use when naming output files.",
     )
     parser.add_argument(
-        "--fasta_min_len",
-        help="Minimum length to use when filtering FastA sequences.",
-        default=10000,
-        type=int
+        "--fasta_min_len", help="Minimum length to use when filtering FastA sequences.", default=10000, type=int
     )
     return parser.parse_args(args)
 
