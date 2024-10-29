@@ -4,8 +4,8 @@ process BIOPYTHON_FASTAFAALENGTHFILTER {
 
     conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'https://depot.galaxyproject.org/singularity/mulled-v2-80c23cbcd32e2891421c54d1899665046feb07ef:77a31e289d22068839533bf21f8c4248ad274b60-0' :
-        'biocontainers/mulled-v2-80c23cbcd32e2891421c54d1899665046feb07ef:77a31e289d22068839533bf21f8c4248ad274b60-0' }"
+        'oras://community.wave.seqera.io/library/hmmer_prodigal-gv_biopython_pandas:de876e9113694da7' :
+        'community.wave.seqera.io/library/hmmer_prodigal-gv_biopython_pandas:aaaf7b9a9207df90' }"
 
     input:
     tuple val(meta) , path(fasta)
