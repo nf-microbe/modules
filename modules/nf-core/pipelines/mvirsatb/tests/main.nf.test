@@ -1,0 +1,108 @@
+nextflow_process {
+
+    name "Test Process PIPELINES_MVIRSATB"
+    script "../main.nf"
+    process "PIPELINES_MVIRSATB"
+    config "./nextflow.config"
+
+    tag "modules"
+    tag "modules_nfcore"
+    tag "pipelines"
+    tag "pipelines/mvirsatb"
+
+    test("SAMN34082720") {
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'SAMN34082720', run:'SRR24085752' ],
+                    file("${projectDir}/assets/test-datasets/pipelines/mvirsatb/SRR24085752_megahit_contigs.fa.gz", checkIfExists: true)
+                ]
+                input[1] = [
+                    [ id:'SAMN34082720', run:'SRR24085752' ],
+                    file("${projectDir}/assets/test-datasets/pipelines/mvirsatb/SRR24085752_megahit.faa.gz", checkIfExists: true)
+                ]
+                input[2] = [
+                    [ id:'SAMN34082720', run:'SRR24085752' ],
+                    'SRR24085752'
+                ]
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(
+                    process.out.integrases,
+                    process.out.summary,
+                    file(process.out.hmmer_tbl[0][1]).readLines()[0..9]
+                    ).match()
+                }
+            )
+        }
+    }
+
+    test("SAMEA3586081") {
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'SAMEA3586081', run:'ERR1042924' ],
+                    file("${projectDir}/assets/test-datasets/pipelines/mvirsatb/ERR1042924_megahit_contigs.fa.gz", checkIfExists: true)
+                ]
+                input[1] = [
+                    [ id:'SAMEA3586081', run:'ERR1042924' ],
+                    file("${projectDir}/assets/test-datasets/pipelines/mvirsatb/ERR1042924_megahit.faa.gz", checkIfExists: true)
+                ]
+                input[2] = [
+                    [ id:'SAMEA3586081', run:'ERR1042924' ],
+                    'ERR1042924'
+                ]
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(
+                    process.out.integrases,
+                    process.out.summary,
+                    file(process.out.hmmer_tbl[0][1]).readLines()[0..9]
+                    ).match()
+                }
+            )
+        }
+    }
+
+    test("SAMN07141558") {
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'SAMN07141558', run:'SRR7211845' ],
+                    file("${projectDir}/assets/test-datasets/pipelines/mvirsatb/SRR7211845_megahit_contigs.fa.gz", checkIfExists: true)
+                ]
+                input[1] = [
+                    [ id:'SAMN07141558', run:'SRR7211845' ],
+                    file("${projectDir}/assets/test-datasets/pipelines/mvirsatb/SRR7211845_megahit.faa.gz", checkIfExists: true)
+                ]
+                input[2] = [
+                    [ id:'SAMN07141558', run:'SRR7211845' ],
+                    'SRR7211845'
+                ]
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(
+                    process.out.integrases,
+                    process.out.summary,
+                    file(process.out.hmmer_tbl[0][1]).readLines()[0..9]
+                    ).match()
+                }
+            )
+        }
+    }
+}
