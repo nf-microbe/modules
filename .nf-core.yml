@@ -4,6 +4,8 @@ org_path: nf-core
 update:
   https://github.com/nf-core/modules.git:
     nf-core:
+      biopython/fastafaalengthfilter: False
+      biopython/fastahmmsearchfilter: False
       mvirs/parser: False
       hostile/clean: False
       hostile/fetch: False

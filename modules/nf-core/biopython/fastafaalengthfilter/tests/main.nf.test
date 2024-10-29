@@ -8,7 +8,7 @@ nextflow_process {
     tag "modules_nfcore"
     tag "modules"
     tag "biopython"
-    tag "biopython/fastafaafilter"
+    tag "biopython/fastafaalengthfilter"
 
     test("fasta.gz + faa.gz") {
         when {
