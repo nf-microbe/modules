@@ -1,4 +1,4 @@
-process BIOPYTHON_FASTAFAAFILTER {
+process BIOPYTHON_FASTAFAALENGTHFILTER {
     tag "${meta.id}"
     label 'process_low'
 
@@ -12,9 +12,9 @@ process BIOPYTHON_FASTAFAAFILTER {
     tuple val(meta2), path(faa)
 
     output:
-    tuple val(meta), path("${prefix}.filtered.fasta.gz")    , emit: fasta
-    tuple val(meta), path("${prefix}.filtered.faa.gz")      , emit: faa
-    path "versions.yml"                                     , emit: versions
+    tuple val(meta), path("${prefix}.lengthfilter.fasta.gz")    , emit: fasta
+    tuple val(meta), path("${prefix}.lengthfilter.faa.gz")      , emit: faa
+    path "versions.yml"                                         , emit: versions
 
     when:
     task.ext.when == null || task.ext.when
@@ -23,13 +23,13 @@ process BIOPYTHON_FASTAFAAFILTER {
     def args = task.ext.args ?: ''
     prefix = task.ext.prefix ?: "${meta.id}"
     """
-    fastafaafilter.py \\
+    fastafaalengthfilter.py \\
         --input_fasta ${fasta} \\
         --input_faa ${faa} \\
-        --prefix ${prefix}.filtered \\
+        --prefix ${prefix}.lengthfilter \\
         ${args}
 
-    gzip ${prefix}.filtered.fasta ${prefix}.filtered.faa
+    gzip ${prefix}.lengthfilter.fasta ${prefix}.lengthfilter.faa
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
@@ -42,8 +42,8 @@ process BIOPYTHON_FASTAFAAFILTER {
     def args = task.ext.args ?: ''
     prefix = task.ext.prefix ?: "${meta.id}"
     """
-    echo "" | gzip > ${prefix}.filtered.fasta.gz
-    echo "" | gzip > ${prefix}.filtered.faa.gz
+    echo "" | gzip > ${prefix}.lengthfilter.fasta.gz
+    echo "" | gzip > ${prefix}.lengthfilter.faa.gz
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":

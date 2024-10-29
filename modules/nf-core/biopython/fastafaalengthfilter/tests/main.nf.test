@@ -1,14 +1,14 @@
 nextflow_process {
 
-    name "Test Process: BIOPYTHON_FASTAFAAFILTER"
+    name "Test Process: BIOPYTHON_FASTAFAALENGTHFILTER"
     script "../main.nf"
-    process "BIOPYTHON_FASTAFAAFILTER"
+    process "BIOPYTHON_FASTAFAALENGTHFILTER"
     config "./nextflow.config"
 
     tag "modules_nfcore"
     tag "modules"
     tag "biopython"
-    tag "biopython/fastafaafilter"
+    tag "biopython/fastafaalengthfilter"
 
     test("fasta.gz + faa.gz") {
         when {

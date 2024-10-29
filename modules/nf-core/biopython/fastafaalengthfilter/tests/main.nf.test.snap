@@ -8,7 +8,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test.filtered.fasta.gz:md5,238c9c4b8fd2a3f067bf3e840ead459a"
+                        "test.lengthfilter.fasta.gz:md5,238c9c4b8fd2a3f067bf3e840ead459a"
                     ]
                 ],
                 "1": [
@@ -17,11 +17,11 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test.filtered.faa.gz:md5,fbcb4274ae897b730beff303fbf2c20c"
+                        "test.lengthfilter.faa.gz:md5,fbcb4274ae897b730beff303fbf2c20c"
                     ]
                 ],
                 "2": [
-                    "versions.yml:md5,4e4d46ab9a84de4fc18e4c76ba321b25"
+                    "versions.yml:md5,7dc973a028195c796084df7fbc23d31d"
                 ],
                 "faa": [
                     [
@@ -29,7 +29,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test.filtered.faa.gz:md5,fbcb4274ae897b730beff303fbf2c20c"
+                        "test.lengthfilter.faa.gz:md5,fbcb4274ae897b730beff303fbf2c20c"
                     ]
                 ],
                 "fasta": [
@@ -38,11 +38,11 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test.filtered.fasta.gz:md5,238c9c4b8fd2a3f067bf3e840ead459a"
+                        "test.lengthfilter.fasta.gz:md5,238c9c4b8fd2a3f067bf3e840ead459a"
                     ]
                 ],
                 "versions": [
-                    "versions.yml:md5,4e4d46ab9a84de4fc18e4c76ba321b25"
+                    "versions.yml:md5,7dc973a028195c796084df7fbc23d31d"
                 ]
             }
         ],
@@ -50,7 +50,7 @@
             "nf-test": "0.9.1",
             "nextflow": "24.04.4"
         },
-        "timestamp": "2024-10-27T22:40:02.177316594"
+        "timestamp": "2024-10-29T15:22:30.152540768"
     },
     "stub": {
         "content": [
@@ -61,7 +61,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test.filtered.fasta.gz:md5,238c9c4b8fd2a3f067bf3e840ead459a"
+                        "test.lengthfilter.fasta.gz:md5,238c9c4b8fd2a3f067bf3e840ead459a"
                     ]
                 ],
                 "1": [
@@ -70,11 +70,11 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test.filtered.faa.gz:md5,fbcb4274ae897b730beff303fbf2c20c"
+                        "test.lengthfilter.faa.gz:md5,fbcb4274ae897b730beff303fbf2c20c"
                     ]
                 ],
                 "2": [
-                    "versions.yml:md5,4e4d46ab9a84de4fc18e4c76ba321b25"
+                    "versions.yml:md5,7dc973a028195c796084df7fbc23d31d"
                 ],
                 "faa": [
                     [
@@ -82,7 +82,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test.filtered.faa.gz:md5,fbcb4274ae897b730beff303fbf2c20c"
+                        "test.lengthfilter.faa.gz:md5,fbcb4274ae897b730beff303fbf2c20c"
                     ]
                 ],
                 "fasta": [
@@ -91,11 +91,11 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test.filtered.fasta.gz:md5,238c9c4b8fd2a3f067bf3e840ead459a"
+                        "test.lengthfilter.fasta.gz:md5,238c9c4b8fd2a3f067bf3e840ead459a"
                     ]
                 ],
                 "versions": [
-                    "versions.yml:md5,4e4d46ab9a84de4fc18e4c76ba321b25"
+                    "versions.yml:md5,7dc973a028195c796084df7fbc23d31d"
                 ]
             }
         ],
@@ -103,6 +103,6 @@
             "nf-test": "0.9.1",
             "nextflow": "24.04.4"
         },
-        "timestamp": "2024-10-27T22:40:12.534557805"
+        "timestamp": "2024-10-29T15:22:42.341823727"
     }
 }
