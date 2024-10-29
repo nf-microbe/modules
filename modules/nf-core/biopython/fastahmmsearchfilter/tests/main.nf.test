@@ -1,9 +1,8 @@
 nextflow_process {
 
-    name "Test Process: BIOPYTHON_FASTAFAAFILTER"
+    name "Test Process: BIOPYTHON_FASTAHMMSEARCHFILTER"
     script "../main.nf"
-    process "BIOPYTHON_FASTAFAAFILTER"
-    config "./nextflow.config"
+    process "BIOPYTHON_FASTAHMMSEARCHFILTER"
 
     tag "modules_nfcore"
     tag "modules"
@@ -19,8 +18,8 @@ nextflow_process {
                     file(params.modules_testdata_base_path + "genomics/prokaryotes/bacteroides_fragilis/illumina/fasta/test1.contigs.fa.gz", checkIfExists: true),
                 ]
                 input[1] = [
-                    [ id:'test', single_end:false ], // meta map
-                    file("${projectDir}/assets/test-datasets/genomics/prokaryotes/bacteroides_fragilis/illumina/faa/test1.pyrodigalgv.faa.gz", checkIfExists: true),
+                    [ id: 'test' ],
+                    file("${projectDir}/assets/test-datasets/genomics/provirus/illumina/hmmsearch/test.hmmsearch.tbl.gz", checkIfExists: true)
                 ]
                 """
             }
@@ -42,8 +41,8 @@ nextflow_process {
                     file(params.modules_testdata_base_path + "genomics/prokaryotes/bacteroides_fragilis/illumina/fasta/test1.contigs.fa.gz", checkIfExists: true),
                 ]
                 input[1] = [
-                    [ id:'test', single_end:false ], // meta map
-                    file("${projectDir}/assets/test-datasets/genomics/prokaryotes/bacteroides_fragilis/illumina/faa/test1.pyrodigalgv.faa.gz", checkIfExists: true),
+                    [ id: 'test' ],
+                    file("${projectDir}/assets/test-datasets/genomics/provirus/illumina/hmmsearch/test.hmmsearch.tbl.gz", checkIfExists: true)
                 ]
                 """
             }

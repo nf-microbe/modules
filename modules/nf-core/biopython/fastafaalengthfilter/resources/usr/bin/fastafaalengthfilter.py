@@ -11,7 +11,7 @@ def parse_args(args=None):
     description = "Filter FastA and FAA sequences based on length."
     epilog = """
     Example usage:
-    python fastafaafilter.py \
+    python fastafaalengthfilter.py \
         --input_fasta sequences.fasta.gz \
         --input_faa proteins.faa.gz \
         --prefix test \
@@ -34,6 +34,8 @@ def parse_args(args=None):
     parser.add_argument(
         "--fasta_min_len",
         help="Minimum length to use when filtering FastA sequences.",
+        default=10000,
+        type=int
     )
     return parser.parse_args(args)
 

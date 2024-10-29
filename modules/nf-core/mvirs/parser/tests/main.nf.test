@@ -25,7 +25,7 @@ nextflow_process {
                 ]
                 input[2] = [
                     [ id: 'test' ],
-                    file("${projectDir}/assets/test-datasets/genomics/provirus/illumina/hmmsearch/test.hmmsearch", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/genomics/provirus/illumina/hmmsearch/test.hmmsearch.tbl.gz", checkIfExists: true)
                 ]
                 input[3] = [
                     [ id: 'test' ],
@@ -57,7 +57,7 @@ nextflow_process {
                 ]
                 input[2] = [
                     [ id: 'test' ],
-                    file("${projectDir}/assets/test-datasets/genomics/provirus/illumina/hmmsearch/test.hmmsearch", checkIfExists: true)
+                    file("${projectDir}/assets/test-datasets/genomics/provirus/illumina/hmmsearch/test.hmmsearch.tbl.gz", checkIfExists: true)
                 ]
                 input[3] = [
                     [ id: 'test' ],

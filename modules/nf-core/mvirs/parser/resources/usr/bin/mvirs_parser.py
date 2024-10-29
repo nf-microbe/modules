@@ -91,7 +91,8 @@ def find_direct_repeats(fna_path, mvirs_path, summary_path, max_repeat, att_len)
 def make_integrase_output(faa_path, domtbl_path, integrases_path):
     rows = []
     proteins = dict([[r.id, r.seq] for r in Bio.SeqIO.parse(gzip.open(faa_path, "rt"), "fasta")])
-    for line in open(domtbl_path):
+    domtbl_path_open = gzip.open(domtbl_path, "rt") if domtbl_path.split(".")[-1] == "gz" else open(domtbl_path)
+    for line in domtbl_path_open:
         if line[0] == "#":
             continue
         parts = line.split()
