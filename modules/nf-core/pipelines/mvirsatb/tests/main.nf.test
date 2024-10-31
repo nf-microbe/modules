@@ -14,17 +14,20 @@ nextflow_process {
         when {
             process {
                 """
-                input[0] = [
-                    [ id:'SAMN34082720', run:'SRR24085752' ],
-                    file("${projectDir}/assets/test-datasets/pipelines/mvirsatb/SRR24085752_megahit_contigs.fa.gz", checkIfExists: true)
-                ]
-                input[1] = [
-                    [ id:'SAMN34082720', run:'SRR24085752' ],
-                    file("${projectDir}/assets/test-datasets/pipelines/mvirsatb/SRR24085752_megahit.faa.gz", checkIfExists: true)
-                ]
-                input[2] = [
-                    [ id:'SAMN34082720', run:'SRR24085752' ],
+                input[0] = Channel.of([
+                    'SAMN34082720'
+                ])
+                input[1] = Channel.of([
                     'SRR24085752'
+                ])
+                input[2] = Channel.of([
+                    file("${projectDir}/assets/test-datasets/pipelines/mvirsatb/SRR24085752_megahit_contigs.fa.gz", checkIfExists: true)
+                ])
+                input[3] = Channel.of([
+                    file("${projectDir}/assets/test-datasets/pipelines/mvirsatb/SRR24085752_megahit.faa.gz", checkIfExists: true)
+                ])
+                input[4] = [
+                    file("${projectDir}/assets/hmms/integrases/integrases.hmm", checkIfExists: true)
                 ]
                 """
             }
@@ -36,62 +39,39 @@ nextflow_process {
                     process.out.integrases,
                     process.out.summary,
                     process.out.versions,
-                    file(process.out.hmmer_tbl[0][1]).readLines()[0..7]
                     ).match()
                 }
             )
         }
     }
 
-    test("SAMEA3586081") {
+    test("SAMN34082720 + SAMEA3586081 + SAMN07141558") {
         when {
             process {
                 """
-                input[0] = [
-                    [ id:'SAMEA3586081', run:'ERR1042924' ],
-                    file("${projectDir}/assets/test-datasets/pipelines/mvirsatb/ERR1042924_megahit_contigs.fa.gz", checkIfExists: true)
-                ]
-                input[1] = [
-                    [ id:'SAMEA3586081', run:'ERR1042924' ],
-                    file("${projectDir}/assets/test-datasets/pipelines/mvirsatb/ERR1042924_megahit.faa.gz", checkIfExists: true)
-                ]
-                input[2] = [
-                    [ id:'SAMEA3586081', run:'ERR1042924' ],
-                    'ERR1042924'
-                ]
-                """
-            }
-        }
-        then {
-            assertAll(
-                { assert process.success },
-                { assert snapshot(
-                    process.out.integrases,
-                    process.out.summary,
-                    process.out.versions,
-                    file(process.out.hmmer_tbl[0][1]).readLines()[0..6]
-                    ).match()
-                }
-            )
-        }
-    }
-
-    test("SAMN07141558") {
-        when {
-            process {
-                """
-                input[0] = [
-                    [ id:'SAMN07141558', run:'SRR7211845' ],
+                input[0] = Channel.of([
+                    "SAMN34082720",
+                    "SAMEA3586081",
+                    "SAMN07141558"
+                ])
+                input[1] = Channel.of([
+                    "SRR24085752",
+                    "ERR1042924",
+                    "SRR7211845"
+                ])
+                input[2] = Channel.of([
+                    file("${projectDir}/assets/test-datasets/pipelines/mvirsatb/SRR24085752_megahit_contigs.fa.gz", checkIfExists: true),
+                    file("${projectDir}/assets/test-datasets/pipelines/mvirsatb/ERR1042924_megahit_contigs.fa.gz", checkIfExists: true),
                     file("${projectDir}/assets/test-datasets/pipelines/mvirsatb/SRR7211845_megahit_contigs.fa.gz", checkIfExists: true)
-                ]
-                input[1] = [
-                    [ id:'SAMN07141558', run:'SRR7211845' ],
+                ])
+                input[3] = Channel.of([
+                    file("${projectDir}/assets/test-datasets/pipelines/mvirsatb/SRR24085752_megahit.faa.gz", checkIfExists: true),
+                    file("${projectDir}/assets/test-datasets/pipelines/mvirsatb/ERR1042924_megahit.faa.gz", checkIfExists: true),
                     file("${projectDir}/assets/test-datasets/pipelines/mvirsatb/SRR7211845_megahit.faa.gz", checkIfExists: true)
-                ]
-                input[2] = [
-                    [ id:'SAMN07141558', run:'SRR7211845' ],
-                    'SRR7211845'
-                ]
+                ])
+                input[4] = Channel.of([
+                    file("${projectDir}/assets/hmms/integrases/integrases.hmm", checkIfExists: true)
+                ])
                 """
             }
         }
@@ -102,10 +82,55 @@ nextflow_process {
                     process.out.integrases,
                     process.out.summary,
                     process.out.versions,
-                    file(process.out.hmmer_tbl[0][1]).readLines()[0..7]
                     ).match()
                 }
             )
         }
     }
+
+    test("SAMN34082720 + SAMEA3586081 - stub") {
+        options "-stub"
+        when {
+            process {
+                """
+                input[0] = Channel.of([
+                    "SAMN34082720",
+                    "SAMEA3586081",
+                    "SAMN07141558"
+                ])
+                input[1] = Channel.of([
+                    "SRR24085752",
+                    "ERR1042924",
+                    "SRR7211845"
+                ])
+                input[2] = Channel.of([
+                    file("${projectDir}/assets/test-datasets/pipelines/mvirsatb/SRR24085752_megahit_contigs.fa.gz", checkIfExists: true),
+                    file("${projectDir}/assets/test-datasets/pipelines/mvirsatb/ERR1042924_megahit_contigs.fa.gz", checkIfExists: true),
+                    file("${projectDir}/assets/test-datasets/pipelines/mvirsatb/SRR7211845_megahit_contigs.fa.gz", checkIfExists: true)
+                ])
+                input[3] = Channel.of([
+                    file("${projectDir}/assets/test-datasets/pipelines/mvirsatb/SRR24085752_megahit.faa.gz", checkIfExists: true),
+                    file("${projectDir}/assets/test-datasets/pipelines/mvirsatb/ERR1042924_megahit.faa.gz", checkIfExists: true),
+                    file("${projectDir}/assets/test-datasets/pipelines/mvirsatb/SRR7211845_megahit.faa.gz", checkIfExists: true)
+                ])
+                input[4] = Channel.of([
+                    file("${projectDir}/assets/hmms/integrases/integrases.hmm", checkIfExists: true)
+                ])
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(
+                    process.out.integrases,
+                    process.out.summary,
+                    process.out.versions,
+                    process.out.hmmer_tbl,
+                    ).match()
+                }
+            )
+        }
+    }
+
 }

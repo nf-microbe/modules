@@ -42,7 +42,7 @@ process HMMER_HMMSEARCH {
         $target_summary \\
         $domain_summary \\
         $hmmfile \\
-        ${seqdb_name}
+        ${seqdb_name} &> /dev/null
 
     gzip --no-name *.txt \\
         ${write_align ? '*.sto' : ''} \\
