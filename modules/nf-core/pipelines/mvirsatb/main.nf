@@ -1,5 +1,5 @@
 process PIPELINES_MVIRSATB {
-    tag "${biosamples.join('|')}"
+    tag "${meta.id}"
     label 'process_low'
 
     conda "${moduleDir}/environment.yml"
@@ -8,27 +8,19 @@ process PIPELINES_MVIRSATB {
         'community.wave.seqera.io/library/fastp_hmmer_mvirs_sra-tools_pruned:0c067f9fe60f5eb1' }"
 
     input:
-    val biosamples
-    val runs
-    val fastas
-    val faas
+    tuple val(meta), val(samples)
     path hmm_file
 
     output:
-    path("*.tbl")                  , emit: hmmer_tbl
-    path("*.mvirs.fasta")          , emit: fasta        , optional: true
-    path("*.mvirs.clipped")        , emit: clipped      , optional: true
-    path("*.mvirs.oprs")           , emit: oprs         , optional: true
-    path("*.mvirs.summary.tsv")    , emit: summary      , optional: true
-    path("*.mvirs.integrases.tsv") , emit: integrases   , optional: true
+    tuple val(meta), path("*.tbl")                  , emit: hmmer_tbl
+    tuple val(meta), path("*.mvirs.fasta")          , emit: fasta        , optional: true
+    tuple val(meta), path("*.mvirs.clipped")        , emit: clipped      , optional: true
+    tuple val(meta), path("*.mvirs.oprs")           , emit: oprs         , optional: true
+    tuple val(meta), path("*.mvirs.summary.tsv")    , emit: summary      , optional: true
+    tuple val(meta), path("*.mvirs.integrases.tsv") , emit: integrases   , optional: true
     path "versions.yml"                                 , emit: versions
 
     script:
-    def run_list            = runs.collect { run -> run.toString() }.join(',')
-    def biosample_list      = biosamples.collect { biosample -> biosample.toString() }.join(',')
-    def fasta_list          = fastas.collect { fasta -> fasta.toString() }.join(',')
-    def faa_list            = faas.collect { faa -> faa.toString() }.join(',')
-    def batch_size          = runs.size() - 1
     def assembly_min_len    = task.ext.assembly_min_len
     def hmmsearch_args      = task.ext.hmmsearch_args
     def prefetch_args       = task.ext.prefetch_args
@@ -37,20 +29,14 @@ process PIPELINES_MVIRSATB {
     def mvirs_oprs_args     = task.ext.mvirs_oprs_args
     def mvirs_parser_args   = task.ext.mvirs_parser_args
     """
-    # convert inputs to bash array
-    IFS=',' read -r -a run_array <<< "${run_list}"
-    IFS=',' read -r -a biosample_array <<< "${biosample_list}"
-    IFS=',' read -r -a fasta_array <<< "${fasta_list}"
-    IFS=',' read -r -a faa_array <<< "${faa_list}"
-
-
     # iterate over each item in a batch
-    for i in {0..${batch_size}}; do
-        echo \${run_array[\$i]}
-        run=\${run_array[\$i]}
-        prefix=\${biosample_array[\$i]}_\${run_array[\$i]}
-        fasta=\${fasta_array[\$i]}
-        faa=\${faa_array[\$i]}
+    for sample in ${samples.join(' ')}; do
+        echo \$sample
+        IFS=',' read -r -a sample_array <<< "\${sample}"
+        run=\${sample_array[1]}
+        prefix=\${sample_array[0]}_\${sample_array[1]}
+        fasta=\${sample_array[2]}
+        faa=\${sample_array[3]}
 
         #--------------------------------
         # ASSEMBLY FILTERING
@@ -202,11 +188,6 @@ process PIPELINES_MVIRSATB {
     """
 
     stub:
-    def run_list            = runs.collect { run -> run.toString() }.join(',')
-    def biosample_list      = biosamples.collect { biosample -> biosample.toString() }.join(',')
-    def fasta_list          = fastas.collect { fasta -> fasta.toString() }.join(',')
-    def faa_list            = faas.collect { faa -> faa.toString() }.join(',')
-    def batch_size          = runs.size() - 1
     def assembly_min_len    = task.ext.assembly_min_len
     def hmmsearch_args      = task.ext.hmmsearch_args
     def prefetch_args       = task.ext.prefetch_args
@@ -216,17 +197,13 @@ process PIPELINES_MVIRSATB {
     def mvirs_parser_args   = task.ext.mvirs_parser_args
     """
     # convert inputs to bash array
-    IFS=',' read -r -a run_array <<< "${run_list}"
-    IFS=',' read -r -a biosample_array <<< "${biosample_list}"
-    IFS=',' read -r -a fasta_array <<< "${fasta_list}"
-    IFS=',' read -r -a faa_array <<< "${faa_list}"
-
-    # iterate over each item in a batch
-    for i in {1..${batch_size}}; do
-        run=\${run_array[i]}
-        prefix=\${biosample_array[i]}_\${run_array[i]}
-        fasta=\${fasta_array[i]}
-        faa=\${faa_array[i]}
+    for sample in ${samples.join(' ')}; do
+        echo \$sample
+        IFS=',' read -r -a sample_array <<< "\${sample}"
+        run=\${sample_array[1]}
+        prefix=\${sample_array[0]}_\${sample_array[1]}
+        fasta=\${sample_array[2]}
+        faa=\${sample_array[3]}
 
         echo \\
         "fastafaalengthfilter.py \\
