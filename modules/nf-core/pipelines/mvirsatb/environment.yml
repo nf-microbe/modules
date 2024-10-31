@@ -2,7 +2,7 @@ channels:
   - conda-forge
   - bioconda
 dependencies:
-  - anaconda::biopython=1.4.0
+  - conda-forge::biopython=1.84
   - bioconda::hmmer=3.4
   - bioconda::sra-tools=3.1.1
   - bioconda::fastp=0.23.4
