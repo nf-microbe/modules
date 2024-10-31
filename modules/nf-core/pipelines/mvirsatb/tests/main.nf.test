@@ -14,19 +14,11 @@ nextflow_process {
         when {
             process {
                 """
-                input[0] = Channel.of([
-                    'SAMN34082720'
-                ])
-                input[1] = Channel.of([
-                    'SRR24085752'
-                ])
-                input[2] = Channel.of([
-                    file("${projectDir}/assets/test-datasets/pipelines/mvirsatb/SRR24085752_megahit_contigs.fa.gz", checkIfExists: true)
-                ])
-                input[3] = Channel.of([
-                    file("${projectDir}/assets/test-datasets/pipelines/mvirsatb/SRR24085752_megahit.faa.gz", checkIfExists: true)
-                ])
-                input[4] = [
+                input[0] = [
+                    [ id: 'chunk1' ],
+                    ["SAMN34082720,SRR24085752,${projectDir}/assets/test-datasets/pipelines/mvirsatb/SRR24085752_megahit_contigs.fa.gz,${projectDir}/assets/test-datasets/pipelines/mvirsatb/SRR24085752_megahit.faa.gz"]
+                ]
+                input[1] = [
                     file("${projectDir}/assets/hmms/integrases/integrases.hmm", checkIfExists: true)
                 ]
                 """
@@ -49,27 +41,15 @@ nextflow_process {
         when {
             process {
                 """
-                input[0] = Channel.of([
-                    "SAMN34082720",
-                    "SAMEA3586081",
-                    "SAMN07141558"
-                ])
+                input[0] = [
+                    [ id: 'chunk1' ],
+                    [
+                        "SAMN34082720,SRR24085752,${projectDir}/assets/test-datasets/pipelines/mvirsatb/SRR24085752_megahit_contigs.fa.gz,${projectDir}/assets/test-datasets/pipelines/mvirsatb/SRR24085752_megahit.faa.gz",
+                        "SAMEA3586081,ERR1042924,${projectDir}/assets/test-datasets/pipelines/mvirsatb/ERR1042924_megahit_contigs.fa.gz,${projectDir}/assets/test-datasets/pipelines/mvirsatb/ERR1042924_megahit.faa.gz",
+                        "SAMN07141558,SRR7211845,${projectDir}/assets/test-datasets/pipelines/mvirsatb/SRR7211845_megahit_contigs.fa.gz,${projectDir}/assets/test-datasets/pipelines/mvirsatb/SRR7211845_megahit.faa.gz"
+                    ]
+                ]
                 input[1] = Channel.of([
-                    "SRR24085752",
-                    "ERR1042924",
-                    "SRR7211845"
-                ])
-                input[2] = Channel.of([
-                    file("${projectDir}/assets/test-datasets/pipelines/mvirsatb/SRR24085752_megahit_contigs.fa.gz", checkIfExists: true),
-                    file("${projectDir}/assets/test-datasets/pipelines/mvirsatb/ERR1042924_megahit_contigs.fa.gz", checkIfExists: true),
-                    file("${projectDir}/assets/test-datasets/pipelines/mvirsatb/SRR7211845_megahit_contigs.fa.gz", checkIfExists: true)
-                ])
-                input[3] = Channel.of([
-                    file("${projectDir}/assets/test-datasets/pipelines/mvirsatb/SRR24085752_megahit.faa.gz", checkIfExists: true),
-                    file("${projectDir}/assets/test-datasets/pipelines/mvirsatb/ERR1042924_megahit.faa.gz", checkIfExists: true),
-                    file("${projectDir}/assets/test-datasets/pipelines/mvirsatb/SRR7211845_megahit.faa.gz", checkIfExists: true)
-                ])
-                input[4] = Channel.of([
                     file("${projectDir}/assets/hmms/integrases/integrases.hmm", checkIfExists: true)
                 ])
                 """
@@ -93,27 +73,15 @@ nextflow_process {
         when {
             process {
                 """
-                input[0] = Channel.of([
-                    "SAMN34082720",
-                    "SAMEA3586081",
-                    "SAMN07141558"
-                ])
+                input[0] = [
+                    [ id: 'chunk1' ],
+                    [
+                        "SAMN34082720,SRR24085752,${projectDir}/assets/test-datasets/pipelines/mvirsatb/SRR24085752_megahit_contigs.fa.gz,${projectDir}/assets/test-datasets/pipelines/mvirsatb/SRR24085752_megahit.faa.gz",
+                        "SAMEA3586081,ERR1042924,${projectDir}/assets/test-datasets/pipelines/mvirsatb/ERR1042924_megahit_contigs.fa.gz,${projectDir}/assets/test-datasets/pipelines/mvirsatb/ERR1042924_megahit.faa.gz",
+                        "SAMN07141558,SRR7211845,${projectDir}/assets/test-datasets/pipelines/mvirsatb/SRR7211845_megahit_contigs.fa.gz,${projectDir}/assets/test-datasets/pipelines/mvirsatb/SRR7211845_megahit.faa.gz"
+                    ]
+                ]
                 input[1] = Channel.of([
-                    "SRR24085752",
-                    "ERR1042924",
-                    "SRR7211845"
-                ])
-                input[2] = Channel.of([
-                    file("${projectDir}/assets/test-datasets/pipelines/mvirsatb/SRR24085752_megahit_contigs.fa.gz", checkIfExists: true),
-                    file("${projectDir}/assets/test-datasets/pipelines/mvirsatb/ERR1042924_megahit_contigs.fa.gz", checkIfExists: true),
-                    file("${projectDir}/assets/test-datasets/pipelines/mvirsatb/SRR7211845_megahit_contigs.fa.gz", checkIfExists: true)
-                ])
-                input[3] = Channel.of([
-                    file("${projectDir}/assets/test-datasets/pipelines/mvirsatb/SRR24085752_megahit.faa.gz", checkIfExists: true),
-                    file("${projectDir}/assets/test-datasets/pipelines/mvirsatb/ERR1042924_megahit.faa.gz", checkIfExists: true),
-                    file("${projectDir}/assets/test-datasets/pipelines/mvirsatb/SRR7211845_megahit.faa.gz", checkIfExists: true)
-                ])
-                input[4] = Channel.of([
                     file("${projectDir}/assets/hmms/integrases/integrases.hmm", checkIfExists: true)
                 ])
                 """
