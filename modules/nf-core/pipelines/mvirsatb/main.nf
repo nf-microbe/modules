@@ -12,12 +12,12 @@ process PIPELINES_MVIRSATB {
     path hmm_file
 
     output:
-    path("*.tbl")                  , emit: hmmer_tbl
-    path("*.mvirs.fasta")          , emit: fasta        , optional: true
-    path("*.mvirs.clipped")        , emit: clipped      , optional: true
-    path("*.mvirs.oprs")           , emit: oprs         , optional: true
-    path("*.mvirs.summary.tsv")    , emit: summary      , optional: true
-    path("*.mvirs.integrases.tsv") , emit: integrases   , optional: true
+    tuple val(meta), path("*.tbl")                  , emit: hmmer_tbl
+    tuple val(meta), path("*.mvirs.fasta")          , emit: fasta        , optional: true
+    tuple val(meta), path("*.mvirs.clipped")        , emit: clipped      , optional: true
+    tuple val(meta), path("*.mvirs.oprs")           , emit: oprs         , optional: true
+    tuple val(meta), path("*.mvirs.summary.tsv")    , emit: summary      , optional: true
+    tuple val(meta), path("*.mvirs.integrases.tsv") , emit: integrases   , optional: true
     path "versions.yml"                                 , emit: versions
 
     script:
