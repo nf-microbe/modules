@@ -18,7 +18,7 @@ process PIPELINES_MVIRSATB {
     tuple val(meta), path("*.mvirs.oprs")           , emit: oprs         , optional: true
     tuple val(meta), path("*.mvirs.summary.tsv")    , emit: summary      , optional: true
     tuple val(meta), path("*.mvirs.integrases.tsv") , emit: integrases   , optional: true
-    path "versions.yml"                                 , emit: versions
+    path "versions.yml"                             , emit: versions
 
     script:
     def assembly_min_len    = task.ext.assembly_min_len
@@ -37,6 +37,7 @@ process PIPELINES_MVIRSATB {
         prefix=\${sample_array[0]}_\${sample_array[1]}
         fasta=\${sample_array[2]}
         faa=\${sample_array[3]}
+        max_reads=\${sample_array[4]}
 
         #--------------------------------
         # ASSEMBLY FILTERING
@@ -115,6 +116,7 @@ process PIPELINES_MVIRSATB {
                 --out2 \${prefix}_2.fastp.fastq \\
                 --thread ${task.cpus} \\
                 --detect_adapter_for_pe \\
+                --reads_to_process \${max_reads} \\
                 ${fastp_args}
 
             # REMOVE SRA-TOOLS FASTQs
@@ -204,6 +206,7 @@ process PIPELINES_MVIRSATB {
         prefix=\${sample_array[0]}_\${sample_array[1]}
         fasta=\${sample_array[2]}
         faa=\${sample_array[3]}
+        max_reads=\${sample_array[4]}
 
         echo \\
         "fastafaalengthfilter.py \\
@@ -246,6 +249,7 @@ process PIPELINES_MVIRSATB {
                 --out2 \${prefix}_2.fastp.fastq \\
                 --thread ${task.cpus} \\
                 --detect_adapter_for_pe \\
+                --reads_to_process \${max_reads} \\
                 ${fastp_args}"
 
         echo \\
