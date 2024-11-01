@@ -30,9 +30,14 @@
             ],
             [
                 [
-                    "SAMEA3586081_ERR1042924.tbl:md5,d41d8cd98f00b204e9800998ecf8427e",
-                    "SAMN07141558_SRR7211845.tbl:md5,d41d8cd98f00b204e9800998ecf8427e",
-                    "SAMN34082720_SRR24085752.tbl:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    {
+                        "id": "chunk1"
+                    },
+                    [
+                        "SAMEA3586081_ERR1042924.tbl:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "SAMN07141558_SRR7211845.tbl:md5,d41d8cd98f00b204e9800998ecf8427e",
+                        "SAMN34082720_SRR24085752.tbl:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
                 ]
             ]
         ],
@@ -40,7 +45,7 @@
             "nf-test": "0.9.1",
             "nextflow": "24.04.4"
         },
-        "timestamp": "2024-10-31T23:34:06.62324484"
+        "timestamp": "2024-11-01T19:17:56.466047091"
     },
     "SAMN34082720": {
         "content": [
