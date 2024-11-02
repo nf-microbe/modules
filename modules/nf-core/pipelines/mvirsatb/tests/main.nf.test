@@ -10,48 +10,27 @@ nextflow_process {
     tag "pipelines"
     tag "pipelines/mvirsatb"
 
-    test("SAMN34082720") {
+    test("SAMN34082720 + SAMEA3586081") {
         when {
             process {
                 """
                 input[0] = [
                     [ id: 'chunk1' ],
-                    ["SAMN34082720,SRR24085752,${projectDir}/assets/test-datasets/pipelines/mvirsatb/SRR24085752_megahit_contigs.fa.gz,${projectDir}/assets/test-datasets/pipelines/mvirsatb/SRR24085752_megahit.faa.gz,50000"]
+                    ["SAMN34082720","SAMEA3586081"],
+                    ["SRR24085752","ERR1042924"],
+                    [50000,50000],
+                    [
+                        file("https://github.com/nf-microbe/modules/raw/refs/heads/master/assets/test-datasets/pipelines/mvirsatb/SRR24085752_megahit_contigs.fa.gz", checkIfExists: true),
+                        file("https://github.com/nf-microbe/modules/raw/refs/heads/master/assets/test-datasets/pipelines/mvirsatb/ERR1042924_megahit_contigs.fa.gz", checkIfExists: true)
+                    ],
+                    [
+                        file("https://github.com/nf-microbe/modules/raw/refs/heads/master/assets/test-datasets/pipelines/mvirsatb/SRR24085752_megahit.faa.gz", checkIfExists: true),
+                        file("https://github.com/nf-microbe/modules/raw/refs/heads/master/assets/test-datasets/pipelines/mvirsatb/ERR1042924_megahit.faa.gz", checkIfExists: true)
+                    ]
                 ]
                 input[1] = [
                     file("${projectDir}/assets/hmms/integrases/integrases.hmm", checkIfExists: true)
                 ]
-                """
-            }
-        }
-        then {
-            assertAll(
-                { assert process.success },
-                { assert snapshot(
-                    process.out.integrases,
-                    process.out.summary,
-                    process.out.versions,
-                    ).match()
-                }
-            )
-        }
-    }
-
-    test("SAMN34082720 + SAMEA3586081 + SAMN07141558") {
-        when {
-            process {
-                """
-                input[0] = [
-                    [ id: 'chunk1' ],
-                    [
-                        "SAMN34082720,SRR24085752,${projectDir}/assets/test-datasets/pipelines/mvirsatb/SRR24085752_megahit_contigs.fa.gz,${projectDir}/assets/test-datasets/pipelines/mvirsatb/SRR24085752_megahit.faa.gz,50000",
-                        "SAMEA3586081,ERR1042924,${projectDir}/assets/test-datasets/pipelines/mvirsatb/ERR1042924_megahit_contigs.fa.gz,${projectDir}/assets/test-datasets/pipelines/mvirsatb/ERR1042924_megahit.faa.gz,50000",
-                        "SAMN07141558,SRR7211845,${projectDir}/assets/test-datasets/pipelines/mvirsatb/SRR7211845_megahit_contigs.fa.gz,${projectDir}/assets/test-datasets/pipelines/mvirsatb/SRR7211845_megahit.faa.gz,50000"
-                    ]
-                ]
-                input[1] = Channel.of([
-                    file("${projectDir}/assets/hmms/integrases/integrases.hmm", checkIfExists: true)
-                ])
                 """
             }
         }
@@ -75,15 +54,21 @@ nextflow_process {
                 """
                 input[0] = [
                     [ id: 'chunk1' ],
+                    ["SAMN34082720","SAMEA3586081"],
+                    ["SRR24085752","ERR1042924"],
+                    [50000,50000],
                     [
-                        "SAMN34082720,SRR24085752,${projectDir}/assets/test-datasets/pipelines/mvirsatb/SRR24085752_megahit_contigs.fa.gz,${projectDir}/assets/test-datasets/pipelines/mvirsatb/SRR24085752_megahit.faa.gz,50000",
-                        "SAMEA3586081,ERR1042924,${projectDir}/assets/test-datasets/pipelines/mvirsatb/ERR1042924_megahit_contigs.fa.gz,${projectDir}/assets/test-datasets/pipelines/mvirsatb/ERR1042924_megahit.faa.gz,50000",
-                        "SAMN07141558,SRR7211845,${projectDir}/assets/test-datasets/pipelines/mvirsatb/SRR7211845_megahit_contigs.fa.gz,${projectDir}/assets/test-datasets/pipelines/mvirsatb/SRR7211845_megahit.faa.gz,50000"
+                        file("https://github.com/nf-microbe/modules/raw/refs/heads/master/assets/test-datasets/pipelines/mvirsatb/SRR24085752_megahit_contigs.fa.gz", checkIfExists: true),
+                        file("https://github.com/nf-microbe/modules/raw/refs/heads/master/assets/test-datasets/pipelines/mvirsatb/ERR1042924_megahit_contigs.fa.gz", checkIfExists: true)
+                    ],
+                    [
+                        file("https://github.com/nf-microbe/modules/raw/refs/heads/master/assets/test-datasets/pipelines/mvirsatb/SRR24085752_megahit.faa.gz", checkIfExists: true),
+                        file("https://github.com/nf-microbe/modules/raw/refs/heads/master/assets/test-datasets/pipelines/mvirsatb/ERR1042924_megahit.faa.gz", checkIfExists: true)
                     ]
                 ]
-                input[1] = Channel.of([
+                input[1] = [
                     file("${projectDir}/assets/hmms/integrases/integrases.hmm", checkIfExists: true)
-                ])
+                ]
                 """
             }
         }

@@ -8,7 +8,7 @@ process PIPELINES_MVIRSATB {
         'community.wave.seqera.io/library/fastp_hmmer_mvirs_sra-tools_pruned:0c067f9fe60f5eb1' }"
 
     input:
-    tuple val(meta), val(samples)
+    tuple val(meta), val(biosamples), val(runs), val(max_reads), path(fastas), path(faas)
     path hmm_file
 
     output:
@@ -29,15 +29,18 @@ process PIPELINES_MVIRSATB {
     def mvirs_oprs_args     = task.ext.mvirs_oprs_args
     def mvirs_parser_args   = task.ext.mvirs_parser_args
     """
+    # Create arrays to iterate over
+    biosample_array=(${biosamples.join(' ')})
+    run_array=(${runs.join(' ')})
+    max_read_array=(${max_reads.join(' ')})
+    fasta_array=(${fastas.join(' ')})
+    faa_array=(${faas.join(' ')})
+
     # iterate over each item in a batch
-    for sample in ${samples.join(' ')}; do
-        echo \$sample
-        IFS=',' read -r -a sample_array <<< "\${sample}"
-        run=\${sample_array[1]}
-        prefix=\${sample_array[0]}_\${sample_array[1]}
-        fasta=\${sample_array[2]}
-        faa=\${sample_array[3]}
-        max_reads=\${sample_array[4]}
+    for ((i=0; i<\${#biosample_array[@]}; i++)); do
+        echo \$i
+        prefix=\${biosample_array[i]}_\${run_array[i]}
+        echo \${prefix}
 
         #--------------------------------
         # ASSEMBLY FILTERING
@@ -46,8 +49,8 @@ process PIPELINES_MVIRSATB {
         echo "Step 1: Length filtering FastA & FAA files"
 
         fastafaalengthfilter.py \\
-            --input_fasta \${fasta} \\
-            --input_faa \${faa} \\
+            --input_fasta \${fasta_array[i]} \\
+            --input_faa \${faa_array[i]} \\
             --prefix \${prefix}.lengthfilter \\
             --fasta_min_len ${assembly_min_len}
 
@@ -90,37 +93,37 @@ process PIPELINES_MVIRSATB {
 
             prefetch \\
                 ${prefetch_args} \\
-                \${run}
+                \${run_array[i]}
 
             fasterq-dump \\
                 ${fasterq_dump_args} \\
                 --threads ${task.cpus} \\
-                --outfile \${run}.fastq \\
-                \${run}
+                --outfile \${run_array[i]}.fastq \\
+                \${run_array[i]}
 
             # REMOVE SRA FILE
-            rm \${run}/\${run}.sra
+            rm \${run_array[i]}/\${run_array[i]}.sra
         fi
 
         #--------------------------------
         # READ QC
         #--------------------------------
         # QC reads with fastp
-        if [ -f \${run}_1.fastq ] && [ -f \${run}_2.fastq ]; then
+        if [ -f \${run_array[i]}_1.fastq ] && [ -f \${run_array[i]}_2.fastq ]; then
             echo "Step 5: QC'ing FastQ files."
 
             fastp \\
-                --in1 \${run}_1.fastq \\
-                --in2 \${run}_2.fastq \\
+                --in1 \${run_array[i]}_1.fastq \\
+                --in2 \${run_array[i]}_2.fastq \\
                 --out1 \${prefix}_1.fastp.fastq \\
                 --out2 \${prefix}_2.fastp.fastq \\
                 --thread ${task.cpus} \\
                 --detect_adapter_for_pe \\
-                --reads_to_process \${max_reads} \\
+                --reads_to_process \${max_read_array[i]} \\
                 ${fastp_args}
 
             # REMOVE SRA-TOOLS FASTQs
-            rm \${run}_1.fastq \${run}_2.fastq
+            rm \${run_array[i]}_1.fastq \${run_array[i]}_2.fastq
 
             # REMOVE FAST HTML
             rm fastp.html
@@ -198,20 +201,22 @@ process PIPELINES_MVIRSATB {
     def mvirs_oprs_args     = task.ext.mvirs_oprs_args
     def mvirs_parser_args   = task.ext.mvirs_parser_args
     """
-    # convert inputs to bash array
-    for sample in ${samples.join(' ')}; do
-        echo \$sample
-        IFS=',' read -r -a sample_array <<< "\${sample}"
-        run=\${sample_array[1]}
-        prefix=\${sample_array[0]}_\${sample_array[1]}
-        fasta=\${sample_array[2]}
-        faa=\${sample_array[3]}
-        max_reads=\${sample_array[4]}
+    # Create arrays to iterate over
+    biosample_array=(${biosamples.join(' ')})
+    run_array=(${runs.join(' ')})
+    max_read_array=(${max_reads.join(' ')})
+    fasta_array=(${fastas.join(' ')})
+    faa_array=(${faas.join(' ')})
+
+    # iterate over each item in a batch
+    for ((i=0; i<\${#biosample_array[@]}; i++)); do
+        echo \$i
+        prefix=\${biosample_array[i]}_\${run_array[i]}
 
         echo \\
         "fastafaalengthfilter.py \\
-            --input_fasta \${fasta} \\
-            --input_faa \${faa} \\
+            --input_fasta \${fasta_array[i]} \\
+            --input_faa \${faa_array[i]} \\
             --prefix \${prefix}.lengthfilter \\
             --fasta_min_len ${assembly_min_len}"
 
@@ -232,24 +237,24 @@ process PIPELINES_MVIRSATB {
         echo \\
         "prefetch \\
                 ${prefetch_args} \\
-                \${run}"
+                \${run_array[i]}"
 
         echo \\
         "fasterq-dump \\
             ${fasterq_dump_args} \\
             --threads ${task.cpus} \\
-            --outfile \${run}.fastq \\
-            \${run}"
+            --outfile \${run_array[i]}.fastq \\
+            \${run_array[i]}"
 
         echo \\
         "fastp \\
-                --in1 \${run}_1.fastq \\
-                --in2 \${run}_2.fastq \\
+                --in1 \${run_array[i]}_1.fastq \\
+                --in2 \${run_array[i]}_2.fastq \\
                 --out1 \${prefix}_1.fastp.fastq \\
                 --out2 \${prefix}_2.fastp.fastq \\
                 --thread ${task.cpus} \\
                 --detect_adapter_for_pe \\
-                --reads_to_process \${max_reads} \\
+                --reads_to_process \${max_read_array[i]} \\
                 ${fastp_args}"
 
         echo \\
