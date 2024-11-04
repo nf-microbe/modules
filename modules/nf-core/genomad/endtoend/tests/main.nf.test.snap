@@ -19,6 +19,14 @@
                     ]
                 ],
                 "10": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_proteins.faa.gz:md5,6850bd46dcb921e5cfb23bfbb8fcc12b"
+                    ]
+                ],
+                "11": [
                     "versions.yml:md5,17692db4ae585b447fe2897babeec56b"
                 ],
                 "2": [
@@ -42,7 +50,7 @@
                         {
                             "id": "test"
                         },
-                        "test_provirus.tsv:md5,93a6bca59b0bf7f57c0b9b60d2e57082"
+                        "test_virus.fna.gz:md5,483f4a5dfe60171c86ee9b7e6dff908b"
                     ]
                 ],
                 "5": [
@@ -50,7 +58,7 @@
                         {
                             "id": "test"
                         },
-                        "test_genes.tsv:md5,f84d8a9fce3c92c49e78672bea16561f"
+                        "test_provirus.tsv:md5,93a6bca59b0bf7f57c0b9b60d2e57082"
                     ]
                 ],
                 "6": [
@@ -58,7 +66,7 @@
                         {
                             "id": "test"
                         },
-                        "test_features.tsv:md5,868804cf1857d3c7e129086ec747c77c"
+                        "test_genes.tsv:md5,f84d8a9fce3c92c49e78672bea16561f"
                     ]
                 ],
                 "7": [
@@ -66,7 +74,7 @@
                         {
                             "id": "test"
                         },
-                        "test_aggregated_classification.tsv:md5,702aead49cca96c98e43c5f032f60b26"
+                        "test_features.tsv:md5,868804cf1857d3c7e129086ec747c77c"
                     ]
                 ],
                 "8": [
@@ -74,7 +82,7 @@
                         {
                             "id": "test"
                         },
-                        "test_taxonomy.tsv:md5,44c6cf5ff4c836f66648457ae8deb0d5"
+                        "test_aggregated_classification.tsv:md5,702aead49cca96c98e43c5f032f60b26"
                     ]
                 ],
                 "9": [
@@ -82,7 +90,7 @@
                         {
                             "id": "test"
                         },
-                        "test_proteins.faa.gz:md5,6850bd46dcb921e5cfb23bfbb8fcc12b"
+                        "test_taxonomy.tsv:md5,44c6cf5ff4c836f66648457ae8deb0d5"
                     ]
                 ],
                 "faa": [
@@ -152,6 +160,14 @@
                 "versions": [
                     "versions.yml:md5,17692db4ae585b447fe2897babeec56b"
                 ],
+                "virus_fasta": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_virus.fna.gz:md5,483f4a5dfe60171c86ee9b7e6dff908b"
+                    ]
+                ],
                 "virus_genes": [
                     [
                         {
@@ -174,7 +190,7 @@
             "nf-test": "0.9.0",
             "nextflow": "24.04.4"
         },
-        "timestamp": "2024-10-07T13:38:55.6753801"
+        "timestamp": "2024-11-04T09:41:58.580200814"
     },
     "sarscov2 - genome - fasta - stub": {
         "content": [
@@ -196,6 +212,14 @@
                     ]
                 ],
                 "10": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_proteins.faa.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                    ]
+                ],
+                "11": [
                     "versions.yml:md5,17692db4ae585b447fe2897babeec56b"
                 ],
                 "2": [
@@ -219,7 +243,7 @@
                         {
                             "id": "test"
                         },
-                        "test_provirus.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test_virus.fna.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
                     ]
                 ],
                 "5": [
@@ -227,7 +251,7 @@
                         {
                             "id": "test"
                         },
-                        "test_genes.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test_provirus.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "6": [
@@ -235,7 +259,7 @@
                         {
                             "id": "test"
                         },
-                        "test_features.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test_genes.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "7": [
@@ -243,7 +267,7 @@
                         {
                             "id": "test"
                         },
-                        "test_aggregated_classification.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test_features.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "8": [
@@ -251,7 +275,7 @@
                         {
                             "id": "test"
                         },
-                        "test_taxonomy.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test_aggregated_classification.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "9": [
@@ -259,7 +283,7 @@
                         {
                             "id": "test"
                         },
-                        "test_proteins.faa.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                        "test_taxonomy.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "faa": [
@@ -329,6 +353,14 @@
                 "versions": [
                     "versions.yml:md5,17692db4ae585b447fe2897babeec56b"
                 ],
+                "virus_fasta": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_virus.fna.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                    ]
+                ],
                 "virus_genes": [
                     [
                         {
@@ -351,6 +383,6 @@
             "nf-test": "0.9.0",
             "nextflow": "24.04.4"
         },
-        "timestamp": "2024-10-07T13:39:24.907451965"
+        "timestamp": "2024-11-04T09:49:45.029947786"
     }
 }
