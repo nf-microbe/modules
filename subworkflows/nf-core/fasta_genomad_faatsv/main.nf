@@ -36,6 +36,7 @@ workflow FASTA_GENOMAD_FAATSV {
     emit:
     plasmid_tsv         = GENOMAD_ENDTOEND.out.plasmid_summary  // [ [ meta ], plasmid_summary.tsv ]
     virus_tsv           = GENOMAD_ENDTOEND.out.virus_summary    // [ [ meta ], virus_summary.tsv ]
+    virus_fna_gz        = GENOMAD_ENDTOEND.out.virus_fasta      // [ [ meta ], virus.fna.gz ]
     genes_tsv           = GENOMAD_ENDTOEND.out.genes            // [ [ meta ], genes.tsv ]
     features_tsv        = GENOMAD_ENDTOEND.out.features         // [ [ meta ], features.tsv ]
     scores_tsv          = GENOMAD_ENDTOEND.out.scores           // [ [ meta ], aggregated_classification.tsv ]
