@@ -25,9 +25,6 @@ process GENOMAD_ENDTOEND {
     tuple val(meta), path("${prefix}_proteins.faa.gz")                  , emit: faa
     path "versions.yml"                                                 , emit: versions
 
-    when:
-    task.ext.when == null || task.ext.when
-
     script:
     def args = task.ext.args ?: ''
     def filename = "${fasta}"[0..<"${fasta}".lastIndexOf('.')]
@@ -78,6 +75,7 @@ process GENOMAD_ENDTOEND {
     def filename = "${fasta}"[0..<"${fasta}".lastIndexOf('.')]
     prefix = task.ext.prefix ?: "${meta.id}"
     """
+    echo "" | gzip > ${prefix}_virus.fna.gz
     touch ${prefix}_virus_summary.tsv
     touch ${prefix}_virus_genes.tsv
     touch ${prefix}_provirus.tsv
