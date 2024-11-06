@@ -58,8 +58,8 @@ def find_att_sites(contig_seq, mge_start, mge_end, dr_seq, att_len, context_len)
     b1 = contig_seq[: mge_start - len(dr_seq)][-att_len:]
     b2 = contig_seq[mge_end + len(dr_seq) :][:att_len]
     attb = b1 + dr_seq + b2
-    con1 = contig_seq[: mge_start - len(dr_seq)][-(context_len + att_len):]
-    con2 = contig_seq[mge_end + len(dr_seq) :][:(context_len + att_len)]
+    con1 = contig_seq[: mge_start - len(dr_seq)][-(context_len + att_len) :]
+    con2 = contig_seq[mge_end + len(dr_seq) :][: (context_len + att_len)]
     context = con1 + dr_seq + con2
     p1 = contig_seq[mge_start : mge_start + att_len]
     p2 = contig_seq[mge_end - att_len : mge_end]
@@ -132,7 +132,18 @@ def find_direct_repeats(fna_path, mvirs_path, faa_path, domtbl_path, summary_pat
         rows.append(row)
 
     dr_df = pd.DataFrame(rows)
-    dr_df.columns = ["mge_id", "assembly_id", "contig_id", "mge_start", "mge_end", "dr_len", "dr_seq", "attb", "context", "attp"]
+    dr_df.columns = [
+        "mge_id",
+        "assembly_id",
+        "contig_id",
+        "mge_start",
+        "mge_end",
+        "dr_len",
+        "dr_seq",
+        "attb",
+        "context",
+        "attp",
+    ]
     integrase_df = make_integrase_output(faa_path, domtbl_path)
     summary_df = dr_df.merge(integrase_df, on="contig_id", how="outer")
     summary_df.to_csv(summary_path, sep="\t", index=False)
@@ -163,5 +174,12 @@ if __name__ == "__main__":
 
     print("Finding direct repeats and making summary file")
     find_direct_repeats(
-        args.fna, args.mvirs, args.faa, args.hmmsearch, args.summary_path, args.max_repeat, args.att_len, args.context_len
+        args.fna,
+        args.mvirs,
+        args.faa,
+        args.hmmsearch,
+        args.summary_path,
+        args.max_repeat,
+        args.att_len,
+        args.context_len,
     )
