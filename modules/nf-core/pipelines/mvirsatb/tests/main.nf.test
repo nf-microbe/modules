@@ -10,22 +10,22 @@ nextflow_process {
     tag "pipelines"
     tag "pipelines/mvirsatb"
 
-    test("SAMN34082720 + SAMEA3586081") {
+    test("SAMN34082720 + SAMEA3643048") {
         when {
             process {
                 """
                 input[0] = [
                     [ id: 'chunk1' ],
-                    ["SAMN34082720","SAMEA3586081"],
-                    ["SRR24085752","ERR1042924"],
-                    [50000,50000],
+                    ["SAMN34082720","SAMEA3643048"],
+                    ["SRR24085752","ERR1104060"],
+                    [50000,1000000],
                     [
                         file("https://github.com/nf-microbe/modules/raw/refs/heads/master/assets/test-datasets/pipelines/mvirsatb/SRR24085752_megahit_contigs.fa.gz", checkIfExists: true),
-                        file("https://github.com/nf-microbe/modules/raw/refs/heads/master/assets/test-datasets/pipelines/mvirsatb/ERR1042924_megahit_contigs.fa.gz", checkIfExists: true)
+                        file("${projectDir}/assets/test-datasets/genomics/provirus/illumina/fasta/SAMEA3643048.fna.gz", checkIfExists: true)
                     ],
                     [
                         file("https://github.com/nf-microbe/modules/raw/refs/heads/master/assets/test-datasets/pipelines/mvirsatb/SRR24085752_megahit.faa.gz", checkIfExists: true),
-                        file("https://github.com/nf-microbe/modules/raw/refs/heads/master/assets/test-datasets/pipelines/mvirsatb/ERR1042924_megahit.faa.gz", checkIfExists: true)
+                        file("${projectDir}/assets/test-datasets/genomics/provirus/illumina/fasta/SAMEA3643048.faa.gz", checkIfExists: true)
                     ]
                 ]
                 input[1] = [

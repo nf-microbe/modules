@@ -1,11 +1,16 @@
 {
-    "SAMN34082720 + SAMEA3586081": {
+    "SAMN34082720 + SAMEA3643048": {
         "content": [
             [
                 
             ],
             [
-                
+                [
+                    {
+                        "id": "chunk1"
+                    },
+                    "SAMEA3643048_ERR1104060.mvirs.summary.tsv:md5,20fa0ea16d10b5c8ff4b1711752f4103"
+                ]
             ],
             [
                 "versions.yml:md5,9c9b3d5cd54535a372b73b67d1f4bcfd"
@@ -15,7 +20,7 @@
             "nf-test": "0.9.1",
             "nextflow": "24.04.4"
         },
-        "timestamp": "2024-11-02T04:19:41.713627051"
+        "timestamp": "2024-11-06T22:02:46.697735942"
     },
     "SAMN34082720 + SAMEA3586081 - stub": {
         "content": [

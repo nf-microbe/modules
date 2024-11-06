@@ -1,8 +1,8 @@
 #                                                                            --- full sequence ---- --- best 1 domain ---- --- domain number estimation ----
 # target name                     accession  query name           accession    E-value  score  bias   E-value  score  bias   exp reg clu  ov env dom rep inc description of target
 #             ------------------- ---------- -------------------- ---------- --------- ------ ----- --------- ------ -----   --- --- --- --- --- --- --- --- ---------------------
-SalmonellaLT2_1:1213986-1255756_1 -          Phage_integrase      PF00589.27   1.2e-52  164.3   0.5     3e-52  163.0   0.1   1.8   2   0   0   2   2   2   1 # 61 # 1224 # -1 # ID=1_1;partial=00;start_type=ATG;rbs_motif=GGAG/GAGG;rbs_spacer=5-10bp;genetic_code=11;gc_cont=0.482
-SalmonellaLT2_1:1849457-1892188_1 -          Phage_integrase      PF00589.27   1.3e-23   69.8   0.2   3.3e-23   68.5   0.2   1.6   1   0   0   1   1   1   1 # 42 # 1367 # -1 # ID=2_1;partial=00;start_type=ATG;rbs_motif=GGAG/GAGG;rbs_spacer=5-10bp;genetic_code=11;gc_cont=0.474
+SalmonellaLT2_1_1 -          Phage_integrase      PF00589.27   1.2e-52  164.3   0.5     3e-52  163.0   0.1   1.8   2   0   0   2   2   2   1 # 61 # 1224 # -1 # ID=1_1;partial=00;start_type=ATG;rbs_motif=GGAG/GAGG;rbs_spacer=5-10bp;genetic_code=11;gc_cont=0.482
+SalmonellaLT2_1_1 -          Phage_integrase      PF00589.27   1.3e-23   69.8   0.2   3.3e-23   68.5   0.2   1.6   1   0   0   1   1   1   1 # 42 # 1367 # -1 # ID=2_1;partial=00;start_type=ATG;rbs_motif=GGAG/GAGG;rbs_spacer=5-10bp;genetic_code=11;gc_cont=0.474
 #
 # Program:         hmmsearch
 # Version:         3.4 (Aug 2023)

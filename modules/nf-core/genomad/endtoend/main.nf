@@ -16,6 +16,7 @@ process GENOMAD_ENDTOEND {
     tuple val(meta), path("${prefix}_plasmid_summary.tsv")              , emit: plasmid_summary
     tuple val(meta), path("${prefix}_virus_genes.tsv")                  , emit: virus_genes
     tuple val(meta), path("${prefix}_virus_summary.tsv")                , emit: virus_summary
+    tuple val(meta), path("${prefix}_virus.fna.gz")                     , emit: virus_fasta
     tuple val(meta), path("${prefix}_provirus.tsv")                     , emit: provirus
     tuple val(meta), path("${prefix}_genes.tsv")                        , emit: genes
     tuple val(meta), path("${prefix}_features.tsv")                     , emit: features
@@ -47,6 +48,7 @@ process GENOMAD_ENDTOEND {
     fi
 
     # save virus outputs
+    gzip -c *_summary/*_virus.fna > ${prefix}_virus.fna.gz
     mv *_summary/*_virus_summary.tsv ${prefix}_virus_summary.tsv
     mv *_summary/*_virus_genes.tsv ${prefix}_virus_genes.tsv
     mv *_find_proviruses/*_provirus.tsv ${prefix}_provirus.tsv
