@@ -15,11 +15,7 @@ process MVIRS_PARSER {
 
     output:
     tuple val(meta), path("${prefix}.mvirs.summary.tsv")    , emit: summary
-    tuple val(meta), path("${prefix}.mvirs.integrases.tsv") , emit: integrases
     path "versions.yml"                                     , emit: versions
-
-    when:
-    task.ext.when == null || task.ext.when
 
     script:
     def args = task.ext.args   ?: ''

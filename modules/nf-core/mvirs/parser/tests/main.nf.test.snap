@@ -7,34 +7,18 @@
                         {
                             "id": "test"
                         },
-                        "test.mvirs.summary.tsv:md5,9918439ea21b10132f6df7434c74107a"
+                        "test.mvirs.summary.tsv:md5,e082b648a7eed5ebbe5eb1c38c600ec9"
                     ]
                 ],
                 "1": [
-                    [
-                        {
-                            "id": "test"
-                        },
-                        "test.mvirs.integrases.tsv:md5,545639e690399fe07da3cae9306d68f4"
-                    ]
-                ],
-                "2": [
                     "versions.yml:md5,ab9b6754e66e87b1ae9bd1f2e632224d"
-                ],
-                "integrases": [
-                    [
-                        {
-                            "id": "test"
-                        },
-                        "test.mvirs.integrases.tsv:md5,545639e690399fe07da3cae9306d68f4"
-                    ]
                 ],
                 "summary": [
                     [
                         {
                             "id": "test"
                         },
-                        "test.mvirs.summary.tsv:md5,9918439ea21b10132f6df7434c74107a"
+                        "test.mvirs.summary.tsv:md5,e082b648a7eed5ebbe5eb1c38c600ec9"
                     ]
                 ],
                 "versions": [
@@ -46,7 +30,7 @@
             "nf-test": "0.9.1",
             "nextflow": "24.04.4"
         },
-        "timestamp": "2024-10-27T22:21:18.603926662"
+        "timestamp": "2024-11-06T22:30:42.185491213"
     },
     "fasta.gz - stub": {
         "content": [
@@ -60,23 +44,7 @@
                     ]
                 ],
                 "1": [
-                    [
-                        {
-                            "id": "test"
-                        },
-                        "test.mvirs.integrases.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ]
-                ],
-                "2": [
                     "versions.yml:md5,ab9b6754e66e87b1ae9bd1f2e632224d"
-                ],
-                "integrases": [
-                    [
-                        {
-                            "id": "test"
-                        },
-                        "test.mvirs.integrases.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ]
                 ],
                 "summary": [
                     [
@@ -95,6 +63,6 @@
             "nf-test": "0.9.1",
             "nextflow": "24.04.4"
         },
-        "timestamp": "2024-10-27T22:19:37.741926717"
+        "timestamp": "2024-11-06T20:05:39.941544513"
     }
 }
