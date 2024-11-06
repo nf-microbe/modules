@@ -7,7 +7,7 @@
                         {
                             "id": "test"
                         },
-                        "test.mvirs.summary.tsv:md5,38aa8658afcb1e50ea7c3e94ce2213a1"
+                        "test.mvirs.summary.tsv:md5,e082b648a7eed5ebbe5eb1c38c600ec9"
                     ]
                 ],
                 "1": [
@@ -18,7 +18,7 @@
                         {
                             "id": "test"
                         },
-                        "test.mvirs.summary.tsv:md5,38aa8658afcb1e50ea7c3e94ce2213a1"
+                        "test.mvirs.summary.tsv:md5,e082b648a7eed5ebbe5eb1c38c600ec9"
                     ]
                 ],
                 "versions": [
@@ -30,7 +30,7 @@
             "nf-test": "0.9.1",
             "nextflow": "24.04.4"
         },
-        "timestamp": "2024-11-06T22:04:44.094128994"
+        "timestamp": "2024-11-06T22:30:42.185491213"
     },
     "fasta.gz - stub": {
         "content": [

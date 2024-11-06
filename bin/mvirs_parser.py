@@ -28,8 +28,8 @@ def find_direct_repeat(contig_seq, mge_start, mge_end, max_repeat=30, max_att=10
     # Start at mvirs edges, and step inwards (towards MGE center) to look for repeats
     for start_shift in range(0, max_repeat):
         # Extract the flanks
-        left_flank = contig_seq[:mge_start+start_shift]  # Left side of the subsequence
-        right_flank = contig_seq[mge_end-start_shift:]  # Right side of the subsequence
+        left_flank = contig_seq[: mge_start + start_shift]  # Left side of the subsequence
+        right_flank = contig_seq[mge_end - start_shift :]  # Right side of the subsequence
 
         # Start with the largest possible repeat size and work down
         for dr_len in range(max_repeat, 0, -1):
@@ -54,15 +54,18 @@ def find_direct_repeat(contig_seq, mge_start, mge_end, max_repeat=30, max_att=10
     return mge_new_start, mge_new_end, len(longest_dr), longest_dr
 
 
-def find_att_sites(contig_seq, mge_start, mge_end, dr_seq, att_len):
+def find_att_sites(contig_seq, mge_start, mge_end, dr_seq, att_len, context_len):
     b1 = contig_seq[: mge_start - len(dr_seq)][-att_len:]
     b2 = contig_seq[mge_end + len(dr_seq) :][:att_len]
     attb = b1 + dr_seq + b2
+    con1 = contig_seq[: mge_start - len(dr_seq)][-(context_len + att_len):]
+    con2 = contig_seq[mge_end + len(dr_seq) :][:(context_len + att_len)]
+    context = con1 + dr_seq + con2
     p1 = contig_seq[mge_start : mge_start + att_len]
     p2 = contig_seq[mge_end - att_len : mge_end]
     attp = p2 + dr_seq + p1
 
-    return attb, attp
+    return attb, context, attp
 
 
 def make_integrase_output(faa_path, domtbl_path):
@@ -97,7 +100,7 @@ def make_integrase_output(faa_path, domtbl_path):
     return df
 
 
-def find_direct_repeats(fna_path, mvirs_path, faa_path, domtbl_path, summary_path, max_repeat, att_len):
+def find_direct_repeats(fna_path, mvirs_path, faa_path, domtbl_path, summary_path, max_repeat, att_len, context_len):
     """
     Process MGEs sequences to find direct repeats flanking mobile genetic elements (MGEs).
 
@@ -124,14 +127,14 @@ def find_direct_repeats(fna_path, mvirs_path, faa_path, domtbl_path, summary_pat
         mge_start, mge_end = (int(_) for _ in mge_id.split(":")[-1].split("-"))
         contig_seq = contigs[contig_id]
         mge_new_start, mge_new_end, dr_len, dr_seq = find_direct_repeat(contig_seq, mge_start, mge_end, max_repeat)
-        attb, attp = find_att_sites(contig_seq, mge_new_start, mge_new_end, dr_seq, att_len)
-        row = [mge_id, assembly_id, contig_id, mge_new_start, mge_new_end, dr_len, dr_seq, attb, attp]
+        attb, context, attp = find_att_sites(contig_seq, mge_new_start, mge_new_end, dr_seq, att_len, context_len)
+        row = [mge_id, assembly_id, contig_id, mge_new_start, mge_new_end, dr_len, dr_seq, attb, context, attp]
         rows.append(row)
 
     dr_df = pd.DataFrame(rows)
-    dr_df.columns = ["mge_id", "assembly_id", "contig_id", "mge_start", "mge_end", "dr_len", "dr_seq", "attb", "attp"]
+    dr_df.columns = ["mge_id", "assembly_id", "contig_id", "mge_start", "mge_end", "dr_len", "dr_seq", "attb", "context", "attp"]
     integrase_df = make_integrase_output(faa_path, domtbl_path)
-    summary_df = dr_df.merge(integrase_df, on='contig_id', how='outer')
+    summary_df = dr_df.merge(integrase_df, on="contig_id", how="outer")
     summary_df.to_csv(summary_path, sep="\t", index=False)
 
 
@@ -147,6 +150,9 @@ if __name__ == "__main__":
         "--att_len", metavar="INT", type=int, default=100, help="Length for attachment sites (default: 100)"
     )
     parser.add_argument(
+        "--context_len", metavar="INT", type=int, default=2500, help="Length for attachment sites (default: 2500)"
+    )
+    parser.add_argument(
         "--max_repeat", metavar="INT", type=int, default=30, help="Maximum repeat size to search for (default: 50)"
     )
     parser.add_argument("--prefix", type=str, help="Prefix for output files")
@@ -156,4 +162,6 @@ if __name__ == "__main__":
     args.summary_path = f"{args.prefix}.summary.tsv"
 
     print("Finding direct repeats and making summary file")
-    find_direct_repeats(args.fna, args.mvirs, args.faa, args.hmmsearch, args.summary_path, args.max_repeat, args.att_len)
+    find_direct_repeats(
+        args.fna, args.mvirs, args.faa, args.hmmsearch, args.summary_path, args.max_repeat, args.att_len, args.context_len
+    )
