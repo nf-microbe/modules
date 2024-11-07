@@ -1,0 +1,68 @@
+{
+    "bam - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.mgefinder.find:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,9da89ee786595ead7f36484381f71f90"
+                ],
+                "find": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.mgefinder.find:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,9da89ee786595ead7f36484381f71f90"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.1",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-11-07T22:04:07.07098309"
+    },
+    "fasta.gz - bam": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.mgefinder.find:md5,11ff91453ea6e51a1a2641ff4dd1aeda"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,9da89ee786595ead7f36484381f71f90"
+                ],
+                "find": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.mgefinder.find:md5,11ff91453ea6e51a1a2641ff4dd1aeda"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,9da89ee786595ead7f36484381f71f90"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.1",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-11-07T22:46:12.933252031"
+    }
+}

@@ -24,7 +24,6 @@ nextflow_process {
     }
 
     test("Single-End") {
-
         when {
             process {
                 """
