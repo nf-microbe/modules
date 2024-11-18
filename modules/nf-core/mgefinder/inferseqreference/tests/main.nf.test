@@ -1,0 +1,58 @@
+nextflow_process {
+
+    name "Test Process MGEFINDER_INFERSEQREFERENCE"
+    script "../main.nf"
+    process "MGEFINDER_INFERSEQREFERENCE"
+
+    tag "modules"
+    tag "modules_nfcore"
+    tag "mgefinder"
+    tag "mgefinder/inferseqreference"
+
+    test("fasta.gz - pair") {
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test' ], // meta map
+                    file("/mmfs1/gscratch/pedslabs_hoffman/carsonjm/nf-microbe/modules/.nf-test/tests/ba7412669bf2e3864bf37863a63e0f7b/work/e7/fb72e4eebe0fff7aaaa8c6b42283a4/test.mgefinder.pair", checkIfExists: true)
+                ]
+                input[1] = [
+                    [ id:'test' ], // meta map
+                    file("/mmfs1/gscratch/pedslabs_hoffman/carsonjm/SAMEA2187099.rename.fasta", checkIfExists: true)
+                ]
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("fasta.gz - pair - stub") {
+        options "-stub"
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test' ], // meta map
+                    []
+                ]
+                input[1] = [
+                    [ id:'test' ], // meta map
+                    []
+                ]
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+}

@@ -115,7 +115,7 @@
                             "id": "test2",
                             "single_end": false
                         },
-                        "test2.mvirs.bam:md5,ff71d51c6fdd7c861dfc2291e696ea64"
+                        "test2.mvirs.bam:md5,63737eb09702da673ae97c396ac8648b"
                     ]
                 ],
                 "1": [
@@ -163,7 +163,7 @@
                             "id": "test2",
                             "single_end": false
                         },
-                        "test2.mvirs.bam:md5,ff71d51c6fdd7c861dfc2291e696ea64"
+                        "test2.mvirs.bam:md5,63737eb09702da673ae97c396ac8648b"
                     ]
                 ],
                 "clipped": [
@@ -208,9 +208,9 @@
             }
         ],
         "meta": {
-            "nf-test": "0.9.0",
+            "nf-test": "0.9.1",
             "nextflow": "24.04.4"
         },
-        "timestamp": "2024-10-15T10:30:06.053205854"
+        "timestamp": "2024-11-07T22:09:52.558111008"
     }
 }

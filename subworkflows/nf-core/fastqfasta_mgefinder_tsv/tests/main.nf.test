@@ -1,0 +1,43 @@
+nextflow_workflow {
+
+    name "Test Subworkflow FASTQFASTA_MGEFINDER_TSV"
+    script "../main.nf"
+    workflow "FASTQFASTA_MGEFINDER_TSV"
+    config "./nextflow.config"
+
+    tag "subworkflows"
+    tag "subworkflows_nfcore"
+    tag "subworkflows/fastqfastamgefinder_tsv"
+    tag "bwa/index"
+    tag "bwa/mem"
+    tag "mgefinder/formatbam"
+    tag "mgefinder/find"
+    tag "mgefinder/pair"
+    tag "mgefinder/inferseqreference"
+
+    test("b_fragilis - fastq.gz - fasta.gz") {
+        when {
+            workflow {
+                """
+                input[0] = Channel.of([
+                    [ id:'test', group:'test', single_end:false ],
+                    [
+                        file("/mmfs1/gscratch/pedslabs_hoffman/carsonjm/projects/atb_prophage_eval/results/sra_asperacli/SAMEA5584860_1.fastq.gz", checkIfExists: true),
+                        file("/mmfs1/gscratch/pedslabs_hoffman/carsonjm/projects/atb_prophage_eval/results/sra_asperacli/SAMEA5584860_2.fastq.gz", checkIfExists: true)
+                    ]
+                ])
+                input[1] = Channel.of([
+                    [ id:'test' ],
+                    file("/mmfs1/gscratch/pedslabs_hoffman/carsonjm/projects/atb_prophage_eval/results/allthebacteria_aria2seqkit/SAMEA5584860.fasta.gz", checkIfExists: true)
+                ])
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success},
+                { assert snapshot(workflow.out).match()}
+            )
+        }
+    }
+}

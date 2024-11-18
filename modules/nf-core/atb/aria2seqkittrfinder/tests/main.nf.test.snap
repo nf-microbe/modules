@@ -1,0 +1,100 @@
+{
+    "atb.assembly.incr_release.202408.batch.104.tar.xz": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "atb.assembly.incr_release.202408.batch.104.tar.xz"
+                        },
+                        "atb.assembly.incr_release.202408.batch.104.tar.xz.trfinder.fasta.gz:md5,6decac710cbcbcef855ddb61f5a943f2"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "atb.assembly.incr_release.202408.batch.104.tar.xz"
+                        },
+                        "atb.assembly.incr_release.202408.batch.104.tar.xz.trfinder.tsv:md5,abc053a04761504ede8b69c7095342d2"
+                    ]
+                ],
+                "2": [
+                    "versions.yml:md5,bd1b7b01f436e5057247b88a8c813e93"
+                ],
+                "fasta": [
+                    [
+                        {
+                            "id": "atb.assembly.incr_release.202408.batch.104.tar.xz"
+                        },
+                        "atb.assembly.incr_release.202408.batch.104.tar.xz.trfinder.fasta.gz:md5,6decac710cbcbcef855ddb61f5a943f2"
+                    ]
+                ],
+                "tsv": [
+                    [
+                        {
+                            "id": "atb.assembly.incr_release.202408.batch.104.tar.xz"
+                        },
+                        "atb.assembly.incr_release.202408.batch.104.tar.xz.trfinder.tsv:md5,abc053a04761504ede8b69c7095342d2"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,bd1b7b01f436e5057247b88a8c813e93"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.1",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-11-07T16:33:52.964600894"
+    },
+    "atb.assembly.incr_release.202408.batch.104.tar.xz - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "atb.assembly.incr_release.202408.batch.104.tar.xz"
+                        },
+                        "atb.assembly.incr_release.202408.batch.104.tar.xz.trfinder.fasta.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "atb.assembly.incr_release.202408.batch.104.tar.xz"
+                        },
+                        "atb.assembly.incr_release.202408.batch.104.tar.xz.trfinder.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "2": [
+                    "versions.yml:md5,bd1b7b01f436e5057247b88a8c813e93"
+                ],
+                "fasta": [
+                    [
+                        {
+                            "id": "atb.assembly.incr_release.202408.batch.104.tar.xz"
+                        },
+                        "atb.assembly.incr_release.202408.batch.104.tar.xz.trfinder.fasta.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                    ]
+                ],
+                "tsv": [
+                    [
+                        {
+                            "id": "atb.assembly.incr_release.202408.batch.104.tar.xz"
+                        },
+                        "atb.assembly.incr_release.202408.batch.104.tar.xz.trfinder.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,bd1b7b01f436e5057247b88a8c813e93"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.1",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-11-07T16:34:09.0552216"
+    }
+}

@@ -1,0 +1,58 @@
+{
+    "fasta.gz - bam - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.mgefinder.pair:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,6a5e88a42191680ffc9cc18e75f18059"
+                ],
+                "pair": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.mgefinder.pair:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,6a5e88a42191680ffc9cc18e75f18059"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.1",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-11-07T22:52:27.463051905"
+    },
+    "fasta.gz - bam": {
+        "content": [
+            {
+                "0": [
+                    
+                ],
+                "1": [
+                    
+                ],
+                "pair": [
+                    
+                ],
+                "versions": [
+                    
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.1",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-11-07T22:51:32.559284037"
+    }
+}

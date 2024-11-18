@@ -1,0 +1,55 @@
+nextflow_process {
+
+    name "Test Process MGEFINDER_FIND"
+    script "../main.nf"
+    process "MGEFINDER_FIND"
+    config "./nextflow.config"
+
+    tag "modules"
+    tag "modules_nfcore"
+    tag "mgefinder"
+    tag "mgefinder/formatbam"
+    tag "mgefinder/find"
+
+    test("fasta.gz - bam") {
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test' ], // meta map
+                    [
+                        file("/mmfs1/gscratch/pedslabs_hoffman/carsonjm/nf-microbe/modules/.nf-test/tests/39420309151e6a4c8e2282dfdcef3e60/work/40/23f32dca7ddc95a12cc67208833363/test.mgefinder.bam", checkIfExists: true),
+                        file("/mmfs1/gscratch/pedslabs_hoffman/carsonjm/nf-microbe/modules/.nf-test/tests/39420309151e6a4c8e2282dfdcef3e60/work/40/23f32dca7ddc95a12cc67208833363/test.mgefinder.bam.bai", checkIfExists: true)
+                    ]
+                ]
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("bam - stub") {
+        options "-stub"
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test' ], // meta map
+                    []
+                ]
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+}

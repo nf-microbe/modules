@@ -1,0 +1,50 @@
+nextflow_process {
+
+    name "Test Process MGEFINDER_FORMATBAM"
+    script "../main.nf"
+    process "MGEFINDER_FORMATBAM"
+
+    tag "modules"
+    tag "modules_nfcore"
+    tag "mgefinder"
+    tag "mgefinder/formatbam"
+
+    test("bam") {
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test' ], // meta map
+                    file("/mmfs1/gscratch/pedslabs_hoffman/carsonjm/nf-microbe/modules/.nf-test/tests/d66d38376a064f69b0a249d9c75d0d88/work/62/0a9b7e06c284d93c10996a4881b416/test.bam", checkIfExists: true)
+                ]
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("bam - stub") {
+        options "-stub"
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test' ], // meta map
+                    []
+                ]
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+}

@@ -1,0 +1,80 @@
+{
+    "bam - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        [
+                            "test.mgefinder.bam:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "test.mgefinder.bam.bai:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        ]
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,68fb8eb0a87c3128ae275e2103e176f1"
+                ],
+                "bam": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        [
+                            "test.mgefinder.bam:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "test.mgefinder.bam.bai:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        ]
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,68fb8eb0a87c3128ae275e2103e176f1"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.1",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-11-07T21:58:00.88243674"
+    },
+    "bam": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        [
+                            "test.mgefinder.bam:md5,6eacef59dd393c714a02075c0d6e59cd",
+                            "test.mgefinder.bam.bai:md5,48771f50863f34fd977780f508893388"
+                        ]
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,68fb8eb0a87c3128ae275e2103e176f1"
+                ],
+                "bam": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        [
+                            "test.mgefinder.bam:md5,6eacef59dd393c714a02075c0d6e59cd",
+                            "test.mgefinder.bam.bai:md5,48771f50863f34fd977780f508893388"
+                        ]
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,68fb8eb0a87c3128ae275e2103e176f1"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-11-07T16:24:20.153906531"
+    }
+}

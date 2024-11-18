@@ -125,10 +125,12 @@ def find_direct_repeats(fna_path, mvirs_path, faa_path, domtbl_path, summary_pat
         assembly_id = mge_id.split("_")[0].split(":")[0]
         contig_id = mge_id.split(":")[0]
         mge_start, mge_end = (int(_) for _ in mge_id.split(":")[-1].split("-"))
+        opr = int(mge_id.split(" ")[1].split("=")[1].split('-')[0])
+        sr = int(mge_id.split(" ")[1].split("=")[2].split('-')[0])
         contig_seq = contigs[contig_id]
         mge_new_start, mge_new_end, dr_len, dr_seq = find_direct_repeat(contig_seq, mge_start, mge_end, max_repeat)
         attb, context, attp = find_att_sites(contig_seq, mge_new_start, mge_new_end, dr_seq, att_len, context_len)
-        row = [mge_id, assembly_id, contig_id, mge_new_start, mge_new_end, dr_len, dr_seq, attb, context, attp]
+        row = [mge_id, assembly_id, contig_id, mge_new_start, mge_new_end, dr_len, opr, sr, dr_seq, attb, context, attp]
         rows.append(row)
 
     dr_df = pd.DataFrame(rows)
@@ -138,6 +140,8 @@ def find_direct_repeats(fna_path, mvirs_path, faa_path, domtbl_path, summary_pat
         "contig_id",
         "mge_start",
         "mge_end",
+        "opr_count",
+        "sr_count",
         "dr_len",
         "dr_seq",
         "attb",
