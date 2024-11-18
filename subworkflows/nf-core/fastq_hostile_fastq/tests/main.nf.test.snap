@@ -1,0 +1,67 @@
+{
+    "human-t2t-hla.argos-bacteria-985_rs-viral-202401_ml-phage-202401": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test1",
+                            "single_end": false
+                        },
+                        [
+                            "test_1.clean_1.fastq.gz:md5,00682af915b1267f83d781d0d1b59cd7",
+                            "test_2.clean_2.fastq.gz:md5,44013d83b4925719051e0f4f79987c5a"
+                        ]
+                    ],
+                    [
+                        {
+                            "id": "test2",
+                            "single_end": false
+                        },
+                        [
+                            "test2_1.clean_1.fastq.gz:md5,00682af915b1267f83d781d0d1b59cd7",
+                            "test2_2.clean_2.fastq.gz:md5,44013d83b4925719051e0f4f79987c5a"
+                        ]
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,1ed458e555348606a9d2d39d2a1881ab",
+                    "versions.yml:md5,978fe2c891e3081efc0966510abbf194",
+                    "versions.yml:md5,978fe2c891e3081efc0966510abbf194"
+                ],
+                "fastq_gz": [
+                    [
+                        {
+                            "id": "test1",
+                            "single_end": false
+                        },
+                        [
+                            "test_1.clean_1.fastq.gz:md5,00682af915b1267f83d781d0d1b59cd7",
+                            "test_2.clean_2.fastq.gz:md5,44013d83b4925719051e0f4f79987c5a"
+                        ]
+                    ],
+                    [
+                        {
+                            "id": "test2",
+                            "single_end": false
+                        },
+                        [
+                            "test2_1.clean_1.fastq.gz:md5,00682af915b1267f83d781d0d1b59cd7",
+                            "test2_2.clean_2.fastq.gz:md5,44013d83b4925719051e0f4f79987c5a"
+                        ]
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,1ed458e555348606a9d2d39d2a1881ab",
+                    "versions.yml:md5,978fe2c891e3081efc0966510abbf194",
+                    "versions.yml:md5,978fe2c891e3081efc0966510abbf194"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-11-18T08:46:14.876439637"
+    }
+}

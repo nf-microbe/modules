@@ -12,11 +12,8 @@ process HOSTILE_CLEAN {
     tuple val(meta2), path(index)
 
     output:
-    tuple val(meta), path("*.clean.fastq.gz")   , emit: fastq
+    tuple val(meta), path("*.clean*.fastq.gz")  , emit: fastq
     path "versions.yml"                         , emit: versions
-
-    when:
-    task.ext.when == null || task.ext.when
 
     script:
     def args = task.ext.args ?: ''
@@ -47,7 +44,7 @@ process HOSTILE_CLEAN {
         hostile clean \\
             --fastq1 ${fastq[0]} \\
             --fastq2 ${fastq[1]} \\
-            --index ${index_name} \\
+            --index ${index} \\
             --reorder \\
             --out-dir ${prefix}.hostile \\
             --threads ${task.cpus} \\

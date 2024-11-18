@@ -1,0 +1,47 @@
+nextflow_workflow {
+
+    name "Test Subworkflow FASTQ_HOSTILE_FASTQ"
+    script "../main.nf"
+    workflow "FASTQ_HOSTILE_FASTQ"
+
+    tag "subworkflows"
+    tag "subworkflows_nfcore"
+    tag "subworkflows/fastq_hostile_fastq"
+    tag "hostile/fetch"
+    tag "hostile/clean"
+
+    test("human-t2t-hla.argos-bacteria-985_rs-viral-202401_ml-phage-202401") {
+        when {
+            workflow {
+                """
+                input[0] = Channel.of(
+                    [
+                        [ id:'test1', single_end:false ], // meta map
+                        [
+                            file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz',checkIfExists: true),
+                            file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_2.fastq.gz',checkIfExists: true)
+                        ]
+                    ],
+                    [
+                        [ id:'test2', single_end:false ], // meta map
+                        [
+                            file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test2_1.fastq.gz',checkIfExists: true),
+                            file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test2_2.fastq.gz',checkIfExists: true)
+                        ]
+                    ]
+                )
+                input[1] = [
+                    [ id:'reference' ],
+                    "human-t2t-hla.argos-bacteria-985_rs-viral-202401_ml-phage-202401"
+                ]
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success},
+                { assert snapshot(workflow.out).match()}
+            )
+        }
+    }
+}
