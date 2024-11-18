@@ -47,8 +47,8 @@
                             "id": "test"
                         },
                         [
-                            "test.mgefinder.bam:md5,c0e6a077a10a3153be027e7ee8f8c1e9",
-                            "test.mgefinder.bam.bai:md5,ead90b7bbca94b50608fc61ab348cf78"
+                            "test.mgefinder.bam:md5,6eacef59dd393c714a02075c0d6e59cd",
+                            "test.mgefinder.bam.bai:md5,48771f50863f34fd977780f508893388"
                         ]
                     ]
                 ],
@@ -61,8 +61,8 @@
                             "id": "test"
                         },
                         [
-                            "test.mgefinder.bam:md5,c0e6a077a10a3153be027e7ee8f8c1e9",
-                            "test.mgefinder.bam.bai:md5,ead90b7bbca94b50608fc61ab348cf78"
+                            "test.mgefinder.bam:md5,6eacef59dd393c714a02075c0d6e59cd",
+                            "test.mgefinder.bam.bai:md5,48771f50863f34fd977780f508893388"
                         ]
                     ]
                 ],
@@ -72,9 +72,9 @@
             }
         ],
         "meta": {
-            "nf-test": "0.9.1",
+            "nf-test": "0.9.0",
             "nextflow": "24.04.4"
         },
-        "timestamp": "2024-11-07T21:56:53.727096522"
+        "timestamp": "2024-11-07T16:24:20.153906531"
     }
 }

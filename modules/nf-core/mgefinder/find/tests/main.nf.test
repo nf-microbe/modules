@@ -18,8 +18,8 @@ nextflow_process {
                 input[0] = [
                     [ id:'test' ], // meta map
                     [
-                        file("/workspaces/modules/.nf-test/tests/b9e55730919a2a80ba7dab72595ea208/work/74/1f51f7f03ef3fb03744d3d337c38a6/test.mgefinder.bam", checkIfExists: true),
-                        file("/workspaces/modules/.nf-test/tests/b9e55730919a2a80ba7dab72595ea208/work/74/1f51f7f03ef3fb03744d3d337c38a6/test.mgefinder.bam.bai", checkIfExists: true)
+                        file("/mmfs1/gscratch/pedslabs_hoffman/carsonjm/nf-microbe/modules/.nf-test/tests/39420309151e6a4c8e2282dfdcef3e60/work/40/23f32dca7ddc95a12cc67208833363/test.mgefinder.bam", checkIfExists: true),
+                        file("/mmfs1/gscratch/pedslabs_hoffman/carsonjm/nf-microbe/modules/.nf-test/tests/39420309151e6a4c8e2282dfdcef3e60/work/40/23f32dca7ddc95a12cc67208833363/test.mgefinder.bam.bai", checkIfExists: true)
                     ]
                 ]
                 """

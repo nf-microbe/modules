@@ -4,12 +4,12 @@ process MGEFINDER_INFERSEQREFERENCE {
 
     conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'shub://bhattlab/MGEfinder-singularity:latest' :
-        'shub://bhattlab/MGEfinder-singularity:latest' }"
+        'docker://carsonjm/mgefinder:0.0.1' :
+        'docker://carsonjm/mgefinder:0.0.1' }"
 
     input:
-    tuple val(meta) , path(pair)
-    tuple val(meta2), path(fasta)
+    tuple val(meta) , path(fasta)
+    tuple val(meta2), path(pair)
 
     output:
     tuple val(meta), path("${prefix}.mgefinder.inferseq_reference.tsv") , emit: tsv
@@ -18,17 +18,23 @@ process MGEFINDER_INFERSEQREFERENCE {
     script:
     def args = task.ext.args   ?: ''
     prefix   = task.ext.prefix ?: "${meta.id}"
+    def is_compressed = fasta.getExtension() == "gz" ? true : false
+    def fasta_name = is_compressed ? fasta.getBaseName() : fasta
     """
+    if [ "${is_compressed}" == "true" ]; then
+        gzip -c -d ${fasta} > ${fasta_name}
+    fi
+
     mgefinder \\
         inferseq-reference \\
         ${pair} \\
-        ${fasta} \\
+        ${fasta_name} \\
         -o ${prefix}.mgefinder.inferseq_reference.tsv \\
         ${args}
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        mgefinder: \$(echo \$( prophage_tracer_WGS.sh -h | sed -n "s/Prophage Tracer V//; s/\s.*//;  2p" ))
+        mgefinder: \$(echo \$( mgefinder --version | tail -n 1 | sed "s/MGEfinder version://" ))
     END_VERSIONS
     """
 
@@ -39,7 +45,7 @@ process MGEFINDER_INFERSEQREFERENCE {
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        mgefinder: \$(echo \$( prophage_tracer_WGS.sh -h | sed -n "s/Prophage Tracer V//; s/\s.*//;  2p" ))
+        mgefinder: \$(echo \$( mgefinder --version | tail -n 1 | sed "s/MGEfinder version://" ))
     END_VERSIONS
     """
 }

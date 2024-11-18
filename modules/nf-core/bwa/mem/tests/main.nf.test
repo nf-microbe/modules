@@ -16,7 +16,8 @@ nextflow_process {
                 """
                 input[0] = [
                     [id: 'test'],
-                    file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta', checkIfExists: true)
+                    //file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta', checkIfExists: true)
+                    file('/mmfs1/gscratch/pedslabs_hoffman/carsonjm/SAMEA2187099.rename.fasta')
                 ]
                 """
             }
@@ -30,11 +31,14 @@ nextflow_process {
                 input[0] = [
                     [ id:'test', single_end:true ], // meta map
                     [
-                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true)
+                        //file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true)
+                        file('/mmfs1/gscratch/pedslabs_hoffman/carsonjm/projects/atb_prophage_eval/results/sra_asperacli/SAMEA2187099_1.fastq.gz'),
+                        file('/mmfs1/gscratch/pedslabs_hoffman/carsonjm/projects/atb_prophage_eval/results/sra_asperacli/SAMEA2187099_2.fastq.gz')
                     ]
                 ]
                 input[1] = BWA_INDEX.out.index
-                input[2] = [[id: 'test'],file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta', checkIfExists: true)]
+                //input[2] = [[id: 'test'],file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta', checkIfExists: true)]
+                input[2] = [[id: 'test'],file('/mmfs1/gscratch/pedslabs_hoffman/carsonjm/SAMEA2187099.rename.fasta', checkIfExists: true)]
                 input[3] = false
                 """
             }

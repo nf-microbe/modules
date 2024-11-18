@@ -32,6 +32,72 @@
         },
         "timestamp": "2024-10-21T08:12:13.601083178"
     },
+    "fasta.gz - pair": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.mgefinder.inferseq_reference.tsv:md5,3a447c1ab02f0847e526f3defc4c2c8a"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,90f2b587faf1519f15830cb91129a9df"
+                ],
+                "tsv": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.mgefinder.inferseq_reference.tsv:md5,3a447c1ab02f0847e526f3defc4c2c8a"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,90f2b587faf1519f15830cb91129a9df"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-11-07T16:56:39.020210969"
+    },
+    "fasta.gz - pair - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.mgefinder.inferseq_reference.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,90f2b587faf1519f15830cb91129a9df"
+                ],
+                "tsv": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.mgefinder.inferseq_reference.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,90f2b587faf1519f15830cb91129a9df"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-11-07T16:56:45.230400124"
+    },
     "fasta.gz - bam": {
         "content": [
             {

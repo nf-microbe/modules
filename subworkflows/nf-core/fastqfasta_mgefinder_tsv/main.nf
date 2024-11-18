@@ -6,7 +6,7 @@ include { MGEFINDER_FIND                } from '../../../modules/nf-core/mgefind
 include { MGEFINDER_PAIR                } from '../../../modules/nf-core/mgefinder/pair'
 include { MGEFINDER_INFERSEQREFERENCE   } from '../../../modules/nf-core/mgefinder/inferseqreference'
 
-workflow FASTQFASTA_PROPHAGETRACER_TSV {
+workflow FASTQFASTA_MGEFINDER_TSV {
 
     take:
     fastq_gz            // channel: [ [ meta.id, meta.single_end ], [ path(fastq_1), path(fastq_2) ] ]
@@ -14,7 +14,7 @@ workflow FASTQFASTA_PROPHAGETRACER_TSV {
 
     main:
 
-    def ch_versions = Channel.empty()
+    ch_versions = Channel.empty()
 
     //
     // MODULE: Index reference genome/assembly
@@ -25,7 +25,7 @@ workflow FASTQFASTA_PROPHAGETRACER_TSV {
     ch_versions = ch_versions.mix(BWA_INDEX.out.versions)
 
     // join fastQ and Fasta
-    def ch_bwa_mem_input = fastq_gz.map { meta, fastq -> [ [ id:meta.group ], meta, fastq ] }
+    ch_bwa_mem_input = fastq_gz.map { meta, fastq -> [ [ id:meta.group ], meta, fastq ] }
         .combine(fasta_gz, by:0)
         .combine(BWA_INDEX.out.index, by:0)
         .multiMap { meta_group, meta_fastq, fastq, fasta, index ->
@@ -61,10 +61,15 @@ workflow FASTQFASTA_PROPHAGETRACER_TSV {
     )
     ch_versions = ch_versions.mix(MGEFINDER_FIND.out.versions)
 
+    ch_mgefinder_find = MGEFINDER_FORMATBAM.out.bam
+        .filter { meta, find ->
+            find.countLines( limit: 10 ) > 1
+        }
+
     // join fasta, find bam, and find file
-    def ch_pair_input = fasta_gz
+    ch_pair_input = fasta_gz
         .combine(MGEFINDER_FORMATBAM.out.bam.map { meta, bam -> [ [ id: meta.group ], meta, bam ] }, by:0)
-        .combine(MGEFINDER_FIND.out.find.map { meta, find -> [ [ id: meta.group ], find ] }, by:0)
+        .combine(ch_mgefinder_find.map { meta, find -> [ [ id: meta.group ], find ] }, by:0)
         .multiMap { meta_group, fasta, meta_bam, bam, find ->
             fasta:  [ meta_bam, fasta ]
             bam:    [ meta_bam, bam ]
@@ -81,9 +86,14 @@ workflow FASTQFASTA_PROPHAGETRACER_TSV {
     )
     ch_versions = ch_versions.mix(MGEFINDER_PAIR.out.versions.first())
 
+    ch_mgefinder_pair = MGEFINDER_PAIR.out.pair
+        .filter { meta, pair ->
+            pair.countLines( limit: 10 ) > 1
+        }
+
     // join FastA and pair file
-    def ch_inferseqreference_input = fasta_gz
-        .combine(MGEFINDER_PAIR.out.pair.map { meta, pair -> [ [ id: meta.group ], meta, pair ] }, by:0)
+    ch_inferseqreference_input = fasta_gz
+        .combine(ch_mgefinder_pair.map { meta, pair -> [ [ id: meta.group ], meta, pair ] }, by:0)
         .multiMap { meta_group, fasta, meta_pair, pair ->
             fasta:  [ meta_pair, fasta ]
             pair:   [ meta_pair, pair ]

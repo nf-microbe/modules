@@ -15,18 +15,18 @@ nextflow_process {
                 """
                 input[0] = [
                     [ id:'test' ], // meta map
-                    file("${projectDir}/assets/test-datasets/genomics/provirus/illumina/fasta/SAMEA3643048.fna.gz")
+                    file("/mmfs1/gscratch/pedslabs_hoffman/carsonjm/SAMEA2187099.rename.fasta")
                 ]
                 input[1] = [
                     [ id:'test' ], // meta map
                     [
-                        file("/workspaces/modules/.nf-test/tests/b9e55730919a2a80ba7dab72595ea208/work/74/1f51f7f03ef3fb03744d3d337c38a6/test.mgefinder.bam", checkIfExists: true),
-                        file("/workspaces/modules/.nf-test/tests/b9e55730919a2a80ba7dab72595ea208/work/74/1f51f7f03ef3fb03744d3d337c38a6/test.mgefinder.bam.bai", checkIfExists: true)
+                        file("/mmfs1/gscratch/pedslabs_hoffman/carsonjm/nf-microbe/modules/.nf-test/tests/39420309151e6a4c8e2282dfdcef3e60/work/40/23f32dca7ddc95a12cc67208833363/test.mgefinder.bam", checkIfExists: true),
+                        file("/mmfs1/gscratch/pedslabs_hoffman/carsonjm/nf-microbe/modules/.nf-test/tests/39420309151e6a4c8e2282dfdcef3e60/work/40/23f32dca7ddc95a12cc67208833363/test.mgefinder.bam.bai", checkIfExists: true)
                     ]
                 ]
                 input[2] = [
                     [ id:'test' ], // meta map
-                    file("/workspaces/modules/.nf-test/tests/e6e970eb5d13f8271172fef712dd8976/work/6a/0cf4057df0b7ca08dddaea2f98a9c3/test.mgefinder.find", checkIfExists: true)
+                    file("/mmfs1/gscratch/pedslabs_hoffman/carsonjm/nf-microbe/modules/.nf-test/tests/f0a3eed94b1f81a0230fbd08f9007d75/work/70/0ebb912ffe1afbb8a13c624c5e74d4/test.mgefinder.find", checkIfExists: true)
                 ]
                 """
             }

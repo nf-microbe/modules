@@ -19,12 +19,18 @@ process MGEFINDER_PAIR {
     script:
     def args = task.ext.args   ?: ''
     prefix   = task.ext.prefix ?: "${meta.id}"
+    def is_compressed = fasta.getExtension() == "gz" ? true : false
+    def fasta_name = is_compressed ? fasta.getBaseName() : fasta
     """
+    if [ "${is_compressed}" == "true" ]; then
+        gzip -c -d ${fasta} > ${fasta_name}
+    fi
+
     mgefinder \\
         pair \\
         ${find} \\
         ${bam[0]} \\
-        ${find} \\
+        ${fasta_name} \\
         -o ${prefix}.mgefinder.pair \\
         ${args}
 

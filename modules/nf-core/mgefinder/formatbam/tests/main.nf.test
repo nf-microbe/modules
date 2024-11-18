@@ -15,7 +15,7 @@ nextflow_process {
                 """
                 input[0] = [
                     [ id:'test' ], // meta map
-                    file("/workspaces/modules/.nf-test/tests/dd0caa451f454f495f6763b30412274c/work/1f/292e248cc8ec577c729c6a46ac2dbf/test.bam", checkIfExists: true)
+                    file("/mmfs1/gscratch/pedslabs_hoffman/carsonjm/nf-microbe/modules/.nf-test/tests/d66d38376a064f69b0a249d9c75d0d88/work/62/0a9b7e06c284d93c10996a4881b416/test.bam", checkIfExists: true)
                 ]
                 """
             }
