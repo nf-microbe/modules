@@ -17,10 +17,10 @@ workflow FASTQ_HOSTILE_FASTQ {
     // MODULE: Download hostile reference
     //
     HOSTILE_FETCH(
-        hostile_index
+        Channel.of([ [ id:'hostile_index' ], hostile_index ])
     )
-    def ch_hostile_index    = HOSTILE_FETCH.out.index
-    ch_versions         = ch_versions.mix(HOSTILE_FETCH.out.versions)
+    def ch_hostile_index    = HOSTILE_FETCH.out.index.first()
+    ch_versions             = ch_versions.mix(HOSTILE_FETCH.out.versions)
 
     //
     // MODULE: Remove human reads
